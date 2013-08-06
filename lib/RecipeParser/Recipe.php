@@ -75,47 +75,5 @@ class RecipeParser_Recipe {
         }
     }
 
-    public function getIngredientsMarkdown() {
-        $list = array();
-        foreach ($this->ingredients as $sec) {
-            if ($sec['name']) {
-                $list[] = '# ' . $sec['name'];
-            }
-            $list = array_merge($list, $sec['list']);
-        }
-        $string = implode("\n", $list);
-        $string = Input::cleanupIngredients($string);
-        return $string;
-    }
-
-    public function getInstructionsMarkdown() {
-        $list = array();
-        foreach ($this->instructions as $sec) {
-            if ($sec['name']) {
-                $list[] = '# ' . $sec['name'];
-            }
-            $list = array_merge($list, $sec['list']);
-        }
-        $string = implode("\n\n", $list);
-        $string = Input::cleanupInstructions($string);
-        return $string;
-    }
-
-    public function toArray() {
-        $arr = array();
-        $arr['title'] = $this->title;
-        $arr['description'] = $this->description;
-        $arr['notes'] = $this->notes;
-        $arr['source_name'] = $this->source;
-        $arr['source_url'] = $this->url;
-        $arr['yield'] = $this->yield;
-        $arr['prep_minutes'] = $this->time['prep'];
-        $arr['cook_minutes'] = $this->time['cook'];
-        $arr['total_minutes'] = $this->time['total'];
-        $arr['ingredients'] = $this->getIngredientsMarkdown();
-        $arr['instructions'] = $this->getInstructionsMarkdown();
-        return $arr;
-    }
-
 }
 
