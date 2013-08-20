@@ -117,6 +117,12 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
     public function test_strip_leading_number_no_content() {
         $this->assertEquals("", RecipeParser_Text::stripLeadingNumbers("10."));
     }
+    public function test_strip_leading_number_steps() {
+        $this->assertEquals("Make the crust", RecipeParser_Text::stripLeadingNumbers("Step 1 Make the crust"));
+    }
+    public function test_strip_leading_number_steps_colon() {
+        $this->assertEquals("Beat the eggs", RecipeParser_Text::stripLeadingNumbers("Step 2: Beat the eggs"));
+    }
 
     public function test_iso8601_minutes() {
         $this->assertEquals(120, RecipeParser_Text::iso8601ToMinutes('PT2H0M'));

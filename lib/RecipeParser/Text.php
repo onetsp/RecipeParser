@@ -41,8 +41,8 @@ class RecipeParser_Text {
         if (preg_match("/^\d+\.?\)?$/", $str)) {
             return "";
         }
-        if (preg_match("/^\d+\.?\)?\s+(.+)$/", $str, $m)) {
-            $str = trim($m[1]);
+        if (preg_match("/^(step\s+)?\d+[\:\.]?\)?\s+(.+)$/i", $str, $m)) {
+            $str = trim($m[2]);
         }
         return $str;
     }
