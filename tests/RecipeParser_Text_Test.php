@@ -63,26 +63,82 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals('8 servings', RecipeParser_Text::formatYield('Servings 8 Servings'));
         $this->assertEquals('10 to 12 servings', RecipeParser_Text::formatYield('servings: 10 to 12'));
         $this->assertEquals('8-10 servings', RecipeParser_Text::formatYield('8–10 servings')); // mdash
+        $this->assertEquals('12 servings (serving size: 1 cup)', RecipeParser_Text::formatYield('12 servings (serving size: 1 cup)'));
     }
 
-    public function test_parse_list_from_blob() {
+    public function test_parse_list_from_blob_numeric_bullets_single_lines() {
+        $str = "
+        1. This is item one.
+        2. This is line two
+        3. The third item. 
+        ";
+        $list = RecipeParser_Text::parseListFromBlob($str);
+        $this->assertEquals(3, count($list));
+        $this->assertEquals("This is item one.", $list[0]);
+        $this->assertEquals("This is line two", $list[1]);
+        $this->assertEquals("The third item.", $list[2]);
+    }
 
+    public function test_parse_list_from_blob_numeric_bullets_multiline() {
         $str = "
         1. this is item one.
         2. Item two spans
         multple lines
-        3 The third item has no dot after the leading number. 
-        * The fourth is an asterisk
-
-        - And this is the fifth.
+        3. The third item has a dot after the leading number. 
+        4. The fourth line
+        spans multiple
+        lines.
         ";
         $list = RecipeParser_Text::parseListFromBlob($str);
-        $this->assertEquals(5, count($list));
+        $this->assertEquals(4, count($list));
         $this->assertEquals("this is item one.", $list[0]);
         $this->assertEquals("Item two spans multple lines", $list[1]);
-        $this->assertEquals("The third item has no dot after the leading number.", $list[2]);
-        $this->assertEquals("The fourth is an asterisk", $list[3]);
-        $this->assertEquals("And this is the fifth.", $list[4]);
+        $this->assertEquals("The third item has a dot after the leading number.", $list[2]);
+        $this->assertEquals("The fourth line spans multiple lines.", $list[3]);
+    }
+
+    public function test_parse_list_from_blob_mixed_bullets() {
+        $str = "
+        * Asterisk for bullet.
+        - dash for bullet.
+        - dash for bullet
+        with multiple lines.
+        - last one
+        ";
+        $list = RecipeParser_Text::parseListFromBlob($str);
+        $this->assertEquals(4, count($list));
+        $this->assertEquals("Asterisk for bullet.", $list[0]);
+        $this->assertEquals("dash for bullet.", $list[1]);
+        $this->assertEquals("dash for bullet with multiple lines.", $list[2]);
+        $this->assertEquals("last one", $list[3]);
+    }
+
+    public function test_parse_list_from_blob_no_bullets() {
+        $str = "
+                Heat oven to 400.
+            Grease muffin pan or line with paper cups.
+            Mix topping ingredients together, cutting in the butter with a pastry cutter or a fork until its crumbly. Set aside.
+            Toss blueberries with 1 tablespoon of flour to coat.
+            Mix dry ingredients in a large bowl. Combine the creme fraiche, milk, oil, egg and extract together. Pour the wet mixture into the dry, stir, add the lemon juice and continue to mix until the dough comes together. Fold in the blueberries.
+            Spoon the batter into the prepared muffin tin, sprinkle with topping and bake in preheated oven for 20-25 minutes or until a tooth pick comes out clean.
+        ";
+        $list = RecipeParser_Text::parseListFromBlob($str);
+        $this->assertEquals(6, count($list));
+        $this->assertRegExp("/^Heat.*400.$/", $list[0]);
+        $this->assertRegExp("/^Grease.*cups.$/", $list[1]);
+        $this->assertRegExp("/^Mix.*aside.$/", $list[2]);
+        $this->assertRegExp("/^Toss.*coat.$/", $list[3]);
+        $this->assertRegExp("/^Mix.*blueberries.$/", $list[4]);
+        $this->assertRegExp("/^Spoon.*clean.$/", $list[5]);
+    }
+
+    public function test_parse_list_from_blob_run_together_numeric_bullets_and_text() {
+        $str = "1. Preheat oven to 350° F. Line muffin tins with 12 foil cupcake papers. Place a vanilla wafer in the bottom of each cupcake paper.2. In mixing bowl, beat cream cheese and fat-free cream cheese until smooth. Add sugar and vanilla and mix well. Add eggs and beat until smooth.3. Pour cheesecake mixture into muffin tins. Bake for 20 minutes or until centers are almost set. Cool. Refrigerate 2 hours or overnight.4. Decorate cheesecake tops with cherry pie filling.Makes 12 cheesecakes/servings.";
+        $list = RecipeParser_Text::parseListFromBlob($str);
+        $this->assertEquals(5, count($list));
+        $this->assertRegExp("/^Preheat.*paper.$/", $list[0]);
+        $this->assertRegExp("/^In mixing bowl/", $list[1]);
+        $this->assertRegExp("/^Makes 12.*servings.$/", $list[4]);
     }
 
     public function test_format_section_name() {

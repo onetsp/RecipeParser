@@ -131,7 +131,7 @@ class RecipeParser_Text {
         $uses_makes = (strpos($str, "makes") === 0);
 
         // Remove leading "Yield:" or "Servings:"
-        $str = preg_replace("/(yield|servings|serves|makes)\:?\s+/", "", $str);
+        $str = preg_replace("/^(yield|servings|serves|makes)\:?\s+/", "", $str);
 
         if (!$uses_makes) {
             if ($str == "1") {
@@ -208,20 +208,39 @@ class RecipeParser_Text {
     public static function parseListFromBlob($str) {
         $list = array();
 
-        // Replace leading digits or bullets with newlines
-        $str = preg_replace("/(^|\n)\s*(\d+\.*|\*|\-)\s/", "\n\n", $str);
+        if (isset($_SERVER['VERBOSE'])) {
+            echo "[" . __FUNCTION__ . "] STR:\n$str\n";
+        }
+        
+        // Replace leading digits or bullets with <br>s
+        $str = preg_replace("/(^|\n)\s*(\d+\.*|\*|\-)\s/", "<br>", $str);
 
-        // Split on sentences that are jammed together (which often occurs)
+        // Use <br> to split on sentences that are jammed together (which often occurs)
         // when parsing text content from DOM nodes.
-        $str = preg_replace("/(\.)([A-Z])/", "$1\n\n$2", $str);
+        $str = preg_replace("/(\.)([A-Z0-9])/", "$1<br>$2", $str);
 
-        $lines = explode("\n\n", $str);
+        // Transform multiple newlines to <br> tags
+        $str = preg_replace("/\n{2,}/", "<br>", $str);
+
+        // If no <br>s have been added, we may assume that we should split on newlines.
+        if (strpos($str, "<br>") === false) {
+            $str = str_replace("\n", "<br>", $str);
+        }
+
+        // Split lines into a list.
+        $lines = explode("<br>", $str);
         foreach ($lines as $line) {
             $line = self::formatAsOneLine($line);
+            $line = self::stripLeadingNumbers($line);
             if ($line) {
                 $list[] = $line;
             }
         }
+
+        if (isset($_SERVER['VERBOSE'])) {
+            echo "[" . __FUNCTION__ . "] LIST:\n" . print_r($list, true) . "\n";
+        }
+
         return $list;
     }
 
