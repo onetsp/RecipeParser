@@ -92,7 +92,7 @@ class RecipeParser_Text {
     /**
      * Clean up recipe credits
      *
-     * @param string Source name
+     * @param string Credit attribution for recipe
      * @return string
      */
     static public function formatCredits($source) {

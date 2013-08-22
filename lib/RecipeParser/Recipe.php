@@ -4,6 +4,7 @@ class RecipeParser_Recipe {
 
     public $title = '';
     public $description = '';
+    public $credits = '';
     public $notes = '';
     public $yield = '';
     public $source = '';
