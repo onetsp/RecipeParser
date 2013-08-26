@@ -99,7 +99,7 @@ class RecipeParser_Text {
         $source = self::formatAsOneLine($source);
 
         // Remove extraneous prefixes
-        $source = preg_replace("/recipe (by|courtesy of|courtesy)\s+/i", "", $source);
+        $source = preg_replace("/recipe (from|by|courtesy of|courtesy)\s+/i", "", $source);
         $source = preg_replace("/^from\s+/i", "", $source);
 
         return $source;
@@ -201,7 +201,12 @@ class RecipeParser_Text {
     public static function parseInstructionsFromBlob($str, &$recipe) {
         $lines = self::parseListFromBlob($str);
         foreach ($lines as $line) {
-            $recipe->appendInstruction($line);
+            if (self::matchSectionName($line)) {
+                $line = self::formatSectionName($line);
+                $recipe->addInstructionsSection($line);
+            } else {
+                $recipe->appendInstruction($line);
+            }
         }
     }
 
