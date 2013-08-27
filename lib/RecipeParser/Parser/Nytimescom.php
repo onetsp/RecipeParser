@@ -36,7 +36,7 @@ class RecipeParser_Parser_Nytimescom {
                     $str = trim($m[1]);
                     $str = preg_replace('/About (.+)/', '$1', $str);
                     $str = preg_replace('/(.+) plus.*/', '$1', $str);
-                    $recipe->time['total'] = Times::toMinutes($str);
+                    $recipe->time['total'] = RecipeParser_Times::toMinutes($str);
                 }
             }
 
@@ -103,7 +103,7 @@ class RecipeParser_Parser_Nytimescom {
                     $str = trim($m[1]);
                     $str = preg_replace('/About (.+)/', '$1', $str);
                     $str = preg_replace('/(.+) plus.*/', '$1', $str);
-                    $recipe->time['total'] = Times::toMinutes($str);
+                    $recipe->time['total'] = RecipeParser_Times::toMinutes($str);
                 }
             }
 

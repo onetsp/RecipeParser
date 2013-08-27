@@ -25,9 +25,9 @@ class RecipeParser_Parser_Aboutcom {
             $line = trim($line);
 
             if (preg_match("/prep time\:(.+)/i", $line, $m)) {
-                $recipe->time['prep'] = Times::toMinutes($m[1]);
+                $recipe->time['prep'] = RecipeParser_Times::toMinutes($m[1]);
             } else if (preg_match("/cook time\:(.+)/i", $line, $m)) {
-                $recipe->time['cook'] = Times::toMinutes($m[1]);
+                $recipe->time['cook'] = RecipeParser_Times::toMinutes($m[1]);
             }
             // Total time is provided as part of microformat markup for About.com
         }

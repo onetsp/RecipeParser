@@ -17,12 +17,12 @@ class RecipeParser_Parser_Pillsburycom {
             foreach ($nodes as $node) {
                 if (trim($node->childNodes->item(1)->nodeValue) == "Prep Time") {
                     $line = trim($node->childNodes->item(3)->nodeValue);
-                    $recipe->time['prep'] = Times::toMinutes($line);
+                    $recipe->time['prep'] = RecipeParser_Times::toMinutes($line);
                     continue;
                 }
                 if (trim($node->childNodes->item(1)->nodeValue) == "Total Time") {
                     $line = trim($node->childNodes->item(3)->nodeValue);
-                    $recipe->time['total'] = Times::toMinutes($line);
+                    $recipe->time['total'] = RecipeParser_Times::toMinutes($line);
                     continue;
                 }
             }

@@ -33,14 +33,14 @@ class RecipeParser_Parser_Seriouseatscom {
             $nodes = $xpath->query('.//*[@class="info preptime"]', $hrecipe);
             if ($nodes->length) {
                 $value = $nodes->item(0)->nodeValue;
-                $recipe->time['prep'] = Times::toMinutes($value);
+                $recipe->time['prep'] = RecipeParser_Times::toMinutes($value);
             }
 
             // Total Time / Duration -- Class names are conflated
             $nodes = $xpath->query('.//*[@class="info duration"]', $hrecipe);
             if ($nodes->length) {
                 $value = $nodes->item(0)->nodeValue;
-                $recipe->time['total'] = Times::toMinutes($value);
+                $recipe->time['total'] = RecipeParser_Times::toMinutes($value);
             }
         }
 

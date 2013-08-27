@@ -81,7 +81,7 @@ class RecipeParser_Parser_Microformat {
                 $nodes = $xpath->query('.//*[@class="preptime"]', $hrecipe);
                 if ($nodes->length) {
                     $value = $nodes->item(0)->nodeValue;
-                    $recipe->time['prep'] = Times::toMinutes($value);
+                    $recipe->time['prep'] = RecipeParser_Times::toMinutes($value);
                 }
             }
 
@@ -94,7 +94,7 @@ class RecipeParser_Parser_Microformat {
                 $nodes = $xpath->query('.//*[@class="cooktime"]', $hrecipe);
                 if ($nodes->length) {
                     $value = $nodes->item(0)->nodeValue;
-                    $recipe->time['cook'] = Times::toMinutes($value);
+                    $recipe->time['cook'] = RecipeParser_Times::toMinutes($value);
                 }
             }
 
@@ -112,7 +112,7 @@ class RecipeParser_Parser_Microformat {
                     $nodes = $xpath->query('.//*[@class="duration"]', $hrecipe);
                     if ($nodes->length) {
                         $value = $nodes->item(0)->nodeValue;
-                        $recipe->time['total'] = Times::toMinutes($value);
+                        $recipe->time['total'] = RecipeParser_Times::toMinutes($value);
                     }
                 }
             }

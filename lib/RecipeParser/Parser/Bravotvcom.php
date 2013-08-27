@@ -37,11 +37,11 @@ class RecipeParser_Parser_Bravotvcom {
             // Inspect keys/values we've found.
             if ($key == 'Total Time:') {
                 $value = self::cleanupTime($value);
-                $recipe->time['total'] = Times::toMinutes($value);
+                $recipe->time['total'] = RecipeParser_Times::toMinutes($value);
             }
             if ($key == 'Prep Time:') {
                 $value = self::cleanupTime($value);
-                $recipe->time['prep'] = Times::toMinutes($value);
+                $recipe->time['prep'] = RecipeParser_Times::toMinutes($value);
             }
         }
 
@@ -49,17 +49,17 @@ class RecipeParser_Parser_Bravotvcom {
         $node_list = $xpath->query('//dd[@class = "preptime"]');
         if ($node_list->length) {
             $value = $node_list->item(0)->nodeValue;
-            $recipe->time['prep'] = Times::toMinutes($value);
+            $recipe->time['prep'] = RecipeParser_Times::toMinutes($value);
         }
         $node_list = $xpath->query('//dd[@class = "cooktime"]');
         if ($node_list->length) {
             $value = $node_list->item(0)->nodeValue;
-            $recipe->time['cook'] = Times::toMinutes($value);
+            $recipe->time['cook'] = RecipeParser_Times::toMinutes($value);
         }
         $node_list = $xpath->query('//dd[@class = "duration totaltime special"]');
         if ($node_list->length) {
             $value = $node_list->item(0)->nodeValue;
-            $recipe->time['total'] = Times::toMinutes($value);
+            $recipe->time['total'] = RecipeParser_Times::toMinutes($value);
         }
 
         // Ingredients, Yield, Description, Notes, etc.

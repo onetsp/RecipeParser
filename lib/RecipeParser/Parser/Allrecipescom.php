@@ -49,21 +49,21 @@ class RecipeParser_Parser_Allrecipescom {
             $node_list = $xpath->query('//h5[@id = "ctl00_CenterColumnPlaceHolder_recipe_h5Prep"]/span[last()]');
             if ($node_list->length) {
                 $value = $node_list->item(0)->nodeValue;
-                $recipe->time['prep'] = Times::toMinutes($value);
+                $recipe->time['prep'] = RecipeParser_Times::toMinutes($value);
             }
         }
         if (!$recipe->time['cook']) {
             $node_list = $xpath->query('//h5[@id = "ctl00_CenterColumnPlaceHolder_recipe_h5Cook"]/span[last()]');
             if ($node_list->length) {
                 $value = $node_list->item(0)->nodeValue;
-                $recipe->time['cook'] = Times::toMinutes($value);
+                $recipe->time['cook'] = RecipeParser_Times::toMinutes($value);
             }
         }
         if (!$recipe->time['total']) {
             $node_list = $xpath->query('//h5[@id = "ctl00_CenterColumnPlaceHolder_recipe_h5Ready"]/span[last()]');
             if ($node_list->length) {
                 $value = $node_list->item(0)->nodeValue;
-                $recipe->time['total'] = Times::toMinutes($value);
+                $recipe->time['total'] = RecipeParser_Times::toMinutes($value);
             }
         }
 

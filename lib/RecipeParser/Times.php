@@ -1,0 +1,74 @@
+<?php
+
+class RecipeParser_Times {
+
+    /**
+     * Convert a time (string) to minutes. The string can be formatted in any
+     * of the following (case-insensitive) formats:
+     *
+     *   10:30
+     *   5 Hr 45 Min
+     *   2 Hr
+     *   30 Min
+     *   4 Hours
+     *   1 Hour
+     *   30 Minutes
+     *   30 Mins
+     *   2 1/4 hours
+     *   3 3/4 hrs
+     *   2 days
+     *   1h 30m
+     *   15m
+     *   1 hr - 1 hr 15 mins
+     *   30-40 mins
+     *   45 mm
+     */
+    static public function toMinutes($str) {
+        $days = 0;
+        $hours = 0;
+        $minutes = 0;
+
+        // Normalize strings
+        $str = trim(strtolower($str));
+        $str = str_replace(',', ' ', $str);  // Strip commas
+        $str = str_replace('  ', ' ', $str); // Multi-spacing
+
+        // Convert ranges of times to a single time (the latter part of the range),
+        // i.e. "1 hr - 1 hr 15 mins" will be replaced with "1 hr 15 mins".
+        $str = preg_replace('/.+\-\s*(.+)/', "$1", $str);
+
+        // Treat simple numeric value as minutes.
+        if (preg_match("/^\d+$/", $str)) {
+            $minutes = $str;
+
+        // Match HH:MM
+        } else if (preg_match("/^(\d+)\:(\d{2})$/", $str, $m)) {
+            $hours = $m[1];
+            $minutes = $m[2];
+
+        // Other cases...
+        } else {
+            $str = preg_replace("/\b(\d+)([dhm])/i", "$1 $2", $str); // Add space to "10hr" or "30m"
+            $str = preg_replace("/\b(hours?|hrs?|h)\b/", "hrs", $str);
+            $str = preg_replace("/\b(minutes?|mins?|m|mm)\b/", "mins", $str);
+            $str = preg_replace("/\b(days?|d)\b/", "days", $str);
+
+            // Replace fractions with decimals
+            if (preg_match("/(\d+)\s(\d+)\/(\d+)/", $str, $m) && $m[3] > 0) {
+                $str = str_replace($m[0], ($m[1] + ($m[2] / $m[3])), $str);
+            }
+
+            // Match '## Day ## Hr ## Min'
+            if (preg_match("/^((?<days>[\d\.]+) days)?\s?((?<hours>[\d\.]+) hrs)?\s?((?<minutes>[\d\.]+) mins)?$/", $str, $m)) {
+                $days = isset($m['days']) ? $m['days'] : 0;
+                $hours = isset($m['hours']) ? $m['hours'] : 0;
+                $minutes = isset($m['minutes']) ? $m['minutes'] : 0;
+            }
+        }
+
+        return $minutes + ($hours * 60) + ($days * 1440);
+    }
+
+}
+
+?>

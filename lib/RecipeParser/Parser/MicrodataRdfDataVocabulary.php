@@ -36,7 +36,7 @@ class RecipeParser_Parser_MicrodataRdfDataVocabulary {
                     $value = RecipeParser_Text::iso8601ToMinutes($value);
                 } else {
                     $value = trim($nodes->item(0)->nodeValue);
-                    $value = Times::toMinutes($value);
+                    $value = RecipeParser_Times::toMinutes($value);
                 }
                 if ($value) {
                     $recipe->time[$time_key] = $value;

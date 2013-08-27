@@ -25,15 +25,15 @@ class RecipeParser_Parser_Bbcgoodfoodcom {
             $line = RecipeParser_Text::FormatAsOneLine($node->nodeValue);
             if (strpos($line, 'Prep') === 0) {
                 $line = substr($line, 5);
-                $recipe->time['prep'] = Times::toMinutes($line);
+                $recipe->time['prep'] = RecipeParser_Times::toMinutes($line);
 
             } else if (strpos($line, 'Cook') === 0) {
                 $line = substr($line, 5);
-                $recipe->time['cook'] = Times::toMinutes($line);
+                $recipe->time['cook'] = RecipeParser_Times::toMinutes($line);
 
             } else if (strpos($line, 'Ready in') === 0) {
                 $line = substr($line, 9);
-                $recipe->time['total'] = Times::toMinutes($line);
+                $recipe->time['total'] = RecipeParser_Times::toMinutes($line);
             }
         }
 
