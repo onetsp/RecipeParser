@@ -1,0 +1,70 @@
+<!--
+ONETSP_URL: http://data-vocabulary.example.com/recipes/spec
+ONETSP_USER_AGENT:
+ONETSP_TIME:
+-->
+<html>
+<head>
+
+</head>
+<body>
+
+    <div>
+
+        <div itemscope itemtype="http://data-vocabulary.org/Recipe" >
+          <h1 itemprop="name">Grandma's Holiday Apple Pie</h1>
+          <img itemprop="photo" src="apple-pie.jpg" /> 
+          By <span itemprop="author">Carol Smith</span>
+          Published: <time datetime="2009-11-05" itemprop="published">
+            November 5, 2009</time>
+          <span itemprop="summary">This is my grandmother's apple pie recipe. I like to add a
+            dash of nutmeg.</span>
+          <span itemprop="review" itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+            <span itemprop="rating">4.0</span> stars based on
+            <span itemprop="count">35</span> reviews </span>
+          Prep time: <time datetime="PT30M" itemprop="prepTime">30 min</time>
+          Cook time: <time datetime="PT1H" itemprop="cookTime">1 hour</time>
+          Total time: <time datetime="PT1H30M" itemprop="totalTime">1 hour 30 min</time>
+          Yield: <span itemprop="yield">1 9" pie (8 servings)</span>
+          <span itemprop="nutrition" itemscope itemtype="http://data-vocabulary.org/Nutrition">
+            Serving size: <span itemprop="servingSize">1 medium slice</span>
+            Calories per serving: <span itemprop="calories">250</span>
+            Fat per serving: <span itemprop="fat">12g</span>
+          </span>
+          Ingredients:
+            <span itemprop="ingredient" itemscope itemtype="http://data-vocabulary.org/RecipeIngredient">
+              Thinly-sliced <span itemprop="name">apples</span>:
+              <span itemprop="amount">6 cups</span>
+            </span>
+
+            <span itemprop="ingredient" itemscope itemtype="http://data-vocabulary.org/RecipeIngredient">
+              <span itemprop="name">White sugar</span>:
+              <span itemprop="amount">3/4 cup</span>
+            </span>
+
+            <!-- Skipped name/amount child elements -->
+            <span itemprop="ingredient">
+                <span>1 cup flour</span>
+            </span>
+
+            <!-- MyRecipes.com shows a "preparation" item within each ingredient. -->
+            <span itemprop="ingredient" itemscope itemtype="http://data-vocabulary.org/RecipeIngredient">
+              <span itemprop="amount">1/2 cup</span>
+              <span itemprop="name">apples</span>,
+              <span itemprop="preparation">diced</span>
+            </span>
+
+                  
+          Directions:
+            <div itemprop="instructions">
+              1. Cut and peel apples.
+              2. Mix sugar and cinnamon. Use additional 
+              sugar for tart apples.
+              3. Bake pie in oven.
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

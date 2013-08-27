@@ -1,0 +1,66 @@
+<!--
+ONETSP_URL: http://rdf.data-vocabulary.example.com/recipes/spec
+ONETSP_USER_AGENT:
+ONETSP_TIME:
+-->
+<html>
+<head>
+
+</head>
+<body>
+
+    <div>
+
+        <div xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Recipe">
+           <h1 property="v:name">Grandma's Holiday Apple Pie</h1>
+           <img src="apple-pie.jpg" rel="v:photo"/>
+           By <span property="v:author">Carol Smith</span>
+           Published: <span property="v:published" content="2009-11-05">November 5, 2009</span>
+           <span property="v:summary">This is my grandmother's apple pie recipe. I like to add a dash of nutmeg.</span>
+           <span rel="v:Review">
+              <span typeof="v:Review-aggregate">
+                 <span rel="v:rating">
+                    <span typeof="v:Rating">
+                       <span property="v:average">4.0</span> stars based on 
+                       <span property="v:count">35</span> reviews
+                    </span>
+                 </span>
+              </span>
+           </span>
+           Prep time: <span property="v:prepTime" content="PT30M">30 min</span>
+           Cook time: <span property="v:cookTime" content="PT1H">1 hour</span>
+           Total time: <span property="v:totalTime" content="PT1H30M">1 hour 30 min</span>
+           Yield: <span property="v:yield">1 9" pie (8 servings)</span>
+           <span rel="v:nutrition">
+              <span typeof="v:Nutrition"> 
+                Serving size: <span property="v:servingSize">1 medium slice</span>
+                Calories per serving: <span property="v:calories">250</span>
+                Fat per serving: <span property="v:fat">12g</span> 
+              </span>
+           </span>
+           Ingredients:   
+           <span rel="v:ingredient">
+              <span typeof="v:Ingredient"> 
+                 Thinly-sliced <span property="v:name">apples</span>:   
+                 <span property="v:amount">6 cups</span> 
+             </span>   
+           </span>
+           <span rel="v:ingredient">
+              <span typeof="v:Ingredient"> 
+                 <span property="v:name">White sugar</span>:   
+                 <span property="v:amount">3/4 cup</span>  
+              </span>   
+           </span>  
+         
+           Directions:
+           <div property="v:instructions">
+           1. Cut and peel apples.
+           2. Mix sugar and cinnamon. Use additional sugar for tart apples.
+           3. Bake pie in oven.
+           </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
