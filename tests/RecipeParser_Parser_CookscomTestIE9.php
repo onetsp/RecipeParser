@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_CookscomTestIE9 extends PHPUnit_Framework_TestCase {
 
     public function test_nilla_wafers() {
-        $path = "data/clipped/cooks_com_barbecued_chicken_wings_ie_9_0_orig.html";
+        $path = "data/cooks_com_barbecued_chicken_wings_ie_9_0_orig.html";
         $url = "http://www.cooks.com/rec/view/0,1733,128183-246195,00.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

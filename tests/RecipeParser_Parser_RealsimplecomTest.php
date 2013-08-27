@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_RealsimplecomTest extends PHPUnit_Framework_TestCase {
 
     public function test_paprika_spiced_pork_chops() {
-        $path = "data/clipped/realsimple_com_paprika_spiced_pork_chops_with_spinach_curl.html";
+        $path = "data/realsimple_com_paprika_spiced_pork_chops_with_spinach_curl.html";
         $url = "http://www.realsimple.com/food-recipes/browse-all-recipes/paprika-spiced-pork-chops-recipe-00000000029765/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -29,7 +29,7 @@ class RecipeParser_Parser_RealsimplecomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_yellow_cake() {
-        $path = "data/clipped/realsimple_com_yellow_cake_with_vanilla_frosting_and_curl.html";
+        $path = "data/realsimple_com_yellow_cake_with_vanilla_frosting_and_curl.html";
         $url = "http://www.realsimple.com/food-recipes/browse-all-recipes/yellow-cake-vanilla-frosting-00000000057748/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

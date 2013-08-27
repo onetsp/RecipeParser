@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_emeril_chorizo_burgers() {
-        $path = "data/clipped/marthastewart_com_emeril_s_pork_and_chorizo_burgers_with_green_chile_mayo_curl.html";
+        $path = "data/marthastewart_com_emeril_s_pork_and_chorizo_burgers_with_green_chile_mayo_curl.html";
         $url = "http://www.marthastewart.com/284367/emerils-pork-and-chorizo-burgers-with-gr?czone=food%2Fbest-grilling-recipes%2Fgrilling-recipes";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -27,7 +27,7 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
     }
 
     public function test_cajun_shrimp() {
-        $path = "data/clipped/marthastewart_com_sauteed_cajun_shrimp_cooking_how_to_curl.html";
+        $path = "data/marthastewart_com_sauteed_cajun_shrimp_cooking_how_to_curl.html";
         $url = "http://www.marthastewart.com/255277/sauteed-cajun-shrimp?czone=food%2Fdinner-tonight-center%2Fdinner-tonight-main-courses";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -46,7 +46,7 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
 
 
     public function test_strawberry_tart() {
-        $path = "data/clipped/marthastewart_com_strawberry_tart_cooking_how_to_martha_curl.html";
+        $path = "data/marthastewart_com_strawberry_tart_cooking_how_to_martha_curl.html";
         $url = "http://www.marthastewart.com/340929/strawberry-tart?czone=food%2Fproduce-guide-cnt%2Fspring-produce-recipes";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

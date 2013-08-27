@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_herb_omelets() {
-        $path = "data/clipped/chow_com_herb_omelets_chow_curl.html";
+        $path = "data/chow_com_herb_omelets_chow_curl.html";
         $url = "http://www.chow.com/recipes/28801-herb-omelets";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -24,7 +24,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_hungarian_chocolate_torte() {
-        $path = "data/clipped/chow_com_hungarian_chocolate_walnut_torte_chow_curl.html";
+        $path = "data/chow_com_hungarian_chocolate_walnut_torte_chow_curl.html";
         $url = "http://www.chow.com/recipes/29536-hungarian-chocolate-walnut-torte";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -40,7 +40,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_red_velvet_cake() {
-        $path = "data/clipped/chow_com_red_velvet_cake_chow_curl.html";
+        $path = "data/chow_com_red_velvet_cake_chow_curl.html";
         $url = "http://www.chow.com/recipes/29310-red-velvet-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -58,7 +58,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_roasted_sardines() {
-        $path = "data/clipped/chow_com_roasted_sardines_with_smashed_potatoes_chow_curl.html";
+        $path = "data/chow_com_roasted_sardines_with_smashed_potatoes_chow_curl.html";
         $url = "http://www.chow.com/recipes/29617-roasted-sardines-with-smashed-potatoes";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -76,7 +76,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_white_peach_sangria() {
-        $path = "data/clipped/chow_com_white_peach_sangr_a_chow_curl.html";
+        $path = "data/chow_com_white_peach_sangr_a_chow_curl.html";
         $url = "http://www.chow.com/recipes/29663-white-peach-sangria";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

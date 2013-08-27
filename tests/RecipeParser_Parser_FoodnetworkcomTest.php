@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_steak_fajita_chili() {
-        $path = "data/clipped/foodnetwork_com_aaron_mccargo_jr_s_steak_fajita_chili_curl.html";
+        $path = "data/foodnetwork_com_aaron_mccargo_jr_s_steak_fajita_chili_curl.html";
         $url = "http://www.foodnetwork.com/recipes/aaron-mccargo-jr/aaron-mccargo-jrs-steak-fajita-chili-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -23,7 +23,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_chocolate_cake() {
-        $path = "data/clipped/foodnetwork_com_beatty_s_chocolate_cake_ina_garten_s_curl.html";
+        $path = "data/foodnetwork_com_beatty_s_chocolate_cake_ina_garten_s_curl.html";
         $url = "http://www.foodnetwork.com/recipes/ina-garten/beattys-chocolate-cake-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -46,7 +46,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_braised_short_ribs() {
-        $path = "data/clipped/foodnetwork_com_braised_short_ribs_with_mushrooms_kitchens_curl.html";
+        $path = "data/foodnetwork_com_braised_short_ribs_with_mushrooms_kitchens_curl.html";
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/braised-short-ribs-with-mushrooms-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -63,7 +63,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_emeril_chocolate_cake() {
-        $path = "data/clipped/foodnetwork_com_chocolate_cake_emeril_lagasse_s_curl.html";
+        $path = "data/foodnetwork_com_chocolate_cake_emeril_lagasse_s_curl.html";
         $url = "http://www.foodnetwork.com/recipes/emeril-lagasse/chocolate-cake-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -82,7 +82,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_big_blue_burgers() {
-        $path = "data/clipped/foodnetwork_com_big_blue_burgers_rachael_ray_s_curl.html";
+        $path = "data/foodnetwork_com_big_blue_burgers_rachael_ray_s_curl.html";
         $url = "http://www.foodnetwork.com/recipes/rachael-ray/big-blue-burgers-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -101,7 +101,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_six_layer_cake() {
-        $path = "data/clipped/foodnetwork_com_six_layer_chocolate_cake_paula_deen_s_curl.html";
+        $path = "data/foodnetwork_com_six_layer_chocolate_cake_paula_deen_s_curl.html";
         $url = "http://www.foodnetwork.com/recipes/paula-deen/six-layer-chocolate-cake-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -118,7 +118,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_cream_scones() {
-        $path = "data/clipped/foodnetwork_com_cream_scones_with_currants_kitchens_s_curl.html";
+        $path = "data/foodnetwork_com_cream_scones_with_currants_kitchens_s_curl.html";
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/cream-scones-with-currants-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -136,7 +136,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
 
     public function test_roasted_pepper_pasta() {
-        $path = "data/clipped/foodnetwork_com_roasted_pepper_pasta_salad_kitchens_s_curl.html";
+        $path = "data/foodnetwork_com_roasted_pepper_pasta_salad_kitchens_s_curl.html";
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/roasted-pepper-pasta-salad-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

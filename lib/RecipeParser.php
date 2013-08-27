@@ -3,7 +3,7 @@
 class RecipeParser {
 
     static private $registered_parsers = null;
-    static private $parsers_ini_file = "./Parser/parsers.ini";
+    static private $parsers_ini_file_relpath = "RecipeParser/Parser/parsers.ini";
 
     const SCHEMA_SPEC              = "MicrodataSchema";
     const DATA_VOCABULARY_SPEC     = "MicrodataDataVocabulary";
@@ -15,7 +15,8 @@ class RecipeParser {
      */
     static public function registerParsers() {
         if (!self::$registered_parsers) {
-            self::$registered_parsers = parse_ini_file(self::$parsers_ini_file, true);
+            $parsers_ini_file = dirname(__FILE__) . "/" . self::$parsers_ini_file_relpath;
+            self::$registered_parsers = parse_ini_file($parsers_ini_file, true);
         }
     }
 

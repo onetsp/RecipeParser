@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase {
 
     public function test_carrot_sheet_cake() {
-        $path = "data/clipped/foodandwine_com_carrot_sheet_cake_with_cream_cheese_curl.html";
+        $path = "data/foodandwine_com_carrot_sheet_cake_with_cream_cheese_curl.html";
         $url = "http://www.foodandwine.com/recipes/carrot-sheet-cake-with-cream-cheese-frosting";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,7 +35,7 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_chicken_mushroom_saute() {
-        $path = "data/clipped/foodandwine_com_chicken_wild_mushroom_and_roasted_garlic_saut_amp_233_curl.html";
+        $path = "data/foodandwine_com_chicken_wild_mushroom_and_roasted_garlic_saut_amp_233_curl.html";
         $url = "http://www.foodandwine.com/recipes/chicken-wild-mushroom-and-roasted-garlic-saute";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -63,7 +63,7 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
 
 
 #    public function test_coffee_cured_pulled_pork() {
-#        $path = "data/clipped/foodandwine_com_coffee_cured_pulled_pork_linton_hopkins_food_curl.html";
+#        $path = "data/foodandwine_com_coffee_cured_pulled_pork_linton_hopkins_food_curl.html";
 #        $url = "http://www.foodandwine.com/recipes/coffee-cured-pulled-pork";
 #
 #        $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -74,7 +74,7 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
 
 
     public function test_cocoa_carrot_cake() {
-        $path = "data/clipped/foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_william_curl.html";
+        $path = "data/foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_william_curl.html";
         $url = "http://www.foodandwine.com/recipes/cocoa-carrot-cake-with-cocoa-crumble";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

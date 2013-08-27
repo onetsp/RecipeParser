@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_TestCase {
 
     public function test_chocolate_cake() {
-        $path_orig = "data/clipped/cookingchanneltv_com_chocolate_chocolate_cake_s_cooking_channel_curl.html";
+        $path_orig = "data/cookingchanneltv_com_chocolate_chocolate_cake_s_cooking_channel_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/emeril-lagasse/chocolate-chocolate-cake.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -31,7 +31,7 @@ class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_Te
     }
 
     public function test_old_fashioned_chocolate_cake() {
-        $path_orig = "data/clipped/cookingchanneltv_com_old_fashioned_chocolate_cake_s_cooking_channel_curl.html";
+        $path_orig = "data/cookingchanneltv_com_old_fashioned_chocolate_cake_s_cooking_channel_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/old-fashioned-chocolate-cake.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -59,7 +59,7 @@ class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_Te
     }
 
     public function test_pork_tenderloin() {
-        $path_orig = "data/clipped/cookingchanneltv_com_pork_tenderloin_s_cooking_channel_curl.html";
+        $path_orig = "data/cookingchanneltv_com_pork_tenderloin_s_cooking_channel_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/pork-tenderloin.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);

@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase {
 
     public function test_beet_and_fennel_soup() {
-        $path = "data/clipped/bonappetit_com_beet_and_fennel_soup_with_kefir_curl.html";
+        $path = "data/bonappetit_com_beet_and_fennel_soup_with_kefir_curl.html";
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2011/01/beet_and_fennel_soup_with_kefir";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -25,7 +25,7 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_chia_hot_chocolate() {
-        $path = "data/clipped/bonappetit_com_chai_spiced_hot_chocolate_bon_app_tit_curl.html";
+        $path = "data/bonappetit_com_chai_spiced_hot_chocolate_bon_app_tit_curl.html";
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2010/02/chai_spiced_hot_chocolate";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -41,7 +41,7 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_flourless_chocolate_cake() {
-        $path = "data/clipped/bonappetit_com_flourless_chocolate_cake_with_caramel_sauce_curl.html";
+        $path = "data/bonappetit_com_flourless_chocolate_cake_with_caramel_sauce_curl.html";
         $url = "http://www.bonappetit.com/recipes/2002/10/flourless_chocolate_cake_with_caramel_sauce";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -57,7 +57,7 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_sunday_roast_chicken() {
-        $path = "data/clipped/bonappetit_com_special_sunday_roast_chicken_bon_curl.html";
+        $path = "data/bonappetit_com_special_sunday_roast_chicken_bon_curl.html";
         $url = "http://www.bonappetit.com/recipes/2009/02/special_sunday_roast_chicken";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -71,7 +71,7 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_yogurt_granola() {
-        $path = "data/clipped/bonappetit_com_yogurt_with_granola_tropical_fruit_and_curl.html";
+        $path = "data/bonappetit_com_yogurt_with_granola_tropical_fruit_and_curl.html";
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2008/07/yogurt_with_granola";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -82,7 +82,7 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_harvest_crisp() {
-        $path = "data/clipped/bonappetit_com_harvest_pear_crisp_with_candied_ginger_curl.html";
+        $path = "data/bonappetit_com_harvest_pear_crisp_with_candied_ginger_curl.html";
         $url = "http://www.bonappetit.com/recipes/2009/11/harvest_pear_crisp_with_candied_ginger";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

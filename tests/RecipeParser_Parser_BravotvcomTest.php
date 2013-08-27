@@ -16,7 +16,7 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_cornbread_topped_chili() {
-        $path = "data/clipped/bravotv_com_cornbread_topped_chilli_con_carne_finder_curl.html";
+        $path = "data/bravotv_com_cornbread_topped_chilli_con_carne_finder_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/cornbread-topped-chilli-con-carne";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -41,7 +41,7 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_lamb_scotch_egg() {
-        $path = "data/clipped/bravotv_com_ground_lamb_scotch_egg_sweet_potato_curl.html";
+        $path = "data/bravotv_com_ground_lamb_scotch_egg_sweet_potato_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/ground-lamb-scotch-egg-sweet-potato-fries-and-tomato-tartnbsp";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -69,7 +69,7 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_grouper_with_gnocci() {
-        $path = "data/clipped/bravotv_com_roast_grouper_with_gnocchi_peas_bacon_curl.html";
+        $path = "data/bravotv_com_roast_grouper_with_gnocchi_peas_bacon_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/roast-grouper-with-gnocchi-peas-bacon-and-parsnip";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -90,7 +90,7 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_pork_chop() {
-        $path = "data/clipped/bravotv_com_roasted_pork_chop_with_rosemary_thyme_curl.html";
+        $path = "data/bravotv_com_roasted_pork_chop_with_rosemary_thyme_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/roasted-pork-chop-with-rosemary-thyme-amp-garlic";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -110,7 +110,7 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_colorado_sirloin() {
-        $path = "data/clipped/bravotv_com_seared_colorado_sirloin_chanterelle_and_ruby_curl.html";
+        $path = "data/bravotv_com_seared_colorado_sirloin_chanterelle_and_ruby_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/seared-colorado-sirloin-chanterelle-and-ruby-chard";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -129,7 +129,7 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_sous_vide_chicken() {
-        $path = "data/clipped/bravotv_com_sous_vide_chicken_mushrooms_yams_lobster_curl.html";
+        $path = "data/bravotv_com_sous_vide_chicken_mushrooms_yams_lobster_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/sous-vide-chicken-mushrooms-yams-lobster-sauce-amp-lobster-hash";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

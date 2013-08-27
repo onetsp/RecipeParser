@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
 
     public function test_berry_galette_with_cornmeal() {
-        $path = "data/clipped/myrecipes_com_blueberry_and_blackberry_galette_with_cornmeal_curl.html";
+        $path = "data/myrecipes_com_blueberry_and_blackberry_galette_with_cornmeal_curl.html";
         $url = "http://www.myrecipes.com/recipe/blueberry-blackberry-galette-with-cornmeal-crust-10000001816371/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -30,7 +30,7 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_clam_chowder() {
-        $path = "data/clipped/myrecipes_com_simple_clam_chowder_mys_com_curl.html";
+        $path = "data/myrecipes_com_simple_clam_chowder_mys_com_curl.html";
         $url = "http://www.myrecipes.com/recipe/simple-clam-chowder-10000001696572/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -43,7 +43,7 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_king_ranch_chicken() {
-        $path = "data/clipped/myrecipes_com_king_ranch_chicken_casserole_mys_com_curl.html";
+        $path = "data/myrecipes_com_king_ranch_chicken_casserole_mys_com_curl.html";
         $url = "http://www.myrecipes.com/recipe/king-ranch-chicken-casserole-10000001704091/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

@@ -80,7 +80,7 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
     }
 
     public function test_bettycrocker_banana_cake_with_fudge() {
-        $path = "data/clipped/bettycrocker_com_banana_cake_with_fudge_frosting_curl.html";
+        $path = "data/bettycrocker_com_banana_cake_with_fudge_frosting_curl.html";
         $url = "http://www.bettycrocker.com/recipes/banana-cake-with-fudge-frosting/ec14f90a-4ed3-4ef7-8f69-d9d5aadcebc3";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -108,7 +108,7 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
     }
 
     public function test_bettycrocker_blueberry_banana_oat_bread() {
-        $path = "data/clipped/bettycrocker_com_blueberry_banana_oat_bread_curl.html";
+        $path = "data/bettycrocker_com_blueberry_banana_oat_bread_curl.html";
         $url = "http://www.bettycrocker.com/recipes/blueberry-banana-oat-bread/886c41eb-a229-4ab5-ac74-41b68c4ce0ac";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -134,7 +134,7 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
     }
 
     public function test_bettycrocker_coffee_cake_with_caramel() {
-        $path = "data/clipped/bettycrocker_com_coffee_toffee_cake_with_caramel_frosting_curl.html";
+        $path = "data/bettycrocker_com_coffee_toffee_cake_with_caramel_frosting_curl.html";
         $url = "http://www.bettycrocker.com/recipes/coffee-toffee-cake-with-caramel-frosting/557b8338-f603-4cc4-95e0-ec44089964bd";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -160,7 +160,7 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
     }
 
     public function test_wholefoods_mushroom_kugel() {
-        $path = "data/clipped/wholefoodsmarket_com_mushroom_kale_noodle_kugel_whole_foods_curl.html";
+        $path = "data/wholefoodsmarket_com_mushroom_kale_noodle_kugel_whole_foods_curl.html";
         $url = "http://www.wholefoodsmarket.com/recipes/3112";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

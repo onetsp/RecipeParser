@@ -7,7 +7,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
 
     public function test_apple_pumpkin_muffins()
     {
-        $path = "data/clipped/allrecipes_com_pumpkin_apple_streusel_muffins_alls_com_curl.html";
+        $path = "data/allrecipes_com_pumpkin_apple_streusel_muffins_alls_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Apple-Pumpkin-Muffins/Detail.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -30,7 +30,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
 
     public function test_spiced_pumpkin_seeds()
     {
-        $path = "data/clipped/allrecipes_com_spiced_pumpkin_seeds_alls_com_curl.html";
+        $path = "data/allrecipes_com_spiced_pumpkin_seeds_alls_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Spiced-Pumpkin-Seeds/Detail.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -49,7 +49,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
 
     public function test_carrot_cake()
     {
-        $path = "data/clipped/allrecipes_com_carrot_cake_viii_alls_com_curl.html";
+        $path = "data/allrecipes_com_carrot_cake_viii_alls_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Carrot-Cake-VIII/Detail.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -65,7 +65,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
 
     public function test_customrecipe_template()
     {
-        $path = "data/clipped/allrecipes_com_potato_bacon_cheese_frittata_customized_by_curl.html";
+        $path = "data/allrecipes_com_potato_bacon_cheese_frittata_customized_by_curl.html";
         $url = "http://allrecipes.com/customrecipe/62636838/potato-bacon-cheese-frittata/detail.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

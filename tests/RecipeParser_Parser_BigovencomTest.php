@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_BigovencomTest extends PHPUnit_Framework_TestCase {
 
     public function test_bigoven_user_submitted() {
-        $path = "data/clipped/bigoven_com_banana_bread_bigoven_curl.html";
+        $path = "data/bigoven_com_banana_bread_bigoven_curl.html";
         $url = "http://www.bigoven.com/recipe/334322/Banana-Bread";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

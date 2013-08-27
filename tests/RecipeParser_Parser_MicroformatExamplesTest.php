@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_MicroformatExamplesTest extends PHPUnit_Framework_TestCase {
 
     public function test_cookingchanneltv() {
-        $path = "data/clipped/cookingchanneltv_com_matt_s_lemon_blueberry_muffins_s_cooking_curl.html";
+        $path = "data/cookingchanneltv_com_matt_s_lemon_blueberry_muffins_s_cooking_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/matts-lemon-blueberry-muffins-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path));

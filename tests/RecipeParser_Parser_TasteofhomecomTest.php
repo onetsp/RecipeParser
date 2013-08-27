@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase {
 
     public function test_cheddar_appetizers() {
-        $path = "data/clipped/tasteofhome_com_almond_cheddar_appetizers_curl.html";
+        $path = "data/tasteofhome_com_almond_cheddar_appetizers_curl.html";
         $url = "http://www.tasteofhome.com/Recipes/Almond-Cheddar-Appetizers";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -33,7 +33,7 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_artichoke_chicken() {
-        $path = "data/clipped/tasteofhome_com_artichoke_chicken_curl.html";
+        $path = "data/tasteofhome_com_artichoke_chicken_curl.html";
         $url = "http://www.tasteofhome.com/Recipes/Artichoke-Chicken";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -55,7 +55,7 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_lemon_berry_shortcake() {
-        $path = "data/clipped/tasteofhome_com_lemon_berry_shortcake_curl.html";
+        $path = "data/tasteofhome_com_lemon_berry_shortcake_curl.html";
         $url = "http://www.tasteofhome.com/Recipes/Lemon-Berry-Shortcake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

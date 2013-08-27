@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_baking_biscotti_cookie() {
-        $path = "data/clipped/baking_about_com_cinnamon_walnut_for_cinnamon_walnut_biscotti_cookie_curl.html";
+        $path = "data/baking_about_com_cinnamon_walnut_for_cinnamon_walnut_biscotti_cookie_curl.html";
         $url = "http://baking.about.com/od/cookies/r/cinnamonwalnutbiscotti.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -29,7 +29,7 @@ class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_baking_chocolate_cake() {
-        $path = "data/clipped/baking_about_com_ultimate_chocolate_cake_for_ultimate_chocolate_curl.html";
+        $path = "data/baking_about_com_ultimate_chocolate_cake_for_ultimate_chocolate_curl.html";
         $url = "http://baking.about.com/od/valentines/r/ultimatechoccak.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -60,7 +60,7 @@ class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_frenchfood_cassoulet() {
-        $path = "data/clipped/frenchfood_about_com_chicken_and_sausage_cassoulet_8211_cassoulet_curl.html";
+        $path = "data/frenchfood_about_com_chicken_and_sausage_cassoulet_8211_cassoulet_curl.html";
         $url = "http://frenchfood.about.com/od/maindishes/r/cassoulet.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -79,7 +79,7 @@ class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_southernfood_cinnamon_pound_cake() {
-        $path = "data/clipped/southernfood_about_com_cinnamon_pound_cake_curl.html";
+        $path = "data/southernfood_about_com_cinnamon_pound_cake_curl.html";
         $url = "http://southernfood.about.com/od/spicecakerecipes/r/bln255.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

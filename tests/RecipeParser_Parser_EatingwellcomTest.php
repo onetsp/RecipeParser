@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_EatingwellcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_apple_cranberry_cake() {
-        $path_orig = "data/clipped/eatingwell_com_apple_cranberry_upside_down_cake_eating_well_curl.html";
+        $path_orig = "data/eatingwell_com_apple_cranberry_upside_down_cake_eating_well_curl.html";
         $url = "http://www.eatingwell.com/recipes/apple_cranberry_upside_down_cake.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -31,7 +31,7 @@ class RecipeParser_Parser_EatingwellcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_chocolate_pumpkin_bundt() {
-        $path_orig = "data/clipped/eatingwell_com_glazed_chocolate_pumpkin_bundt_cake_eating_well_curl.html";
+        $path_orig = "data/eatingwell_com_glazed_chocolate_pumpkin_bundt_cake_eating_well_curl.html";
         $url = "http://www.eatingwell.com/recipes/glazed_chocolate_pumpkin_bundt_cake.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -57,7 +57,7 @@ class RecipeParser_Parser_EatingwellcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_scandinavian_pickled_herring_bites() {
-        $path_orig = "data/clipped/eatingwell_com_scandinavian_pickled_herring_bites_eating_well_curl.html";
+        $path_orig = "data/eatingwell_com_scandinavian_pickled_herring_bites_eating_well_curl.html";
         $url = "http://www.eatingwell.com/recipes/pickled_herring_bites.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);

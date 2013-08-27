@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_eyeball_cookies() {
-        $path = "data/clipped/food_com_halloween_eyeball_cookies_food_com_143344_curl.html";
+        $path = "data/food_com_halloween_eyeball_cookies_food_com_143344_curl.html";
         $url = "http://www.food.com/recipe/halloween-eyeball-cookies-143344";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -30,7 +30,7 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_braised_lamb() {
-        $path = "data/clipped/food_com_braised_lamb_shanks_with_guinness_barley_curl.html";
+        $path = "data/food_com_braised_lamb_shanks_with_guinness_barley_curl.html";
         $url = "http://www.food.com/recipe/braised-lamb-shanks-with-guinness-barley-222337";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -54,7 +54,7 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_carrot_cheesecake() {
-        $path = "data/clipped/food_com_carrot_cheesecake_food_com_362026_curl.html";
+        $path = "data/food_com_carrot_cheesecake_food_com_362026_curl.html";
         $url = "http://www.food.com/recipe/carrot-cheesecake-362026"; 
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

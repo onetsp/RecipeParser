@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
 
     public function test_cream_pie() {
-        $path_orig = "data/clipped/kingarthurflour_com_cream_pie.html";
+        $path_orig = "data/kingarthurflour_com_cream_pie.html";
         $url = "http://www.kingarthurflour.com/recipes/chocolate-cream-pie-recipe";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -40,7 +40,7 @@ class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
     }
 
     public function test_golden_vanilla_cake() {
-        $path_orig = "data/clipped/kingarthurflour_com_golden_vanilla_cake.html";
+        $path_orig = "data/kingarthurflour_com_golden_vanilla_cake.html";
         $url = "http://www.kingarthurflour.com/recipes/golden-vanilla-cake-recipe";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -59,7 +59,7 @@ class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
     }
 
     public function test_pretzels() {
-        $path_orig = "data/clipped/kingarthurflour_com_pretzels.html";
+        $path_orig = "data/kingarthurflour_com_pretzels.html";
         $url = "http://www.kingarthurflour.com/recipes/hot-buttered-soft-pretzels-recipe";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);

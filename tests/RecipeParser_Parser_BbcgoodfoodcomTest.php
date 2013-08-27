@@ -5,7 +5,7 @@ require_once './bootstrap.php';
 class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_chicken_herb_rosti() {
-        $path_orig = "data/clipped/bbcgoodfood_com_chicken_herb_r_246_sti_topped_pies_s_bbc_curl.html";
+        $path_orig = "data/bbcgoodfood_com_chicken_herb_r_246_sti_topped_pies_s_bbc_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/527632/chicken-and-herb-rstitopped-pies";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -32,7 +32,7 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_lemon_poppyseed() {
-        $path_orig = "data/clipped/bbcgoodfood_com_lemon_poppyseed_cupcakes_s_bbc_good_curl.html";
+        $path_orig = "data/bbcgoodfood_com_lemon_poppyseed_cupcakes_s_bbc_good_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/470636/lemon-and-poppyseed-cupcakes";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -61,7 +61,7 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_ultimate_chocolate_cake() {
-        $path_orig = "data/clipped/bbcgoodfood_com_ultimate_chocolate_cake_s_bbc_good_curl.html";
+        $path_orig = "data/bbcgoodfood_com_ultimate_chocolate_cake_s_bbc_good_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/3092/ultimate-chocolate-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -90,7 +90,7 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_slow_cooked_chinese_beef() {
-        $path_orig = "data/clipped/bbcgoodfood_com_slow_cooked_chinese_beef_s_bbc_good_curl.html";
+        $path_orig = "data/bbcgoodfood_com_slow_cooked_chinese_beef_s_bbc_good_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/96613/slowcooked-chinese-beef";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
