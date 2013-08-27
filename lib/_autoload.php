@@ -7,12 +7,8 @@
  */
 function RecipeParser_Autoload($class_name) {
 	if (!class_exists($class_name, false)) {
-        if (strpos($class_name, "Exception")) {
-            require("./_exceptions.php");
-        } else {
-            $class_file_path = str_replace('_', '/', $class_name) . '.php';
-            require($class_file_path);
-        }
+        $class_file_path = str_replace('_', '/', $class_name) . '.php';
+        require($class_file_path);
 	}
 }
 

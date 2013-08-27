@@ -9,8 +9,6 @@ class RecipeParser_Test extends PHPUnit_Framework_TestCase {
         $type = RecipeParser::matchMarkupFormat($html);
         $this->assertEquals(RecipeParser::SCHEMA_SPEC, $type);
 
-
-print_r(get_included_files());
     }
 
     function test_match_datavocabulary_markup() {
@@ -29,6 +27,15 @@ print_r(get_included_files());
         $html = file_get_contents("data/no_semantic_markup.html");
         $type = RecipeParser::matchMarkupFormat($html);
         $this->assertEquals(null, $type);
+    }
+
+    /**
+     * @expectedException NoMatchingParserException
+     */
+    function test_parser_no_matching_parser_exception() {
+        $html = "";
+        $url = "http://www.example.com/";
+        $recipe = RecipeParser::parse($html, $url);
     }
 
 }
