@@ -1,0 +1,85 @@
+#!/usr/bin/env php
+<?php
+
+// Check for filenames as input
+if (count($argv) <= 1) {
+    die("Usage: " . basename($_SERVER['PHP_SELF']) . " <filename> ...\n");
+}
+
+echo <<<EOM
+<?php
+
+require_once "./bootstrap.php";
+
+class RecipeParser_Parser__Test extends PHPUnit_Framework_TestCase {
+
+EOM;
+
+// Create one test function per file.
+array_shift($argv);
+foreach ($argv as $file) {
+    if (file_exists($file)) {
+
+        $html = file_get_contents($file);
+        if (preg_match("/ONETSP_URL: (\S+)/", $html, $m)) {
+            $url = $m[1];
+            
+            $tmp = $url;
+            $tmp = preg_replace("/(\/index)?.html?$/i", "", $tmp);
+            $tmp = preg_replace("/\/$/", "", $tmp);
+            $tmp = preg_replace("/.*\/([^\/]+)$/", "$1", $tmp);
+            $tmp = preg_replace("/[\W\-]+/", "_", $tmp);
+            $test_name = $tmp;
+
+            echo <<<EOM
+
+    public function test_$test_name() {
+
+        \$path = "$file";
+        \$url  = "$url";
+
+        \$recipe = RecipeParser::parse(file_get_contents(\$file), \$url);
+        if (isset(\$_SERVER['VERBOSE'])) print_r(\$recipe);
+
+        \$this->assertEquals('', \$recipe->title);
+        \$this->assertEquals('', \$recipe->credits);
+
+        \$this->assertEquals(0, \$recipe->time['prep']);
+        \$this->assertEquals(0, \$recipe->time['cook']);
+        \$this->assertEquals(0, \$recipe->time['total']);
+        \$this->assertEquals('', \$recipe->yield);
+
+        \$this->assertEquals(1, count(\$recipe->ingredients));
+        \$this->assertEquals('', \$recipe->ingredients[0]['name']);
+        \$this->assertEquals(0, count(\$recipe->ingredients[0]['list']));
+        \$this->assertEquals('', \$recipe->ingredients[1]['name']);
+        \$this->assertEquals(0, count(\$recipe->ingredients[1]['list']));
+        \$this->assertEquals('', \$recipe->ingredients[2]['name']);
+        \$this->assertEquals(0, count(\$recipe->ingredients[2]['list']));
+
+        \$this->assertEquals(1, count(\$recipe->instructions));
+        \$this->assertEquals('', \$recipe->instructions[0]['name']);
+        \$this->assertEquals(0, count(\$recipe->instructions[0]['list']));
+        \$this->assertEquals('', \$recipe->instructions[1]['name']);
+        \$this->assertEquals(0, count(\$recipe->instructions[1]['list']));
+
+        \$this->assertRegExp('', \$recipe->notes);
+
+        \$this->assertEquals('',
+                            \$recipe->photo_url);
+
+    }
+
+EOM;
+        }
+    }
+}
+
+
+
+
+echo <<<EOM
+
+}
+
+EOM;
