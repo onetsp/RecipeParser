@@ -1,6 +1,6 @@
 <?php
 
-require_once './bootstrap.php';
+require_once '../bootstrap.php';
 
 class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
 

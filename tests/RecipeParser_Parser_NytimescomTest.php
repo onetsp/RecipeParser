@@ -1,6 +1,6 @@
 <?php
 
-require_once './bootstrap.php';
+require_once '../bootstrap.php';
 
 class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCase {
 

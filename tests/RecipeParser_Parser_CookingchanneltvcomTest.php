@@ -1,6 +1,6 @@
 <?php
 
-require_once './bootstrap.php';
+require_once '../bootstrap.php';
 
 class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_TestCase {
 

@@ -1,6 +1,6 @@
 <?php
 
-define('RECIPECLIPPER_APP_ROOT', dirname(dirname(__FILE__)));
+define('RECIPECLIPPER_APP_ROOT', dirname(__FILE__));
 
 include RECIPECLIPPER_APP_ROOT . '/lib/_autoload.php';
 
