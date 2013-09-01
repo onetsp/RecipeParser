@@ -1,0 +1,86 @@
+#!/usr/bin/env php
+<?php
+
+include dirname(dirname(__FILE__)) . '/bootstrap.php';
+
+if ($argc < 2) {
+    echo "Missing required HTML filename.\n\n";
+    echo "Usage: {$_SERVER['SCRIPT_NAME']} html_file\n";
+    exit(1);
+}
+
+$filename = $argv[1];
+if (!file_exists($filename)) {
+    echo "File does not exist.\n";
+    exit(1);
+}
+$basename = basename($filename);
+echo "Parsing recipe from $basename\n";
+
+$html = file_get_contents($filename);
+
+// Parse recipe into a struct
+try {
+    $url = RecipeParser_Text::getRecipeUrlFromMetadata($html);
+    $recipe = RecipeParser::parse($html, $url);
+} catch (NoMatchingParserException $e) {
+    echo "Error: No matching parser (" . $e->getMessage() . ")\n";
+    exit(1);
+}
+
+// Print recipe.
+print_r($recipe);
+printStats($recipe);
+
+exit;
+
+
+
+
+function printStats($recipe) {
+    echo "\n\n";
+
+    $pre = "Recipe: ";
+    $warnings = 0;
+
+    if (!$recipe->title) {
+        echo "$pre Missing title\n";
+        $warnings++;
+    }
+    if (!$recipe->url) {
+        echo "Missing URL\n";
+        $warnings++;
+    }
+    if (!$recipe->source) {
+        echo "$pre Missing source\n";
+        $warnings++;
+    }
+    if (!$recipe->time["prep"]
+        && !$recipe->time["cook"]
+        && !$recipe->time["total"]) {
+        echo "$pre No times found \n";
+        $warnings++;
+    }
+    if (!$recipe->yield) {
+        echo "$pre Missing yield\n";
+        $warnings++;
+    }
+    if (!count($recipe->ingredients)
+        || !count($recipe->ingredients[0]['list'])) {
+        echo "$pre Missing ingredients\n";
+        $warnings++;
+    }
+    if (!count($recipe->instructions)
+        || !count($recipe->instructions[0]['list'])) {
+        echo "$pre Missing instructions\n";
+        $warnings++;
+    }
+
+    if ($warnings) {
+        echo "$pre $warnings warnings.\n";
+    } else {
+        echo "$pre Looks good!\n";
+    }
+
+}
+

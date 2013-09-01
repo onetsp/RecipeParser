@@ -18,6 +18,21 @@ ONETSP_TIME: $time
     }
 
     /**
+     * Return the URL of a clipped recipe file from our metadata comment that was added
+     * to the HTML content.
+     * 
+     * @param string HTML of recipe file
+     * @return string URL
+     */
+    static public function getRecipeUrlFromMetadata($html) {
+        $url = null;
+        if (preg_match("/^ONETSP_URL: (.*)$/m", $html, $m)) {
+            $url = $m[1];
+        }
+        return $url;
+    }
+
+    /**
      * Ensure that a string is in UTF-8. If it is encoded in ISO-8859-1, try
      * to encode as UFT-8.
      *
