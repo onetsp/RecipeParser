@@ -3,6 +3,68 @@
 class RecipeParser_Text {
 
     /**
+     * Get string for HTML comment that can be added to RecipeParser test files.
+     *
+     * @return string
+     */
+    static public function getRecipeMetadataComment($url, $user_agent) {
+        $time = date('r');
+        return
+"<!--
+ONETSP_URL: $url
+ONETSP_USER_AGENT: $user_agent
+ONETSP_TIME: $time
+-->";
+    }
+
+    /**
+     * Ensure that a string is in UTF-8. If it is encoded in ISO-8859-1, try
+     * to encode as UFT-8.
+     *
+     * @param string
+     * @return string
+     */
+    static public function forceUTF8($str) {
+        $str = mb_convert_encoding($str, 'UTF-8', 'UTF-8, ISO-8859-1');
+        return $str;
+    }
+
+    /**
+     * Strip selected HTML tag from content. E.g. Remove entire <script> tags
+     * and their contents.
+     *
+     * @param string Tag to be removed
+     * @param string HTML
+     * @return string Modified HTML 
+     */
+    static public function stripTagAndContents($tagname, $html) {
+        $pattern = '/<' . $tagname . '[^>]*>.*?<\/' . $tagname .'>/is';
+        $replacement = '<!-- STRIPPED ' . strtoupper($tagname) . ' TAG -->';
+        $html = preg_replace($pattern, $replacement, $html);
+        return $html;
+    }
+
+    /**
+     * Cleanup for clipped HTML prior to parsing with RecipeParser.
+     *
+     * @param string HTML
+     * @return string HTML
+     */
+    static public function cleanupClippedRecipeHtml($html) {
+        $html = preg_replace('/(\r\n|\r)/', "\n", $html);            // Normalize line breaks
+        $html = str_replace('&nbsp;', ' ', $html);                   // get rid of non-breaking space (html code)
+        $html = str_replace('&#160;', ' ', $html);                   // get rid of non-breaking space (numeric)
+        $html = preg_replace('/\xC2\xA0/', ' ', $html);              // get rid of non-breaking space (UTF-8)
+        $html = preg_replace('/[\x{0096}-\x{0097}]/u', '-', $html);  // ndash, mdash (bonappetit)
+
+        // Strip out script tags so they don't accidentally get executed if we ever display
+        // clipped content to end-users.
+        $html = RecipeParser_Text::stripTagAndContents('script', $html);
+
+        return $html;
+    }
+
+    /**
      * Remove extraneous whitespace and line breaks.
      *
      * @param string

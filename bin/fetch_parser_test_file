@@ -1,0 +1,99 @@
+#!/usr/bin/env php
+<?php
+
+require dirname(dirname(__FILE__)) . '/bootstrap.php';
+
+$tests_dir = dirname(dirname(__FILE__)) . "/tests/data";
+
+// Get command line args.
+if (count($argv) < 2) {
+    echo "Usage: " . basename(__FILE__) . " url" . "\n";
+    exit(1);
+}
+$recipe_url = $argv[1];
+
+// Build filenames.
+$hostname = parse_url($recipe_url, PHP_URL_HOST);
+
+$html = downloadPage($recipe_url);
+$html = RecipeParser_Text::forceUTF8($html);
+$html = RecipeParser_Text::cleanupClippedRecipeHtml($html);
+
+$title = getHtmlTitle($html);
+$title = formatTitle($title);
+
+$ua = "curl";
+$hostname = formatHostname($hostname);
+$file_basename = $hostname . '_' . $title . '_' . $ua;
+
+// Append some notes to the HTML
+$comments = RecipeParser_Text::getRecipeMetadataComment($recipe_url, $ua);
+$html = $comments . "\n\n" . $html;
+
+// Write file
+echo "Writing data file to $tests_dir\n";
+$file_path = $tests_dir . '/' . $file_basename . '.html';
+file_put_contents($file_path, $html);
+
+system("ls -l $tests_dir | grep $file_basename");
+exit;
+
+function downloadPage($url) {
+    $user_agent = "Onetsp-RecipeParser/0.1 (+https://github.com/onetsp/RecipeParser)";
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
+
+    $html = curl_exec($ch);
+    curl_close($ch); 
+
+    return $html;
+}
+
+function formatHostname($hostname) {
+    $hostname = preg_replace("/^www\./", "", $hostname);
+    $hostname = preg_replace("/\W+/", "_", $hostname);
+    $hostname = trim($hostname, "_");
+    return $hostname;
+}
+
+function getHtmlTitle($html) {
+    if (preg_match("/<title>([^<]+)<\/title>/is", $html, $m)) {
+        $title = strtolower(trim($m[1]));
+    } else {
+        $title = "unknown title";
+    }
+
+    return $title;
+}
+
+function formatTitle($title) {
+    $title_strip_terms = array(
+        "recipe",
+    );
+
+    $title = strtolower($title);
+    foreach ($title_strip_terms as $strip) {
+        $title = str_replace($strip, '', $title);
+    }
+
+    // Split title on " - " or " | ".
+    if (preg_match("/(.*)\s[\-\-\|]{1}\s.*/", $title, $m)) {
+        $title = $m[1];
+    }
+
+    $title = preg_replace('/[^A-Za-z]+/', '_', $title);
+
+    $title = preg_replace("/\s+\W\s+/", "_", $title); // remove single non-word chars
+    $title = preg_replace("/\s+/", "_", $title);      // normalize spaces
+    $title = str_replace("__", "_", $title);
+
+    $title = trim($title, '_');
+    return $title;
+}
+
+?>
