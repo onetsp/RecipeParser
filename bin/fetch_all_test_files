@@ -1,0 +1,10 @@
+#!/bin/bash
+
+TOOLS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [ "$1" == "" ]; then
+    echo "Usage: $0 path_to_parser_unit_test"
+    exit
+fi
+
+grep "http://" $1 | grep '$url' | perl -pe "s/.*(http.*)\".*/\1/g" | xargs -I {} $TOOLS_DIR/fetch_parser_test_file {}
