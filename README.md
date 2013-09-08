@@ -4,6 +4,86 @@ RecipeParser
 A PHP library for parsing recipe data from HTML.
 
 
+Usage
+------------------------------
+
+Put this library somewhere you can load it from your PHP code. Call `RecipeParser::parse()` with HTML of a recipe file and the original URL (helps to identify custom parser to use). The return value is a PHP object containing the recipe's data.
+
+```
+$recipe = RecipeParser::parse($html, $url);
+print_r($recipe);
+```
+Output:
+```
+RecipeStruct Object
+(
+    [title] => Chai-Spiced Hot Chocolate
+    [description] => 
+    [notes] => 
+    [yield] => 6 servings
+    [source] => Bon Appétit
+    [url] => http://www.bonappetit.com/recipes/quick-recipes/2010/02/chai_spiced_hot_chocolate
+    [categories] => Array
+        (
+        )
+
+    [photo_url] => http://www.bonappetit.com/wp-content/uploads/2011/01/mare_chai_spiced_hot_chocolate_h1.jpg
+    [status] => recipe
+    [time] => Array
+        (
+            [prep] => 15
+            [cook] => 0
+            [total] => 25
+        )
+
+    [ingredients] => Array
+        (
+            [0] => Array
+                (
+                    [name] => 
+                    [list] => Array
+                        (
+                            [0] => 4 cups low-fat (1%) milk
+                            [1] => 3/4 cup bittersweet chocolate chips
+                            [2] => 10 cardamom pods, coarsely cracked
+                            [3] => 1/2 teaspoon whole allspice, cracked
+                            [4] => 2 cinnamon sticks, broken in half
+                            [5] => 1/2 teaspoon freshly ground black pepper
+                            [6] => 5 tablespoons (packed) golden brown sugar, divided
+                            [7] => 6 quarter-size slices fresh ginger plus 1/2 teaspoon grated peeled fresh ginger
+                            [8] => 1 teaspoon vanilla extract, divided
+                            [9] => 1/2 cup chilled whipping cream
+                        )
+
+                )
+
+        )
+
+    [instructions] => Array
+        (
+            [0] => Array
+                (
+                    [name] => 
+                    [list] => Array
+                        (
+                            [0] => Combine first 6 ingredients, 4 tablespoons brown sugar, and ginger slices in medium saucepan. Bring almost to simmer, whisking frequently. Remove from heat; cover and steep 10 minutes. Mix in 1/2 teaspoon vanilla.
+                            [1] => Meanwhile, whisk cream, remaining 1 tablespoon brown sugar, grated ginger, and remaining 1/2 teaspoon vanilla in medium bowl to peaks.
+                            [2] => Strain hot chocolate. Ladle into 6 mugs. Top each with dollop of ginger cream.
+                        )
+
+                )
+
+        )
+
+    [credits] => 
+)
+```
+
+Additionally, a command-line script is available that demonstrates the library's usage:
+
+```
+$ ./bin/parse_recipe tests/data/bonappetit_com_special_sunday_roast_chicken_curl.html 
+```
 
 
 Parser Files
