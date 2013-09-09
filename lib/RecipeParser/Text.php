@@ -208,7 +208,7 @@ ONETSP_TIME: $time
         $uses_makes = (strpos($str, "makes") === 0);
 
         // Remove leading "Yield:" or "Servings:"
-        $str = preg_replace("/^(yield|servings|serves|makes)\:?\s+/", "", $str);
+        $str = preg_replace("/^(yield|servings|serves|makes about|makes)\:?\s+/", "", $str);
 
         if (!$uses_makes) {
             if ($str == "1") {

@@ -49,6 +49,7 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals('8 servings', RecipeParser_Text::formatYield('Serves 8.'));
         $this->assertEquals('8-12 servings', RecipeParser_Text::formatYield('Serves 8-12.'));
         $this->assertEquals('8 portions', RecipeParser_Text::formatYield('Makes 8 portions.'));
+        $this->assertEquals('10 cupcakes', RecipeParser_Text::formatYield('Makes about 10 cupcakes'));
         $this->assertEquals('1 portion', RecipeParser_Text::formatYield('One portion.'));
         $this->assertEquals('12 servings', RecipeParser_Text::formatYield('Twelve servings'));
         $this->assertEquals('8 to 10 servings', RecipeParser_Text::formatYield('Serves 8 to 10'));
