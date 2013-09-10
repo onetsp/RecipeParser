@@ -79,4 +79,30 @@ class RecipeParser_Parser_Elanaspantrycom_Test extends PHPUnit_Framework_TestCas
                             $recipe->photo_url);
     }
 
+    public function test_paleo_samoas() {
+
+        $path = "data/elanaspantry_com_paleo_samoas_gluten_free_girl_scout_samoa_cookies_curl.html";
+        $url  = "http://www.elanaspantry.com/paleo-samoas/";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals('Paleo Samoas', $recipe->title);
+        $this->assertEquals('36 cookies', $recipe->yield);
+
+        // Multi-section recipe is squeezed into one section. I'm not putting the effort in right now
+        // to split these out.
+        $this->assertEquals(1, count($recipe->ingredients));
+        $this->assertEquals('', $recipe->ingredients[0]['name']);
+        $this->assertEquals(12, count($recipe->ingredients[0]['list']));
+
+        $this->assertEquals(1, count($recipe->instructions));
+        $this->assertEquals('', $recipe->instructions[0]['name']);
+        $this->assertEquals(17, count($recipe->instructions[0]['list']));
+
+        $this->assertEquals('http://www.elanaspantry.com/blog/wp-content/uploads/2013/01/Samoras-2-0051.jpg',
+                            $recipe->photo_url);
+
+    }
+
 }
