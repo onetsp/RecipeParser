@@ -9,9 +9,9 @@ if (count($argv) <= 1) {
 echo <<<EOM
 <?php
 
-require_once "./bootstrap.php";
+require_once "../bootstrap.php";
 
-class RecipeParser_Parser__Test extends PHPUnit_Framework_TestCase {
+class RecipeParser_Parser_INSERTCLASSNAME_Test extends PHPUnit_Framework_TestCase {
 
 EOM;
 
@@ -31,14 +31,17 @@ foreach ($argv as $file) {
             $tmp = preg_replace("/[\W\-]+/", "_", $tmp);
             $test_name = $tmp;
 
+            $file_path = $file;
+            $file_path = preg_replace("/.*\/(data\/.+)$/", "$1", $file_path);
+
             echo <<<EOM
 
     public function test_$test_name() {
 
-        \$path = "$file";
+        \$path = "$file_path";
         \$url  = "$url";
 
-        \$recipe = RecipeParser::parse(file_get_contents(\$file), \$url);
+        \$recipe = RecipeParser::parse(file_get_contents(\$path), \$url);
         if (isset(\$_SERVER['VERBOSE'])) print_r(\$recipe);
 
         \$this->assertEquals('', \$recipe->title);
