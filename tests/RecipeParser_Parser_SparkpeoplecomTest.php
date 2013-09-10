@@ -5,13 +5,10 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser__Sparkpeoplecom_Test extends PHPUnit_Framework_TestCase {
 
     public function test_carrot_pumpkin_bars() {
-        $path_orig = "data/recipes_sparkpeople_com_carrot_pumpkin_bars_by_andrewmom_sparks_curl.html";
+        $path = "data/recipes_sparkpeople_com_carrot_pumpkin_bars_by_andrewmom_sparks_curl.html";
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=157762";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
-        
-
-
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Carrot Pumpkin Bars', $recipe->title);
@@ -41,13 +38,10 @@ class RecipeParser_Parser__Sparkpeoplecom_Test extends PHPUnit_Framework_TestCas
     }
 
     public function test_mini_cheesecakes() {
-        $path_orig = "data/recipes_sparkpeople_com_mini_cheesecakes_by_sparks_curl.html";
+        $path = "data/recipes_sparkpeople_com_mini_cheesecakes_by_sparks_curl.html";
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=63";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
-        
-
-
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Mini Cheesecakes', $recipe->title);
@@ -70,13 +64,10 @@ class RecipeParser_Parser__Sparkpeoplecom_Test extends PHPUnit_Framework_TestCas
     }
 
     public function test_graham_cracker_cheesycake() {
-        $path_orig = "data/recipes_sparkpeople_com_no_bake_graham_cracker_cheesycake_by_curl.html";
+        $path = "data/recipes_sparkpeople_com_no_bake_graham_cracker_cheesycake_by_curl.html";
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=384073";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
-        
-
-
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('No Bake Graham Cracker Cheesycake', $recipe->title);
@@ -96,13 +87,10 @@ class RecipeParser_Parser__Sparkpeoplecom_Test extends PHPUnit_Framework_TestCas
     }
 
     public function test_skillet_lasagna() {
-        $path_orig = "data/recipes_sparkpeople_com_skillet_lasagna_by_veggiekitty_sparks_curl.html";
+        $path = "data/recipes_sparkpeople_com_skillet_lasagna_by_veggiekitty_sparks_curl.html";
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=20856";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
-        
-
-
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Skillet Lasagna', $recipe->title);
