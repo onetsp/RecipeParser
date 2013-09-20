@@ -145,6 +145,60 @@ Dependencies
 Writing a New Recipe Parser
 ------------------------------
 
+Many recipes from sites that make use of microformats or microdata can be parsed by the generalized parsers included with RecipeParser. Custom parsers, however, still need to be written for most sites and these, unfortunately, tend to break over time as site owners make changes to their HTML templates.
+
+You can write new parsers for any site you're interested in, or find requested parsers in the [issues list](https://github.com/onetsp/RecipeParser/issues).
+
+### 1. Gather sample HTML files for recipes
+
+To make the most resilient parser for a particular site, you should find a few recipes from the site that have variations in their metadata and format. For example, some with times and yields, and some without. Some sites include section dividers in the ingredients and instructions lists, which is a good thing to test for. Recipes for chocolate cake with icings tend to make good tests.
+
+The `fetch_parser_test_file` script in `bin` will download a recipe and save it locally. The script will also store some metadata (including URL) of the recipe source in an HTML comment at the top of the file.
+
+```
+$ ./fetch_parser_test_file http://www.elanaspantry.com/cranberry-coconut-power-bars/
+
+Writing data file to /path/to/RecipeParser/tests/data
+-rw-r--r--  1 mbrittain  staff  100412 Sep  8 21:49 elanaspantry_com_cranberry_coconut_power_bars_paleo_power_bars_curl.html
+```
+
+### 2. Generate boilerplate unit tests
+
+Running the `import_test_boilerplate` script will generate the boilerplate for a set of unit tests for the new recipe files. The boilerplate code is echoed to stdout, so you should redirect the content to a new test file, as seen here:
+
+```
+$ ./bin/import_test_boilerplate tests/data/elanaspantry_com_* > tests/RecipeParser_Parser_ElanaspantrycomTest.php
+```
+
+Update the name of the PHPUnit test class in the unit test file. Look for the string "INSERTCLASSNAME" and replace it.
+
+### 3. Write test assertions for each recipe
+
+The boilerplate contains empty test assertions for most of the fields we care about. Title, ingredients, and instructions are really the only fields we need to have a usable parser. Not all fields will exist in the recipe, and you can feel free to delete assertions for fields that cannot be populated from the HTML of the recipe. But our goal is to extract the most out of each recipe.
+
+### 4. Write the RecipeParser_Parser_* class.
+
+
+
+### 5. Add to list of registered parsers
+
+```
+diff --git a/lib/RecipeParser/Parser/parsers.ini b/lib/RecipeParser/Parser/parsers.ini
+
+   ...
+   
+   +[Elana's Pantry]
+   +pattern = "elanaspantry.com"
+   +parser = "Elanaspantrycom"
+   +
+```
+
+### 6. Verify all tests are passing
+
+### 7. Wrap up
+
+Commit your changes and submit a pull request to have your changes merged with `onetsp/RecipeParser`.
+
 
 Fixing a Broken Parser
 ------------------------------
@@ -159,9 +213,9 @@ The `fetch_all_test_files` script in `bin` will download new copies of each test
 $ cd bin
 ./fetch_all_test_files ../tests/RecipeParser_Parser_BonappetitcomTest.php 
 
-  Writing data file to /Users/mbrittain/Repos/onetsp/RecipeParser/tests/data
+  Writing data file to /path/to/RecipeParser/tests/data
   -rw-r--r--  1 mbrittain  staff   60734 Aug 31 22:22 bonappetit_com_beet_and_fennel_soup_with_kefir_curl.html
-  Writing data file to /Users/mbrittain/Repos/onetsp/RecipeParser/tests/data
+  Writing data file to /path/to/RecipeParser/tests/data
   -rw-r--r--  1 mbrittain  staff   60011 Aug 31 22:22 bonappetit_com_chai_spiced_hot_chocolate_curl.html
 ```
 
