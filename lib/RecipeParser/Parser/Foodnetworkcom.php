@@ -13,9 +13,22 @@ class RecipeParser_Parser_Foodnetworkcom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
+        // Clean up instructions, delete last instruction from each section if it looks like a photo credit.
+        for ($i = 0; $i < count($recipe->instructions); $i++) {
+            $j = count($recipe->instructions[$i]['list']) - 1;
+            if (preg_match("/photographs? by/i", $recipe->instructions[$i]['list'][$j])) {
+                array_pop($recipe->instructions[$i]['list']);
+            }
+        }
+
+        // Get larger photos
+        if ($recipe->photo_url) {
+            $recipe->photo_url = str_replace('_med.jpg', '_lg.jpg', $recipe->photo_url);
+        }
+
         // Ingredients
         $recipe->resetIngredients();
-        $nodes = $xpath->query('//div[@class = "body-text"]/*');
+        $nodes = $xpath->query('//div[@class="body-text"]/*');
         foreach ($nodes as $node) {
 
             // Extract ingredients from <ul> <li>.
@@ -48,40 +61,6 @@ class RecipeParser_Parser_Foodnetworkcom {
                 $recipe->addIngredientsSection($line);
                 continue;
             }
-        }
-
-        // Instructions
-        $recipe->resetInstructions();
-        $node_list = $xpath->query('//div[@itemprop = "recipeInstructions"]/p');
-        foreach ($node_list as $node) {
-            $line = trim($node->nodeValue);
-            if (preg_match("/^(Photographs? by|Per serving: Calories)/", $line)) {
-                continue;
-            } else if (preg_match("/^(Cook's )Note:(.*)/", $line, $m)) {
-                $recipe->notes .= $m[2];
-            } else {
-                $recipe->appendInstruction($line);
-            }
-        }
-
-
-        // Replace photo -- Two different ways photos are marked up on Food Network.
-        $photo_url = "";
-        $recipe->photo_url = "";
-
-        $nodes = $xpath->query('//*[@id="recipe-image"]');
-        if ($nodes->length) {
-            $photo_url = $nodes->item(0)->getAttribute('href');
-        }
-        if (!$photo_url) {
-            $nodes = $xpath->query('//img[@id="recipe-player-th"]');
-            if ($nodes->length) {
-                $photo_url = $nodes->item(0)->getAttribute('src');
-            }
-        }
-        if ($photo_url) {
-            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
-            $recipe->photo_url = str_replace('_med.jpg', '_lg.jpg', $recipe->photo_url);
         }
 
         return $recipe;
