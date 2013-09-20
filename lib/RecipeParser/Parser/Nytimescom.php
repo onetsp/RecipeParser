@@ -4,56 +4,29 @@ class RecipeParser_Parser_Nytimescom {
 
     public function parse($html, $url) {
 
-        $recipe = new RecipeParser_Recipe();
-
-        libxml_use_internal_errors(true);
-        $doc = new DOMDocument();
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
-        $xpath = new DOMXPath($doc);
-        
-        $hrecipe = $xpath->query('//div[@class="hrecipe"]');
-        if ($hrecipe->length) {
+        if (strpos($url, "www.nytimes.com/recipes/") !== false) {
 
             //
             // "RECIPES" SECTION
             //
 
-            $hrecipe = $hrecipe->item(0);
+            $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
-            // Title
-            $nodes = $xpath->query('./h1', $hrecipe);
-            if ($nodes->length) {
-                $value = trim($nodes->item(0)->nodeValue);
-                $recipe->title = $value;
-            }
-
-            // Time
-            $nodes = $xpath->query('//div[@id = "article"]//p');
-            foreach ($nodes as $node) {
-                $text = trim($node->nodeValue);
-                if (preg_match('/^Time:? (.+)/', $text, $m)) {
-                    $str = trim($m[1]);
-                    $str = preg_replace('/About (.+)/', '$1', $str);
-                    $str = preg_replace('/(.+) plus.*/', '$1', $str);
-                    $recipe->time['total'] = RecipeParser_Times::toMinutes($str);
-                }
-            }
-
-            // Yield
-            $nodes = $xpath->query('.//*[@class = "yield hmeasure"]', $hrecipe);
-            if ($nodes->length) {
-                $value = trim($nodes->item(0)->nodeValue);
-                $recipe->yield = RecipeParser_Text::formatYield($value);
-            }
+            libxml_use_internal_errors(true);
+            $doc = new DOMDocument();
+            $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
+            $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+            $xpath = new DOMXPath($doc);
 
             // Ingredients
-            $nodes = $xpath->query('./div[@class = "ingredientsGroup"]/*', $hrecipe);
+            $recipe->resetIngredients();
+            $nodes = $xpath->query('//div[@class="ingredientsGroup"]/*');
             foreach ($nodes as $node) {
-                if ($node->nodeName == 'h3') {
+                if ($node->nodeName == "h3") {
                     $value = trim($node->nodeValue);
                     if (!preg_match('/^Ingredients:?$/i', $value)) {
-                        $recipe->addIngredientsSection(RecipeParser_Text::formatSectionName($value));
+                        $value = RecipeParser_Text::formatSectionName($value);
+                        $recipe->addIngredientsSection($value);
                     }
                 } else {
                     foreach ($node->childNodes as $child) {
@@ -63,15 +36,9 @@ class RecipeParser_Parser_Nytimescom {
                 }
             }
 
-            // Instructions
-            $nodes = $xpath->query('.//dl[@class = "preparationSteps"]/dd', $hrecipe);
-            foreach ($nodes as $node) {
-                $recipe->appendInstruction(trim($node->nodeValue));
-            }
-
             // Notes
             if (!$recipe->notes) {
-                $nodes = $xpath->query('.//div[@class = "yieldNotesGroup"]//*[@class = "note"]', $hrecipe);
+                $nodes = $xpath->query('//div[@class="yieldNotesGroup"]//*[@class="note"]');
                 if ($nodes->length) {
                     $value = trim($nodes->item(0)->nodeValue);
                     $value = preg_replace("/^Notes?:?\s+/i", '', $value);
@@ -79,11 +46,19 @@ class RecipeParser_Parser_Nytimescom {
                 }
             }
 
-
         } else {
+
             //
             // DINING SECTION RECIPES
             //
+
+            $recipe = new RecipeParser_Recipe();
+
+            libxml_use_internal_errors(true);
+            $doc = new DOMDocument();
+            $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
+            $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+            $xpath = new DOMXPath($doc);
 
             // Title
             $nodes = $xpath->query('//div[@id = "article"]//h1');
