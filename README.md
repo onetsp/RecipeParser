@@ -7,7 +7,7 @@ A PHP library for parsing recipe data from HTML.
 Usage
 ------------------------------
 
-Put this library somewhere you can load it from your PHP code. Call `RecipeParser::parse()` with HTML of a recipe file and the original URL (helps to identify custom parser to use). The return value is a PHP object containing the recipe's data.
+Put this library somewhere you can load it from your PHP code. Call `RecipeParser::parse()`, passing in the contents of an HTML file that includes a recipe and, optionally, the URL of the original page, which helps to identify specific parsers to use. The return value is a PHP object containing the recipe's data.
 
 ```
 $recipe = RecipeParser::parse($html, $url);
@@ -86,29 +86,29 @@ $ ./bin/parse_recipe tests/data/bonappetit_com_special_sunday_roast_chicken_curl
 ```
 
 
-Parser Files
+Introduction
 ------------------------------
 
-- Layout
-- Specifics vs. Generic parsers
-- Parsers.ini
+### The Recipe Parsers
 
-How it Works
-------------------------------
+The majority of this library is made up of classes that are used for extracting, or scraping, structured recipe data from largely unstructured HTML pages. From a user perspective, `RecipeParser::parse()` is the method you'll mostly be interested in. From a developer (contributor) perspective, you'll find the parsing routines in class files in `lib/RecipeParser/Parsers/`.
 
-- xpath
-- text parsing
-- Recipe structure
+The parsing routines are primarily made up of XPath queries for nodes in the HTML DOM. Many recipes found on the Internet are going to be coming from large catalogs on publisher sites, rendered in relatively infrequently changing HTML templates. Each string we parse from HTML into a structured recipe object is typically (1) located in the DOM with an XPath query, then (2) cleaned up using various regular expressions and string replacements (see `RecipeParser_Text` class).
 
-- microformats and microdata
+We get a decent return from writing a parser that is specific to a web site knowing that the format of their HTML templates is unlikely to change significantly over the course of a few months, sometimes years. There is a lot of upkeep to maintain these parsers. The increasing use of the hRecipe microformat, microdata (data-vocabulary.org, schema.org, RDFa) has made the task of parsing recipes across many sites somewhat easier, though not perfect. Google's use of [Rich Snippets ](https://support.google.com/webmasters/answer/173379?hl=en) has been a carrot for many web publishers to adopt one of these (relatively) structured formats.
 
-Many of the top recipe publishers are tending to adopt [microformats, microdata, and RDFa](https://support.google.com/webmasters/answer/173379?hl=en) to identify specific properties of recipes in their templates. There are four generalized parsers that will aid in gathering most of the properties for each of these formats.
+A few "generalized" parsers are available in the library that are either invoked automatically by `RecipeParser::parse()`, based on signals within the HTML content, or used within a custom parser as a starting point. For an example of this, see the first few lines of the `parse()` method within `RecipeParser/Parser/Bonappetitcom.php`.
 
-MicrodataDataVocabulary.php
-MicrodataRdfDataVocabulary.php
-MicrodataSchema.php
-Microformat.php
+ - MicrodataDataVocabulary.php
+ - MicrodataRdfDataVocabulary.php
+ - MicrodataSchema.php
+ - Microformat.php
 
+Which parser is used?
+
+The parsing algorithm has to determine which parser will be used for any given recipe file. Customized parsers are selected by pattern matching against the URL of the recipe. Every customized parser is registered in `lib/RecipeParser/Parsers/parsers.ini` and have a corresponding URL pattern. When no custom pattern is matched, the `RecipeParser` class will search for strings within the HTML file that will indicate the use of microformats or microdata to markup the recipe.
+
+Many of the customized parsers will rely heavily on the generalized parsers as starting points for collecting data about a recipe, and then will override, or fill in the gaps, with additional XPath queries and parsing. For example:
 
 ```
 class RecipeParser_Parser_Bhgcom {
@@ -178,15 +178,13 @@ The boilerplate contains empty test assertions for most of the fields we care ab
 
 ### 4. Write the RecipeParser_Parser_* class.
 
-
+Hard to say much more here than read a few of the existing parsers and try to follow them as examples.
 
 ### 5. Add to list of registered parsers
 
 ```
 diff --git a/lib/RecipeParser/Parser/parsers.ini b/lib/RecipeParser/Parser/parsers.ini
 
-   ...
-   
    +[Elana's Pantry]
    +pattern = "elanaspantry.com"
    +parser = "Elanaspantrycom"
@@ -194,6 +192,8 @@ diff --git a/lib/RecipeParser/Parser/parsers.ini b/lib/RecipeParser/Parser/parse
 ```
 
 ### 6. Verify all tests are passing
+
+Yes, run *all* of the tests.
 
 ### 7. Wrap up
 
