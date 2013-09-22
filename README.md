@@ -269,8 +269,10 @@ Commit your changes and submit a pull request to have your changes merged with `
 
 
 
+Questions?
+------------------------------
 
-
+This documentation is likely incomplete. You can reach me for questions and help at mike@onetsp.com (but, please be patient if I'm slow to respond).
 
 
 
