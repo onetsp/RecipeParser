@@ -85,6 +85,12 @@ Additionally, a command-line script is available that demonstrates the library's
 $ ./bin/parse_recipe tests/data/bonappetit_com_special_sunday_roast_chicken_curl.html 
 ```
 
+or 
+
+```
+$ ./bin/parse_recipe http://www.cooks.com/recipe/3k38r484/baked-ziti.html
+```
+
 
 Introduction
 ------------------------------
