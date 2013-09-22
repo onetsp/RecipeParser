@@ -3,21 +3,59 @@
 
 include dirname(dirname(__FILE__)) . '/bootstrap.php';
 
+$recipe_filename = null;
+$recipe_url = null;
+
+// Read input
 if ($argc < 2) {
     echo "Missing required HTML filename.\n\n";
-    echo "Usage: {$_SERVER['SCRIPT_NAME']} html_file\n";
+    echo "Usage: {$_SERVER['SCRIPT_NAME']} <html_file_or_url>\n";
     exit(1);
 }
 
-$filename = $argv[1];
-if (!file_exists($filename)) {
-    echo "File does not exist.\n";
-    exit(1);
+if (preg_match("/^https?:\/\//i", $argv[1])) {
+    $recipe_url = $argv[1];
+} else if (file_exists($argv[1])) {
+    $recipe_filename = $argv[1];
+} else {
+    echo "File does not exist: $argv[1]\n";
+    show_usage();
 }
-$basename = basename($filename);
-echo "Parsing recipe from $basename\n";
 
-$html = file_get_contents($filename);
+// Download recipe file
+if ($recipe_url) {
+    echo "Downloading file from $recipe_url\n";
+
+    // Target filename
+    $hostname = parse_url($recipe_url, PHP_URL_HOST);
+    $hostname = str_replace(".", "_", $hostname);
+    $basename = "onetsp_{$hostname}_" . substr(md5($recipe_url), 0, 8);
+    $recipe_filename = tempnam(sys_get_temp_dir(), $basename);
+
+    // Only fetch 1x per day
+    if (file_exists($recipe_filename)
+        && filesize($recipe_filename) > 0
+        && (time() - filemtime($recipe_filename) < 86400)
+    ) {
+        echo "Recipe file already exists: $recipe_filename\n";
+
+    } else {
+        // Fetch and cleanup the HTML
+        $html = FileUtil::downloadPage($recipe_url);
+        $html = RecipeParser_Text::forceUTF8($html);
+        $html = RecipeParser_Text::cleanupClippedRecipeHtml($html);
+
+        // Append some notes to the HTML
+        $comments = RecipeParser_Text::getRecipeMetadataComment($recipe_url, "curl");
+        $html = $comments . "\n\n" . $html;
+
+        echo "Saving file to $recipe_filename\n";
+        file_put_contents($recipe_filename, $html);
+    }
+}
+
+echo "Parsing recipe from file $recipe_filename\n";
+$html = file_get_contents($recipe_filename);
 
 // Parse recipe into a struct
 try {
@@ -84,3 +122,9 @@ function printStats($recipe) {
 
 }
 
+function show_usage() {
+    echo "\n";
+    echo "Missing required HTML filename.\n\n";
+    echo "Usage: {$_SERVER['SCRIPT_NAME']} <html_file_or_url>\n";
+    exit(1);
+}

@@ -242,6 +242,13 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         );
     }
 
+    public function test_filename_from_title() {
+        $this->assertEquals("chocolate_macaroons_with_chocolate_or_caramel",
+            RecipeParser_Text::formatFilenameFromTitle("Chocolate Macaroons with Chocolate or Caramel Filling - Bon Appétit"));
+        $this->assertEquals("grilled_scallions",
+            RecipeParser_Text::formatFilenameFromTitle("Grilled Scallions Recipe : Food Network Kitchens : Recipes : Food Network"));
+    }
+
 }
 
 ?>

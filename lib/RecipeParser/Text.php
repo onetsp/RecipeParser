@@ -402,4 +402,43 @@ ONETSP_TIME: $time
         return $photo_url;
     }
 
+    /**
+     * Convert <title> from recipe file into string that can be used for a local filename.
+     *
+     * @param string
+     * @return string
+     *
+     */
+    public static function formatFilenameFromTitle($title) {
+        $title_strip_terms = array(
+            "recipe",
+        );
+
+        $title = strtolower($title);
+        foreach ($title_strip_terms as $strip) {
+            $title = str_replace($strip, '', $title);
+        }
+
+        // Split title on " - " or " | " or " : ".
+        $parts = preg_split("/[\-\-\|\:]/", $title);
+        $title = $parts[0];
+
+        $title = preg_replace('/[^A-Za-z]+/', '_', $title);
+
+        $title = preg_replace("/\s+\W\s+/", "_", $title); // remove single non-word chars
+        $title = preg_replace("/\s+/", "_", $title);      // normalize spaces
+        $title = str_replace("_s_", "s_", $title);        // common issue of stranded _s_ for possessives
+        $title = preg_replace("/_s$/", "s", $title);      // common issue of stranded _s_ for possessives
+        $title = str_replace("__", "_", $title);
+        $title = trim($title, '_');
+
+        $parts = explode("_", $title);
+        while (count($parts) > 6) {
+            array_pop($parts);
+        }
+        $title = implode("_", $parts);
+
+        return $title;
+    }
+
 }
