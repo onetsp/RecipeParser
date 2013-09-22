@@ -9,9 +9,6 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
         $url = "http://www.tasteofhome.com/Recipes/Almond-Cheddar-Appetizers";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
-        
-
-
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Almond Cheddar Appetizers', $recipe->title);
@@ -25,10 +22,10 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
 
         $this->assertEquals(7, count($recipe->ingredients[0]['list']));
         $this->assertEquals(2, count($recipe->instructions[0]['list']));
-        $this->assertRegExp('/or until bubbly.$/', $recipe->instructions[0]['list'][1]);
+        $this->assertRegExp('/or until bubbly./', $recipe->instructions[0]['list'][1]);
 
         $this->assertEquals(
-            'http://hostedmedia.reimanpub.com/TOH/Images/Photos/37/exps7647_RDHE10671C9.jpg',
+            'http://hostedmedia.reimanpub.com/TOH/Images/Photos/37/exps7647_MRR133247B07_31_1b.jpg',
             $recipe->photo_url);
     }
 
@@ -37,9 +34,6 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
         $url = "http://www.tasteofhome.com/Recipes/Artichoke-Chicken";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
-        
-
-
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Artichoke Chicken', $recipe->title);
@@ -51,7 +45,7 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
 
         $this->assertEquals(12, count($recipe->ingredients[0]['list']));
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
-        $this->assertRegExp('/Sprinkle with parsley.$/', $recipe->instructions[0]['list'][2]);
+        $this->assertRegExp('/Sprinkle with parsley./', $recipe->instructions[0]['list'][2]);
     }
 
     public function test_lemon_berry_shortcake() {
@@ -59,9 +53,6 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
         $url = "http://www.tasteofhome.com/Recipes/Lemon-Berry-Shortcake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
-        
-
-
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Lemon-Berry Shortcake', $recipe->title);
@@ -81,4 +72,3 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
 
 }
 
-?>

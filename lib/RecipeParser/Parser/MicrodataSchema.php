@@ -16,6 +16,11 @@ class RecipeParser_Parser_MicrodataSchema {
         $nodes = $xpath->query('//*[@itemtype="http://schema.org/Recipe"]');
         if ($nodes->length) {
             $microdata = $nodes->item(0);
+        } else {
+            $nodes = $xpath->query('//*[@itemtype="http://schema.org/recipe"]');
+            if ($nodes->length) {
+                $microdata = $nodes->item(0);
+            }
         }
 
         // Parse elements
@@ -24,7 +29,8 @@ class RecipeParser_Parser_MicrodataSchema {
             // Title
             $nodes = $xpath->query('.//*[@itemprop="name"]', $microdata);
             if ($nodes->length) {
-                $recipe->title = trim($nodes->item(0)->nodeValue);
+                $value = trim($nodes->item(0)->nodeValue);
+                $recipe->title = RecipeParser_Text::formatTitle($value);
             }
 
             // Summary
@@ -58,6 +64,9 @@ class RecipeParser_Parser_MicrodataSchema {
 
             // Yield
             $nodes = $xpath->query('.//*[@itemprop="recipeYield"]', $microdata);
+            if (!$nodes->length) {
+                $nodes = $xpath->query('.//*[@itemprop="recipeyield"]', $microdata);
+            }
             if ($nodes->length) {
                 if ($nodes->item(0)->hasAttribute('content')) {
                     $line = $nodes->item(0)->getAttribute('content');
