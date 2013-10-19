@@ -411,6 +411,8 @@ ONETSP_TIME: $time
      */
     public static function formatFilenameFromTitle($title) {
         $title_strip_terms = array(
+            "recipe from",
+            "recipes",
             "recipe",
         );
 
@@ -420,8 +422,8 @@ ONETSP_TIME: $time
         }
 
         // Split title on " - " or " | " or " : ".
-        $parts = preg_split("/[\-\-\|\:]/", $title);
-        $title = $parts[0];
+        #$parts = preg_split("/[\-\-\|\:]/", $title);
+        #$title = $parts[0];
 
         $title = preg_replace('/[^A-Za-z]+/', '_', $title);
 
