@@ -85,4 +85,3 @@ class RecipeParser_Parser_Eatingwellcom {
 
 }
 
-?>

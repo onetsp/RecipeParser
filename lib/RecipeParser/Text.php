@@ -2,6 +2,8 @@
 
 class RecipeParser_Text {
 
+    const IGNORE_LEADING_NUMBERS = "IGNORE_LEADING_NUMBERS";
+
     /**
      * Get string for HTML comment that can be added to RecipeParser test files.
      *
@@ -287,7 +289,49 @@ ONETSP_TIME: $time
         }
     }
 
-    public static function parseListFromBlob($str) {
+    public static function parseIngredientsAndInstructionsFromBlob($str, &$recipe) {
+        $lines = self::parseListFromBlob($str, self::IGNORE_LEADING_NUMBERS);
+
+        $finished_ingredients = false;
+        while ($line = array_shift($lines)) {
+
+            if (!$finished_ingredients) {
+
+                if (self::matchSectionName($line)) {
+                    $line = self::formatSectionName($line);
+                    $recipe->addIngredientsSection($line);
+                } else {
+                    // Does this line look like an ingredient?
+                    if (preg_match("/^\d/", $line)
+                        || stripos("to taste", $line) !== false
+                        || stripos("optional", $line) !== false
+                        || strlen($line) < 40  // this is questionable
+                    ) {
+                        // Found ingredient
+                        $line = self::formatAsOneLine($line);
+                        $recipe->appendIngredient($line);
+                    
+                    } else {
+                        // Looks like next line is part of ingredients
+                        $finished_ingredients = true;
+                        array_unshift($lines, $line);
+                    }
+                }
+
+            } else {
+                // Instructions
+                if (self::matchSectionName($line)) {
+                    $line = self::formatSectionName($line);
+                    $recipe->addInstructionsSection($line);
+                } else {
+                    $recipe->appendInstruction($line);
+                }
+            }
+        }
+
+    }
+
+    public static function parseListFromBlob($str, $opt=null) {
         $list = array();
 
         if (isset($_SERVER['VERBOSE'])) {
@@ -295,7 +339,11 @@ ONETSP_TIME: $time
         }
         
         // Replace leading digits or bullets with <br>s
-        $str = preg_replace("/(^|\n)\s*(\d+\.*|\*|\-)\s/", "<br>", $str);
+        $pattern = '/(^|\n)\s*(\d+\.*|\*|\-)\s/';
+        if ($opt == self::IGNORE_LEADING_NUMBERS) {
+            $pattern = str_replace("\d+", "", $pattern);
+        }
+        $str = preg_replace($pattern, "<br>", $str);
 
         // Use <br> to split on sentences that are jammed together (which often occurs)
         // when parsing text content from DOM nodes.
@@ -313,7 +361,9 @@ ONETSP_TIME: $time
         $lines = explode("<br>", $str);
         foreach ($lines as $line) {
             $line = self::formatAsOneLine($line);
-            $line = self::stripLeadingNumbers($line);
+            if ($opt != self::IGNORE_LEADING_NUMBERS) {
+                $line = self::stripLeadingNumbers($line);
+            }
             if ($line) {
                 $list[] = $line;
             }

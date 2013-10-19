@@ -80,6 +80,19 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals("The third item.", $list[2]);
     }
 
+    public function test_parse_list_from_blob_ignore_numeric_bullets() {
+        $str = "
+        2 teaspoons ground cinnamon
+        1 1/4 teaspoon salt
+        1/2 teaspoon freshly grated nutmeg
+        ";
+        $list = RecipeParser_Text::parseListFromBlob($str, RecipeParser_Text::IGNORE_LEADING_NUMBERS);
+        $this->assertEquals(3, count($list));
+        $this->assertEquals("2 teaspoons ground cinnamon", $list[0]);
+        $this->assertEquals("1 1/4 teaspoon salt", $list[1]);
+        $this->assertEquals("1/2 teaspoon freshly grated nutmeg", $list[2]);
+    }
+
     public function test_parse_list_from_blob_numeric_bullets_multiline() {
         $str = "
         1. this is item one.
@@ -245,7 +258,7 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
     public function test_filename_from_title() {
         $this->assertEquals("chocolate_macaroons_with_chocolate_or_caramel",
             RecipeParser_Text::formatFilenameFromTitle("Chocolate Macaroons with Chocolate or Caramel Filling - Bon Appétit"));
-        $this->assertEquals("grilled_scallions",
+        $this->assertEquals("grilled_scallions_food_network_kitchens_food",
             RecipeParser_Text::formatFilenameFromTitle("Grilled Scallions Recipe : Food Network Kitchens : Recipes : Food Network"));
     }
 
