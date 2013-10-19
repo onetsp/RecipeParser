@@ -15,7 +15,7 @@ class RecipeParser_Parser_Bbcgoodfoodcom {
         // Ingredients
         $recipe->resetIngredients();           
 
-        $nodes = $xpath->query('//*[@id="recipe-ingredients"]/div/*');
+        $nodes = $xpath->query('//*[@id="recipe-ingredients"]//div[@class="view-content"]/*');
         foreach ($nodes as $node) {
 
             if ($node->nodeName == 'h3') {

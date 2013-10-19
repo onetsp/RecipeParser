@@ -32,7 +32,7 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_lemon_poppyseed() {
-        $path_orig = "data/bbcgoodfood_com_lemon_amp_poppyseed_cupcakes_curl.html";
+        $path_orig = "data/bbcgoodfood_com_lemon_amp_poppyseed_cupcakes_bbc_good_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/470636/lemon-and-poppyseed-cupcakes";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -61,7 +61,7 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_ultimate_chocolate_cake() {
-        $path_orig = "data/bbcgoodfood_com_ultimate_chocolate_cake_curl.html";
+        $path_orig = "data/bbcgoodfood_com_ultimate_chocolate_cake_bbc_good_food_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/3092/ultimate-chocolate-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
@@ -102,7 +102,5 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(0, $recipe->time['cook']);
         $this->assertEquals(150, $recipe->time['total']);
     }
-
 }
 
-?>
