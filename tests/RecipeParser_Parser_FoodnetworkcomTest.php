@@ -23,7 +23,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_chocolate_cake() {
-        $path = "data/foodnetwork_com_beattys_chocolate_cake_ina_gartens_food_curl.html";
+        $path = "data/foodnetwork_com_beattys_chocolate_cake_ina_garten_food_curl.html";
         $url = "http://www.foodnetwork.com/recipes/ina-garten/beattys-chocolate-cake-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -38,7 +38,6 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
         $this->assertEquals(19, count($recipe->ingredients[0]['list']));
         $this->assertEquals(2, count($recipe->instructions[0]['list']));
-
     }
 
     public function test_braised_short_ribs() {
@@ -59,7 +58,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_emeril_chocolate_cake() {
-        $path = "data/foodnetwork_com_chocolate_cake_emeril_lagasses_food_network_curl.html";
+        $path = "data/foodnetwork_com_chocolate_cake_emeril_lagasse_food_network_curl.html";
         $url = "http://www.foodnetwork.com/recipes/emeril-lagasse/chocolate-cake-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -78,7 +77,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_big_blue_burgers() {
-        $path = "data/foodnetwork_com_big_blue_burgers_rachael_rays_food_curl.html";
+        $path = "data/foodnetwork_com_big_blue_burgers_rachael_ray_food_curl.html";
         $url = "http://www.foodnetwork.com/recipes/rachael-ray/big-blue-burgers-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -97,7 +96,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_six_layer_cake() {
-        $path = "data/foodnetwork_com_six_layer_chocolate_cake_paula_deens_curl.html";
+        $path = "data/foodnetwork_com_six_layer_chocolate_cake_paula_deen_curl.html";
         $url = "http://www.foodnetwork.com/recipes/paula-deen/six-layer-chocolate-cake-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
