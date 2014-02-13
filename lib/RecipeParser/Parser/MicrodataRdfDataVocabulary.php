@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_MicrodataRdfDataVocabulary {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
 
         $recipe = new RecipeParser_Recipe();
 

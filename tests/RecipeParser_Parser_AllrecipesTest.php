@@ -2,11 +2,9 @@
 
 require_once '../bootstrap.php';
 
-class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
-{
+class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
 
-    public function test_apple_pumpkin_muffins()
-    {
+    public function test_apple_pumpkin_muffins() {
         $path = "data/allrecipes_com_pumpkin_apple_streusel_muffins_alls_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Apple-Pumpkin-Muffins/Detail.aspx";
 
@@ -28,8 +26,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function test_spiced_pumpkin_seeds()
-    {
+    public function test_spiced_pumpkin_seeds() {
         $path = "data/allrecipes_com_spiced_pumpkin_seeds_alls_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Spiced-Pumpkin-Seeds/Detail.aspx";
 
@@ -47,8 +44,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
     }
 
-    public function test_carrot_cake()
-    {
+    public function test_carrot_cake() {
         $path = "data/allrecipes_com_carrot_cake_viii_alls_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Carrot-Cake-VIII/Detail.aspx";
 
@@ -63,8 +59,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(7, count($recipe->instructions[0]['list']));
     }
 
-    public function test_customrecipe_template()
-    {
+    public function test_potato_bacon_cheese_frittata() {
         $path = "data/allrecipes_com_potato_bacon_cheese_frittata_customized_by_curl.html";
         $url = "http://allrecipes.com/customrecipe/62636838/potato-bacon-cheese-frittata/detail.aspx";
 
@@ -82,5 +77,3 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

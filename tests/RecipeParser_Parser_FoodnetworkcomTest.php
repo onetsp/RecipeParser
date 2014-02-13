@@ -18,7 +18,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
 
         $this->assertEquals(
-            'http://img.foodnetwork.com/FOOD/2009/12/13/FNM_010110-He-Made-She-Made-001_s4x3_lg.jpg',
+            'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2009/12/13/0/FNM_010110-He-Made-She-Made-001_s4x3.jpg',
             $recipe->photo_url);
     }
 
@@ -31,13 +31,19 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
         $this->assertEquals("Beatty's Chocolate Cake", $recipe->title);
         $this->assertEquals($url, $recipe->url);
-        $this->assertEquals(30, $recipe->time['prep']);
+        $this->assertEquals(60, $recipe->time['prep']);  // matches meta tag, but not displayed prep time
         $this->assertEquals(35, $recipe->time['cook']);
         $this->assertEquals(95, $recipe->time['total']);
         $this->assertEquals('8 servings', $recipe->yield);
 
-        $this->assertEquals(19, count($recipe->ingredients[0]['list']));
-        $this->assertEquals(2, count($recipe->instructions[0]['list']));
+        $this->assertEquals(12, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(6, count($recipe->ingredients[1]['list']));
+        $this->assertEquals(3, count($recipe->instructions[0]['list']));
+        $this->assertEquals(2, count($recipe->instructions[1]['list']));
+
+        $this->assertEquals(
+            'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2007/3/22/0/ig0807_cake.jpg',
+            $recipe->photo_url);
     }
 
     public function test_braised_short_ribs() {
@@ -55,6 +61,10 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals('8 servings', $recipe->yield);
         $this->assertEquals(15, count($recipe->ingredients[0]['list']));
         $this->assertEquals(5, count($recipe->instructions[0]['list']));
+
+        $this->assertEquals(
+            'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2010/1/21/2/FNM_030110-Weekend-037_s4x3.jpg',
+            $recipe->photo_url);
     }
 
     public function test_emeril_chocolate_cake() {
@@ -125,7 +135,6 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
     }
 
-
     public function test_roasted_pepper_pasta() {
         $path = "data/foodnetwork_com_roasted_pepper_pasta_salad_food_network_curl.html";
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/roasted-pepper-pasta-salad-recipe/index.html";
@@ -138,5 +147,3 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
     }
 
 }
-
-?>

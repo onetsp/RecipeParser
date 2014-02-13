@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Myrecipescom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($html, $url);
         
         libxml_use_internal_errors(true);

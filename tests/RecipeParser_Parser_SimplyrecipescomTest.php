@@ -28,7 +28,8 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals(1, count($recipe->instructions));
 
         // Servings mixed in with last line of instructions. Leaving as-is for now.
-        $this->assertEquals(9, count($recipe->instructions[0]['list']));
+        // Also BRs and Ps mixed in a crufty way that I'm not going to untangle.
+        $this->assertEquals(8, count($recipe->instructions[0]['list']));
 
         $this->assertEquals(
             'http://www.simplyrecipes.com/wp-content/uploads/2005/11/apple-cranberry-pie.jpg',
@@ -51,7 +52,6 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
 
         $this->assertEquals(10, count($recipe->ingredients[0]['list']));
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
-
     }
 
     public function test_chile_casserole() {
@@ -82,9 +82,6 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
         $url = "http://simplyrecipes.com/recipes/grilled_tri-tip_steak_with_bell_pepper_salsa/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
-        
-
-
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Grilled Tri-Tip Steak with Bell Pepper Salsa', $recipe->title);
@@ -106,5 +103,3 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
     }
 
 }
-
-?>

@@ -101,6 +101,12 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(0, $recipe->time['prep']);
         $this->assertEquals(0, $recipe->time['cook']);
         $this->assertEquals(150, $recipe->time['total']);
+
+        $this->assertEquals(1, count($recipe->ingredients));
+        $this->assertEquals(13, count($recipe->ingredients[0]['list']));
+
+        $this->assertEquals(1, count($recipe->instructions));
+        $this->assertEquals(2, count($recipe->instructions[0]['list']));
     }
 }
 

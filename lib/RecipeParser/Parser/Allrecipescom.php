@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Allrecipescom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         // Get all of the standard microdata stuff we can find.
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
@@ -68,7 +68,7 @@ class RecipeParser_Parser_Allrecipescom {
         }
 
         // Ingredients
-        if (!count($recipe->ingredients)) {
+        if (!count($recipe->ingredients[0]["list"])) {
             $node_list = $xpath->query('//div[@class = "ingredients"]/ul/li');
             foreach ($node_list as $node) {
                 $line = trim(strip_tags($node->nodeValue));
@@ -81,19 +81,13 @@ class RecipeParser_Parser_Allrecipescom {
         }
 
         // Photo URL
-        if (!$recipe->photo_url) {
-            $nodes = $xpath->query('//img[@class = "rec-image photo"]');
-            if ($nodes->length) {
-                $url = $nodes->item(0)->getAttribute('src');
-                $url = str_replace('/userphoto/small/', '/userphoto/big/', $url);
-                $url = str_replace('/userphotos/140x140/', '/userphotos/250x250/', $url);
-                $recipe->photo_url = $url;
-            }
+        // Get larger images
+        if ($recipe->photo_url) {
+            $recipe->photo_url = str_replace('/userphoto/small/', '/userphoto/big/', $recipe->photo_url);
+            $recipe->photo_url = str_replace('/userphotos/140x140/', '/userphotos/250x250/', $recipe->photo_url);
         }
 
         return $recipe;
     }
 
 }
-
-?>

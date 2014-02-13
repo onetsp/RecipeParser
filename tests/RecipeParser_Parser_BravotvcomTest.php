@@ -136,10 +136,8 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         // Only testing for instruction and ingredient sections
-        $this->assertEquals(8, count($recipe->ingredients));
+        $this->assertEquals(7, count($recipe->ingredients));
         $this->assertEquals(8, count($recipe->instructions));
     }
 
 }
-
-?>

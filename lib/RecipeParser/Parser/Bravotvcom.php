@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Bravotvcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
 
         $recipe = new RecipeParser_Recipe();
 
@@ -196,5 +196,3 @@ class RecipeParser_Parser_Bravotvcom {
     }
 
 }
-
-?>

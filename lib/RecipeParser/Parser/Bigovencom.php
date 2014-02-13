@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Bigovencom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         // Get all of the standard hrecipe stuff we can find.
         $recipe = RecipeParser_Parser_Microformat::parse($html, $url);
 
@@ -55,5 +55,3 @@ class RecipeParser_Parser_Bigovencom {
     }
 
 }
-
-?>

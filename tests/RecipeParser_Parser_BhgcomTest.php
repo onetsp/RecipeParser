@@ -23,9 +23,10 @@ class RecipeParser_Parser_BhgcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('', $recipe->ingredients[0]['name']);
         $this->assertEquals(16, count($recipe->ingredients[0]['list']));
 
-        $this->assertEquals(1, count($recipe->instructions));
+        $this->assertEquals(2, count($recipe->instructions));
         $this->assertEquals('', $recipe->instructions[0]['name']);
-        $this->assertEquals(8, count($recipe->instructions[0]['list']));
+        $this->assertEquals(5, count($recipe->instructions[0]['list']));
+        $this->assertEquals(3, count($recipe->instructions[1]['list']));
 
         $this->assertRegExp('/Cheesecake filling may be prepared/', $recipe->notes);
 

@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Bbcgoodfoodcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
         // Turn off libxml errors to prevent mismatched tag warnings.
@@ -15,9 +15,14 @@ class RecipeParser_Parser_Bbcgoodfoodcom {
         // Ingredients
         $recipe->resetIngredients();           
 
-        $nodes = $xpath->query('//*[@id="recipe-ingredients"]//div[@class="view-content"]/*');
+        $nodes = null;
+        if (!$nodes || !$nodes->length) {
+            $nodes = $xpath->query('//*[@id="recipe-ingredients"]//div[@class="view-content"]/*');
+        }
+        if (!$nodes || !$nodes->length) {
+            $nodes = $xpath->query('//*[@id="recipe-ingredients"]//div[@class="ingredient-lists separator-serated tab-content"]/*');
+        }
         foreach ($nodes as $node) {
-
             if ($node->nodeName == 'h3') {
                 $line = $node->nodeValue;
                 $line = RecipeParser_Text::formatSectionName($line);
@@ -36,5 +41,3 @@ class RecipeParser_Parser_Bbcgoodfoodcom {
     }
 
 }
-
-?>

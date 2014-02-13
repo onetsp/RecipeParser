@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Chowcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         // Get all of the standard bits we can find.
         $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($html, $url);
 
@@ -22,5 +22,3 @@ class RecipeParser_Parser_Chowcom {
     }
 
 }
-
-?>

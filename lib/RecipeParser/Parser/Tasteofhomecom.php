@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Tasteofhomecom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
         libxml_use_internal_errors(true);

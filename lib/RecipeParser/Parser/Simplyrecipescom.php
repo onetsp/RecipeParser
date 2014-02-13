@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Simplyrecipescom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
         libxml_use_internal_errors(true);
@@ -58,9 +58,14 @@ class RecipeParser_Parser_Simplyrecipescom {
             $recipe->notes = RecipeParser_Text::formatAsParagraphs($value);
         }
 
+        // Photo URL to replace og:image 
+        $nodes = $xpath->query('//img[@itemprop="image"]');
+        if ($nodes->length) {
+            $photo_url = $nodes->item(0)->getAttribute("src");
+            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+        }
+
         return $recipe;
     }
 
 }
-
-?>

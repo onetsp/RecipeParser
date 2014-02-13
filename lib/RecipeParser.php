@@ -107,13 +107,10 @@ class RecipeParser {
 
         // Initialize the right parser and run it.
         $classname = 'RecipeParser_Parser_' . $parser;
-        $obj = new $classname;
-        $recipe = $obj->parse($html, $url);
+        $recipe = $classname::parse($html, $url);
         $recipe->url = $url;
         
         return $recipe;
 	}
 
 }
-
-?>

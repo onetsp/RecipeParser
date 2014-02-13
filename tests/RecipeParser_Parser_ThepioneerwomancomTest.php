@@ -88,5 +88,3 @@ class RecipeParser_Parser_ThepioneerwomancomTest extends PHPUnit_Framework_TestC
     }
 
 }
-
-?>

@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Microformat {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = new RecipeParser_Recipe();
 
         libxml_use_internal_errors(true);

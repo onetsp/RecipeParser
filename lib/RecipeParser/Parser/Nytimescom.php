@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Nytimescom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
 
         if (strpos($url, "www.nytimes.com/recipes/") !== false) {
 

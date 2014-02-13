@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Cookscom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = new RecipeParser_Recipe();
 
         // Turn off libxml errors to prevent mismatched tag warnings.

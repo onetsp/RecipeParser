@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Realsimplecom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
         // Photo

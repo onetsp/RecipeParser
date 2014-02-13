@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Cookingcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataRdfDataVocabulary::parse($html, $url);
 
         libxml_use_internal_errors(true);
@@ -24,4 +24,3 @@ class RecipeParser_Parser_Cookingcom {
     }
 
 }
-

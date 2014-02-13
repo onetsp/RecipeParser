@@ -139,8 +139,14 @@ ONETSP_TIME: $time
         $str = trim($str);
 
         // Bare numbers are not section names
-        if (preg_match("/^\d+:?$/", $str)) {
+        if (preg_match("/^\d+(\.|:)?$/", $str)) {
             return false;
+        }
+
+        // Single words, e.g. "Directions"
+        $lower = strtolower($str);
+        if ($lower == "directions") {
+            return true;
         }
 
         // Assume all caps, or ending with ':' is a section title.
@@ -155,6 +161,7 @@ ONETSP_TIME: $time
      */
     public static function formatSectionName($str) {
         $str = strtolower(trim($str));
+        $str = self::formatAsOneLine($str);
         $str = self::stripLeadingNumbers($str);
 
         // Strip trailing punctuation
@@ -163,6 +170,11 @@ ONETSP_TIME: $time
         // Strip leading "for" and "the" (as well as "for the").
         $str = preg_replace('/^for\s+(.*)$/', "$1", $str);
         $str = preg_replace('/^the\s+(.*)$/', "$1", $str);
+
+        // Special case for first header being "Directions"
+        if ($str == "directions") {
+            $str = "";
+        }
 
         $str = ucfirst($str);
         return $str;
@@ -267,6 +279,7 @@ ONETSP_TIME: $time
             }
 
             if (self::matchSectionName($value)) {
+#echo "Found section name: $value\n";
                 $value = self::formatSectionName($value);
                 $recipe->addInstructionsSection($value);
             } else {

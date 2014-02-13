@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Elanaspantrycom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_Microformat::parse($html, $url);
 
         libxml_use_internal_errors(true);
@@ -32,7 +32,7 @@ class RecipeParser_Parser_Elanaspantrycom {
             }
         }
 
-        if (!count($recipe->ingredients)) {
+        if (!count($recipe->ingredients[0]["list"])) {
             $nodes = $xpath->query('//div[@class="box"]');
             if ($nodes->length) {
                 $nodes = $nodes->item(0)->childNodes;
@@ -56,7 +56,7 @@ class RecipeParser_Parser_Elanaspantrycom {
             }
         }
 
-        if (!count($recipe->instructions)) {
+        if (!count($recipe->instructions[0]["list"])) {
             $nodes = $xpath->query('//div[@class="box"]/ol/li');
             foreach ($nodes as $node) {
                 $line = $node->nodeValue;
@@ -80,5 +80,3 @@ class RecipeParser_Parser_Elanaspantrycom {
     }
 
 }
-
-?>

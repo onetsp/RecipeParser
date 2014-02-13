@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_MicrodataSchema {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
 
         $recipe = new RecipeParser_Recipe();
 
@@ -109,6 +109,15 @@ class RecipeParser_Parser_MicrodataSchema {
                 }
             }
 
+            // Look for instructions as direct descendents of "recipeInstructions".
+            if (!$found) {
+                $nodes = $xpath->query('//*[@itemprop="recipeInstructions"]/*');
+                if ($nodes->length) {
+                    RecipeParser_Text::parseInstructionsFromNodes($nodes, $recipe);
+                    $found = true;
+                }
+            }
+
             // Some sites will use an "instruction" class for each line.
             if (!$found) {
                 $nodes = $xpath->query('.//*[@itemprop="recipeInstructions"]//*[contains(concat(" ", normalize-space(@class), " "), " instruction ")]');
@@ -135,22 +144,24 @@ class RecipeParser_Parser_MicrodataSchema {
 
             // Photo
             $photo_url = "";
-            $nodes = $xpath->query('.//*[@itemprop="image"]', $microdata);
-            if ($nodes->length) {
-                $photo_url = $nodes->item(0)->getAttribute('src');
+            if (!$photo_url) {
+                // try to find open graph url
+                $nodes = $xpath->query('//meta[@property="og:image"]');
+                if ($nodes->length) {
+                    $photo_url = $nodes->item(0)->getAttribute('content');
+                }
+            }
+            if (!$photo_url) {
+                $nodes = $xpath->query('.//*[@itemprop="image"]', $microdata);
+                if ($nodes->length) {
+                    $photo_url = $nodes->item(0)->getAttribute('src');
+                }
             }
             if (!$photo_url) {
                 // for <img> as sub-node of class="photo"
                 $nodes = $xpath->query('.//*[@itemprop="image"]//img', $microdata);
                 if ($nodes->length) {
                     $photo_url = $nodes->item(0)->getAttribute('src');
-                }
-            }
-            if (!$photo_url) {
-                // try to find open graph url
-                $nodes = $xpath->query('//meta[@property="og:image"]');
-                if ($nodes->length) {
-                    $photo_url = $nodes->item(0)->getAttribute('content');
                 }
             }
             if ($photo_url) {

@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Kingarthurflourcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($html, $url);
 
         // Turn off libxml errors to prevent mismatched tag warnings.

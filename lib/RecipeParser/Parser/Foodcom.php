@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Foodcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
         // Turn off libxml errors to prevent mismatched tag warnings.
@@ -15,6 +15,9 @@ class RecipeParser_Parser_Foodcom {
         // Photo -- skip logo if it was used in place of photo
         if (strpos($recipe->photo_url, "FDC_Logo_vertical.png") !== false) {
             $recipe->photo_url = '';
+        }
+        if ($recipe->photo_url) {
+            $recipe->photo_url = str_replace("/thumbs/", "/large/", $recipe->photo_url);
         }
 
         // Yield
@@ -57,5 +60,3 @@ class RecipeParser_Parser_Foodcom {
     }
 
 }
-
-?>

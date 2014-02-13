@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Foodnetworkcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
         // Get all of the standard microdata stuff we can find.
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
@@ -21,14 +21,9 @@ class RecipeParser_Parser_Foodnetworkcom {
             }
         }
 
-        // Get larger photos
-        if ($recipe->photo_url) {
-            $recipe->photo_url = str_replace('_med.jpg', '_lg.jpg', $recipe->photo_url);
-        }
-
         // Ingredients
         $recipe->resetIngredients();
-        $nodes = $xpath->query('//div[@class="body-text"]/*');
+        $nodes = $xpath->query('//div[@class="col6 ingredients"]/*');
         foreach ($nodes as $node) {
 
             // Extract ingredients from <ul> <li>.
@@ -39,33 +34,37 @@ class RecipeParser_Parser_Foodnetworkcom {
                     if ($ing_node->nodeName == 'li' && $ing_node->getAttribute("itemprop") == "ingredients") {
 
                         $line = trim($ing_node->nodeValue);
-                        // Lines in all caps might actually be section names.
+                        
+                        // Section titles might be all uppercase ingredients
                         if ($line == strtoupper($line)) {
                             $line = RecipeParser_Text::formatSectionName($line);
                             $recipe->addIngredientsSection($line);
-                        } else if (preg_match("/^Copyright /", $line)) {
+                            continue;
+                        }
+
+                        // Ingredient lines
+                        if (stripos($line, "copyright") !== false) {
+                            continue;
+                        } else if (stripos($line, "recipe follows") !== false) {
                             continue;
                         } else {
                             $line = RecipeParser_Text::formatAsOneLine($line);
                             $recipe->appendIngredient($line);
                         }
 
+                    // Section titles
+                    } else if ($ing_node->nodeName == 'li' && $ing_node->getAttribute("class") == "subtitle") {
+                        $line = trim($ing_node->nodeValue);
+                        $line = RecipeParser_Text::formatSectionName($line);
+                        $recipe->addIngredientsSection($line);
                     }
                 }
                 continue;
             }
 
-            // <h3> contains ingredient section names
-            if ($node->nodeName == 'h3') {
-                $line = RecipeParser_Text::formatSectionName($node->nodeValue);
-                $recipe->addIngredientsSection($line);
-                continue;
-            }
         }
 
         return $recipe;
     }
 
 }
-
-?>

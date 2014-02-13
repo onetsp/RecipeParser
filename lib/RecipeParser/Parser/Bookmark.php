@@ -64,5 +64,3 @@ class RecipeParser_Parser_Bookmark {
     }
 
 }
-
-?>

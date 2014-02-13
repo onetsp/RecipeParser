@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Americastestkitchencom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
 
         // Turn off libxml errors to prevent mismatched tag warnings.
         libxml_use_internal_errors(true);
@@ -107,5 +107,3 @@ class RecipeParser_Parser_Americastestkitchencom {
     }
 
 }
-
-?>

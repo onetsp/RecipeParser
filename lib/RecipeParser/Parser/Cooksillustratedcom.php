@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Cooksillustratedcom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
 
         $recipe = new RecipeParser_Recipe();
 
@@ -85,5 +85,3 @@ class RecipeParser_Parser_Cooksillustratedcom {
     }
 
 }
-
-?>

@@ -21,18 +21,27 @@ class RecipeParser_Recipe {
 
     // Ingredients and instructions are lists of sections, each section
     // contains a name and a list of ingredients.
-    public $ingredients = array();
-    public $instructions = array();
+    public $ingredients;
+    public $instructions;
+
+    public function __construct() {
+        $this->resetIngredients();
+        $this->resetInstructions();
+    }
 
     public function resetIngredients() {
-        $this->ingredients = array();
+        $this->ingredients = array(array("name" => "", "list" => array()));
     }
 
     public function resetInstructions() {
-        $this->instructions = array();
+        $this->instructions = array(array("name" => "", "list" => array()));
     }
 
-    public function addIngredientsSection($name = '') {
+    public function addIngredientsSection($name="") {
+        if (!$name) {
+            return;
+        }
+
         // When adding a new section, make sure the previous section was used.
         $index = count($this->ingredients);
         if ($index > 0
@@ -45,7 +54,11 @@ class RecipeParser_Recipe {
         $this->ingredients[$index] = array('name' => $name, 'list' => array());
     }
 
-    public function addInstructionsSection($name = '') {
+    public function addInstructionsSection($name="") {
+        if (!$name) {
+            return;
+        }
+
         // When adding a new section, make sure the previous section was used.
         $index = count($this->instructions);
         if ($index > 0
@@ -60,21 +73,14 @@ class RecipeParser_Recipe {
 
     public function appendIngredient($str) {
         if (!empty($str)) {
-            if (!count($this->ingredients)) {
-                $this->addIngredientsSection();
-            }
             $this->ingredients[count($this->ingredients)-1]['list'][] = $str;
         }
     }
 
     public function appendInstruction($str) {
         if (!empty($str)) {
-            if (!count($this->instructions)) {
-                $this->addInstructionsSection();
-            }
             $this->instructions[count($this->instructions)-1]['list'][] = $str;
         }
     }
 
 }
-

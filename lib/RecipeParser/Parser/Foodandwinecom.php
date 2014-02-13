@@ -2,7 +2,7 @@
 
 class RecipeParser_Parser_Foodandwinecom {
 
-    public function parse($html, $url) {
+    static public function parse($html, $url) {
 
         $recipe = new RecipeParser_Recipe();
 
@@ -62,7 +62,7 @@ class RecipeParser_Parser_Foodandwinecom {
             $value = trim($node->nodeValue);
             $value = RecipeParser_Text::stripLeadingNumbers($value);
             
-            $parts = $this->splitDirections($value);
+            $parts = self::splitDirections($value);
             if ($parts['section']) {
                 $parts['section'] = RecipeParser_Text::formatSectionName($parts['section']);
                 $recipe->addInstructionsSection($parts['section']);
@@ -89,7 +89,7 @@ class RecipeParser_Parser_Foodandwinecom {
         return $recipe;
     }
 
-    public function splitDirections($str) {
+    static public function splitDirections($str) {
         $section = array();
         $direction = array();
 
