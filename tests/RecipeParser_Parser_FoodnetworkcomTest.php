@@ -142,7 +142,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
-        $this->assertEquals(5, count($recipe->instructions[0]['list']));
+        $this->assertEquals(4, count($recipe->instructions[0]['list']));
         $this->assertRegExp('/^Squeeze the garlic from/', $recipe->instructions[0]['list'][3]);
     }
 
