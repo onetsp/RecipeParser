@@ -4,6 +4,8 @@ class RecipeParser_Text {
 
     const IGNORE_LEADING_NUMBERS = "IGNORE_LEADING_NUMBERS";
 
+    static public $ignored_section_names = array("directions", "preparation");
+
     /**
      * Get string for HTML comment that can be added to RecipeParser test files.
      *
@@ -143,9 +145,9 @@ ONETSP_TIME: $time
             return false;
         }
 
-        // Single words, e.g. "Directions"
+        // Look for generic, single-word section names
         $lower = strtolower($str);
-        if ($lower == "directions") {
+        if (in_array($lower, self::$ignored_section_names)) {
             return true;
         }
 
@@ -171,8 +173,8 @@ ONETSP_TIME: $time
         $str = preg_replace('/^for\s+(.*)$/', "$1", $str);
         $str = preg_replace('/^the\s+(.*)$/', "$1", $str);
 
-        // Special case for first header being "Directions"
-        if ($str == "directions") {
+        // Wipe out some generic section headers.
+        if (in_array($str, self::$ignored_section_names)) {
             $str = "";
         }
 

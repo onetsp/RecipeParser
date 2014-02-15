@@ -78,9 +78,18 @@ class RecipeParser_Recipe {
     }
 
     public function appendInstruction($str) {
-        if (!empty($str)) {
+        if (!empty($str) && !self::isIgnoredInstruction($str)) {
             $this->instructions[count($this->instructions)-1]['list'][] = $str;
         }
+    }
+
+    public function isIgnoredInstruction($str) {
+        if (preg_match("/^Reprinted with permission/i", $str)) {
+            return true;
+        } else if (preg_match("/per serving\:.*calories/i", $str)) {
+            return true;
+        }
+        return false;
     }
 
 }

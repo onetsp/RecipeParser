@@ -5,7 +5,7 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
 
     public function test_cake_caramel() {
-        $path = "data/epicurious_com_chocolate_cake_with_caramel_milk_chocolate_frosting_curl.html";
+        $path = "data/epicurious_com_chocolate_cake_with_caramel_milk_chocolate_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Chocolate-Cake-with-Caramel-Milk-Chocolate-Frosting-107944";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -22,13 +22,10 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Cake", $recipe->ingredients[0]['name']);
         $this->assertEquals("Frosting", $recipe->ingredients[1]['name']);
 
-        $this->assertEquals(2, count($recipe->instructions));
-        $this->assertEquals(2, count($recipe->instructions[0]['list']));
-        $this->assertEquals(3, count($recipe->instructions[1]['list']));
-        $this->assertEquals("Cake", $recipe->instructions[0]['name']);
-        $this->assertEquals("Frosting", $recipe->instructions[1]['name']);
+        $this->assertEquals(1, count($recipe->instructions));
+        $this->assertEquals(5, count($recipe->instructions[0]['list']));
 
-        $this->assertRegExp("/^Preheat oven to 350/", $recipe->instructions[0]['list'][0]);
+        $this->assertRegExp("/^For cake.*Preheat oven to 350/", $recipe->instructions[0]['list'][0]);
 
         $this->assertEquals(
             'http://www.epicurious.com/images/recipesmenus/2003/2003_april/107944.jpg',
@@ -58,7 +55,7 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_bellini() {
-        $path = "data/epicurious_com_lemon_ros_eacute_bellini_at_epicurious_com_curl.html";
+        $path = "data/epicurious_com_lemon_ros_eacute_bellini_epicurious_com_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Lemon-Rose-Bellini-362450";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -73,7 +70,7 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_ziti_with_zucchini() {
-        $path = "data/epicurious_com_ziti_with_roasted_zucchini_at_epicurious_com_curl.html";
+        $path = "data/epicurious_com_ziti_with_roasted_zucchini_epicurious_com_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Ziti-with-Roasted-Zucchini-361191";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -92,5 +89,3 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>
