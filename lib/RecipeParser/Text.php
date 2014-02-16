@@ -281,7 +281,6 @@ ONETSP_TIME: $time
             }
 
             if (self::matchSectionName($value)) {
-#echo "Found section name: $value\n";
                 $value = self::formatSectionName($value);
                 $recipe->addInstructionsSection($value);
             } else {
