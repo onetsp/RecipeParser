@@ -9,7 +9,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
      */
 
     public function test_recipes_blackberry_jam_cake() {
-        $path = "data/nytimes_com_blackberry_jam_cake_with_caramel_icings_curl.html";
+        $path = "data/nytimes_com_blackberry_jam_cake_with_caramel_icing_curl.html";
         $url = "http://www.nytimes.com/recipes/7801/Blackberry-Jam-Cake-With-Caramel-Icing.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -34,7 +34,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
     }
 
     public function test_recipes_fudge_frosting() {
-        $path = "data/nytimes_com_fudge_frostings_curl.html";
+        $path = "data/nytimes_com_fudge_frosting_the_new_york_times_curl.html";
         $url = "http://www.nytimes.com/recipes/9953/Fudge-Frosting.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -59,7 +59,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
     }
 
     public function test_recipes_lemon_cake() {
-        $path = "data/nytimes_com_lemon_cake_with_coconut_icings_curl.html";
+        $path = "data/nytimes_com_lemon_cake_with_coconut_icing_the_curl.html";
         $url = "http://www.nytimes.com/recipes/7800/Lemon-Cake-With-Coconut-Icing.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -86,7 +86,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
     }
 
     public function test_recipes_service_cake_victory_icing() {
-        $path = "data/nytimes_com_service_cake_with_victory_icings_curl.html";
+        $path = "data/nytimes_com_service_cake_with_victory_icing_the_curl.html";
         $url = "http://www.nytimes.com/recipes/7357/Service-Cake-With-Victory-Icing.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -116,7 +116,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
      */
 
     public function test_dining_olive_oil_cake() {
-        $path = "data/nytimes_com_blood_orange_olive_oil_cake_curl.html";
+        $path = "data/nytimes_com_blood_orange_olive_oil_cake_nytimes_curl.html";
         $url = "http://www.nytimes.com/2009/03/18/dining/181arex.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -161,7 +161,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
     }
 
     public function test_dining_clay_pot_pork() {
-        $path = "data/nytimes_com_clay_pot_pork_curl.html";
+        $path = "data/nytimes_com_clay_pot_pork_nytimes_com_curl.html";
         $url = "http://www.nytimes.com/2011/03/30/dining/30braiserex1.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -205,7 +205,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
     }
 
     public function test_dining_rhubarb_upside_down_cake() {
-        $path = "data/nytimes_com_rhubarb_upside_down_cake_curl.html";
+        $path = "data/nytimes_com_rhubarb_upside_down_cake_nytimes_com_curl.html";
         $url = "http://www.nytimes.com/2011/05/25/dining/rhubarb-upside-down-cake-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
