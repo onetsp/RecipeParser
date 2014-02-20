@@ -55,7 +55,7 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
 
-        $this->assertRegExp('/Another way to make this .* perfectly smooth and glossy./', $recipe->notes);
+        $this->assertRegExp('/^Another way to make this .* perfectly smooth and glossy./', $recipe->notes);
     }
 
     public function test_recipes_lemon_cake() {

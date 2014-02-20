@@ -10,7 +10,7 @@ class RecipeParser_Parser_Nytimescom {
             // "RECIPES" SECTION
             //
 
-            $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
+            $recipe = new RecipeParser_Recipe();
 
             libxml_use_internal_errors(true);
             $doc = new DOMDocument();
@@ -18,8 +18,15 @@ class RecipeParser_Parser_Nytimescom {
             $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
             $xpath = new DOMXPath($doc);
 
+            // Title
+            $nodes = $xpath->query('//h1[@class="recipe-title recipeName"]');
+            if ($nodes->length) {
+                $value = $nodes->item(0)->nodeValue;
+                $value = RecipeParser_Text::formatTitle($value);
+                $recipe->title = $value;
+            }
+
             // Ingredients
-            $recipe->resetIngredients();
             $nodes = $xpath->query('//div[@class="ingredientsGroup"]/*');
             foreach ($nodes as $node) {
                 if ($node->nodeName == "h3") {
@@ -34,6 +41,14 @@ class RecipeParser_Parser_Nytimescom {
                         $recipe->appendIngredient($value);
                     }
                 }
+            }
+
+            // Instructions
+            $nodes = $xpath->query('//*[@itemprop="recipeInstructions"]/dd');
+            foreach ($nodes as $node) {
+                $value = $node->nodeValue;
+                $value = RecipeParser_Text::formatAsOneLine($value);
+                $recipe->appendInstruction($value);
             }
 
             // Notes
@@ -151,5 +166,3 @@ class RecipeParser_Parser_Nytimescom {
     }
 
 }
-
-?>
