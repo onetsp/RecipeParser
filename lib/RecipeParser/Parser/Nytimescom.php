@@ -26,6 +26,14 @@ class RecipeParser_Parser_Nytimescom {
                 $recipe->title = $value;
             }
 
+            // Yield
+            $nodes = $xpath->query('//*[@itemprop="recipeYield"]');
+            if ($nodes->length) {
+                $value = $nodes->item(0)->nodeValue;
+                $value = RecipeParser_Text::formatYield($value);
+                $recipe->yield = $value;
+            }
+
             // Ingredients
             $nodes = $xpath->query('//div[@class="ingredientsGroup"]/*');
             foreach ($nodes as $node) {
@@ -56,7 +64,7 @@ class RecipeParser_Parser_Nytimescom {
                 $nodes = $xpath->query('//div[@class="yieldNotesGroup"]//*[@class="note"]');
                 if ($nodes->length) {
                     $value = trim($nodes->item(0)->nodeValue);
-                    $value = preg_replace("/^Notes?:?\s+/i", '', $value);
+                    $value = preg_replace("/^Notes?:?\s*/i", '', $value);
                     $recipe->notes = trim($value);
                 }
             }
