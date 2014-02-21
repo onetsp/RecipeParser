@@ -20,7 +20,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertRegExp('/^These thin-as-crêpe omelets/', $recipe->description);
 
-        $this->assertEquals('http://search.chow.com/thumbnail/480/0/www.chowstatic.com/assets/2010/09/28801_herbed_omlettes_2_620.jpg', $recipe->photo_url);
+        $this->assertStringEndsWith('28801_herbed_omlettes_2_620.jpg', $recipe->photo_url);
     }
 
     public function test_hungarian_chocolate_torte() {
@@ -36,7 +36,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(12, count($recipe->ingredients[0]['list']));
         $this->assertEquals(9, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals('http://search.chow.com/thumbnail/480/0/www.chowstatic.com/assets/2011/03/29536_hungarian_chocolate_torte_620.jpg', $recipe->photo_url);
+        $this->assertStringEndsWith('29536_hungarian_chocolate_torte_620.jpg', $recipe->photo_url);
     }
 
     public function test_red_velvet_cake() {
@@ -54,7 +54,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertRegExp('/This moist cocoa cake .*$/s', $recipe->description);
 
-        $this->assertEquals('http://search.chow.com/thumbnail/480/0/www.chowstatic.com/assets/2011/02/29310_red_velvet_cake_3_620.jpg', $recipe->photo_url);
+        $this->assertStringEndsWith('29310_red_velvet_cake_3_620.jpg', $recipe->photo_url);
     }
 
     public function test_roasted_sardines() {
@@ -72,7 +72,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertRegExp('/Fresh sardines are full of healthy omega-3/', $recipe->description);
 
-        $this->assertEquals('http://search.chow.com/thumbnail/480/0/www.chowstatic.com/assets/2011/05/29617_roasted_sardines_potatoes_2_620.jpg', $recipe->photo_url);
+        $this->assertStringEndsWith('29617_roasted_sardines_potatoes_2_620.jpg', $recipe->photo_url);
     }
 
     public function test_white_peach_sangria() {
@@ -90,9 +90,7 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertRegExp('/^.* no getting around .*$/s', $recipe->description);
 
-        $this->assertEquals('http://search.chow.com/thumbnail/480/0/www.chowstatic.com/assets/2011/05/29663_white_peach_sangria_620.jpg', $recipe->photo_url);
+        $this->assertStringEndsWith('29663_white_peach_sangria_620.jpg', $recipe->photo_url);
     }
 
 }
-
-?>

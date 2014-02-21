@@ -53,7 +53,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Carrot Cake VIII", $recipe->title);
-        $this->assertEquals("1 - 10 inch bundt pan", $recipe->yield);
+        $this->assertEquals("1-10 inch bundt pan", $recipe->yield);
         $this->assertEquals($url, $recipe->url);
         $this->assertEquals(19, count($recipe->ingredients[0]['list']));
         $this->assertEquals(7, count($recipe->instructions[0]['list']));
