@@ -206,9 +206,10 @@ ONETSP_TIME: $time
      */
     static public function formatTitle($title) {
         $title = self::formatAsOneLine($title);
+        $title = preg_replace("/Sponsored recipe:?/i", "", $title);
         $title = preg_replace("/\s+recipe$/i", "", $title);
         $title = preg_replace("/^Recipe\s+for\s+/i", "", $title);
-        return $title;
+        return trim($title);
     }
 
     /**
@@ -224,7 +225,10 @@ ONETSP_TIME: $time
         $uses_makes = (strpos($str, "makes") === 0);
 
         // Remove leading "Yield:" or "Servings:"
-        $str = preg_replace("/^(yield|servings|serves|makes about|makes)\:?\s+/", "", $str);
+        $str = preg_replace("/^(yields?|servings|serves|makes about|makes)\:?\s+/", "", $str);
+
+        // Condense spaces around hyphens
+        $str = preg_replace("/(\d+)\s*-\s*(\d+)/", "$1-$2", $str);
 
         if (!$uses_makes) {
             if ($str == "1") {

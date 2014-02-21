@@ -25,7 +25,9 @@ class RecipeParser_Parser_MicrodataDataVocabulary {
             // Title
             $nodes = $xpath->query('.//*[@itemprop="name"]', $microdata);
             if ($nodes->length) {
-                $recipe->title = trim($nodes->item(0)->nodeValue);
+                $value = $nodes->item(0)->nodeValue;
+                $value = RecipeParser_Text::formatTitle($value);
+                $recipe->title = $value;
             }
 
             // Summary
@@ -55,9 +57,17 @@ class RecipeParser_Parser_MicrodataDataVocabulary {
             }
 
             // Yield
+            $line = "";
             $nodes = $xpath->query('.//*[@itemprop="yield"]', $microdata);
             if ($nodes->length) {
                 $line = trim($nodes->item(0)->nodeValue);
+            } else {
+                $nodes = $xpath->query('.//*[@itemprop="servingSize"]', $microdata);
+                if ($nodes->length) {
+                    $line = trim($nodes->item(0)->nodeValue);
+                }
+            }
+            if ($line) {
                 $line = preg_replace('/\s+/', ' ', $line);
                 $recipe->yield = RecipeParser_Text::formatYield($line);
             }
