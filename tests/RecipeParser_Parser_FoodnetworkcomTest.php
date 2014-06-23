@@ -146,4 +146,55 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertRegExp('/^Squeeze the garlic from/', $recipe->instructions[0]['list'][3]);
     }
 
+    public function test_bubble_tea() {
+        $path = "data/foodnetwork_com_bubble_tea_food_network_kitchen_food_curl.html";
+        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/bubble-tea-recipe.html";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals("Bubble Tea", $recipe->title);
+        $this->assertEquals($url, $recipe->url);
+        $this->assertEquals(40, $recipe->time['prep']);
+        $this->assertEquals(0, $recipe->time['cook']);
+        $this->assertEquals(40, $recipe->time['total']);
+        $this->assertEquals('6 servings', $recipe->yield);
+        $this->assertEquals(0, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(1, count($recipe->instructions[0]['list']));
+    }
+
+    public function test_mini_upside_down_cakes() {
+        $path = "data/foodnetwork_com_mini_upside_down_cakes_food_network_curl.html";
+        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/mini-upside-down-cakes-recipe.html";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals("Mini Upside-Down Cakes", $recipe->title);
+        $this->assertEquals($url, $recipe->url);
+        $this->assertEquals(0, $recipe->time['prep']);
+        $this->assertEquals(0, $recipe->time['cook']);
+        $this->assertEquals(0, $recipe->time['total']);
+        $this->assertEquals('4 servings', $recipe->yield);
+        $this->assertEquals(0, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(1, count($recipe->instructions[0]['list']));
+    }
+
+    public function test_scallop_ceviche() {
+        $path = "data/foodnetwork_com_scallop_ceviche_food_network_kitchen_food_curl.html";
+        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/scallop-ceviche-recipe.html";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals("Scallop Ceviche", $recipe->title);
+        $this->assertEquals($url, $recipe->url);
+        $this->assertEquals(300, $recipe->time['prep']);
+        $this->assertEquals(0, $recipe->time['cook']);
+        $this->assertEquals(300, $recipe->time['total']);
+        $this->assertEquals('1 pound bay scallops', $recipe->yield);
+        $this->assertEquals(0, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(1, count($recipe->instructions[0]['list']));
+    }
+
 }
