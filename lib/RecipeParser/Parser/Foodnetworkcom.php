@@ -13,7 +13,7 @@ class RecipeParser_Parser_Foodnetworkcom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
-        // Ingredients -- standard sections for ingredients and instructions.
+        // Ingredients
         $recipe->resetIngredients();
         $nodes = $xpath->query('//div[@class="col6 ingredients"]/*');
         foreach ($nodes as $node) {
@@ -56,29 +56,20 @@ class RecipeParser_Parser_Foodnetworkcom {
 
         }
 
-        // Didn't find standard ingredients section?
-        if (!$nodes->length) {
-
-            // This recipe format doesn't include ingredients, and instructions are in a different location.
-            // This could potentially be generalized to MicrodataSchema, but didn't look straightforward.
-            $recipe->resetInstructions();
-            $nodes = $xpath->query('//div[@class="col18 directions"]/p');
-            foreach ($nodes as $node) {
-                $line = $node->nodeValue;
-                $line = RecipeParser_Text::formatAsOneLine($line);
-                $recipe->appendInstruction($line);
-            }
-
-        }
-
-        // Instructions -- Clean up instructions, delete last instruction from each section if it looks like a photo credit.
-        for ($i = 0; $i < count($recipe->instructions); $i++) {
-            if (count($recipe->instructions[$i]['list'])) {
-                $j = count($recipe->instructions[$i]['list']) - 1;
-                if (preg_match("/photographs? by/i", $recipe->instructions[$i]['list'][$j])) {
-                    array_pop($recipe->instructions[$i]['list']);
+        // Instructions
+        $recipe->resetInstructions();
+        $nodes = $xpath->query('//*[@itemprop="recipeInstructions"]/*');
+        foreach ($nodes as $node) {
+            if ($node->nodeName == "span") {
+                $line = RecipeParser_Text::formatSectionName($node->nodeValue);
+                $recipe->addInstructionsSection($line);
+            } else if ($node->nodeName == "p") {
+                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                if (!preg_match("/^Photograph/i", $line)) {
+                    $recipe->appendInstruction($line);
                 }
             }
+
         }
 
         return $recipe;
