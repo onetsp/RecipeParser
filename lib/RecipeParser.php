@@ -61,11 +61,11 @@ class RecipeParser {
      * @return string Name of matching parser (or null)
      */
     static public function matchMarkupFormat(&$html) {
-        if (strpos($html, "http://schema.org/Recipe") !== false) {
+        if (stripos($html, "//schema.org/Recipe") !== false) {
             return self::SCHEMA_SPEC;
-        } else if (strpos($html, "http://data-vocabulary.org/Recipe") !== false) {
+        } else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
             return self::DATA_VOCABULARY_SPEC;
-        } else if (strpos($html, "http://rdf.data-vocabulary.org/") !== false
+        } else if (stripos($html, "//rdf.data-vocabulary.org/") !== false
                    && stripos($html, "typeof=\"v:Recipe\"") !== false)
         {
             return self::RDF_DATA_VOCABULARY_SPEC;
