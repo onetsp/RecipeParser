@@ -17,6 +17,7 @@ class RecipeParser_Parser_Cookscom {
         if ($node_list->length) {
             $value = $node_list->item(0)->nodeValue;
             $value = trim(str_replace("Cooks.com - Recipe - ", "", $value));
+            $value = trim(str_replace(" - Recipe - Cooks.com", "", $value));
             $recipe->title = $value;
         }
 
