@@ -81,7 +81,9 @@ class RecipeParser_Parser_Foodandwinecom {
         $nodes = $xpath->query('//img[@itemprop="image"]');
         if ($nodes && $nodes->item(0)) {
             $photo_url = $nodes->item(0)->getAttribute('src');
-            if (strpos($photo_url, 'default-recipe-image.gif') === false) {
+            if (strpos($photo_url, 'default-recipe-image.gif') === false
+                && strpos($photo_url, 'placeholder.gif') === false)
+            {
                 $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
             }
         }

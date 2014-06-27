@@ -35,7 +35,7 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_chicken_mushroom_saute() {
-        $path = "data/foodandwine_com_chicken_wild_mushroom_and_roasted_garlic_saut_amp_233_curl.html";
+        $path = "data/foodandwine_com_chicken_wild_mushroom_and_roasted_garlic_curl.html";
         $url = "http://www.foodandwine.com/recipes/chicken-wild-mushroom-and-roasted-garlic-saute";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -61,20 +61,18 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
             $recipe->photo_url);
     }
 
+    public function test_hanger_steak_with_shallots_and_mushrooms() {
+        $path = "data/foodandwine_com_hanger_steak_with_shallots_and_mushrooms_curl.html";
+        $url = "http://www.foodandwine.com/recipes/hanger-steak-with-shallots-and-mushrooms";
 
-#    public function test_coffee_cured_pulled_pork() {
-#        $path = "data/foodandwine_com_coffee_cured_pulled_pork_linton_hopkins_food_curl.html";
-#        $url = "http://www.foodandwine.com/recipes/coffee-cured-pulled-pork";
-#
-#        $recipe = RecipeParser::parse(file_get_contents($path), $url);
-#        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
-#
-#        // ...
-#    }
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
+        $this->assertEquals("", $recipe->photo_url);  // Don't clip F&W thumbnail when photo is missing.
+    }
 
     public function test_cocoa_carrot_cake() {
-        $path = "data/foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_william_curl.html";
+        $path = "data/foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_curl.html";
         $url = "http://www.foodandwine.com/recipes/cocoa-carrot-cake-with-cocoa-crumble";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -100,5 +98,3 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
     }
 
 }
-
-?>
