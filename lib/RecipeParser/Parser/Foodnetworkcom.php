@@ -72,6 +72,17 @@ class RecipeParser_Parser_Foodnetworkcom {
 
         }
 
+        // See if we've captured a chef's photo, and delete it (if so).
+        if ($recipe->photo_url) {
+            $nodes = $xpath->query('//a[@itemprop="url"]/img[@itemprop="image"]');
+            if ($nodes->length > 0) {
+                $url = $nodes->item(0)->getAttribute("src");
+                if ($recipe->photo_url == $url) {
+                    $recipe->photo_url = "";
+                }
+            }
+        }
+
         return $recipe;
     }
 

@@ -6,7 +6,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
     public function test_steak_fajita_chili() {
         $path = "data/foodnetwork_com_aaron_mccargo_jrs_steak_fajita_chili_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/aaron-mccargo-jr/aaron-mccargo-jrs-steak-fajita-chili-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/aaron-mccargo-jr/aaron-mccargo-jrs-steak-fajita-chili-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -24,7 +24,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
     public function test_chocolate_cake() {
         $path = "data/foodnetwork_com_beattys_chocolate_cake_ina_garten_food_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/ina-garten/beattys-chocolate-cake-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/ina-garten/beattys-chocolate-cake-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -48,7 +48,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
     public function test_braised_short_ribs() {
         $path = "data/foodnetwork_com_braised_short_ribs_with_mushrooms_food_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/braised-short-ribs-with-mushrooms-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/braised-short-ribs-with-mushrooms-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -69,7 +69,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
     public function test_emeril_chocolate_cake() {
         $path = "data/foodnetwork_com_chocolate_cake_emeril_lagasse_food_network_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/emeril-lagasse/chocolate-cake-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/emeril-lagasse/chocolate-cake-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -84,11 +84,13 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals('Chocolate buttercream', $recipe->ingredients[1]['name']);
         $this->assertEquals(5, count($recipe->ingredients[2]['list']));
         $this->assertEquals('Chocolate designs and cake assembly', $recipe->ingredients[2]['name']);
+
+        $this->assertEquals("", $recipe->photo_url);  // Don't want to clip Emeril's photo.
     }
 
     public function test_big_blue_burgers() {
         $path = "data/foodnetwork_com_big_blue_burgers_rachael_ray_food_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/rachael-ray/big-blue-burgers-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/rachael-ray/big-blue-burgers-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -103,11 +105,14 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals('Toppings', $recipe->ingredients[1]['name']);
         $this->assertEquals(3, count($recipe->ingredients[1]['list']));
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
+
+        $this->assertEquals("http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/9/22/0/tm1a05_blue_burger.jpg",
+            $recipe->photo_url);
     }
 
     public function test_six_layer_cake() {
         $path = "data/foodnetwork_com_six_layer_chocolate_cake_paula_deen_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/paula-deen/six-layer-chocolate-cake-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/paula-deen/six-layer-chocolate-cake-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -120,11 +125,14 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals('Frosting', $recipe->ingredients[1]['name']);
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
+
+        $this->assertEquals("http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/9/29/1/pa1a26_chocolate_cake.jpg",
+            $recipe->photo_url);
     }
 
     public function test_cream_scones() {
         $path = "data/foodnetwork_com_cream_scones_with_currants_food_network_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/cream-scones-with-currants-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/cream-scones-with-currants-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -137,7 +145,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
 
     public function test_roasted_pepper_pasta() {
         $path = "data/foodnetwork_com_roasted_pepper_pasta_salad_food_network_curl.html";
-        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/roasted-pepper-pasta-salad-recipe/index.html";
+        $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/roasted-pepper-pasta-salad-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -161,6 +169,9 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals('6 servings', $recipe->yield);
         $this->assertEquals(0, count($recipe->ingredients[0]['list']));
         $this->assertEquals(1, count($recipe->instructions[0]['list']));
+
+        $this->assertEquals("http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2011/5/4/0/FNM_060111-WE-Dinners-033_s4x3.jpg",
+            $recipe->photo_url);
     }
 
     public function test_mini_upside_down_cakes() {
@@ -196,5 +207,19 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(0, count($recipe->ingredients[0]['list']));
         $this->assertEquals(1, count($recipe->instructions[0]['list']));
     }
+
+    public function test_roast_bacon() {
+        $path = "data/foodnetwork_com_roast_bacon_ina_garten_food_network_curl.html";
+        $url = "http://www.foodnetwork.com/recipes/ina-garten/roast-bacon-recipe.html";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals("", $recipe->photo_url);  // don't clip photo of Ina Garten!
+    }
+
+
+    // TODO: Test Alton Brown's photo?
+    // http://www.foodnetwork.com/recipes/alton-brown/doughnut-glaze-recipe.html
 
 }
