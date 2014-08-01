@@ -13,13 +13,6 @@ class RecipeParser_Parser_Allrecipescom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
-        // Instructions -- This section is mis-named (should be itemprop=recipeInstructions)
-        $node_list = $xpath->query('//div[@class = "directions"]//ol/li');
-        foreach ($node_list as $node) {
-            $line = trim(strip_tags($node->nodeValue));
-            $recipe->appendInstruction($line);
-        }
-
         // --- Allrecipes allows for custom recipes that use a different
         // --- template than their standard content. This template is not currently
         // --- using schema.org/Recipe. So we'll look for fields that need to be
@@ -44,38 +37,45 @@ class RecipeParser_Parser_Allrecipescom {
             }
         }
 
-        // Cook times
-        if (!$recipe->time['prep']) {
-            $node_list = $xpath->query('//h5[@id = "ctl00_CenterColumnPlaceHolder_recipe_h5Prep"]/span[last()]');
-            if ($node_list->length) {
-                $value = $node_list->item(0)->nodeValue;
-                $recipe->time['prep'] = RecipeParser_Times::toMinutes($value);
-            }
-        }
-        if (!$recipe->time['cook']) {
-            $node_list = $xpath->query('//h5[@id = "ctl00_CenterColumnPlaceHolder_recipe_h5Cook"]/span[last()]');
-            if ($node_list->length) {
-                $value = $node_list->item(0)->nodeValue;
-                $recipe->time['cook'] = RecipeParser_Times::toMinutes($value);
-            }
-        }
-        if (!$recipe->time['total']) {
-            $node_list = $xpath->query('//h5[@id = "ctl00_CenterColumnPlaceHolder_recipe_h5Ready"]/span[last()]');
-            if ($node_list->length) {
-                $value = $node_list->item(0)->nodeValue;
-                $recipe->time['total'] = RecipeParser_Times::toMinutes($value);
+        // Times
+        $searches = array('liPrep' => 'prep',
+                          'liCook' => 'cook',
+                          'liTotal' => 'total');
+        foreach ($searches as $id_name => $time_key) {
+            $nodes = $xpath->query('.//*[@id="' . $id_name . '"]');
+            if ($nodes->length) {
+                $value = RecipeParser_Text::formatAsOneLine($nodes->item(0)->nodeValue);
+                $value = trim(preg_replace("/(COOK|PREP|READY IN)/", "", $value));
+                $value = RecipeParser_Times::toMinutes($value);
+                if ($value) {
+                    $recipe->time[$time_key] = $value;
+                }
             }
         }
 
         // Ingredients
         if (!count($recipe->ingredients[0]["list"])) {
-            $node_list = $xpath->query('//div[@class = "ingredients"]/ul/li');
+            $node_list = $xpath->query('//li[contains(concat(" ", normalize-space(@class), " "), " ingredient ")]');
             foreach ($node_list as $node) {
                 $line = trim(strip_tags($node->nodeValue));
                 if (preg_match("/^(.+):$/", $line, $m)) {
                     $recipe->addIngredientsSection(ucfirst(strtolower($m[1])));
                 } else if ($line) {
                     $recipe->appendIngredient($line);
+                }
+            }
+        }
+
+        // Instructions
+        if (!count($recipe->instructions[0]["list"])) {
+
+            $nodes = $xpath->query('//div[@class="directions"]//ol/li');
+            foreach ($nodes as $node) {
+                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                if (preg_match("/^(.+):$/", $line, $m)) {
+                    $recipe->addInstructionsSection(ucfirst(strtolower($m[1])));
+                } else if ($line) {
+                    $recipe->appendInstruction($line);
                 }
             }
         }
