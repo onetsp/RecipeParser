@@ -21,7 +21,7 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
 
         $this->assertEquals(
-            'http://images.media-allrecipes.com/userphotos/250x250/00/04/57/45762.jpg',
+            'http://images.media-allrecipes.com/userphotos/250x250/00/51/51/515197.jpg',
             $recipe->photo_url
         );
     }
