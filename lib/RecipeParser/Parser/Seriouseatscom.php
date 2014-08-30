@@ -48,9 +48,9 @@ class RecipeParser_Parser_Seriouseatscom {
         $nodes = $xpath->query('//section[@class="content-unit"]/img');
         if ($nodes->length) {
             $photo_url = $nodes->item(0)->getAttribute('src');
-        }
-        if ($photo_url) {
-            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            if ($photo_url) {
+                $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            }
         }
 
         // Remove recipe title intros -- e.g. "Sunday Dinner: Pork Ribs" changes to "Pork Ribs"
