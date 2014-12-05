@@ -25,12 +25,12 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Cooking Light", $recipe->credits);
 
         $this->assertEquals(
-            'http://img4-2.myrecipes.timeinc.net/i/recipes/ck/08/07/blueberry-galette-ck-1816371-x.jpg',
+            "http://cdn-image.myrecipes.com/sites/default/files/styles/300x300/public/image/app/blueberry-galette-ck-1816371-xl.jpg",
             $recipe->photo_url);
     }
 
     public function test_clam_chowder() {
-        $path = "data/myrecipes_com_simple_clam_chowder_mys_com_curl.html";
+        $path = "data/myrecipes_com_simple_clam_chowder_my_com_curl.html";
         $url = "http://www.myrecipes.com/recipe/simple-clam-chowder-10000001696572/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -43,7 +43,7 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_king_ranch_chicken() {
-        $path = "data/myrecipes_com_king_ranch_chicken_casserole_mys_com_curl.html";
+        $path = "data/myrecipes_com_king_ranch_chicken_casserole_my_com_curl.html";
         $url = "http://www.myrecipes.com/recipe/king-ranch-chicken-casserole-10000001704091/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -53,9 +53,8 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(30, $recipe->time['prep']);
         $this->assertEquals(139, $recipe->time['cook']);
         $this->assertEquals(16, count($recipe->ingredients[0]['list']));
-        $this->assertEquals(9, count($recipe->instructions[0]['list']));
+        $this->assertEquals(8, count($recipe->instructions[0]['list']));
+        $this->assertEquals("Southern Living", $recipe->credits);
     }
 
 }
-
-?>

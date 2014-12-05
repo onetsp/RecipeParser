@@ -14,35 +14,33 @@ class RecipeParser_Parser_Myrecipescom {
         // Photo URL, use larger version found on MyRecipes
         $recipe->photo_url = str_replace('-l.jpg', '-x.jpg', $recipe->photo_url);
 
-        // Ingredients
-        $recipe->resetIngredients();
-
-        $nodes = $xpath->query('//div[@class="recipeDetails"]/ul');
-        foreach ($nodes->item(0)->childNodes as $li) {
-            if ($li->nodeName == 'li') {
-
-                $text = RecipeParser_Text::FormatAsOneLine($li->nodeValue);
-
-                if ($li->getAttribute('itemprop') == 'ingredient') {
-                    $text = trim(str_replace('$Click to see savings', '', $text));
-                    $recipe->appendIngredient($text);
-                } else {
-                    $text = RecipeParser_Text::formatSectionName($text);
-                    $recipe->addIngredientsSection($text);
-                }
+        // Credits
+        $nodes = $xpath->query('//*[@class="link-list"]/h4');
+        if ($nodes->length) {
+            $line = trim($nodes->item(0)->nodeValue);
+            if (strpos($line, "More from") === 0) {
+                $line = str_replace("More from ", "", $line);
+                $recipe->credits = $line;
             }
         }
 
-        // Credits
-        $nodes = $xpath->query('//*[@itemprop="author"]');
-        if ($nodes->length) {
-            $line = trim($nodes->item(0)->nodeValue);
-            $recipe->credits = $line;
+        // Times
+        $searches = array('prep' => 'prep: ',
+                          'cook' => 'cook: ',
+                          'total' => 'total: ');
+
+        $nodes = $xpath->query('//*[@class="recipe-time-info"]');
+        foreach ($nodes as $node) {
+            $line = trim(strtolower($node->nodeValue));
+            foreach ($searches as $key=>$value) {
+                if (strpos($line, $value) === 0) {
+                    $line = str_replace($value, "", $line);
+                    $recipe->time[$key] = RecipeParser_Times::toMinutes($line);
+                }
+            }
         }
 
         return $recipe;
     }
 
 }
-
-?>
