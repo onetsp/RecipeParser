@@ -160,6 +160,24 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         $this->assertRegExp("/^Makes 12.*servings.$/", $list[4]);
     }
 
+    public function test_match_section_name_all_dashes() {
+        $this->assertTrue(RecipeParser_Text::matchSectionName("---"));
+    }
+    public function test_match_section_name_wrapped_dashes() {
+        $this->assertTrue(RecipeParser_Text::matchSectionName("---This---"));
+    }
+    public function test_match_section_name_wrapped_equals() {
+        $this->assertTrue(RecipeParser_Text::matchSectionName("==That=="));
+    }
+
+    public function test_format_section_name_ignore_all_dashes() {
+        $this->assertEquals("", RecipeParser_Text::formatSectionName("---"));
+    }
+
+    public function test_format_section_name_strip_dashes() {
+        $this->assertEquals("Cake", RecipeParser_Text::formatSectionName("---Cake---"));
+    }
+
     public function test_format_section_name() {
         // Pass through as original
         $this->assertEquals("Cake", RecipeParser_Text::formatSectionName("Cake"));

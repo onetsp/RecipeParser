@@ -151,6 +151,11 @@ ONETSP_TIME: $time
             return true;
         }
 
+        // Look for strings wrapped in equals or dashes, e.g. "---Cake---"
+        if (preg_match('/^[-=]+(.*?)[-=]+$/', $str)) {
+            return true;
+        }
+
         // Assume all caps, or ending with ':' is a section title.
         return ($str == strtoupper($str) || preg_match("/^[^\,\.]+:$/", $str));
     }
@@ -173,8 +178,16 @@ ONETSP_TIME: $time
         $str = preg_replace('/^for\s+(.*)$/', "$1", $str);
         $str = preg_replace('/^the\s+(.*)$/', "$1", $str);
 
+        // Strip leading and trailing dashes and equals
+        $str = preg_replace('/^[-=]+(.*?)[-=]+$/', "$1", $str);
+
         // Wipe out some generic section headers.
         if (in_array($str, self::$ignored_section_names)) {
+            $str = "";
+        }
+
+        // All dashes or equals should be stripped, e.g. "---" and "==="
+        if (preg_match("/^[-=]+$/", $str)) {
             $str = "";
         }
 

@@ -13,30 +13,46 @@ class RecipeParser_Parser_Aboutcom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
-        $recipe = RecipeParser_Parser_Microformat::parse($html, $url);
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
         // OVERRIDES FOR ABOUT.COM
 
-        // Cook times
-        $node_list = $xpath->query('//div[@id = "articlebody"]/h3');
-        foreach ($node_list as $node) {
-            $line = $node->nodeValue;
-            $line = preg_replace('/[\s\"]+/', ' ', $line);
-            $line = trim($line);
+        // Title
+        $nodes = $xpath->query('//*[@itemprop="headline name"]');
+        if ($nodes->length) {
+            $value = trim($nodes->item(0)->nodeValue);
+            $recipe->title = RecipeParser_Text::formatTitle($value);
+        }
 
-            if (preg_match("/prep time\:(.+)/i", $line, $m)) {
-                $recipe->time['prep'] = RecipeParser_Times::toMinutes($m[1]);
-            } else if (preg_match("/cook time\:(.+)/i", $line, $m)) {
-                $recipe->time['cook'] = RecipeParser_Times::toMinutes($m[1]);
+        // Credits
+        $nodes = $xpath->query('//*[@itemprop="author"]//*[@itemprop="name"]');
+        if ($nodes->length) {
+            $line = $nodes->item(0)->nodeValue;
+            $recipe->credits = RecipeParser_Text::formatCredits($line . ", About.com");
+        }
+
+        // Ingredients 
+        $recipe->resetIngredients();
+        $nodes = $xpath->query('//*[@itemprop="ingredients"]');
+        foreach ($nodes as $node) {
+            $value = $node->nodeValue;
+            $value = RecipeParser_Text::formatAsOneLine($value);
+            if (RecipeParser_Text::matchSectionName($value) 
+                || $node->childNodes->item(0)->nodeName == "strong"
+                || $node->childNodes->item(0)->nodeName == "b"
+            ) {
+                $value = RecipeParser_Text::formatSectionName($value);
+                $recipe->addIngredientsSection($value);
+            } else {
+                $recipe->appendIngredient($value);
             }
-            // Total time is provided as part of microformat markup for About.com
         }
 
 
         // Instructions
         $recipe->resetInstructions();
 
-        $nodes = $xpath->query('//div[@class = "instructions"]');
+        $nodes = $xpath->query('//div[@itemprop="recipeInstructions"]');
         foreach ($nodes as $node) {
 
             $text = trim($node->nodeValue);
@@ -71,6 +87,9 @@ class RecipeParser_Parser_Aboutcom {
                 if (empty($line)) {
                     continue;
                 }
+                if (strtolower($line) == "preparation") {
+                    continue;
+                }
 
                 // Match section names that read something like "---For the cake: Raise the oven temperature..."
                 if (preg_match("/^(?:-{2,})?For the (.+)\: (.*)$/i", $line, $m)) {
@@ -90,5 +109,3 @@ class RecipeParser_Parser_Aboutcom {
     }
 
 }
-
-?>

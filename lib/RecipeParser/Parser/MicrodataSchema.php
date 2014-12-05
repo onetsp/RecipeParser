@@ -181,5 +181,3 @@ class RecipeParser_Parser_MicrodataSchema {
     }
 
 }
-
-?>
