@@ -215,6 +215,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
+        $this->assertEquals(2, count($recipe->instructions[0]['list']));
         $this->assertEquals("", $recipe->photo_url);  // don't clip photo of Ina Garten!
     }
 

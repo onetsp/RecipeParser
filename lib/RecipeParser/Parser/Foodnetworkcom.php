@@ -65,9 +65,21 @@ class RecipeParser_Parser_Foodnetworkcom {
                 $recipe->addInstructionsSection($line);
             } else if ($node->nodeName == "p") {
                 $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
-                if (!preg_match("/^Photograph/i", $line)) {
-                    $recipe->appendInstruction($line);
+
+                if (stripos($line, "recipe courtesy") === 0) {
+                    continue;
                 }
+                if (strtolower($line) == "from food network kitchens") {
+                    continue;
+                }
+                if (stripos($line, "Photograph") === 0) {
+                    continue;
+                }
+                if (preg_match("/^(Copyright )?\d{4}.*All Rights Reserved\.?$/", $line)) {
+                    continue;
+                }
+
+                $recipe->appendInstruction($line);
             }
 
         }
