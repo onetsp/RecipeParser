@@ -40,6 +40,16 @@ class RecipeParser_Parser_Myrecipescom {
             }
         }
 
+        // Clean up each of the ingredients to remove "$Click to see savings"
+        // These don't come through in the curl'ed test files
+        for ($i = 0; $i < count($recipe->ingredients); $i++) {
+            for ($j = 0; $j < count($recipe->ingredients[$i]['list']); $j++) {
+                if (strpos($recipe->ingredients[$i]['list'][$j], "$") > 0) {
+                    $recipe->ingredients[$i]['list'][$j] = substr($recipe->ingredients[$i]['list'][$j], 0, strpos($recipe->ingredients[$i]['list'][$j], "$"));
+                }
+            }
+        }
+
         return $recipe;
     }
 
