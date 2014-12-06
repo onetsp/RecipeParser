@@ -43,7 +43,8 @@ class RecipeParser_Parser_MicrodataSchema {
             foreach ($searches as $itemprop => $time_key) {
                 $nodes = $xpath->query('.//*[@itemprop="' . $itemprop . '"]', $microdata);
                 if ($nodes->length) {
-                    if ($value = $nodes->item(0)->getAttribute('content')) {
+                    if (strlen($nodes->item(0)->getAttribute('content')) >= 2) { #bug in bonappetit where content is only "P"
+                        $value = $nodes->item(0)->getAttribute('content');
                         $value = RecipeParser_Text::iso8601ToMinutes($value);
                     } else if ($value = $nodes->item(0)->getAttribute('datetime')) {
                         $value = RecipeParser_Text::iso8601ToMinutes($value);
