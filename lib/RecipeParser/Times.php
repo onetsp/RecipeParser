@@ -22,11 +22,15 @@ class RecipeParser_Times {
      *   1 hr - 1 hr 15 mins
      *   30-40 mins
      *   45 mm
+     *   total: 30 mins   -> 30
      */
     static public function toMinutes($str) {
         $days = 0;
         $hours = 0;
         $minutes = 0;
+
+        // Expect time string to start with a digit
+        $str = preg_replace("/^\D+(.*)$/", "$1", $str);
 
         // Normalize strings
         $str = trim(strtolower($str));
@@ -70,5 +74,3 @@ class RecipeParser_Times {
     }
 
 }
-
-?>

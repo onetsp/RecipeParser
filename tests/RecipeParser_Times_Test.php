@@ -108,6 +108,10 @@ class RecipeParser_Times_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(45, RecipeParser_Times::toMinutes('45 MM'),
             "Failed to convert 45 MM to 45 minutes..");
     }
-}
 
-?>
+    public function test_strip_label_from_time() {
+        $this->assertEquals("50", RecipeParser_Times::toMinutes("total: 50 min"), "Failed to strip 'total:' from time.");
+        $this->assertEquals("60", RecipeParser_Times::toMinutes("Prep: 60 min"), "Failed to strip 'prep:' from time.");
+        $this->assertEquals("70", RecipeParser_Times::toMinutes("cook: 1 hr, 10 min"), "Failed to strip 'cook:' from time.");
+    }
+}
