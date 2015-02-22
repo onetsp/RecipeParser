@@ -59,6 +59,7 @@ class RecipeParser_Parser_Thekitchencom {
 
                     case "#text":
                     case "div":
+                    case "span":
                     case "p":
                         if ($line == "•") {
                             continue;
