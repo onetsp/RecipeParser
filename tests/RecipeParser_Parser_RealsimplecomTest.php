@@ -24,7 +24,7 @@ class RecipeParser_Parser_RealsimplecomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals(5, count($recipe->instructions[0]['list']));
 
-        $this->assertRegExp("/^http.*images\/1003\/dinner-paprika-pork_300.jpg$/",
+        $this->assertRegExp("/^http.*images\/1003\/dinner-paprika-pork_300.jpg.*$/",
             $recipe->photo_url);
     }
 
@@ -51,5 +51,3 @@ class RecipeParser_Parser_RealsimplecomTest extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>
