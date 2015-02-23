@@ -180,5 +180,3 @@ class RecipeParser_Parser_MicrodataDataVocabulary {
     }
 
 }
-
-?>

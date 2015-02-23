@@ -11,6 +11,17 @@ class RecipeParser_Parser_Myrecipescom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
+        // Title missing?
+        if (!$recipe->title) {
+            $nodes = $xpath->query('//meta[@property="og:title"]');
+            if ($nodes->length) {
+
+                $line = $nodes->item(0)->getAttribute("content");
+                $line = RecipeParser_Text::formatTitle($line);
+                $recipe->title = $line;
+            }
+        }
+
         // Photo URL, use larger version found on MyRecipes
         $recipe->photo_url = str_replace('-l.jpg', '-x.jpg', $recipe->photo_url);
 

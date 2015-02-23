@@ -57,4 +57,34 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Southern Living", $recipe->credits);
     }
 
+    public function test_lemon_chicken_piccata() {
+        $path = "data/myrecipes_com_charred_lemon_chicken_piccata_my_com_curl.html";
+        $url = "http://www.myrecipes.com/recipe/charred-lemon-chicken-piccata";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals("Charred Lemon Chicken Piccata", $recipe->title);
+        $this->assertEquals("4 servings (serving size: 1 chicken breast half and about 3 tablespoons sauce)", $recipe->yield);
+        $this->assertEquals(37, $recipe->time['total']);
+        $this->assertEquals(17, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(3, count($recipe->instructions[0]['list']));
+        $this->assertEquals("Cooking Light", $recipe->credits);
+    }
+
+    public function test_broccoli_cheese_soup() {
+        $path = "data/myrecipes_com_creamy_broccoli_cheese_soup_my_com_curl.html";
+        $url = "http://www.myrecipes.com/recipe/creamy-broccoli-cheese-soup";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals("Creamy Broccoli-Cheese Soup", $recipe->title);
+        $this->assertEquals("6 servings (serving size: about 1 cup)", $recipe->yield);
+        $this->assertEquals(45, $recipe->time['total']);
+        $this->assertEquals(10, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(3, count($recipe->instructions[0]['list']));
+        $this->assertEquals("Cooking Light", $recipe->credits);
+    }
+
 }

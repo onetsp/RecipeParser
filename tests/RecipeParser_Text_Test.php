@@ -69,6 +69,7 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals('10 to 12 servings', RecipeParser_Text::formatYield('servings: 10 to 12'));
         $this->assertEquals('8-10 servings', RecipeParser_Text::formatYield('8–10 servings')); // mdash
         $this->assertEquals('12 servings (serving size: 1 cup)', RecipeParser_Text::formatYield('12 servings (serving size: 1 cup)'));
+        $this->assertEquals('6 servings (serving size: about 1 cup)', RecipeParser_Text::formatYield('Serves 6 (serving size: about 1 cup)'));
         $this->assertEquals('4-12 servings', RecipeParser_Text::formatYield('YIELDS 4 -12 Servings'));
     }
 
@@ -286,5 +287,3 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>

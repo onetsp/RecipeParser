@@ -235,6 +235,11 @@ ONETSP_TIME: $time
         $str = str_replace('–', '-', $str);
         $str = self::convertWordsToNumbers($str);
 
+        // Convert "serves ## into ## servings"
+        $str = preg_replace("/^serves (\d+ to \d+)(.*)$/i", "$1 servings$2", $str);
+        $str = preg_replace("/^serves ([\d\-]+)(.*)$/i", "$1 servings$2", $str);
+        $str = preg_replace("/^1 servings(.*)$/", "1 serving$1", $str);
+
         $uses_makes = (strpos($str, "makes") === 0);
 
         // Remove leading "Yield:" or "Servings:"
