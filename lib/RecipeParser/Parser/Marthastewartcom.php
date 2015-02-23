@@ -11,14 +11,34 @@ class RecipeParser_Parser_Marthastewartcom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
+        // Yield
+        $nodes = $xpath->query('//li[@class="credit"]');
+        foreach ($nodes as $node) {
+            $line = $node->nodeValue;
+            if (stripos($line, "servings") !== false) {
+                $line = preg_replace("/servings\:?.*(\d+)/i", "$1", $line);
+                $line = RecipeParser_Text::formatYield($line);
+                $recipe->yield = $line;
+            }
+        }
+
+        // Notes
+        $line = "";
+        $nodes = $xpath->query('//*[@class="note-text"]');
+        foreach ($nodes as $node) {
+            $line .= trim($node->nodeValue) . "\n\n";
+        }
+        $line = rtrim($line);
+        $recipe->notes = $line;
+
         // Ingredients
         $recipe->resetIngredients();
-        $sections = $xpath->query('//*[@id="ingredients"]//*[@class="group"]');
+        $sections = $xpath->query('//*[@class="components-group"]');
         if ($sections->length) {
 
             // Sections
             foreach ($sections as $section_node) {
-                $section_nodes = $xpath->query('.//h3', $section_node);
+                $section_nodes = $xpath->query('.//*[@class="components-group-header"]', $section_node);
                 if ($section_nodes->length) {
                     $line = $section_nodes->item(0)->nodeValue;
                     $line = RecipeParser_Text::formatSectionName($line);
@@ -26,7 +46,7 @@ class RecipeParser_Parser_Marthastewartcom {
                         $recipe->addIngredientsSection($line);
                     }
                 }
-                $ing_nodes = $xpath->query('.//li', $section_node); 
+                $ing_nodes = $xpath->query('.//*[@itemprop="ingredients"]', $section_node); 
                 if ($ing_nodes->length) {
                     foreach ($ing_nodes as $node) {
                         $line = $node->nodeValue;
@@ -37,12 +57,12 @@ class RecipeParser_Parser_Marthastewartcom {
             }
         }
 
-        // Notes
-        $nodes = $xpath->query('.//*[@class = "body-c note-text"]');
-        if ($nodes->length) {
-            $value = $nodes->item(0)->nodeValue;
-            $value = trim(str_replace("Cook's Note", '', $value));
-            $recipe->notes = $value;
+        // Instructions
+        $recipe->resetInstructions();
+        $nodes = $xpath->query('//*[@class="recipe-step-item"]');
+        foreach ($nodes as $node) {
+            $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+            $recipe->appendInstruction($line);
         }
 
         return $recipe;

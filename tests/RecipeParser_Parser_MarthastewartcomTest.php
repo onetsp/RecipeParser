@@ -5,7 +5,7 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_emeril_chorizo_burgers() {
-        $path = "data/marthastewart_com_emeril_s_pork_and_chorizo_burgers_with_green_chile_mayo_curl.html";
+        $path = "data/marthastewart_com_emerils_pork_and_chorizo_burgers_with_curl.html";
         $url = "http://www.marthastewart.com/284367/emerils-pork-and-chorizo-burgers-with-gr?czone=food%2Fbest-grilling-recipes%2Fgrilling-recipes";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -21,13 +21,11 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals(12, count($recipe->ingredients[0]['list']));
         $this->assertEquals(2, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals(
-            'http://www.marthastewart.com/sites/files/marthastewart.com/imagecache/img_l/ecl/images/content/pub/everyday_food/2009Q2/med104695_0609_spicy_burger_vert.jpg',
-            $recipe->photo_url);
+        $this->assertStringEndsWith('med104695_0609_spicy_burger_sq.jpg', $recipe->photo_url);
     }
 
     public function test_cajun_shrimp() {
-        $path = "data/marthastewart_com_sauteed_cajun_shrimp_cooking_how_to_curl.html";
+        $path = "data/marthastewart_com_sauteed_cajun_shrimp_martha_stewart_curl.html";
         $url = "http://www.marthastewart.com/255277/sauteed-cajun-shrimp?czone=food%2Fdinner-tonight-center%2Fdinner-tonight-main-courses";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -44,9 +42,8 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
     }
 
-
     public function test_strawberry_tart() {
-        $path = "data/marthastewart_com_strawberry_tart_cooking_how_to_martha_curl.html";
+        $path = "data/marthastewart_com_strawberry_tart_martha_stewart_curl.html";
         $url = "http://www.marthastewart.com/340929/strawberry-tart?czone=food%2Fproduce-guide-cnt%2Fspring-produce-recipes";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -70,5 +67,3 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
     }
 
 }
-
-?>
