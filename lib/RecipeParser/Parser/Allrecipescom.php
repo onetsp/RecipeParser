@@ -20,10 +20,9 @@ class RecipeParser_Parser_Allrecipescom {
 
         // Title
         if (!$recipe->title) {
-            $node_list = $xpath->query('//h1[@id = "itemTitle"]');
+            $node_list = $xpath->query('//h1[@itemprop="name"]');
             if ($node_list->length) {
-                $value = $node_list->item(0)->nodeValue;
-                $value = trim($value);
+                $value = RecipeParser_Text::formatTitle($node_list->item(0)->nodeValue);
                 $recipe->title = $value;
             }
         }
@@ -68,7 +67,6 @@ class RecipeParser_Parser_Allrecipescom {
 
         // Instructions
         if (!count($recipe->instructions[0]["list"])) {
-
             $nodes = $xpath->query('//div[@class="directions"]//ol/li');
             foreach ($nodes as $node) {
                 $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
@@ -78,6 +76,13 @@ class RecipeParser_Parser_Allrecipescom {
                     $recipe->appendInstruction($line);
                 }
             }
+        }
+
+        // Look for useless line at end of instructions
+        $i = count($recipe->instructions) - 1;
+        $j = count($recipe->instructions[$i]['list']) - 1;
+        if (strpos($recipe->instructions[$i]['list'][$j], "All done!") === 0) {
+            unset($recipe->instructions[$i]['list'][$j]);
         }
 
         // Photo URL
