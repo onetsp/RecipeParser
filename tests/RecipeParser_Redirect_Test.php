@@ -5,7 +5,7 @@ require_once '../bootstrap.php';
 class RecipeParser_Redirect_Test extends PHPUnit_Framework_TestCase {
 
     function test_inspect_for_redirect_none() {
-        $html = file_get_contents("data/bonappetit_com_chai_spiced_hot_chocolate_curl.html");
+        $html = file_get_contents("data/bonappetit_com_chai_spiced_hot_chocolate_bon_app_curl.html");
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2010/02/chai_spiced_hot_chocolate";
         $redirect_url = RecipeParser_Redirect::inspectHtmlForRedirect($html, $url);
         $this->assertEquals(null, $redirect_url);

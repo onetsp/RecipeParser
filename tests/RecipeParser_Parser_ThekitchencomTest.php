@@ -27,7 +27,7 @@ class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase 
         $this->assertEquals('To assemble the cake', $recipe->instructions[2]['name']);
         $this->assertEquals(2, count($recipe->instructions[2]['list']));
 
-        $this->assertEquals('20-30, depending on slice size', $recipe->yield);
+        $this->assertEquals('20-30 servings, depending on slice size', $recipe->yield);
 
         $this->assertRegExp('/pixstatic.com\/524c597d697ab0613c005d69\._w\.1500_s\.fit_\.jpg/',
                             $recipe->photo_url);
