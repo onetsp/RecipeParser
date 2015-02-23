@@ -3,7 +3,7 @@
 class RecipeParser_Parser_Cookingchanneltvcom {
 
     static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_Microformat::parse($html, $url);
+        $recipe = new RecipeParser_Recipe();
 
         // Turn off libxml errors to prevent mismatched tag warnings.
         libxml_use_internal_errors(true);
@@ -11,6 +11,13 @@ class RecipeParser_Parser_Cookingchanneltvcom {
         $doc = new DOMDocument();
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
+
+        // Title
+        $nodes = $xpath->query('//*[@class="rTitle fn"]');
+        if ($nodes->length) {
+            $line = RecipeParser_Text::formatTitle($nodes->item(0)->nodeValue);
+            $recipe->title = $line;
+        }
 
         // Yield
         $nodes = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " yield ")]');
@@ -37,28 +44,40 @@ class RecipeParser_Parser_Cookingchanneltvcom {
         }
 
         // Ingredients
-        $recipe->resetIngredients();
+        $nodes = $xpath->query('//*[@class="ingredient"]');
+        foreach ($nodes as $node) {
+            $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+            $recipe->appendIngredient($line);
+        }
 
-        $ing_nodes = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " ingredients ")]/*');
-        foreach ($ing_nodes as $ing_node) {
-
-            if ($ing_node->getAttribute('class') == "ingr-divider") {
-                $line = RecipeParser_Text::formatSectionName($ing_node->nodeValue);
-                $recipe->addIngredientsSection($line);
-                continue;
-            }
-
-            // Extract ingredients from inside of <ul class="ingredientsList">
-            // Child nodes should all be <li>
-            if ($ing_node->nodeName == 'ul') {
-                        
-                foreach ($ing_node->childNodes as $node) {
-                    $line = trim($node->nodeValue);
-                    $recipe->appendIngredient($line);
+        // Instructions
+        $nodes = $xpath->query('//*[@class="instructions"]');
+        if ($nodes->length) {
+            $blob = "";
+            foreach ($nodes->item(0)->childNodes as $node) {
+                $blob .= RecipeParser_Text::formatAsOneLine($node->nodeValue) . " ";
+                if ($node->nodeName == "p") {
+                    $blob .= "\n\n";
                 }
-                continue;
             }
 
+            // Minor cleanup
+            $blob = str_replace(" , ", ", ", $blob);
+            $blob = str_replace(" . ", ". ", $blob);
+            $blob = str_replace("  ", " ", $blob);
+
+            foreach (explode("\n\n", $blob) as $line) {
+                $line = RecipeParser_Text::formatAsOneLine($line);
+                $recipe->appendInstruction($line);
+            }
+        }
+
+        // Photo
+        $nodes = $xpath->query('//a[@class="img-enlarge"]');
+        if ($nodes->length) {
+            $photo_url = $nodes->item(0)->getAttribute("href");
+            $photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            $recipe->photo_url = $photo_url;
         }
 
         return $recipe;
