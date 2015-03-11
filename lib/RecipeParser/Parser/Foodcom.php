@@ -13,7 +13,9 @@ class RecipeParser_Parser_Foodcom {
         $xpath = new DOMXPath($doc);
 
         // Photo -- skip logo if it was used in place of photo
-        if (strpos($recipe->photo_url, "FDC_Logo_vertical.png") !== false) {
+        if (strpos($recipe->photo_url, "FDC_Logo_vertical.png") !== false
+            || strpos($recipe->photo_url, "FDC_share-logo.png") !== false) 
+        {
             $recipe->photo_url = '';
         }
         if ($recipe->photo_url) {
@@ -22,37 +24,21 @@ class RecipeParser_Parser_Foodcom {
 
         // Yield
         $yield = '';
-        $nodes = $xpath->query('//option[@class="select-title"]');
+        $nodes = $xpath->query('//*[@class="yield"]');
+
+        // Find as 'yield'
         if ($nodes->length) {
-            $yield .= trim($nodes->item(0)->nodeValue);
-        }
-        $nodes = $xpath->query('//p[@class="yieldUnits-txt"]');
-        if ($nodes->length) {
-            $value = trim($nodes->item(0)->nodeValue);
-            $yield .= ' ' . (($value) ? $value : 'servings');
-        }
-        $recipe->yield = trim($yield);
+            $line = $nodes->item(0)->nodeValue;
+            $line = RecipeParser_Text::formatYield($line);
+            $recipe->yield = $line;
 
-
-        // Ingredients (custom because of duplicate class attributes for "ingredients")
-        $recipe->resetIngredients();
-
-        $nodes = $xpath->query('//div[@class = "pod ingredients"]/*');
-        foreach ($nodes as $node) {
-            # <h3> contains ingredient section names
-            if ($node->nodeName == 'h3') {
-                $recipe->addIngredientsSection(ucfirst(trim(strtolower($node->nodeValue))));
-            }
-            # Extract ingredients from <ul> <li>.
-            if ($node->nodeName == 'ul') {
-                $ing_nodes = $node->childNodes;
-                foreach ($ing_nodes as $ing_node) {
-                    // Find <li> with class="ingredient" for each ingredient.
-                    if ($ing_node->nodeName == 'li') {
-                        $line = RecipeParser_Text::FormatAsOneLine($ing_node->nodeValue);
-                        $recipe->appendIngredient($line);
-                    }
-                }
+        // Or as number of 'servings'
+        } else {
+            $nodes = $xpath->query('//*[@class="servings"]//*[@class="value"]');
+            if ($nodes->length) {
+                $line = $nodes->item(0)->nodeValue;
+                $line = RecipeParser_Text::formatYield($line);
+                $recipe->yield = $line;
             }
         }
 

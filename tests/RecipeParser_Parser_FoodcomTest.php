@@ -20,9 +20,7 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(7, count($recipe->ingredients[0]['list']));
         $this->assertEquals(12, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals(
-            'http://food.sndimg.com/img/recipes/14/33/44/large/picVvJU8z.jpg',
-            $recipe->photo_url);
+        $this->assertStringEndsWith("picVvJU8z.jpg", $recipe->photo_url);
     }
 
     public function test_braised_lamb() {
@@ -41,9 +39,7 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(11, count($recipe->ingredients[0]['list']));
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals(
-            'http://food.sndimg.com/img/recipes/22/23/37/large/piclW3oYD.jpg',
-            $recipe->photo_url);
+        $this->assertStringEndsWith("piclW3oYD.jpg", $recipe->photo_url);
     }
 
     public function test_carrot_cheesecake() {
@@ -60,19 +56,14 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(60, $recipe->time['cook']);
         $this->assertEquals(90, $recipe->time['total']);
 
-        $this->assertEquals(2, count($recipe->ingredients));
-        $this->assertEquals('Crust', $recipe->ingredients[0]['name']);
-        $this->assertEquals(3, count($recipe->ingredients[0]['list']));
-        $this->assertEquals('Cheesecake', $recipe->ingredients[1]['name']);
-        $this->assertEquals(12, count($recipe->ingredients[1]['list']));
+        $this->assertEquals(1, count($recipe->ingredients));
+        $this->assertEquals(15, count($recipe->ingredients[0]['list']));
 
         $this->assertEquals(2, count($recipe->instructions));
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
         $this->assertEquals(4, count($recipe->instructions[1]['list']));
 
-        $this->assertEquals(
-            '',
-            $recipe->photo_url);
+        $this->assertEquals('', $recipe->photo_url);
     }
 
 }
