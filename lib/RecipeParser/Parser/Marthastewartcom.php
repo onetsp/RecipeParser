@@ -22,6 +22,14 @@ class RecipeParser_Parser_Marthastewartcom {
             }
         }
 
+        // Description
+        $nodes = $xpath->query('//*[@itemprop="page-dek"]');
+        if ($nodes->length) {
+            $line = $nodes->item(0)->nodeValue;
+            $line = RecipeParser_Text::formatAsOneLine($line);
+            $recipe->description = $line;
+        }
+
         // Notes
         $line = "";
         $nodes = $xpath->query('//*[@class="note-text"]');
@@ -46,7 +54,7 @@ class RecipeParser_Parser_Marthastewartcom {
                         $recipe->addIngredientsSection($line);
                     }
                 }
-                $ing_nodes = $xpath->query('.//*[@itemprop="ingredients"]', $section_node); 
+                $ing_nodes = $xpath->query('.//*[@class="components-item"]', $section_node); 
                 if ($ing_nodes->length) {
                     foreach ($ing_nodes as $node) {
                         $line = $node->nodeValue;
@@ -59,10 +67,17 @@ class RecipeParser_Parser_Marthastewartcom {
 
         // Instructions
         $recipe->resetInstructions();
-        $nodes = $xpath->query('//*[@class="recipe-step-item"]');
+        $nodes = $xpath->query('//*[@class="directions-item"]');
         foreach ($nodes as $node) {
             $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
             $recipe->appendInstruction($line);
+        }
+
+        // Photo URL
+        $nodes = $xpath->query('//img[@itemprop="image"]');
+        if ($nodes->length) {
+            $photo_url = $nodes->item(0)->getAttribute("data-original");
+            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
         }
 
         return $recipe;
