@@ -16,7 +16,7 @@ class RecipeParser_Parser_Thedailymealcom {
         // the usual microdata formatting.  Here we fall back to looking for a
         // regular list within a higher-level ingredients div.
         //
-        if (!$recipe->ingredients->length) {
+        if (!empty($recipe->ingredients)) {
             $nodes = $xpath->query("//div[@class='content']/div[@class='ingredient']/ul/li");  
                foreach ($nodes as $node) {
                 $value = RecipeParser_Text::formatAsOneLine($node->nodeValue);
