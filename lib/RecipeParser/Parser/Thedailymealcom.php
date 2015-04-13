@@ -18,7 +18,7 @@ class RecipeParser_Parser_Thedailymealcom {
         //
         if (!empty($recipe->ingredients)) {
             $nodes = $xpath->query("//div[@class='content']/div[@class='ingredient']/ul/li");  
-               foreach ($nodes as $node) {
+            foreach ($nodes as $node) {
                 $value = RecipeParser_Text::formatAsOneLine($node->nodeValue);
                 if (empty($value)) {
                     continue;
