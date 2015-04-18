@@ -21,7 +21,7 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals(12, count($recipe->ingredients[0]['list']));
         $this->assertEquals(2, count($recipe->instructions[0]['list']));
 
-        $this->assertStringEndsWith('med104695_0609_spicy_burger_sq.jpg', $recipe->photo_url);
+        $this->assertStringEndsWith('med104695_0609_spicy_burger_vert.jpg?itok=im3kHyO6', $recipe->photo_url);
     }
 
     public function test_cajun_shrimp() {
