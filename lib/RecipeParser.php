@@ -9,6 +9,7 @@ class RecipeParser {
     const DATA_VOCABULARY_SPEC     = "MicrodataDataVocabulary";
     const RDF_DATA_VOCABULARY_SPEC = "MicrodataRdfDataVocabulary";
     const MICROFORMAT_SPEC         = "Microformat";
+    const RECIPAGE_SPEC            = "Recipage";
 
     /**
      * Load registered parsers from ini file.
@@ -66,9 +67,11 @@ class RecipeParser {
         } else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
             return self::DATA_VOCABULARY_SPEC;
         } else if (stripos($html, "//rdf.data-vocabulary.org/") !== false
-                   && stripos($html, "typeof=\"v:Recipe\"") !== false)
-        {
+                   && stripos($html, "typeof=\"v:Recipe\"") !== false) {
             return self::RDF_DATA_VOCABULARY_SPEC;
+        }
+        else if (stripos($html, "recipage.com") !== false) {
+            return self::RECIPAGE_SPEC;
         } else if (stripos($html, "hrecipe") !== false
                 && strpos($html, "fn") !== false) {
             return self::MICROFORMAT_SPEC;
