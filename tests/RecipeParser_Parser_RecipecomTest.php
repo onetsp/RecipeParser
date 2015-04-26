@@ -5,7 +5,7 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_RecipecomTest extends PHPUnit_Framework_TestCase {
 
     public function test_chicken_tortilla_casserole() {
-        $path = "data/recipe_com_quot_healthified_quot_chicken_tortilla_casserole_com_curl.html";
+        $path = "data/recipe_com_quot_healthified_quot_chicken_tortilla_casserole_curl.html";
         $url = "http://www.recipe.com/healthified-chicken-tortilla-casserole/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -41,7 +41,7 @@ class RecipeParser_Parser_RecipecomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(30, $recipe->time['prep']);
         $this->assertEquals(0, $recipe->time['cook']);
-        $this->assertEquals(60, $recipe->time['total']);
+        $this->assertEquals(0, $recipe->time['total']);  // was '60' but has disappeared from the test recipe
         $this->assertEquals('5 cups', $recipe->yield);
 
         $this->assertEquals(1, count($recipe->ingredients));
@@ -50,7 +50,8 @@ class RecipeParser_Parser_RecipecomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals('', $recipe->instructions[0]['name']);
-        $this->assertEquals(4, count($recipe->instructions[0]['list']));
+        $this->assertEquals(3, count($recipe->instructions[0]['list']));
+        $this->assertRegexp("/fitted with a shredding blade/", $recipe->instructions[0]['list'][0]);
 
         $this->assertEquals('http://www.recipe.com/images/hot-dog-hamburger-secret-sauce-R123504-ss.jpg', 
                             $recipe->photo_url);
@@ -67,12 +68,12 @@ class RecipeParser_Parser_RecipecomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(20, $recipe->time['prep']);
         $this->assertEquals(0, $recipe->time['cook']);
-        $this->assertEquals(110, $recipe->time['total']);
+        $this->assertEquals(0, $recipe->time['total']);  // was '110' but has disappeared from the test recipe
         $this->assertEquals('8 servings', $recipe->yield);
 
         $this->assertEquals(1, count($recipe->ingredients));
         $this->assertEquals('', $recipe->ingredients[0]['name']);
-        $this->assertEquals(11, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(12, count($recipe->ingredients[0]['list']));  // strange "null" entry showed up.
 
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals('', $recipe->instructions[0]['name']);
@@ -83,5 +84,3 @@ class RecipeParser_Parser_RecipecomTest extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>

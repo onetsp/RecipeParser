@@ -111,6 +111,8 @@ class RecipeParser_Parser_MicrodataSchema {
                 if ($nodes->length) {
                     RecipeParser_Text::parseInstructionsFromNodes($nodes, $recipe);
                     $found = true;
+
+                    // Recipe.com gets caught up in here, but doesn't have well-formed nodes wrapping each ingredient.
                 }
             }
 
