@@ -5,7 +5,7 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_AmericastestkitchencomTest extends PHPUnit_Framework_TestCase {
 
     public function test_chicken_pot_pie() {
-        $path = "data/americastestkitchen_com_chicken_pot_pie_with_savory_crumble_topping_america_s_test_kitchen_s_chrome_12_0_orig.html";
+        $path = "data/americastestkitchen_com_chicken_pot_pie_with_savory_crumble_curl.html";
         $url = "http://www.americastestkitchen.com/recipes/detail.php?docid=25876";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,11 +35,11 @@ class RecipeParser_Parser_AmericastestkitchencomTest extends PHPUnit_Framework_T
 
         //TODO $this->assertRegExp('/^This recipe relies .* the heavy cream.$/', $recipe->notes);
 
-        $this->assertEquals('http://sfs.americastestkitchen.com/images/document/CVR_SFS_chick_pot_pie_crumble_004_article.jpg', $recipe->photo_url);
+        $this->assertRegexp('/^http.*CVR_SFS_chick_pot_pie_crumble_004_article.jpg$/', $recipe->photo_url);
     }
 
     public function test_pecan_bread_pudding() {
-        $path = "data/americastestkitchen_com_pecan_bread_pudding_with_bourbon_and_orange_america_s_test_kitchen_s_chrome_12_0_orig.html";
+        $path = "data/americastestkitchen_com_pecan_bread_pudding_with_bourbon_and_curl.html";
         $url = "http://www.americastestkitchen.com/recipes/detail.php?docid=23314";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -64,7 +64,7 @@ class RecipeParser_Parser_AmericastestkitchencomTest extends PHPUnit_Framework_T
     }
 
     public function test_apple_crisp() {
-        $path = "data/americastestkitchen_com_skillet_apple_crisp_with_vanilla_cardamom_and_pistachios_america_s_test_kitchen_s_chrome_12_0_orig.html";
+        $path = "data/americastestkitchen_com_skillet_apple_crisp_with_vanilla_cardamom_curl.html";
         $url = "http://www.americastestkitchen.com/recipes/detail.php?docid=26039&extcode=M**ASCA00";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -91,5 +91,3 @@ class RecipeParser_Parser_AmericastestkitchencomTest extends PHPUnit_Framework_T
     }
 
 }
-
-?>
