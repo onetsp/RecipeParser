@@ -81,7 +81,7 @@ class RecipeParser_Parser_Allrecipescom {
         // Look for useless line at end of instructions
         $i = count($recipe->instructions) - 1;
         $j = count($recipe->instructions[$i]['list']) - 1;
-        if (strpos($recipe->instructions[$i]['list'][$j], "All done!") === 0) {
+        if ($j >= 0 && strpos($recipe->instructions[$i]['list'][$j], "All done!") === 0) {
             unset($recipe->instructions[$i]['list'][$j]);
         }
 
