@@ -13,6 +13,13 @@ if ($argc < 2) {
     exit(1);
 }
 
+// Output type
+if (isset($argv[2]) && strtolower($argv[2]) == "json") {
+    $output = "json";
+} else {
+    $output = "default";
+}
+
 if (preg_match("/^https?:\/\//i", $argv[1])) {
     $recipe_url = $argv[1];
 } else if (file_exists($argv[1])) {
@@ -24,7 +31,9 @@ if (preg_match("/^https?:\/\//i", $argv[1])) {
 
 // Download recipe file
 if ($recipe_url) {
-    echo "Downloading file from $recipe_url\n";
+    if ($output == "default") {
+        echo "Downloading file from $recipe_url\n";
+    }
 
     // Target filename
     $hostname = parse_url($recipe_url, PHP_URL_HOST);
@@ -37,7 +46,9 @@ if ($recipe_url) {
         && filesize($recipe_filename) > 0
         && (time() - filemtime($recipe_filename) < 86400)
     ) {
-        echo "Recipe file already exists: $recipe_filename\n";
+        if ($output == "default") {
+            echo "Recipe file already exists: $recipe_filename\n";
+        }
 
     } else {
         // Fetch and cleanup the HTML
@@ -49,12 +60,16 @@ if ($recipe_url) {
         $comments = RecipeParser_Text::getRecipeMetadataComment($recipe_url, "curl");
         $html = $comments . "\n\n" . $html;
 
-        echo "Saving file to $recipe_filename\n";
+        if ($output == "default") {
+            echo "Saving file to $recipe_filename\n";
+        }
         file_put_contents($recipe_filename, $html);
     }
 }
 
-echo "Parsing recipe from file $recipe_filename\n";
+if ($output == "default") {
+    echo "Parsing recipe from file $recipe_filename\n";
+}
 $html = file_get_contents($recipe_filename);
 
 // Parse recipe into a struct
@@ -67,8 +82,12 @@ try {
 }
 
 // Print recipe.
-print_r($recipe);
-printStats($recipe);
+if ($output == "json") {
+    echo $recipe->getJson();
+} else {
+    print_r($recipe->getArray());
+    printStats($recipe);
+}
 
 exit;
 

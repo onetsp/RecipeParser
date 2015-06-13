@@ -29,6 +29,29 @@ class RecipeParser_Recipe {
         $this->resetInstructions();
     }
 
+    public function getArray() {
+        $arr = array(
+            'title' => $this->title,
+            'description' => $this->description,
+            'credits' => $this->credits,
+            'notes' => $this->notes,
+            'yield' => $this->yield,
+            'source' => $this-source,
+            'url' => $this->url,
+            'categories' => $this->categories,
+            'photo_url' => $this->photo_url,
+            'time' => $this->time,
+            'ingredients' => $this->ingredients,
+            'instructions' => $this->instructions,
+        );
+        
+        return $arr;
+    }
+
+    public function getJson() {
+        return json_encode($this->getArray());
+    }
+
     public function resetIngredients() {
         $this->ingredients = array(array("name" => "", "list" => array()));
     }
