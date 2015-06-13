@@ -463,30 +463,38 @@ ONETSP_TIME: $time
         return $minutes;
     }
 
-
-    public static function formatPhotoUrl($photo_url, $recipe_url) {
-        if (strpos($photo_url, './') === 0) {
-            $photo_url = substr($photo_url, 2);
+    public static function relativeToAbsolute($rel, $base) {
+        // return if already absolute URL
+        if (parse_url($rel, PHP_URL_SCHEME) != '') {
+            return $rel;
         }
 
-        if (preg_match('/^https?:\/\//i', $photo_url)) {
-            return $photo_url;
-        } else if (strpos($photo_url, '/') === 0) {
-            $parts = parse_url($recipe_url);
-            if ($parts !== false) {
-                $abs_url = $parts['scheme'] . '://' . $parts['host'] . $photo_url;
-                return $abs_url;
-            }
-
-        } else if (strpos($photo_url, '..') === 0) {
-            // Not implemented.
-
-        } else {
-            $photo_url = substr($recipe_url, 0, strrpos($recipe_url, '/')) . '/' . $photo_url;
+        // queries and anchors
+        if ($rel[0]=='#' || $rel[0]=='?') {
+            return $base.$rel;
         }
 
-        return $photo_url;
+        // parse base URL and convert to local variables: $scheme, $host, $path
+        extract(parse_url($base));
+
+        // remove non-directory element from path 
+        $path = preg_replace('#/[^/]*$#', '', $path);
+
+        // destroy path if relative url points to root
+        if ($rel[0] == '/') {
+            $path = '';
+        }
+
+        // dirty absolute URL
+        $abs = "$host$path/$rel";
+
+        // replace '//' or '/./' or '/foo/../' with '/'
+        $re = array('#(/\.?/)#', '#/(?!\.\.)[^/]+/\.\./#');
+        for ($n=1; $n>0; $abs=preg_replace($re, '/', $abs, -1, $n)) {}
+
+        return $scheme.'://'.$abs;
     }
+
 
     /**
      * Convert <title> from recipe file into string that can be used for a local filename.

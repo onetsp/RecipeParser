@@ -124,7 +124,7 @@ class RecipeParser_Parser_MicrodataRdfDataVocabulary {
             }
         }
         if ($photo_url) {
-            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
         }
 
         // Credits

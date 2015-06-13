@@ -71,13 +71,13 @@ class RecipeParser_Parser_Cooksillustratedcom {
         $nodes = $xpath->query('//img[@class="recipeImg"]');
         if ($nodes->length) {
             $photo_url = $nodes->item(0)->getAttribute('src');
-            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
         } else {
             // Second option for where to find recipe image
             $nodes = $xpath->query('//img[@id="splashImage"]');
             if ($nodes->length) {
                 $photo_url = $nodes->item(0)->getAttribute('src');
-                $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+                $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
             }
         }
 

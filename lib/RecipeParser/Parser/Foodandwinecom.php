@@ -84,7 +84,7 @@ class RecipeParser_Parser_Foodandwinecom {
             if (strpos($photo_url, 'default-recipe-image.gif') === false
                 && strpos($photo_url, 'placeholder.gif') === false)
             {
-                $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+                $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
             }
         }
 

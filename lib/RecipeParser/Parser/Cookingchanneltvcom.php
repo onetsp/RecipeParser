@@ -76,7 +76,7 @@ class RecipeParser_Parser_Cookingchanneltvcom {
         $nodes = $xpath->query('//a[@class="img-enlarge"]');
         if ($nodes->length) {
             $photo_url = $nodes->item(0)->getAttribute("href");
-            $photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            $photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
             $recipe->photo_url = $photo_url;
         }
 

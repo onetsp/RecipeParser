@@ -62,7 +62,7 @@ class RecipeParser_Parser_Realsimplecom {
         $nodes = $xpath->query('//*[@property="og:image"]');
         if ($nodes->length) {
             $photo_url = $nodes->item(0)->getAttribute('content');
-            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
         }
 
         return $recipe;

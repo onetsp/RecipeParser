@@ -77,7 +77,7 @@ class RecipeParser_Parser_Marthastewartcom {
         $nodes = $xpath->query('//img[@itemprop="image"]');
         if ($nodes->length) {
             $photo_url = $nodes->item(0)->getAttribute("data-original");
-            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
         }
 
         return $recipe;

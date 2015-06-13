@@ -177,7 +177,7 @@ class RecipeParser_Parser_Bravotvcom {
         if ($nodes->length) {
             $photo_url = $nodes->item(0)->getAttribute('src');
             $photo_url = str_replace('/medium/', '/original/', $photo_url);
-            $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+            $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
         }
 
         return $recipe;

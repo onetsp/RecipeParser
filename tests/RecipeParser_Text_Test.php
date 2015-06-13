@@ -227,54 +227,61 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals(30, RecipeParser_Text::iso8601ToMinutes('T30M'));
     }
 
-    public function test_format_photo_url_abs_path() {
+    public function test_rel2abs_abs_path() {
         $this->assertEquals(
             'http://www.bonappetit.com/images/magazine/2011/06/mare-fathers-day-pork-chops-h.jpg',
-            RecipeParser_Text::formatPhotoUrl(
+            RecipeParser_Text::relativeToAbsolute(
                 '/images/magazine/2011/06/mare-fathers-day-pork-chops-h.jpg',
                 'http://www.bonappetit.com/recipes/2011/06/fathers-day-pork-chops'
             )
         );
     }
-    public function test_format_photo_url_abs_url() {
+    public function test_rel2abs_abs_url() {
         $this->assertEquals(
             'http://www.bonappetit.com/images/magazine/2011/06/mare-fathers-day-pork-chops-h.jpg',
-            RecipeParser_Text::formatPhotoUrl(
+            RecipeParser_Text::relativeToAbsolute(
                 'http://www.bonappetit.com/images/magazine/2011/06/mare-fathers-day-pork-chops-h.jpg',
                 'http://example.com/some/path/to/fathers-day-pork-chops'
             )
         );
     }
 
-    public function test_format_photo_url_rel_path() {
+    public function test_rel2abs_rel_path() {
         $this->assertEquals(
             'http://www.bbcgoodfood.com/recipes/96613/images/96613_MEDIUM.jpg',
-            RecipeParser_Text::formatPhotoUrl(
+            RecipeParser_Text::relativeToAbsolute(
                 'images/96613_MEDIUM.jpg',
                 'http://www.bbcgoodfood.com/recipes/96613/slowcooked-chinese-beef'
             )
         );
     }
 
-    public function test_format_photo_url_dot_leading_rel_path() {
+    public function test_rel2abs_dot_leading_rel_path() {
         $this->assertEquals(
             'http://www.bbcgoodfood.com/recipes/96613/images/96613_MEDIUM.jpg',
-            RecipeParser_Text::formatPhotoUrl(
+            RecipeParser_Text::relativeToAbsolute(
                 './images/96613_MEDIUM.jpg',
                 'http://www.bbcgoodfood.com/recipes/96613/slowcooked-chinese-beef'
             )
         );
     }
 
-    public function test_format_photo_url_backtrace_rel_path() {
-        $this->markTestSkipped(
-            'Have not written code to resolve backtraced relative photo URLs.'
-        );
+    public function test_rel2abs_backtrace_rel_path() {
         $this->assertEquals(
             'http://www.bonappetit.com/images/magazine/2011/06/mare-fathers-day-pork-chops-h.jpg',
-            RecipeParser_Text::formatPhotoUrl(
+            RecipeParser_Text::relativeToAbsolute(
                 '../../../images/magazine/2011/06/mare-fathers-day-pork-chops-h.jpg',
                 'http://www.bonappetit.com/recipes/2011/06/fathers-day-pork-chops'
+            )
+        );
+    }
+
+    public function test_rel2abs_allrecipes_print() {
+        $this->assertEquals(
+            "http://allrecipes.com/Recipe/Pickled-Beets/Detail.aspx",
+            RecipeParser_Text::relativeToAbsolute(
+                "../../Recipe/Pickled-Beets/Detail.aspx",
+                "http://allrecipes.com/Recipe-Tools/Print/Recipe.aspx?recipeID=38109&origin=detail&servings=60&metric=false"
             )
         );
     }

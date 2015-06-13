@@ -165,7 +165,7 @@ class RecipeParser_Parser_Nytimescom {
             if ($nodes->length) {
                 $photo_url = $nodes->item(0)->getAttribute('src');
                 $photo_url = str_replace('-articleInline.jpg', '-popup.jpg', $photo_url);
-                $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+                $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
             }
         
         }

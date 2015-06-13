@@ -56,7 +56,7 @@ class RecipeParser_Parser_Bookmark {
         if ($nodes->length) {
             $photo_url = $nodes->item(0)->getAttribute("content");
             if ($photo_url) {
-                $recipe->photo_url = RecipeParser_Text::formatPhotoUrl($photo_url, $url);
+                $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
             }
         }
 
