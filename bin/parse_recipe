@@ -29,48 +29,21 @@ if (preg_match("/^https?:\/\//i", $argv[1])) {
     show_usage();
 }
 
-// Download recipe file
+// Get HTML for recipe 
 if ($recipe_url) {
-    if ($output == "default") {
-        echo "Downloading file from $recipe_url\n";
-    }
-
-    // Target filename
-    $hostname = parse_url($recipe_url, PHP_URL_HOST);
-    $hostname = str_replace(".", "_", $hostname);
-    $basename = "onetsp_{$hostname}_" . substr(md5($recipe_url), 0, 8);
-    $recipe_filename = tempnam(sys_get_temp_dir(), $basename);
-
-    // Only fetch 1x per day
-    if (file_exists($recipe_filename)
-        && filesize($recipe_filename) > 0
-        && (time() - filemtime($recipe_filename) < 86400)
-    ) {
-        if ($output == "default") {
-            echo "Recipe file already exists: $recipe_filename\n";
-        }
-
-    } else {
-        // Fetch and cleanup the HTML
-        $html = FileUtil::downloadPage($recipe_url);
-        $html = RecipeParser_Text::forceUTF8($html);
-        $html = RecipeParser_Text::cleanupClippedRecipeHtml($html);
-
-        // Append some notes to the HTML
-        $comments = RecipeParser_Text::getRecipeMetadataComment($recipe_url, "curl");
-        $html = $comments . "\n\n" . $html;
-
-        if ($output == "default") {
-            echo "Saving file to $recipe_filename\n";
-        }
-        file_put_contents($recipe_filename, $html);
-    }
+    $html = FileUtil::downloadRecipeWithCache($recipe_url);
+} else if ($recipe_filename) {
+    $html = file_get_contents($recipe_filename);
 }
 
-if ($output == "default") {
-    echo "Parsing recipe from file $recipe_filename\n";
-}
-$html = file_get_contents($recipe_filename);
+
+//////////////////
+#if ($canonical = RecipeParser_Canonical::getCanonicalUrl($html, $recipe_url)) {
+#} else {
+#echo "DID'T FIND CANONICAL\n";
+#}
+#echo "CANONICAL: $canonical\n";
+
 
 // Parse recipe into a struct
 try {
@@ -144,6 +117,6 @@ function printStats($recipe) {
 function show_usage() {
     echo "\n";
     echo "Missing required HTML filename.\n\n";
-    echo "Usage: {$_SERVER['SCRIPT_NAME']} <html_file_or_url>\n";
+    echo "Usage: {$_SERVER['SCRIPT_NAME']} html_file_or_url [json,array]\n";
     exit(1);
 }
