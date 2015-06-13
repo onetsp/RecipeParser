@@ -91,6 +91,13 @@ or
 $ ./bin/parse_recipe http://www.cooks.com/recipe/3k38r484/baked-ziti.html
 ```
 
+The command-line script can be used as a simple way to get a JSON representation of a recipe:
+
+```
+$ ./bin/parse_recipe http://www.cooks.com/recipe/3k38r484/baked-ziti.html json
+
+{"title":"Baked Ziti","description":"","credits":"","notes":"","yield":"","source":1,"url":"http:\/\/www.cooks.com\/recipe\/3k38r484\/baked-ziti.html","categories":[],"photo_url":"","time":{"prep":0,"cook":0,"total":0},"ingredients":[{"name":"","list":["4 cups ziti pasta, uncooked","1 26 oz. jar or can pasta sauce","3 cloves garlic, minced","1\/2 tsp. dried or 1 tbsp. fresh basil, chopped","1 can (14-1\/2 oz.) diced tomatoes, with juice","1 4 oz. pkg cream cheese","1 cup ricotta cheese","2 eggs","1\/4 cup fresh parsley, chopped","1\/2 lb. (1 small pkg) shredded Mozzarella Cheese","1\/3 cup Parmesan cheese, grated"]}],"instructions":[{"name":"","list":["Preheat oven to 375\u00baF.","In a large saucepan boil pasta according to package directions. Drain in colander.","In same pan, combine pasta sauce, garlic, basil, diced tomatoes and chunks of cream cheese. Stir and cook over medium heat until cream cheese melts and mixture is well combine (about 5 minutes). Stir in pasta and mix well.","Spread half of the pasta mixture in a 13x9-inch baking dish.","Combine eggs, ricotta and parsley. Spread over mixture in baking dish in a layer, top with 1 cup mozzarella and another layer of ricotta. Top with remaining pasta mixture, mozzarella and Parmesan.","Bake, uncovered, in preheated oven for about 25-30 minutes. (If edges begin to brown, cover with foil)."]}]}
+```
 
 Introduction
 ------------------------------
