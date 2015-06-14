@@ -56,6 +56,11 @@ class RecipeParser_Canonical {
         if (strpos($url, "www.foodnetwork.com") !== false && strpos($url, ".print.html") !== false) {
             return str_replace(".print.html", ".html", $url);
         }
+
+        // Epicurious print view
+        if (strpos($url, "epicurious.com") !== false && strpos($url, "printerfriendly") !== false) {
+            return str_replace("printerfriendly", "views", $url);
+        }
     
         return null;
     }

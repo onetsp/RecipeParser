@@ -93,4 +93,14 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
+
+    /**
+     * @group network
+     */
+    public function test_epicurious_com_print_view() {
+        $url       = "http://www.epicurious.com/recipes/food/printerfriendly/celery-spiked-guacamole-with-chiles-51214860";
+        $canonical = "http://www.epicurious.com/recipes/food/views/celery-spiked-guacamole-with-chiles-51214860";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
 }
