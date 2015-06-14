@@ -36,15 +36,6 @@ if ($recipe_url) {
     $html = file_get_contents($recipe_filename);
 }
 
-
-//////////////////
-#if ($canonical = RecipeParser_Canonical::getCanonicalUrl($html, $recipe_url)) {
-#} else {
-#echo "DID'T FIND CANONICAL\n";
-#}
-#echo "CANONICAL: $canonical\n";
-
-
 // Parse recipe into a struct
 try {
     $url = RecipeParser_Text::getRecipeUrlFromMetadata($html);
