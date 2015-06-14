@@ -51,6 +51,11 @@ class RecipeParser_Canonical {
         if (strpos($url, "http://www.yummly.com/recipe/") !== false) {
             return self::searchYummly($html);
         }
+
+        // Foodnetwork.com print view
+        if (strpos($url, "www.foodnetwork.com") !== false && strpos($url, ".print.html") !== false) {
+            return str_replace(".print.html", ".html", $url);
+        }
     
         return null;
     }

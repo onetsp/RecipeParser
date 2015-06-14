@@ -84,4 +84,13 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
 
+    /**
+     * @group network
+     */
+    public function test_foodnetwork_com_print_view() {
+        $url       = "http://www.foodnetwork.com/recipes/giada-de-laurentiis/grilled-lamb-chops-recipe.print.html";
+        $canonical = "http://www.foodnetwork.com/recipes/giada-de-laurentiis/grilled-lamb-chops-recipe.html";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
 }
