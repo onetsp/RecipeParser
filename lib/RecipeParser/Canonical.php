@@ -61,6 +61,16 @@ class RecipeParser_Canonical {
         if (strpos($url, "epicurious.com") !== false && strpos($url, "printerfriendly") !== false) {
             return str_replace("printerfriendly", "views", $url);
         }
+
+        // Myrecipes.com mobile views
+        if (strpos($url, "www.myrecipes.com/m/recipe/") !== false) {
+            return str_replace("/m/recipe/", "/recipe/", $url);
+        }
+
+        // Myrecipes.com print views
+        if (strpos($url, "www.myrecipes.com") !== false && strpos($url, "/print") !== false) {
+            return preg_replace("/^(.*)\/print\/?$/", "$1", $url);
+        }
     
         return null;
     }
