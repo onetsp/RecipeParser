@@ -62,6 +62,11 @@ class RecipeParser_Canonical {
             return str_replace("printerfriendly", "views", $url);
         }
 
+        // Food52 print views
+        if (strpos($url, "food52.com/recipes/print/") !== false) {
+            return str_replace("/recipes/print/", "/recipes/", $url);
+        }
+
         // Myrecipes.com mobile views
         if (strpos($url, "www.myrecipes.com/m/recipe/") !== false) {
             return str_replace("/m/recipe/", "/recipe/", $url);

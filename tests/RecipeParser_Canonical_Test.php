@@ -144,9 +144,15 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
 
-
-
-
+    /**
+     * @group network
+     */
+    public function test_food52_print_views() {
+        $url       = "http://food52.com/recipes/print/17101";
+        $canonical = "http://food52.com/recipes/17101";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
 
 
 }
