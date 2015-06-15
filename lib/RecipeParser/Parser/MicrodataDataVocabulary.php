@@ -46,6 +46,8 @@ class RecipeParser_Parser_MicrodataDataVocabulary {
                 if ($nodes->length) {
                     if ($value = $nodes->item(0)->getAttribute('datetime')) {
                         $value = RecipeParser_Text::iso8601ToMinutes($value);
+                    } else if ($value = $nodes->item(0)->getAttribute('content')) {
+                        $value = RecipeParser_Text::iso8601ToMinutes($value);
                     } else {
                         $value = trim($nodes->item(0)->nodeValue);
                         $value = RecipeParser_Times::toMinutes($value);
