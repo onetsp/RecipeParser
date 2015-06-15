@@ -46,10 +46,10 @@ class RecipeParser_Canonical {
     
         // Yummly
         if (strpos($url, "http://www.yummly.com/recipe/external/") !== false) {
-            return self::searchYummlyIFrame($html);
+            return self::searchYummlyIFrame($html, $url);
         }
         if (strpos($url, "http://www.yummly.com/recipe/") !== false) {
-            return self::searchYummly($html);
+            return self::searchYummly($html, $url);
         }
 
         // Foodnetwork.com print view
@@ -66,12 +66,34 @@ class RecipeParser_Canonical {
         if (strpos($url, "www.myrecipes.com/m/recipe/") !== false) {
             return str_replace("/m/recipe/", "/recipe/", $url);
         }
-
         // Myrecipes.com print views
         if (strpos($url, "www.myrecipes.com") !== false && strpos($url, "/print") !== false) {
             return preg_replace("/^(.*)\/print\/?$/", "$1", $url);
         }
-    
+        // Myrecipes.com quick and easy and how-to videos
+        if (strpos($url, "myrecipes.com/how-to/video/") !== false || strpos($url, "myrecipes.com/quick-and-easy/") !== false) {
+            $xpath = self::getXPath($html);
+
+            // "Get the Recipe" link?
+            $nodes = $xpath->query('//*[@class="item-list"]//a');
+            foreach ($nodes as $node) {
+                $line = trim($node->nodeValue);
+                if (strpos($line, "Get the Recipe:") !== false) {
+                    $href = $node->getAttribute("href");
+                    $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                    return $url;
+                }
+            }
+
+            // Calendar day link (for quick-and-easy)
+            $nodes = $xpath->query('//*[@class="calendar-day-text-recipe-headline-link"]/a');
+            if ($nodes->length) {
+                $href = $nodes->item(0)->getAttribute("href");
+                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                return $url;
+            }
+        }
+
         return null;
     }
 
@@ -94,7 +116,7 @@ class RecipeParser_Canonical {
         return null;
     }
 
-    public static function searchYummlyIFrame($html) {
+    public static function searchYummlyIFrame($html, $url) {
         $xpath = self::getXPath($html);
         $nodes = $xpath->query('//iframe[@id="yFrame"]');
         if ($nodes->length) {
@@ -106,15 +128,12 @@ class RecipeParser_Canonical {
         return null;
     }
 
-    public static function searchYummly($html) {
+    public static function searchYummly($html, $url) {
         $xpath = self::getXPath($html);
-        $nodes = $xpath->query('//button[@id="source-full-directions"]');
+        $nodes = $xpath->query('//*[@id="source-full-directions"]');
         if ($nodes->length) {
-            $url = $nodes->item(0)->getAttribute("link");
-            if ($url) {
-                if (strpos($url, "/") === 0) {
-                    $url = "http://www.yummly.com" . $url;
-                }
+            if ($href = $nodes->item(0)->getAttribute("href")) {
+                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
                 return $url;
             }
         }

@@ -57,16 +57,6 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
     /**
      * @group network
      */
-    public function test_yummyly_() {
-        $url       = "";
-        $canonical = "";
-        $html = FileUtil::downloadRecipeWithCache($url);
-        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
-    }
-
-    /**
-     * @group network
-     */
     public function test_yummyly_iframe() {
         $url       = "http://www.yummly.com/recipe/Roasted-Chicken-Tacos-Martha-Stewart-191942";
         $canonical = "http://www.yummly.com/recipe/external/Roasted-Chicken-Tacos-Martha-Stewart-191942";
@@ -123,6 +113,40 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
+
+    /**
+     * @group network
+     */
+    public function test_myrecipes_com_quick_and_easy() {
+        $url       = "http://www.myrecipes.com/quick-and-easy/dinner-tonight/dinner-tonight-june-2012?viewdate=6_4_2014&iid=edit-dt-060414";
+        $canonical = "http://www.myrecipes.com/recipe/pan-seared-salmon-with-pineapple-jalapeno-relish";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+
+    /**
+     * @group network
+     */
+    public function test_myrecipes_com_quick_and_easy_2() {
+        $url       = "http://www.myrecipes.com/quick-and-easy/dinner-tonight/how-to-make-kung-pao-chicken";
+        $canonical = "http://www.myrecipes.com/recipe/kung-pao-chicken";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+
+    /**
+     * @group network
+     */
+    public function test_myrecipes_com_howto_videos() {
+        $url       = "http://www.myrecipes.com/how-to/video/breakfast-enchiladas";
+        $canonical = "http://www.myrecipes.com/recipe/breakfast-enchiladas";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+
+
+
+
 
 
 }
