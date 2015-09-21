@@ -462,6 +462,29 @@ ONETSP_TIME: $time
         $minutes = (int) round($sec / 60);
         return $minutes;
     }
+    
+    
+    public static function mixedTimeToMinutes($str) {
+        $sec = 0;
+
+        // Time
+        if (preg_match_all('/([\d\,\.]+)(\s*)([HMS])/i', $str, $m)) {
+            for ($i = 0; $i < count($m[0]); $i++) {
+                $val = str_replace(',', '.', $m[0][$i]);
+                
+                if (preg_match('/H/i', $val)) {
+                    $sec += (float) $val * 3600;
+                } else if (preg_match('/M/i', $val)) {
+                    $sec +=  (float) $val * 60;
+                } else if (preg_match('/S/i', $val)) {
+                    $sec +=  (float) $val;
+                }
+            }
+        }
+
+        $minutes = (int) round($sec / 60);
+        return $minutes;
+    }
 
     public static function relativeToAbsolute($rel, $base) {
         // return if already absolute URL

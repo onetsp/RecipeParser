@@ -21,10 +21,10 @@ class RecipeParser_Parser_Foodandwinecom {
 
         // Times and yield
         // <meta content="PT3H30M" itemprop="totalTime">
-        $nodes = $xpath->query('//meta[@itemprop="totalTime"]');
+        $nodes = $xpath->query('//*[@itemprop="prepTime"]');
         if ($nodes->length) {
-            if ($value = $nodes->item(0)->getAttribute('content')) {
-                $value = RecipeParser_Text::iso8601ToMinutes($value);
+            if ($value = $nodes->item(0)->textContent) {
+                $value = RecipeParser_Text::mixedTimeToMinutes($value);
                 $recipe->time['total'] = $value;
             }
         }
@@ -32,6 +32,7 @@ class RecipeParser_Parser_Foodandwinecom {
         $nodes = $xpath->query('//*[@itemprop="recipeYield"]');
         if ($nodes->length) {
             $value = $nodes->item(0)->nodeValue;
+            print($value);
             $recipe->yield = RecipeParser_Text::formatYield($value);
         }
 
@@ -39,9 +40,10 @@ class RecipeParser_Parser_Foodandwinecom {
         $nodes = $xpath->query('//div[@id = "ingredients"]/*');
         foreach ($nodes as $node) {
 
-            if ($node->nodeName == 'h2') {
+            if ($node->nodeName == 'span') {
                 $value = trim($node->nodeValue);
                 $value = RecipeParser_Text::formatSectionName($value);
+                print($value);
                 if ($value != "Ingredients") {
                     $recipe->addIngredientsSection($value);
                 }
