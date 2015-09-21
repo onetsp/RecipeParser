@@ -12,16 +12,14 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(100, $recipe->time['total']);
         $this->assertEquals('1 9-by-13-inch sheet cake', $recipe->yield);
         $this->assertRegExp('/refrigerated for up to 2 days/', $recipe->notes);
-        $this->assertEquals(2, count($recipe->ingredients));
-        $this->assertEquals('Carrot cake', $recipe->ingredients[0]['name']);
-        $this->assertEquals(17, count($recipe->ingredients[0]['list']));
-        $this->assertEquals('Cream cheese frosting', $recipe->ingredients[1]['name']);
-        $this->assertEquals(4, count($recipe->ingredients[1]['list']));
+        $this->assertEquals(1, count($recipe->ingredients));
+        $this->assertEquals(21, count($recipe->ingredients[0]['list']));
+        $this->assertEquals('', $recipe->ingredients[0]['name']);
+        $this->assertEquals('1 cup chopped walnuts', $recipe->ingredients[0]['list'][0]);
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(6, count($recipe->instructions[0]['list']));
-        $this->assertEquals(
-            'http://www.foodandwine.com/assets/images/201202-r-carrot-sheet-cake-with-cream-cheese-frosting.jpg/variations/original.jpg',
+        $this->assertEquals('http://cdn-image.foodandwine.com/sites/default/files/styles/200x250/public/original-201202-r-carrot-sheet-cake-with-cream-cheese-frosting.jpg?itok=46guokTW',
             $recipe->photo_url);
     }
     // public function test_chicken_mushroom_saute() {
