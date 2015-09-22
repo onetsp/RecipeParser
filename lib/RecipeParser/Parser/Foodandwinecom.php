@@ -61,14 +61,17 @@ class RecipeParser_Parser_Foodandwinecom {
 
         // Notes
         $nodes = $xpath->query('//div[@class = "recipe-notes__content"]/div/p');
+        $notes = array();
         if ($nodes->length) {
-            $value = trim($nodes->item(0)->nodeValue);
-            $recipe->notes = $value;
+            foreach ($nodes as $node) {
+                $value = trim($node->nodeValue);
+                array_push($notes, $value);
+            }
+            $recipe->notes = implode(' | ', $notes);
         }
 
         // Photo
         $nodes = $xpath->query('//img[@class = "recipe-carousel__recipe__img"]');
-        var_dump($nodes[1]);
         if ($nodes && $nodes->item(1)) {
             $photo_url = $nodes->item(1)->getAttribute('src');
             if (strpos($photo_url, 'default-recipe-image.gif') === false
