@@ -20,8 +20,8 @@ class RecipeParser_Parser_Foodandwinecom {
         }
 
         // Times and yield
-        // <meta content="PT3H30M" itemprop="totalTime">
-        $nodes = $xpath->query('//*[@itemprop="prepTime"]');
+        // <time datetime="PT35M" itemprop="prepTime">
+        $nodes = $xpath->query('//time[@itemprop="prepTime"]');
         if ($nodes->length) {
             if ($value = $nodes->item(0)->textContent) {
                 $value = RecipeParser_Text::mixedTimeToMinutes($value);
@@ -46,7 +46,7 @@ class RecipeParser_Parser_Foodandwinecom {
 
 
         // Instructions
-        $nodes = $xpath->query('//li[@class = "steps-list__item"]/span');
+        $nodes = $xpath->query('//span[@class = "steps-list__item__text"]');
         foreach ($nodes as $node) {
             $value = trim($node->nodeValue);
             $value = RecipeParser_Text::stripLeadingNumbers($value);
