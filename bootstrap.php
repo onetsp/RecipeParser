@@ -10,6 +10,7 @@ set_include_path( '.'
                 );
 
 // Setup UTF-8 handling
-ini_set('default_charset', 'UTF-8');
-ini_set('mbstring.internal_encoding', 'UTF-8');
-ini_set('mbstring.detect_order', 'UTF-8');
+@ini_set('default_charset', 'UTF-8');
+@ini_set('mbstring.internal_encoding', 'UTF-8');
+@ini_set('mbstring.detect_order', 'UTF-8');
+@ini_set('date.timezone', 'UTC');

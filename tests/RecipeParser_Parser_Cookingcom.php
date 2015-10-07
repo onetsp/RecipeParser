@@ -8,7 +8,8 @@ class RecipeParser_Parser_Cookingcom_Test extends PHPUnit_Framework_TestCase {
         $path = "data/cooking_com_big_oatmeal_raisin_chews_cooking_com_curl.html";
         $url  = "http://www.cooking.com/recipes-and-more/recipes/big-oatmeal-raisin-chews-recipe-5114.aspx";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Big Oatmeal Raisin Chews', $recipe->title);
@@ -33,7 +34,8 @@ class RecipeParser_Parser_Cookingcom_Test extends PHPUnit_Framework_TestCase {
         $path = "data/cooking_com_raisin_cinnamon_apple_bread_cooking_com_curl.html";
         $url  = "http://www.cooking.com/recipes-and-more/recipes/raisin-cinnamon-apple-bread-recipe-355.aspx";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Raisin-Cinnamon Apple Bread', $recipe->title);
@@ -60,7 +62,8 @@ class RecipeParser_Parser_Cookingcom_Test extends PHPUnit_Framework_TestCase {
         $path = "data/cooking_com_wild_maine_blueberry_cobbler_cooking_com_curl.html";
         $url  = "http://www.cooking.com/recipes-and-more/recipes/wild-maine-blueberry-cobbler-recipe-2278.aspx";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Wild Maine Blueberry Cobbler', $recipe->title);

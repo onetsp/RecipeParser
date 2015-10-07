@@ -10,7 +10,8 @@ class RecipeParser_Parser_CooksillustratedcomTest extends PHPUnit_Framework_Test
         $path = "data/cooksillustrated_com_key_lime_bars_cooks_illustrated_chrome_12_0_orig.html";
         $url = "http://www.cooksillustrated.com/recipes/detail.asp?docid=7683";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Key Lime Bars', $recipe->title);
@@ -44,7 +45,8 @@ class RecipeParser_Parser_CooksillustratedcomTest extends PHPUnit_Framework_Test
         $path = "data/cooksillustrated_com_perfect_chocolate_chip_cookies_cooks_illustrated_chrome_12_0_orig.html";
         $url = "http://www.cooksillustrated.com/recipes/detail.asp?docid=19364";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Perfect Chocolate Chip Cookies', $recipe->title);

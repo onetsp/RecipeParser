@@ -8,7 +8,8 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/chow_com_herb_omelets_chow_com_curl.html";
         $url = "http://www.chow.com/recipes/28801-herb-omelets";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Herb Omelets', $recipe->title);
@@ -27,7 +28,8 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/chow_com_hungarian_chocolate_walnut_torte_chow_com_curl.html";
         $url = "http://www.chow.com/recipes/29536-hungarian-chocolate-walnut-torte";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Hungarian Chocolate-Walnut Torte', $recipe->title);
@@ -43,7 +45,8 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/chow_com_red_velvet_cake_chow_com_curl.html";
         $url = "http://www.chow.com/recipes/29310-red-velvet-cake";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Red Velvet Cake', $recipe->title);
@@ -61,7 +64,8 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/chow_com_roasted_sardines_with_smashed_potatoes_chow_curl.html";
         $url = "http://www.chow.com/recipes/29617-roasted-sardines-with-smashed-potatoes";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Roasted Sardines with Smashed Potatoes', $recipe->title);
@@ -79,7 +83,8 @@ class RecipeParser_Parser_ChowcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/chow_com_white_peach_sangr_a_chow_com_curl.html";
         $url = "http://www.chow.com/recipes/29663-white-peach-sangria";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('White Peach Sangría', $recipe->title);

@@ -5,10 +5,11 @@ require_once '../bootstrap.php';
 class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
 
     public function test_cream_pie() {
-        $path_orig = "data/kingarthurflour_com_cream_pie.html";
+        $path = "data/kingarthurflour_com_cream_pie.html";
         $url = "http://www.kingarthurflour.com/recipes/chocolate-cream-pie-recipe";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chocolate Cream Pie', $recipe->title);
@@ -40,10 +41,11 @@ class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
     }
 
     public function test_golden_vanilla_cake() {
-        $path_orig = "data/kingarthurflour_com_golden_vanilla_cake.html";
+        $path = "data/kingarthurflour_com_golden_vanilla_cake.html";
         $url = "http://www.kingarthurflour.com/recipes/golden-vanilla-cake-recipe";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Golden Vanilla Cake', $recipe->title);
@@ -59,10 +61,11 @@ class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
     }
 
     public function test_pretzels() {
-        $path_orig = "data/kingarthurflour_com_pretzels.html";
+        $path = "data/kingarthurflour_com_pretzels.html";
         $url = "http://www.kingarthurflour.com/recipes/hot-buttered-soft-pretzels-recipe";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Hot Buttered Soft Pretzels', $recipe->title);

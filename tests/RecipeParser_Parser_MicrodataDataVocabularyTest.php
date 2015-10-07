@@ -8,7 +8,8 @@ class RecipeParser_Parser_MicrodataDataVocabularyTest extends PHPUnit_Framework_
         $path = "data/datavocabulary_spec.html";
         $url = "http://data-vocabulary.example.com/recipes/spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Grandma's Holiday Apple Pie", $recipe->title);
@@ -43,7 +44,8 @@ class RecipeParser_Parser_MicrodataDataVocabularyTest extends PHPUnit_Framework_
     public function test_schema_spec_class_instruction() {
         $path = "data/datavocabulary_spec_class_instruction.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path));
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));
@@ -56,7 +58,8 @@ class RecipeParser_Parser_MicrodataDataVocabularyTest extends PHPUnit_Framework_
     public function test_datavocabulary_spec_instructions_li() {
         $path = "data/datavocabulary_spec_instructions_li.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path));
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));

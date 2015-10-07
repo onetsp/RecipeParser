@@ -2,14 +2,12 @@
 
 class RecipeParser_Parser_Pillsburycom {
 
-    static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
-
-        libxml_use_internal_errors(true);
-        $doc = new DOMDocument();
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+    static public function parse(DOMDocument $doc, $url) {
+        // Get all of the standard microdata stuff we can find.
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($doc, $url);
         $xpath = new DOMXPath($doc);
+
+        // OVERRIDES FOR PILLSBURY.COM
 
         // Times
         $nodes = $xpath->query('//*[@class="recipePartAttributes recipePartPrimaryAttributes"]//li');

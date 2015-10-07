@@ -5,10 +5,11 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_TestCase {
 
     public function test_chocolate_cake() {
-        $path_orig = "data/cookingchanneltv_com_chocolate_chocolate_cake_cooking_channel_curl.html";
+        $path = "data/cookingchanneltv_com_chocolate_chocolate_cake_cooking_channel_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/emeril-lagasse/chocolate-chocolate-cake.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chocolate, Chocolate Cake', $recipe->title);
@@ -30,10 +31,11 @@ class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_Te
     }
 
     public function test_pork_tenderloin() {
-        $path_orig = "data/cookingchanneltv_com_stuffed_pork_tenderloin_cooking_channel_curl.html";
+        $path = "data/cookingchanneltv_com_stuffed_pork_tenderloin_cooking_channel_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/pork-tenderloin.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Pork Tenderloin', $recipe->title);
@@ -54,10 +56,11 @@ class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_Te
     }
 
     public function test_chocolate_croissant() {
-        $path_orig = "data/cookingchanneltv_com_chocolate_croissant_bread_pudding_with_bourbon_curl.html";
+        $path = "data/cookingchanneltv_com_chocolate_croissant_bread_pudding_with_bourbon_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/michael-chiarello/chocolate-croissant-bread-pudding-with-bourbon-ice-cream-sauce.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chocolate Croissant Bread Pudding with Bourbon Ice Cream Sauce', $recipe->title);
@@ -78,10 +81,11 @@ class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_Te
     }
 
     public function test_cream_puffs() {
-        $path_orig = "data/cookingchanneltv_com_chocolate_cream_puffs_cooking_channel_curl.html";
+        $path = "data/cookingchanneltv_com_chocolate_cream_puffs_cooking_channel_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/chocolate-cream-puffs.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chocolate Cream Puffs', $recipe->title);

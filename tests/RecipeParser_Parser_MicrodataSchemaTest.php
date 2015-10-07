@@ -8,7 +8,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/schema_spec.html";
         $url = "http://schema.example.com/schema-spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Mom's World Famous Banana Bread", $recipe->title);
@@ -36,7 +37,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/schema_spec_publisher.html";
         $url = "http://schema.example.com/schema-spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
     }
@@ -45,7 +47,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/schema_spec_class_instruction.html";
         $url = "http://schema.example.com/schema-spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));
@@ -59,7 +62,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/schema_spec_recipeinstructions_li.html";
         $url = "http://schema.example.com/schema-spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));
@@ -73,7 +77,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/schema_spec_yield_as_content.html";
         $url = "http://schema.example.com/schema-spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('12 servings', $recipe->yield);
@@ -83,7 +88,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/bettycrocker_com_banana_cake_with_fudge_frosting_curl.html";
         $url = "http://www.bettycrocker.com/recipes/banana-cake-with-fudge-frosting/ec14f90a-4ed3-4ef7-8f69-d9d5aadcebc3";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Banana Cake with Fudge Frosting', $recipe->title);
@@ -111,7 +117,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/bettycrocker_com_blueberry_banana_oat_bread_curl.html";
         $url = "http://www.bettycrocker.com/recipes/blueberry-banana-oat-bread/886c41eb-a229-4ab5-ac74-41b68c4ce0ac";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Blueberry-Banana-Oat Bread', $recipe->title);
@@ -137,7 +144,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/bettycrocker_com_coffee_toffee_cake_with_caramel_frosting_curl.html";
         $url = "http://www.bettycrocker.com/recipes/coffee-toffee-cake-with-caramel-frosting/557b8338-f603-4cc4-95e0-ec44089964bd";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Coffee-Toffee Cake with Caramel Frosting', $recipe->title);
@@ -163,7 +171,8 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $path = "data/wholefoodsmarket_com_mushroom_kale_noodle_kugel_whole_foods_curl.html";
         $url = "http://www.wholefoodsmarket.com/recipes/3112";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Mushroom Kale Noodle Kugel', $recipe->title);

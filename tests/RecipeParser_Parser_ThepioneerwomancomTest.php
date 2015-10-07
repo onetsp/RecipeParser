@@ -8,7 +8,8 @@ class RecipeParser_Parser_ThepioneerwomancomTest extends PHPUnit_Framework_TestC
         $path = "data/thepioneerwoman_com_petite_vanilla_bean_scones_the_pioneer_curl.html";
         $url = "http://thepioneerwoman.com/cooking/2010/04/petite-vanilla-bean-scones/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Petite Vanilla Bean Scones', $recipe->title);
@@ -39,7 +40,8 @@ class RecipeParser_Parser_ThepioneerwomancomTest extends PHPUnit_Framework_TestC
         $path = "data/thepioneerwoman_com_ravioli_three_ways_the_pioneer_woman_curl.html";
         $url = "http://thepioneerwoman.com/cooking/2011/09/ravioli-three-ways/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Ravioli, Three Ways', $recipe->title);
@@ -65,7 +67,8 @@ class RecipeParser_Parser_ThepioneerwomancomTest extends PHPUnit_Framework_TestC
         $path = "data/thepioneerwoman_com_sweet_cinnamon_scones_the_pioneer_woman_curl.html";
         $url = "http://thepioneerwoman.com/cooking/2011/03/sweet-cinnamon-scones/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Sweet Cinnamon Scones', $recipe->title);

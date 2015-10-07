@@ -5,10 +5,11 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_chicken_herb_rosti() {
-        $path_orig = "data/bbcgoodfood_com_chicken_amp_herb_r_sti_topped_pies_curl.html";
+        $path = "data/bbcgoodfood_com_chicken_amp_herb_r_sti_topped_pies_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/527632/chicken-and-herb-rstitopped-pies";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chicken & herb rösti-topped pies', $recipe->title);
@@ -32,10 +33,11 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_lemon_poppyseed() {
-        $path_orig = "data/bbcgoodfood_com_lemon_amp_poppyseed_cupcakes_bbc_good_curl.html";
+        $path = "data/bbcgoodfood_com_lemon_amp_poppyseed_cupcakes_bbc_good_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/470636/lemon-and-poppyseed-cupcakes";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Lemon & poppyseed cupcakes', $recipe->title);
@@ -61,10 +63,11 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_ultimate_chocolate_cake() {
-        $path_orig = "data/bbcgoodfood_com_ultimate_chocolate_cake_bbc_good_food_curl.html";
+        $path = "data/bbcgoodfood_com_ultimate_chocolate_cake_bbc_good_food_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/3092/ultimate-chocolate-cake";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Ultimate chocolate cake', $recipe->title);
@@ -90,10 +93,11 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_slow_cooked_chinese_beef() {
-        $path_orig = "data/bbcgoodfood_com_slow_cooked_chinese_beef_curl.html";
+        $path = "data/bbcgoodfood_com_slow_cooked_chinese_beef_curl.html";
         $url = "http://www.bbcgoodfood.com/recipes/96613/slowcooked-chinese-beef";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Slow-cooked Chinese beef', $recipe->title);

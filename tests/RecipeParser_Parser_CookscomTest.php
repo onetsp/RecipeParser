@@ -8,7 +8,8 @@ class RecipeParser_Parser_CookscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/cooks_com_nilla_wafers_and_no_bake_jello_curl.html";
         $url = "http://www.cooks.com/rec/doc/0,2213,158182-232201,00.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Nilla Wafers And No-Bake Jello Cheesecake", $recipe->title);
@@ -23,7 +24,8 @@ class RecipeParser_Parser_CookscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/cooks_com_baklava_greek_version_cooks_com_curl.html";
         $url = "http://www.cooks.com/rec/view/0,1918,148188-224203,00.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Baklava - Greek Version", $recipe->title);
@@ -37,7 +39,8 @@ class RecipeParser_Parser_CookscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/cooks_com_kathys_quiche_cooks_com_curl.html";
         $url = "http://www.cooks.com/rec/view/0,1826,148162-235202,00.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Kathy's Quiche", $recipe->title);
@@ -52,7 +55,8 @@ class RecipeParser_Parser_CookscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/cooks_com_lemon_crumb_bars_cooks_com_curl.html";
         $url = "http://www.cooks.com/rec/view/0,1910,150169-234207,00.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
         
         $this->assertEquals("Lemon Crumb Bars", $recipe->title);

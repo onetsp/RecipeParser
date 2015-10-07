@@ -8,7 +8,8 @@ class RecipeParser_Parser_MicroformatExamplesTest extends PHPUnit_Framework_Test
         $path = "data/cookingchanneltv_com_matt_s_lemon_blueberry_muffins_s_cooking_curl.html";
         $url = "http://www.cookingchanneltv.com/recipes/matts-lemon-blueberry-muffins-recipe/index.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path));
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Matt's Lemon Blueberry Muffins", $recipe->title);

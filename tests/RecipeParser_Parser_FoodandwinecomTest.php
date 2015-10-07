@@ -8,7 +8,8 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/foodandwine_com_carrot_sheet_cake_with_cream_cheese_curl.html";
         $url = "http://www.foodandwine.com/recipes/carrot-sheet-cake-with-cream-cheese-frosting";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Carrot Sheet Cake with Cream Cheese Frosting', $recipe->title);
@@ -38,7 +39,8 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/foodandwine_com_chicken_wild_mushroom_and_roasted_garlic_curl.html";
         $url = "http://www.foodandwine.com/recipes/chicken-wild-mushroom-and-roasted-garlic-saute";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chicken, Wild Mushroom and Roasted-Garlic Sauté', $recipe->title);
@@ -65,7 +67,8 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/foodandwine_com_hanger_steak_with_shallots_and_mushrooms_curl.html";
         $url = "http://www.foodandwine.com/recipes/hanger-steak-with-shallots-and-mushrooms";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("", $recipe->photo_url);  // Don't clip F&W thumbnail when photo is missing.
@@ -75,7 +78,8 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_curl.html";
         $url = "http://www.foodandwine.com/recipes/cocoa-carrot-cake-with-cocoa-crumble";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Cocoa-Carrot Cake with Cocoa Crumble', $recipe->title);

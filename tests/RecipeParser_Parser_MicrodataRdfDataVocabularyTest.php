@@ -8,7 +8,8 @@ class RecipeParser_Parser_MicrodataRdfDataVocabularyTest extends PHPUnit_Framewo
         $path = "data/rdf_datavocabulary_spec.html";
         $url = "http://rdf.data-vocabulary.example.com/recipes/spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Grandma's Holiday Apple Pie", $recipe->title);
@@ -41,7 +42,8 @@ class RecipeParser_Parser_MicrodataRdfDataVocabularyTest extends PHPUnit_Framewo
         $path = "data/rdf_datavocabulary_spec_property_instruction.html";
         $url = "http://rdf.data-vocabulary.example.com/recipes/spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));
@@ -55,7 +57,8 @@ class RecipeParser_Parser_MicrodataRdfDataVocabularyTest extends PHPUnit_Framewo
         $path = "data/rdf_datavocabulary_spec_sub_nodes.html";
         $url = "http://rdf.data-vocabulary.example.com/recipes/spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));

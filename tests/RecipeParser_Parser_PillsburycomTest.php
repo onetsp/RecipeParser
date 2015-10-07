@@ -5,10 +5,11 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
 
     public function test_banana_crumb_cake() {
-        $path_orig = "data/pillsbury_com_banana_crumb_cake_from_pillsbury_com_curl.html";
+        $path = "data/pillsbury_com_banana_crumb_cake_from_pillsbury_com_curl.html";
         $url = "http://www.pillsbury.com/recipes/banana-crumb-cake/0ddbc221-0c55-47ea-aaab-7439b4aac4a6/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Banana Crumb Cake', $recipe->title);
@@ -35,10 +36,11 @@ class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_cookie_pizza() {
-        $path_orig = "data/pillsbury_com_rocky_road_cookie_pizza_cookie_dough_curl.html";
+        $path = "data/pillsbury_com_rocky_road_cookie_pizza_cookie_dough_curl.html";
         $url = "http://www.pillsbury.com/recipes/rocky-road-cookie-pizza-cookie-dough-tub/8e79226f-937e-49c3-84a8-5bd55fa94d00/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Rocky Road Cookie Pizza (cookie dough tub)', $recipe->title);
@@ -63,10 +65,11 @@ class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_white_wedding_cake() {
-        $path_orig = "data/pillsbury_com_white_wedding_cake_with_raspberry_filling_curl.html";
+        $path = "data/pillsbury_com_white_wedding_cake_with_raspberry_filling_curl.html";
         $url = "http://www.pillsbury.com/recipes/white-wedding-cake-with-raspberry-filling/552ae7a5-c451-43fa-9ddc-12b24dbce825/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('White Wedding Cake with Raspberry Filling', $recipe->title);

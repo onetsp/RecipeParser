@@ -2,13 +2,8 @@
 
 class RecipeParser_Parser_Microformat {
 
-    static public function parse($html, $url) {
+    static public function parse(DOMDocument $doc, $url) {
         $recipe = new RecipeParser_Recipe();
-
-        libxml_use_internal_errors(true);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc = new DOMDocument();
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
         $hrecipe = null;
