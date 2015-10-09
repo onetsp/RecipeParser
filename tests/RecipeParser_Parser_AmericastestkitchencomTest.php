@@ -8,7 +8,8 @@ class RecipeParser_Parser_AmericastestkitchencomTest extends PHPUnit_Framework_T
         $path = "data/americastestkitchen_com_thick_cut_sweet_potato_fries_america_s_test_kitchen_clipped.html";
         $url = "http://www.americastestkitchen.com/recipes/7775-thick-cut-sweet-potato-fries";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertGreaterThan(5, strlen($recipe->title));

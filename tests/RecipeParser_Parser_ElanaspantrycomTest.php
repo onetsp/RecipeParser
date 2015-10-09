@@ -9,7 +9,8 @@ class RecipeParser_Parser_Elanaspantrycom_Test extends PHPUnit_Framework_TestCas
         $path = "data/elanaspantry_com_cranberry_coconut_power_bars_paleo_power_bars_curl.html";
         $url  = "http://www.elanaspantry.com/cranberry-coconut-power-bars/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Paleo Power Bars', $recipe->title);
@@ -33,7 +34,8 @@ class RecipeParser_Parser_Elanaspantrycom_Test extends PHPUnit_Framework_TestCas
         $path = "data/elanaspantry_com_gluten_free_and_nut_free_coconut_cupcakes_curl.html";
         $url  = "http://www.elanaspantry.com/coconut-cupcakes-key-lime-icing/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Coconut Cupcakes with Key Lime Icing', $recipe->title);
@@ -60,7 +62,8 @@ class RecipeParser_Parser_Elanaspantrycom_Test extends PHPUnit_Framework_TestCas
         $path = "data/elanaspantry_com_pumpkin_cranberry_upside_down_cake_gluten_free_dessert_curl.html";
         $url  = "http://www.elanaspantry.com/pumpkin-cranberry-upside-down-cake/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Pumpkin Cranberry Upside-Down Cake', $recipe->title);
@@ -84,7 +87,8 @@ class RecipeParser_Parser_Elanaspantrycom_Test extends PHPUnit_Framework_TestCas
         $path = "data/elanaspantry_com_paleo_samoas_gluten_free_girl_scout_samoa_cookies_curl.html";
         $url  = "http://www.elanaspantry.com/paleo-samoas/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Paleo Samoas', $recipe->title);

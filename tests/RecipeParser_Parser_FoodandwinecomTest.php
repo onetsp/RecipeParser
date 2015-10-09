@@ -4,7 +4,10 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
     public function test_carrot_sheet_cake() {
         $path = "data/foodandwine_com_carrot_sheet_cake_with_cream_cheese_curl.html";
         $url = "http://www.foodandwine.com/recipes/carrot-sheet-cake-with-cream-cheese-frosting";
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
+
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
         
         $this->assertEquals('Carrot Sheet Cake with Cream Cheese Frosting', $recipe->title);
@@ -27,7 +30,10 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
     public function test_cocoa_carrot_cake() {
         $path = "data/foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_curl.html";
         $url = "http://www.foodandwine.com/recipes/cocoa-carrot-cake-with-cocoa-crumble";
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
+
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
         
         $this->assertEquals('Cocoa-Carrot Cake with Cocoa Crumble', $recipe->title);
@@ -46,7 +52,10 @@ class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase 
     public function test_kale_salad() {
         $path = "data/foodandwine_com_kale_salad_with_root_vegetables_and_curl.html";
         $url = "http://www.foodandwine.com/recipes/kale-salad-with-root-vegetables-and-apple";
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
+
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
         
         $this->assertEquals('Kale Salad with Root Vegetables and Apple', $recipe->title);

@@ -8,7 +8,8 @@ class RecipeParser_Parser_Foodnetworkcouk_Test extends PHPUnit_Framework_TestCas
         $path = "data/foodnetwork_co_uk_herb_marinated_pork_fillet_by_ina_curl.html";
         $url  = "http://www.foodnetwork.co.uk/recipes/herb-marinated-pork-tenderloins.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Herb-marinated Pork Fillet', $recipe->title);
@@ -34,7 +35,8 @@ class RecipeParser_Parser_Foodnetworkcouk_Test extends PHPUnit_Framework_TestCas
         $path = "data/foodnetwork_co_uk_jonathans_pepperpot_by_jonathan_phang_food_curl.html";
         $url  = "http://www.foodnetwork.co.uk/recipes/jonathans-pepperpot.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Jonathan\'s Pepperpot', $recipe->title);
@@ -60,7 +62,8 @@ class RecipeParser_Parser_Foodnetworkcouk_Test extends PHPUnit_Framework_TestCas
         $path = "data/foodnetwork_co_uk_lemon_yoghurt_cake_by_ina_garten_curl.html";
         $url  = "http://www.foodnetwork.co.uk/recipes/lemon-yoghurt-cake.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Lemon Yoghurt Cake', $recipe->title);

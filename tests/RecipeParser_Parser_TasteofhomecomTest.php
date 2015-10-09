@@ -8,7 +8,8 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/tasteofhome_com_almond_cheddar_appetizers_curl.html";
         $url = "http://www.tasteofhome.com/Recipes/Almond-Cheddar-Appetizers";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Almond Cheddar Appetizers', $recipe->title);
@@ -33,7 +34,8 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/tasteofhome_com_artichoke_chicken_curl.html";
         $url = "http://www.tasteofhome.com/Recipes/Artichoke-Chicken";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Artichoke Chicken', $recipe->title);
@@ -52,7 +54,8 @@ class RecipeParser_Parser_TasteofhomecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/tasteofhome_com_lemon_berry_shortcake_curl.html";
         $url = "http://www.tasteofhome.com/Recipes/Lemon-Berry-Shortcake";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Lemon-Berry Shortcake', $recipe->title);

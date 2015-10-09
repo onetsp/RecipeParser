@@ -2,15 +2,11 @@
 
 class RecipeParser_Parser_Eatingwellcom {
 
-    static public function parse($html, $url) {
+    static public function parse(DOMDocument $doc, $url) {
         $recipe = new RecipeParser_Recipe();
-
-        // Turn off libxml errors to prevent mismatched tag warnings.
-        libxml_use_internal_errors(true);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc = new DOMDocument();
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
+
+        // OVERRIDES FOR EATINGWELL.COM
 
         // Title
         $nodes = $xpath->query('//h1[@itemprop="name"]');

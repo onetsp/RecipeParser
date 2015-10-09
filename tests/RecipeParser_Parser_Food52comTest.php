@@ -8,7 +8,8 @@ class RecipeParser_Parser_Food52comTest extends PHPUnit_Framework_TestCase {
         $path = "data/food52_com_banana_cake_with_penuche_frosting_on_curl.html";
         $url  = "http://food52.com/recipes/20123-banana-cake-with-penuche-frosting";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Banana Cake with Penuche Frosting', $recipe->title);
@@ -36,7 +37,8 @@ class RecipeParser_Parser_Food52comTest extends PHPUnit_Framework_TestCase {
         $path = "data/food52_com_brown_butter_apple_tart_on_food_curl.html";
         $url  = "http://food52.com/recipes/33370-brown-butter-apple-tart";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Brown Butter Apple Tart', $recipe->title);
@@ -63,7 +65,8 @@ class RecipeParser_Parser_Food52comTest extends PHPUnit_Framework_TestCase {
         $path = "data/food52_com_challah_bread_pudding_with_raspberries_on_curl.html";
         $url  = "http://food52.com/recipes/33952-challah-bread-pudding-with-raspberries";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Challah Bread Pudding with Raspberries', $recipe->title);

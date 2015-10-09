@@ -19,7 +19,8 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/bravotv_com_cornbread_topped_chilli_con_carne_finder_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/cornbread-topped-chilli-con-carne";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Cornbread-Topped Chilli Con Carne', $recipe->title);
@@ -44,7 +45,8 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/bravotv_com_ground_lamb_scotch_egg_sweet_potato_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/ground-lamb-scotch-egg-sweet-potato-fries-and-tomato-tartnbsp";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Ground Lamb Scotch Egg, Sweet Potato Fries and Tomato Tart', $recipe->title);
@@ -72,7 +74,8 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/bravotv_com_roast_grouper_with_gnocchi_peas_bacon_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/roast-grouper-with-gnocchi-peas-bacon-and-parsnip";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Roast Grouper with Gnocchi, Peas, Bacon, and Parsnip', $recipe->title);
@@ -93,7 +96,8 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/bravotv_com_roasted_pork_chop_with_rosemary_thyme_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/roasted-pork-chop-with-rosemary-thyme-amp-garlic";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Roasted Pork Chop with Rosemary, Thyme & Garlic', $recipe->title);
@@ -113,7 +117,8 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/bravotv_com_seared_colorado_sirloin_chanterelle_and_ruby_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/seared-colorado-sirloin-chanterelle-and-ruby-chard";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Seared Colorado Sirloin, Chanterelle and Ruby Chard', $recipe->title);
@@ -132,7 +137,8 @@ class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/bravotv_com_sous_vide_chicken_mushrooms_yams_lobster_curl.html";
         $url = "http://www.bravotv.com/foodies/recipes/sous-vide-chicken-mushrooms-yams-lobster-sauce-amp-lobster-hash";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         // Only testing for instruction and ingredient sections

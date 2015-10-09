@@ -7,10 +7,11 @@ A PHP library for parsing recipe data from HTML.
 Usage
 ------------------------------
 
-Put this library somewhere you can load it from your PHP code. Call `RecipeParser::parse()`, passing in the contents of an HTML file that includes a recipe and, optionally, the URL of the original page, which helps to identify specific parsers to use. The return value is a PHP object containing the recipe's data.
+Put this library somewhere you can load it from your PHP code. Call `RecipeParser::parse()`, passing in the DomDocument object representing the contents of an HTML file that includes a recipe and, optionally, the URL of the original page, which helps to identify specific parsers to use. The return value is a PHP object containing the recipe's data.
 
 ```
-$recipe = RecipeParser::parse($html, $url);
+$doc = RecipeParser_Text::getDomDocument($html);
+$recipe = RecipeParser::parse($doc, $url);
 print_r($recipe);
 ```
 Output:
@@ -126,8 +127,8 @@ Many of the customized parsers will rely heavily on the generalized parsers as s
 ```
 class RecipeParser_Parser_Bhgcom {
 
-    public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
+    public function parse(DomDocument $doc, $url) {
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($doc, $url);
 
         ...snip...
 

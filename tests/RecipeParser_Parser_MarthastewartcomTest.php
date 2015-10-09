@@ -8,7 +8,8 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
         $path = "data/marthastewart_com_emerils_pork_and_chorizo_burgers_with_curl.html";
         $url = "http://www.marthastewart.com/284367/emerils-pork-and-chorizo-burgers-with-gr?czone=food%2Fbest-grilling-recipes%2Fgrilling-recipes";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(15, $recipe->time['prep']);
@@ -28,7 +29,8 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
         $path = "data/marthastewart_com_sauteed_cajun_shrimp_martha_stewart_curl.html";
         $url = "http://www.marthastewart.com/255277/sauteed-cajun-shrimp?czone=food%2Fdinner-tonight-center%2Fdinner-tonight-main-courses";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(20, $recipe->time['prep']);
@@ -46,7 +48,8 @@ class RecipeParser_Parser_MarthastewartcomTest extends PHPUnit_Framework_TestCas
         $path = "data/marthastewart_com_strawberry_tart_martha_stewart_curl.html";
         $url = "http://www.marthastewart.com/340929/strawberry-tart?czone=food%2Fproduce-guide-cnt%2Fspring-produce-recipes";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(30, $recipe->time['prep']);

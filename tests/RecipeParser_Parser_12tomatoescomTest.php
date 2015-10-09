@@ -9,7 +9,8 @@ class RecipeParser_Parser_12tomatoescomTest extends PHPUnit_Framework_TestCase {
         $path = "data/12tomatoes_com_filling_and_fruity_treat_cream_cheese_curl.html";
         $url  = "http://12tomatoes.com/2015/04/filling-and-fruity-treat-cream-cheese-cherry-coffee-cake.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Cream Cheese Cherry Cake', $recipe->title);
@@ -38,7 +39,8 @@ class RecipeParser_Parser_12tomatoescomTest extends PHPUnit_Framework_TestCase {
         $path = "data/12tomatoes_com_healthy_sugar_free_cookies_no_bake_curl.html";
         $url  = "http://12tomatoes.com/2015/04/healthy-sugarfree-cookies-nobake-chocolate-oat-cookies.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Sugar-Free Chocolate Oat Cookies', $recipe->title);
@@ -67,7 +69,8 @@ class RecipeParser_Parser_12tomatoescomTest extends PHPUnit_Framework_TestCase {
         $path = "data/12tomatoes_com_light_and_sweet_dessert_creamy_raspberry_curl.html";
         $url  = "http://12tomatoes.com/2015/04/light-and-sweet-dessert-creamy-raspberry-cheesecake-bars.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Raspberry Cheesecake Bars', $recipe->title);

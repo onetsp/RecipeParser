@@ -8,7 +8,8 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
         $path = "data/simplyrecipes_com_apple_cranberry_pie_simply_s_curl.html";
         $url = "http://simplyrecipes.com/recipes/apple_cranberry_pie/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Apple Cranberry Pie', $recipe->title);
@@ -40,7 +41,8 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
         $path = "data/simplyrecipes_com_chicken_curry_salad_simply_s_curl.html";
         $url = "http://simplyrecipes.com/recipes/chicken_curry_salad/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chicken Curry Salad', $recipe->title);
@@ -58,7 +60,8 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
         $path = "data/simplyrecipes_com_chile_relleno_casserole_simply_s_curl.html";
         $url = "http://simplyrecipes.com/recipes/chile_relleno_casserole/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chile Relleno Casserole', $recipe->title);
@@ -81,7 +84,8 @@ class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCas
         $path = "data/simplyrecipes_com_grilled_tri_tip_steak_with_bell_pepper_curl.html";
         $url = "http://simplyrecipes.com/recipes/grilled_tri-tip_steak_with_bell_pepper_salsa/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Grilled Tri-Tip Steak with Bell Pepper Salsa', $recipe->title);

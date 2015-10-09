@@ -8,7 +8,8 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/bonappetit_com_beet_and_fennel_soup_with_kefir_curl.html";
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2011/01/beet_and_fennel_soup_with_kefir";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Beet and Fennel Soup with Kefir", $recipe->title);
@@ -28,7 +29,8 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/bonappetit_com_chai_spiced_hot_chocolate_bon_app_curl.html";
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2010/02/chai_spiced_hot_chocolate";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Chai-Spiced Hot Chocolate", $recipe->title);
@@ -44,7 +46,8 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/bonappetit_com_flourless_chocolate_cake_with_caramel_sauce_curl.html";
         $url = "http://www.bonappetit.com/recipes/2002/10/flourless_chocolate_cake_with_caramel_sauce";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Flourless Chocolate Cake with Caramel Sauce", $recipe->title);
@@ -60,7 +63,8 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/bonappetit_com_special_sunday_roast_chicken_bon_app_curl.html";
         $url = "http://www.bonappetit.com/recipes/2009/02/special_sunday_roast_chicken";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Special Sunday Roast Chicken", $recipe->title);
@@ -74,7 +78,8 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/bonappetit_com_yogurt_with_granola_tropical_fruit_and_curl.html";
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2008/07/yogurt_with_granola";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         // Should not have "Hungry for more" phrase in instructions
@@ -85,7 +90,8 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
         $path = "data/bonappetit_com_harvest_pear_crisp_with_candied_ginger_curl.html";
         $url = "http://www.bonappetit.com/recipes/2009/11/harvest_pear_crisp_with_candied_ginger";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         // Watch for &ndash; in serving size

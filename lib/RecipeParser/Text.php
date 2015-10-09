@@ -64,6 +64,20 @@ ONETSP_TIME: $time
     }
 
     /**
+     * Strip HTML conditional comments. E.g. Remove <!--[if lt IE 9]> <![endif]-->
+     * and their contents.
+     *
+     * @param string HTML
+     * @return string Modified HTML
+     */
+    static public function stripConditionalComments($html) {
+        $pattern = '/<!--\s?\[if.*endif\]-->/is';
+        $replacement = '<!-- STRIPPED CONDITIONAL COMMENT -->';
+        $html = preg_replace($pattern, $replacement, $html);
+        return $html;
+    }
+
+    /**
      * Cleanup for clipped HTML prior to parsing with RecipeParser.
      *
      * @param string HTML
@@ -79,6 +93,7 @@ ONETSP_TIME: $time
         // Strip out script tags so they don't accidentally get executed if we ever display
         // clipped content to end-users.
         $html = RecipeParser_Text::stripTagAndContents('script', $html);
+        $html = RecipeParser_Text::stripConditionalComments($html);
 
         return $html;
     }
@@ -558,6 +573,18 @@ ONETSP_TIME: $time
         $title = implode("_", $parts);
 
         return $title;
+    }
+
+    public static function getDomDocument($html) {
+        libxml_use_internal_errors(true);
+
+        $doc = new DOMDocument();
+        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
+        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+
+        libxml_use_internal_errors(false);
+
+        return $doc;
     }
 
 }

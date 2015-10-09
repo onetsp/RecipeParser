@@ -5,10 +5,11 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_BhgcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_eggnog_cheesecake() {
-        $path_orig = "data/bhg_com_bhgs_newest_eggnog_cheesecake_with_candied_curl.html";
+        $path = "data/bhg_com_bhgs_newest_eggnog_cheesecake_with_candied_curl.html";
         $url = "http://www.bhg.com/recipe/cheesecake/eggnog-cheesecake-with-candied-kumquats/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Eggnog Cheesecake with Candied Kumquats', $recipe->title);
@@ -35,10 +36,11 @@ class RecipeParser_Parser_BhgcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_tomatillo_chicken_soup() {
-        $path_orig = "data/bhg_com_bhgs_newest_tomatillo_chicken_soup_curl.html";
+        $path = "data/bhg_com_bhgs_newest_tomatillo_chicken_soup_curl.html";
         $url = "http://www.bhg.com/recipe/chicken/tomatillo-chicken-soup/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Tomatillo Chicken Soup', $recipe->title);

@@ -2,15 +2,12 @@
 
 class RecipeParser_Parser_Foodcom {
 
-    static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
-
-        // Turn off libxml errors to prevent mismatched tag warnings.
-        libxml_use_internal_errors(true);
-        $doc = new DOMDocument();
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+    static public function parse(DOMDocument $doc, $url) {
+        // Get all of the standard microdata stuff we can find.
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($doc, $url);
         $xpath = new DOMXPath($doc);
+
+        // OVERRIDES FOR FOOD.COM
 
         // Photo -- skip logo if it was used in place of photo
         if (strpos($recipe->photo_url, "FDC_Logo_vertical.png") !== false

@@ -77,16 +77,16 @@ class RecipeParser {
         }
     }
 
-
     /**
      * Parse recipe data from an HTML document, returning a data structure that
      * contains structured data about the recipe.
      *
-     * @param string HTML
-     * @param strin URL
+     * @param DomDocument $doc
+     * @param string $url
      * @return object RecipeParser_Recipe
      */
-    static public function parse($html, $url=null) {
+    static public function parse(DOMDocument $doc, $url=null) {
+        $html = $doc->saveHTML();
         $parser = null;
 
         // Search for a registered parser that matches the URL.
@@ -107,7 +107,7 @@ class RecipeParser {
 
         // Initialize the right parser and run it.
         $classname = 'RecipeParser_Parser_' . $parser;
-        $recipe = $classname::parse($html, $url);
+        $recipe = $classname::parse($doc, $url);
         $recipe->url = $url;
         
         return $recipe;

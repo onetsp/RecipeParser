@@ -41,7 +41,9 @@ foreach ($argv as $file) {
         \$path = "$file_path";
         \$url  = "$url";
 
-        \$recipe = RecipeParser::parse(file_get_contents(\$path), \$url);
+        \$doc = RecipeParser_Text::getDomDocument(file_get_contents(\$path));
+        \$recipe = RecipeParser::parse(\$doc, \$url);
+
         if (isset(\$_SERVER['VERBOSE'])) print_r(\$recipe);
 
         \$this->assertEquals('', \$recipe->title);

@@ -2,18 +2,12 @@
 
 class RecipeParser_Parser_Epicuriouscom {
 
-    static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
-
-        // Turn off libxml errors to prevent mismatched tag warnings.
-        libxml_use_internal_errors(true);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc = new DOMDocument();
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+    static public function parse(DOMDocument $doc, $url) {
+        // Get all of the standard microdata stuff we can find.
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($doc, $url);
         $xpath = new DOMXPath($doc);
 
-
-        // OVERRIDES for epicurious
+        // OVERRIDES FOR EPICURIOUS.COM
 
         // Ingredients
         $recipe->resetIngredients();

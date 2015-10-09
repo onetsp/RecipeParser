@@ -2,15 +2,12 @@
 
 class RecipeParser_Parser_101cookbookscom {
 
-    static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_Microformat::parse($html, $url);
-
-        // Turn off libxml errors to prevent mismatched tag warnings.
-        libxml_use_internal_errors(true);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc = new DOMDocument();
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+    static public function parse(DOMDocument $doc, $url) {
+        // Get all of the standard microformat stuff we can find.
+        $recipe = RecipeParser_Parser_Microformat::parse($doc, $url);
         $xpath = new DOMXPath($doc);
+
+        // OVERRIDES FOR 101COOKBOOKS.COM
 
         // Description
         $description = "";

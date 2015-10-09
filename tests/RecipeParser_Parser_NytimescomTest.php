@@ -12,7 +12,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_blackberry_jam_cake_with_caramel_icing_curl.html";
         $url = "http://www.nytimes.com/recipes/7801/Blackberry-Jam-Cake-With-Caramel-Icing.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Blackberry Jam Cake With Caramel Icing', $recipe->title);
@@ -37,7 +38,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_fudge_frosting_the_new_york_times_curl.html";
         $url = "http://www.nytimes.com/recipes/9953/Fudge-Frosting.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Fudge Frosting', $recipe->title);
@@ -62,7 +64,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_lemon_cake_with_coconut_icing_the_curl.html";
         $url = "http://www.nytimes.com/recipes/7800/Lemon-Cake-With-Coconut-Icing.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Lemon Cake With Coconut Icing', $recipe->title);
@@ -89,7 +92,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_service_cake_with_victory_icing_the_curl.html";
         $url = "http://www.nytimes.com/recipes/7357/Service-Cake-With-Victory-Icing.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Service Cake With Victory Icing', $recipe->title);
@@ -119,7 +123,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_blood_orange_olive_oil_cake_nytimes_curl.html";
         $url = "http://www.nytimes.com/2009/03/18/dining/181arex.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(0, $recipe->time['prep']);
@@ -143,7 +148,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_braised_sauerkraut_with_lots_of_pork_curl.html";
         $url = "http://www.nytimes.com/2011/02/16/dining/16apperex.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(0, $recipe->time['prep']);
@@ -164,7 +170,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_clay_pot_pork_nytimes_com_curl.html";
         $url = "http://www.nytimes.com/2011/03/30/dining/30braiserex1.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(0, $recipe->time['prep']);
@@ -185,7 +192,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_lentils_and_rice_with_or_without_curl.html";
         $url = "http://www.nytimes.com/2011/01/02/weekinreview/02recipes-2.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(0, $recipe->time['prep']);
@@ -208,7 +216,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_rhubarb_upside_down_cake_nytimes_com_curl.html";
         $url = "http://www.nytimes.com/2011/05/25/dining/rhubarb-upside-down-cake-recipe.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(0, $recipe->time['prep']);
@@ -233,7 +242,8 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $path = "data/nytimes_com_yellow_layer_cake_with_chocolate_frosting_curl.html";
         $url = "http://www.nytimes.com/2008/05/28/dining/281frex.html?ref=dining";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(0, $recipe->time['prep']);

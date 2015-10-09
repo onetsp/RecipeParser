@@ -8,7 +8,8 @@ class RecipeParser_Parser_BbccoukTest extends PHPUnit_Framework_TestCase {
         $path = "data/bbc_co_uk_bbc_food_s_baked_pappardelle_with_curl.html";
         $url = "http://www.bbc.co.uk/food/recipes/baked_pappardelle_with_21046";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Baked pappardelle with pancetta and porcini', $recipe->title);
@@ -36,7 +37,8 @@ class RecipeParser_Parser_BbccoukTest extends PHPUnit_Framework_TestCase {
         $path = "data/bbc_co_uk_bbc_food_s_cherry_chocolate_pavlova_curl.html";
         $url = "http://www.bbc.co.uk/food/recipes/cherry_chocolate_pavlova_94685";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Cherry chocolate pavlova', $recipe->title);
@@ -68,7 +70,8 @@ class RecipeParser_Parser_BbccoukTest extends PHPUnit_Framework_TestCase {
         $path = "data/bbc_co_uk_bbc_food_s_saag_aloo_with_curl.html";
         $url = "http://www.bbc.co.uk/food/recipes/saag_aloo_with_roasted_95304";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Saag aloo with roasted gobi curry', $recipe->title);

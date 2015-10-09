@@ -8,7 +8,8 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $path = "data/allrecipes_com_pumpkin_apple_streusel_muffins_all_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Apple-Pumpkin-Muffins/Detail.aspx";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -30,7 +31,8 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $path = "data/allrecipes_com_spiced_pumpkin_seeds_all_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Spiced-Pumpkin-Seeds/Detail.aspx";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -48,7 +50,8 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $path = "data/allrecipes_com_carrot_cake_viii_all_com_curl.html";
         $url = "http://allrecipes.com/Recipe/Carrot-Cake-VIII/Detail.aspx";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -63,7 +66,8 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $path = "data/allrecipes_com_potato_bacon_cheese_frittata_customized_by_curl.html";
         $url = "http://allrecipes.com/customrecipe/62636838/potato-bacon-cheese-frittata/detail.aspx";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -80,7 +84,8 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $path = "data/m_allrecipes_com_best_buckwheat_pancakes_all_com_curl.html";
         $url = "http://m.allrecipes.com/recipe/14096/best-buckwheat-pancakes/?internalSource=staff%20pick&referringContentType=home%20page&referringPosition=8";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -96,7 +101,8 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $path = "data/m_allrecipes_com_chef_johns_chicken_teriyaki_all_com_curl.html";
         $url = "http://m.allrecipes.com/recipe/237927/chef-johns-chicken-teriyaki/?internalSource=staff%20pick&referringContentType=home%20page";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -113,7 +119,8 @@ class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
         $path = "data/m_allrecipes_com_tiramisu_layer_cake_all_com_curl.html";
         $url = "http://m.allrecipes.com/recipe/25639/tiramisu-layer-cake/";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
