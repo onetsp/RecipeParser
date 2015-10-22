@@ -73,7 +73,7 @@ class RecipeParser_Parser_MicrodataSchema {
             }
 
             // Ingredients 
-            $nodes = $xpath->query('//*[@itemprop="ingredients"]');
+            $nodes = $xpath->query('.//*[@itemprop="ingredients"]', $microdata);
             foreach ($nodes as $node) {
                 $value = $node->nodeValue;
                 $value = RecipeParser_Text::formatAsOneLine($value);
@@ -98,7 +98,7 @@ class RecipeParser_Parser_MicrodataSchema {
 
             // Look for markup that uses <li> tags for each instruction.
             if (!$found) {
-                $nodes = $xpath->query('//*[@itemprop="recipeInstructions"]//li');
+                $nodes = $xpath->query('.//*[@itemprop="recipeInstructions"]//li', $microdata);
                 if ($nodes->length) {
                     RecipeParser_Text::parseInstructionsFromNodes($nodes, $recipe);
                     $found = true;
@@ -107,7 +107,7 @@ class RecipeParser_Parser_MicrodataSchema {
 
             // Look for instructions as direct descendents of "recipeInstructions".
             if (!$found) {
-                $nodes = $xpath->query('//*[@itemprop="recipeInstructions"]/*');
+                $nodes = $xpath->query('.//*[@itemprop="recipeInstructions"]/*', $microdata);
                 if ($nodes->length) {
                     RecipeParser_Text::parseInstructionsFromNodes($nodes, $recipe);
                     $found = true;
@@ -118,7 +118,7 @@ class RecipeParser_Parser_MicrodataSchema {
 
             // Some sites will use an "instruction" class for each line.
             if (!$found) {
-                $nodes = $xpath->query('.//*[@itemprop="recipeInstructions"]//*[contains(concat(" ", normalize-space(@class), " "), " instruction ")]');
+                $nodes = $xpath->query('.//*[@itemprop="recipeInstructions"]//*[contains(concat(" ", normalize-space(@class), " "), " instruction ")]', $microdata);
                 if ($nodes->length) {
                     RecipeParser_Text::parseInstructionsFromNodes($nodes, $recipe);
                     $found = true;
@@ -127,7 +127,7 @@ class RecipeParser_Parser_MicrodataSchema {
 
             // Either multiple recipeInstructions nodes, or one node with a blob of text.
             if (!$found) {
-                $nodes = $xpath->query('.//*[@itemprop="recipeInstructions"]');
+                $nodes = $xpath->query('.//*[@itemprop="recipeInstructions"]', $microdata);
                 if ($nodes->length > 1) {
                     // Multiple nodes
                     RecipeParser_Text::parseInstructionsFromNodes($nodes, $recipe);
