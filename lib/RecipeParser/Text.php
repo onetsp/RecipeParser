@@ -71,7 +71,7 @@ ONETSP_TIME: $time
      * @return string Modified HTML
      */
     static public function stripConditionalComments($html) {
-        $pattern = '/<!--\s?\[if.*endif\]-->/is';
+        $pattern = '/(?U:<!--\s?\[if.*endif\]-->)/is';
         $replacement = '<!-- STRIPPED CONDITIONAL COMMENT -->';
         $html = preg_replace($pattern, $replacement, $html);
         return $html;
