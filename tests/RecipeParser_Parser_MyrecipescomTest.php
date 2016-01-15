@@ -32,7 +32,7 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
 
     public function test_clam_chowder() {
         $path = "data/myrecipes_com_simple_clam_chowder_my_com_curl.html";
-        $url = "http://www.myrecipes.com/recipe/simple-clam-chowder-10000001696572/";
+        $url = "http://www.myrecipes.com/m/recipe/simple-clam-chowder/";
 
         $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
         $recipe = RecipeParser::parse($doc, $url);
