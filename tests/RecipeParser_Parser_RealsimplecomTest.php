@@ -8,7 +8,8 @@ class RecipeParser_Parser_RealsimplecomTest extends PHPUnit_Framework_TestCase {
         $path = "data/realsimple_com_paprika_spiced_pork_chops_with_spinach_curl.html";
         $url = "http://www.realsimple.com/food-recipes/browse-all-recipes/paprika-spiced-pork-chops-recipe-00000000029765/index.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Paprika-Spiced Pork Chops With Spinach Sauté', $recipe->title);
@@ -32,7 +33,8 @@ class RecipeParser_Parser_RealsimplecomTest extends PHPUnit_Framework_TestCase {
         $path = "data/realsimple_com_yellow_cake_with_vanilla_frosting_and_curl.html";
         $url = "http://www.realsimple.com/food-recipes/browse-all-recipes/yellow-cake-vanilla-frosting-00000000057748/index.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Yellow Cake With Vanilla Frosting and White Chocolate Chips', $recipe->title);

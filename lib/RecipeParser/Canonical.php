@@ -71,10 +71,12 @@ class RecipeParser_Canonical {
         if (strpos($url, "www.myrecipes.com/m/recipe/") !== false) {
             return str_replace("/m/recipe/", "/recipe/", $url);
         }
+
         // Myrecipes.com print views
         if (strpos($url, "www.myrecipes.com") !== false && strpos($url, "/print") !== false) {
             return preg_replace("/^(.*)\/print\/?$/", "$1", $url);
         }
+
         // Myrecipes.com quick and easy and how-to videos
         if (strpos($url, "myrecipes.com/how-to/video/") !== false || strpos($url, "myrecipes.com/quick-and-easy/") !== false) {
             $xpath = self::getXPath($html);

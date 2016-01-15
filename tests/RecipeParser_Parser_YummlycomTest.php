@@ -9,7 +9,8 @@ class RecipeParser_Parser_Yummlycom_Test extends PHPUnit_Framework_TestCase {
         $path = "data/yummly_com_egg_in_a_frame_toad_in_curl.html";
         $url  = "http://www.yummly.com/recipe/Egg-in-a-Frame-_Toad-in-a-Hole_-568587?columns=4";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Egg in a Frame (Toad in a Hole)', $recipe->title);
@@ -38,7 +39,8 @@ class RecipeParser_Parser_Yummlycom_Test extends PHPUnit_Framework_TestCase {
         $path = "data/yummly_com_maples_inn_blueberry_stuffed_french_toast_curl.html";
         $url  = "http://www.yummly.com/recipe/Maples-Inn-Blueberry-Stuffed-French-Toast-568585?columns=4";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Maples Inn Blueberry Stuffed French Toast', $recipe->title);

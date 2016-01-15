@@ -8,7 +8,8 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/food_com_halloween_eyeball_cookies_food_com_curl.html";
         $url = "http://www.food.com/recipe/halloween-eyeball-cookies-143344";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Halloween Eyeball Cookies", $recipe->title);
@@ -27,7 +28,8 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/food_com_braised_lamb_shanks_with_guinness_and_curl.html";
         $url = "http://www.food.com/recipe/braised-lamb-shanks-with-guinness-barley-222337";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Braised Lamb Shanks With Guinness & Barley", $recipe->title);
@@ -46,7 +48,8 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/food_com_carrot_cheesecake_food_com_curl.html";
         $url = "http://www.food.com/recipe/carrot-cheesecake-362026"; 
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Carrot Cheesecake", $recipe->title);

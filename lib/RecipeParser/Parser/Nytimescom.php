@@ -2,21 +2,16 @@
 
 class RecipeParser_Parser_Nytimescom {
 
-    static public function parse($html, $url) {
+    static public function parse(DOMDocument $doc, $url) {
+        $recipe = new RecipeParser_Recipe();
+        $xpath = new DOMXPath($doc);
+
+        // OVERRIDES FOR NYTIMES.COM
 
         if (strpos($url, "www.nytimes.com/recipes/") !== false) {
-
             //
             // "RECIPES" SECTION
             //
-
-            $recipe = new RecipeParser_Recipe();
-
-            libxml_use_internal_errors(true);
-            $doc = new DOMDocument();
-            $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-            $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
-            $xpath = new DOMXPath($doc);
 
             // Title
             $nodes = $xpath->query('//h1[@class="recipe-title recipeName"]');
@@ -70,18 +65,9 @@ class RecipeParser_Parser_Nytimescom {
             }
 
         } else {
-
             //
             // DINING SECTION RECIPES
             //
-
-            $recipe = new RecipeParser_Recipe();
-
-            libxml_use_internal_errors(true);
-            $doc = new DOMDocument();
-            $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-            $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
-            $xpath = new DOMXPath($doc);
 
             // Title
             $nodes = $xpath->query('//div[@id = "article"]//h1');

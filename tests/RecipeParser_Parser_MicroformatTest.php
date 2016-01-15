@@ -8,7 +8,8 @@ class RecipeParser_Parser_MicroformatSpecTest extends PHPUnit_Framework_TestCase
         $path = "data/microformat_spec.html";
         $url = "http://microformat.example.com/recipes/spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Grandma's Holiday Apple Pie", $recipe->title);
@@ -43,7 +44,8 @@ class RecipeParser_Parser_MicroformatSpecTest extends PHPUnit_Framework_TestCase
         $path = "data/microformat_spec_class_instruction.html";
         $url = "http://microformat.example.com/recipes/spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));
@@ -57,7 +59,8 @@ class RecipeParser_Parser_MicroformatSpecTest extends PHPUnit_Framework_TestCase
         $path = "data/microformat_spec_instructions_li.html";
         $url = "http://microformat.example.com/recipes/spec";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(1, count($recipe->instructions));

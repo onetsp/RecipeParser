@@ -33,9 +33,9 @@ class RecipeParser_Test extends PHPUnit_Framework_TestCase {
      * @expectedException NoMatchingParserException
      */
     function test_parser_no_matching_parser_exception() {
-        $html = "";
         $url = "http://www.example.com/";
-        $recipe = RecipeParser::parse($html, $url);
+        $doc = new DOMDocument();
+        $recipe = RecipeParser::parse($doc, $url);
     }
 
 }

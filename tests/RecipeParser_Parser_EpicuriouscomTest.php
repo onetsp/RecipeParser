@@ -8,7 +8,8 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/epicurious_com_chocolate_cake_with_caramel_milk_chocolate_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Chocolate-Cake-with-Caramel-Milk-Chocolate-Frosting-107944";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Chocolate Cake with Caramel-Milk Chocolate Frosting", $recipe->title);
@@ -36,7 +37,8 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/epicurious_com_chocolate_crunch_layer_cake_with_milk_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Chocolate-Crunch-Layer-Cake-with-Milk-Chocolate-Frosting-103151";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Chocolate Crunch Layer Cake with Milk Chocolate Frosting", $recipe->title);
@@ -58,7 +60,8 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/epicurious_com_lemon_ros_eacute_bellini_epicurious_com_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Lemon-Rose-Bellini-362450";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Lemon Rosé Bellini", $recipe->title);
@@ -73,7 +76,8 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
         $path = "data/epicurious_com_ziti_with_roasted_zucchini_epicurious_com_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Ziti-with-Roasted-Zucchini-361191";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Ziti with Roasted Zucchini", $recipe->title);

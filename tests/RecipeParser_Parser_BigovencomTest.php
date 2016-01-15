@@ -8,7 +8,8 @@ class RecipeParser_Parser_BigovencomTest extends PHPUnit_Framework_TestCase {
         $path = "data/bigoven_com_banana_bread_bigoven_curl.html";
         $url = "http://www.bigoven.com/recipe/334322/Banana-Bread";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         
 
 

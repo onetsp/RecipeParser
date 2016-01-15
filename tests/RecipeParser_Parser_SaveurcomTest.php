@@ -9,7 +9,8 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/saveur_com_mitzis_chicken_fingers_curl.html";
         $url  = "http://www.saveur.com/article/Recipes/Mitzis-Chicken-Fingers";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Mitzi\'s Chicken Fingers', $recipe->title);
@@ -39,7 +40,8 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/saveur_com_sponsored_curl.html";
         $url  = "http://www.saveur.com/article/Recipes/sponsored-Recipe-Ghirardellis-Chocolate-Chip-Bundt-Cake";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Ghirardelli\'s® Chocolate Chip Bundt Cake', $recipe->title);
@@ -68,7 +70,8 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/saveur_com_strawberry_loaf_bread_curl.html";
         $url  = "http://www.saveur.com/article/Recipes/Strawberry-Loaf-Bread";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Strawberry Bread', $recipe->title);
@@ -98,7 +101,8 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/saveur_com_strawberry_tart_curl.html";
         $url  = "http://www.saveur.com/article/Recipes/Strawberry-Tart";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Strawberry Tart', $recipe->title);
@@ -125,7 +129,8 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/saveur_com_thomas_kellers_coconut_cake_curl.html";
         $url  = "http://www.saveur.com/article/recipes/thomas-kellers-coconut-cake";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Thomas Keller\'s Coconut Cake', $recipe->title);

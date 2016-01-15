@@ -9,6 +9,7 @@ class RecipeParser {
     const DATA_VOCABULARY_SPEC     = "MicrodataDataVocabulary";
     const RDF_DATA_VOCABULARY_SPEC = "MicrodataRdfDataVocabulary";
     const MICROFORMAT_SPEC         = "Microformat";
+    const MICROFORMAT_V2_SPEC      = "MicroformatV2";
 
     /**
      * Load registered parsers from ini file.
@@ -63,30 +64,34 @@ class RecipeParser {
     static public function matchMarkupFormat(&$html) {
         if (stripos($html, "//schema.org/Recipe") !== false) {
             return self::SCHEMA_SPEC;
-        } else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
+        }
+        else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
             return self::DATA_VOCABULARY_SPEC;
-        } else if (stripos($html, "//rdf.data-vocabulary.org/") !== false
-                   && stripos($html, "typeof=\"v:Recipe\"") !== false)
-        {
+        }
+        else if (stripos($html, "//rdf.data-vocabulary.org/") !== false && stripos($html, "typeof=\"v:Recipe\"") !== false) {
             return self::RDF_DATA_VOCABULARY_SPEC;
-        } else if (stripos($html, "hrecipe") !== false
-                && strpos($html, "fn") !== false) {
+        }
+        else if (stripos($html, "hrecipe") !== false && strpos($html, "fn") !== false) {
             return self::MICROFORMAT_SPEC;
-        } else {
+        }
+        else if (stripos($html, "h-recipe") !== false && strpos($html, "p-name") !== false) {
+            return self::MICROFORMAT_V2_SPEC;
+        }
+        else {
             return null;
         }
     }
-
 
     /**
      * Parse recipe data from an HTML document, returning a data structure that
      * contains structured data about the recipe.
      *
-     * @param string HTML
-     * @param strin URL
+     * @param DomDocument $doc
+     * @param string $url
      * @return object RecipeParser_Recipe
      */
-    static public function parse($html, $url=null) {
+    static public function parse(DOMDocument $doc, $url=null) {
+        $html = $doc->saveHTML();
         $parser = null;
 
         // Search for a registered parser that matches the URL.
@@ -107,7 +112,7 @@ class RecipeParser {
 
         // Initialize the right parser and run it.
         $classname = 'RecipeParser_Parser_' . $parser;
-        $recipe = $classname::parse($html, $url);
+        $recipe = $classname::parse($doc, $url);
         $recipe->url = $url;
         
         return $recipe;

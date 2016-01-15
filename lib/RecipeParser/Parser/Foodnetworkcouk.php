@@ -2,17 +2,12 @@
 
 class RecipeParser_Parser_Foodnetworkcouk {
 
-    static public function parse($html, $url) {
+    static public function parse(DOMDocument $doc, $url) {
         // Get all of the standard microdata stuff we can find.
-        $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($html, $url);
-
-        // Turn off libxml errors to prevent mismatched tag warnings.
-        libxml_use_internal_errors(true);
-        $doc = new DOMDocument();
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+        $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($doc, $url);
         $xpath = new DOMXPath($doc);
 
+        // OVERRIDES FOR FOODNETWORKCO.UK
 
         // Ingredients
         $recipe->resetIngredients();

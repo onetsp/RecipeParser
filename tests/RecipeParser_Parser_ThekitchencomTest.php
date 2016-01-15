@@ -8,7 +8,8 @@ class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase 
         $path = "data/thekitchn_com_olive_oil_and_whiskey_carrot_cake_curl.html";
         $url  = "http://www.thekitchn.com/recipe-olive-oil-and-whisky-carrot-cake-recipes-from-the-kitchn-195594";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Olive Oil and Whisky Carrot Cake', $recipe->title);
@@ -37,7 +38,8 @@ class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase 
         $path = "data/thekitchn_com_one_pot_pasta_e_fagioli_italian_curl.html";
         $url  = "http://www.thekitchn.com/cozy-winter-recipe-onepot-past-135992";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('One-Pot Pasta e Fagioli (Italian Bean and Pasta Stew)', $recipe->title);
@@ -62,7 +64,8 @@ class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase 
         $path = "data/thekitchn_com_tart_cherry_crumble_from_the_kitchn_curl.html";
         $url  = "http://www.thekitchn.com/recipe-cherry-cobbler-recipes-from-the-kitchn-195824";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Tart Cherry Crumble', $recipe->title);

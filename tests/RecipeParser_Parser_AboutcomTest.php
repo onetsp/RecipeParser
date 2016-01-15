@@ -8,7 +8,8 @@ class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/baking_about_com_cinnamon_walnut_biscotti_curl.html";
         $url = "http://baking.about.com/od/cookies/r/cinnamonwalnutbiscotti.htm";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Cinnamon Walnut Biscotti", $recipe->title);
@@ -30,7 +31,8 @@ class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/baking_about_com_ultimate_chocolate_cake_for_ultimate_chocolate_curl.html";
         $url = "http://baking.about.com/od/valentines/r/ultimatechoccak.htm";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Ultimate Chocolate Cake", $recipe->title);
@@ -61,7 +63,8 @@ class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/frenchfood_about_com_chicken_and_sausage_cassoulet_curl.html";
         $url = "http://frenchfood.about.com/od/maindishes/r/cassoulet.htm";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Chicken and Sausage Cassoulet", $recipe->title);
@@ -80,7 +83,8 @@ class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
         $path = "data/southernfood_about_com_cinnamon_pound_cake_curl.html";
         $url = "http://southernfood.about.com/od/spicecakerecipes/r/bln255.htm";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals("Cinnamon Pound Cake", $recipe->title);

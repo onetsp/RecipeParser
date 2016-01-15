@@ -8,7 +8,8 @@ class RecipeParser_Parser_101cookbookscom_Test extends PHPUnit_Framework_TestCas
         $path = "data/101cookbooks_com_glissade_chocolate_pudding_cookbooks_curl.html";
         $url  = "http://www.101cookbooks.com/archives/glissade-chocolate-pudding-recipe.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Glissade Chocolate Pudding', $recipe->title);
@@ -36,7 +37,8 @@ class RecipeParser_Parser_101cookbookscom_Test extends PHPUnit_Framework_TestCas
         $path = "data/101cookbooks_com_lemony_olive_oil_banana_bread_cookbooks_curl.html";
         $url  = "http://www.101cookbooks.com/archives/lemony-olive-oil-banana-bread-recipe.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Lemony Olive Oil Banana Bread', $recipe->title);
@@ -69,7 +71,8 @@ class RecipeParser_Parser_101cookbookscom_Test extends PHPUnit_Framework_TestCas
         $path = "data/101cookbooks_com_roasted_squash_chile_and_mozzarella_salad_curl.html";
         $url  = "http://www.101cookbooks.com/archives/roasted-squash-chile-and-mozzarella-salad-recipe.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Roasted Squash, Chile, and Mozzarella Salad', $recipe->title);
@@ -95,7 +98,8 @@ class RecipeParser_Parser_101cookbookscom_Test extends PHPUnit_Framework_TestCas
         $path = "data/101cookbooks_com_tofu_amaranth_salad_cookbooks_curl.html";
         $url  = "http://www.101cookbooks.com/archives/tofu-amaranth-salad-recipe.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Tofu Amaranth Salad', $recipe->title);

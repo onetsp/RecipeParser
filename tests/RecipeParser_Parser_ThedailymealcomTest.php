@@ -7,7 +7,8 @@ class RecipeParser_Parser_ThedailymealcomTest extends PHPUnit_Framework_TestCase
         $path = "data/thedailymeal_com_roast_capon_the_daily_meal_curl.html";
         $url  = "http://www.thedailymeal.com/roast-capon";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Roast Capon', $recipe->title);
@@ -31,7 +32,8 @@ class RecipeParser_Parser_ThedailymealcomTest extends PHPUnit_Framework_TestCase
         $path = "data/thedailymeal_com_whiskey_the_daily_meal_curl.html";
         $url  = "http://www.thedailymeal.com/whiskey-30";
 
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Whiskey 3.0', $recipe->title);
