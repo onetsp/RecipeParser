@@ -1,6 +1,20 @@
 <?php
 
 class RecipeParser_Parser_Myrecipescom {
+    
+    static public function has_ingredients($recipe) {
+        if ($recipe->ingredients && array_key_exists("list", $recipe->ingredients[0])) {
+            return count($recipe->ingredients);
+        }
+        return false;
+    }
+    
+    static public function title_is_first_ingredient($recipe) {
+        if (self::has_ingredients($recipe)) {
+            return $recipe->title == $recipe->ingredients[0]["list"][0];
+        }
+        return false;
+    }
 
     static public function parse(DOMDocument $doc, $url) {
         // Get all of the standard microdata stuff we can find.
@@ -10,10 +24,9 @@ class RecipeParser_Parser_Myrecipescom {
         // OVERRIDES FOR MYRECIPES.COM
 
         // Title missing?
-        if (!$recipe->title) {
+        if (!$recipe->title || self::title_is_first_ingredient($recipe)) {
             $nodes = $xpath->query('//meta[@property="og:title"]');
             if ($nodes->length) {
-
                 $line = $nodes->item(0)->getAttribute("content");
                 $line = RecipeParser_Text::formatTitle($line);
                 $recipe->title = $line;
