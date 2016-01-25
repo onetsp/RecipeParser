@@ -43,6 +43,17 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(12, count($recipe->ingredients[0]['list']));
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
     }
+    
+    public function test_butternut_squash_pine_nut_risotto() {
+        $path = "data/myrecipes_com_butternut_squash_and_pine_nut_risotto_curl.html";
+        $url = "http://www.myrecipes.com/m/recipe/butternut-squash-pine-nut-risotto";
+
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals("Butternut Squash and Pine-Nut Risotto", $recipe->title);
+    }
 
     public function test_king_ranch_chicken() {
         $path = "data/myrecipes_com_king_ranch_chicken_casserole_my_com_curl.html";
@@ -56,7 +67,7 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(30, $recipe->time['prep']);
         $this->assertEquals(139, $recipe->time['cook']);
         $this->assertEquals(16, count($recipe->ingredients[0]['list']));
-        $this->assertEquals(8, count($recipe->instructions[0]['list']));
+        $this->assertEquals(9, count($recipe->instructions[0]['list']));
         $this->assertEquals("Southern Living", $recipe->credits);
     }
 
