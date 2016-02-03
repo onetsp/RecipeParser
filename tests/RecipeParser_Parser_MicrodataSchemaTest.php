@@ -29,7 +29,7 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals('http://schema.example.com/images/bananabread.jpg', 
+        $this->assertEquals('http://schema.example.com/images/bananabread.jpg',
                             $recipe->photo_url);
     }
 
@@ -163,7 +163,7 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals('http://s3.amazonaws.com/gmi-digital-library/605b6c2e-b017-4aae-8db0-14f64b203642.jpg',
+        $this->assertEquals('http://images.edge-generalmills.com/c763803d-a37c-4e65-859f-74baa1f88356.jpg',
                             $recipe->photo_url);
     }
 
@@ -186,6 +186,19 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('http://d1kg9jbrq423rq.cloudfront.net/sites/default/files/3112.jpg',
                             $recipe->photo_url);
+    }
+    
+    public function test_the_worlds_best_paleo_breaded_shrimp() {
+        $path = "data/healthstartsinthekitchen_com_the_worlds_best_paleo_breaded_shrimp_curl.html";
+        $url = "http://www.healthstartsinthekitchen.com/recipe/the-worlds-best-paleo-breaded-shrimp-made-with-tigernut-flour/";
+
+        $doc = RecipeParser_Text::getDomDocument(file_get_contents($path));
+        $recipe = RecipeParser::parse($doc, $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+        
+        $this->assertEquals(1, count($recipe->ingredients));
+        $this->assertEquals(8, count($recipe->ingredients[0]['list']));
+        $this->assertEquals('Grain-Free Breaded Shrimp {Made with TigerNut Flour}', $recipe->title);
     }
 
 }
