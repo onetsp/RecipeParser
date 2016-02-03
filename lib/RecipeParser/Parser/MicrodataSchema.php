@@ -18,15 +18,24 @@ class RecipeParser_Parser_MicrodataSchema {
             // Title
             $nodes = $xpath->query('.//*[@itemprop="name"]', $microdata);
             if ($nodes->length) {
-                $value = trim($nodes->item(0)->nodeValue);
+                if ($nodes->item(0)->hasAttribute('content')) {
+                    $line = $nodes->item(0)->getAttribute('content');
+                } else {
+                    $line = $nodes->item(0)->nodeValue;
+                }
+                $value = trim($line);
                 $recipe->title = RecipeParser_Text::formatTitle($value);
             }
 
             // Summary
             $nodes = $xpath->query('.//*[@itemprop="description"]', $microdata);
             if ($nodes->length) {
-                $value = $nodes->item(0)->nodeValue;
-                $value = RecipeParser_Text::formatAsParagraphs($value);
+                if ($nodes->item(0)->hasAttribute('content')) {
+                    $line = $nodes->item(0)->getAttribute('content');
+                } else {
+                    $line = $nodes->item(0)->nodeValue;
+                }
+                $value = RecipeParser_Text::formatAsParagraphs($line);
                 $recipe->description = $value;
             }
 
@@ -69,8 +78,12 @@ class RecipeParser_Parser_MicrodataSchema {
             // Ingredients 
             $nodes = $xpath->query('.//*[@itemprop="ingredients"]', $microdata);
             foreach ($nodes as $node) {
-                $value = $node->nodeValue;
-                $value = RecipeParser_Text::formatAsOneLine($value);
+                if ($nodes->item(0)->hasAttribute('content')) {
+                    $line = $node->getAttribute('content');
+                } else {
+                    $line = $node->nodeValue;
+                }
+                $value = RecipeParser_Text::formatAsOneLine($line);
                 if (empty($value)) {
                     continue;
                 }
