@@ -4,7 +4,7 @@ class RecipeParser_Parser_Myrecipescom {
 
     static public function parse(DOMDocument $doc, $url) {
         // Get all of the standard microdata stuff we can find.
-        $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($doc, $url);
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($doc, $url);
         $xpath = new DOMXPath($doc);
 
         // OVERRIDES FOR MYRECIPES.COM
