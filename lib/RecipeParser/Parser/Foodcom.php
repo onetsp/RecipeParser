@@ -22,6 +22,33 @@ class RecipeParser_Parser_Foodcom {
             $recipe->photo_url = str_replace("/thumbs/", "/large/", $recipe->photo_url);
         }
 
+        // Title
+        if (!$recipe->title) {
+            $node_list = $xpath->query('//h1[@class="fd-recipe-title"]');
+            if ($node_list->length) {
+                $value = RecipeParser_Text::formatTitle($node_list->item(0)->nodeValue);
+                $recipe->title = $value;
+            }
+        }
+
+        // Times
+        $searches = array('prep-time' => 'prep',
+                          'cook-time' => 'cook',
+                          'total-time' => 'total');
+        foreach ($searches as $class_name => $time_key) {
+            $nodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " ' . $class_name . ' ")]');
+
+
+            if ($nodes->length) {
+                $value = RecipeParser_Text::formatAsOneLine($nodes->item(0)->nodeValue);
+                $value = trim(preg_replace("/(COOK|PREP|READY IN)/", "", $value));
+                $value = RecipeParser_Times::toMinutes($value);
+                if ($value) {
+                    $recipe->time[$time_key] = $value;
+                }
+            }
+        }
+
         // Yield
         $yield = '';
         $nodes = $xpath->query('//*[@class="yield"]');
@@ -39,6 +66,64 @@ class RecipeParser_Parser_Foodcom {
                 $line = $nodes->item(0)->nodeValue;
                 $line = RecipeParser_Text::formatYield($line);
                 $recipe->yield = $line;
+            }
+        }
+
+        // Ingredients
+        if (!count($recipe->ingredients[0]["list"])) {
+            $node_list = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " ingredients ")]//ul/li');
+            foreach ($node_list as $node) {
+                print_r(PHP_EOL . PHP_EOL . PHP_EOL);
+                print_r($node->firstChild);
+                $line = trim(strip_tags($node->nodeValue));
+                if ($node->firstChild->tagName === 'h4') {
+                    $recipe->addIngredientsSection(ucfirst(strtolower($node->firstChild->nodeValue)));
+                } else if ($line) {
+                    $recipe->appendIngredient($line);
+                }
+            }
+        }
+
+        // Instructions
+        if (!count($recipe->instructions[0]["list"])) {
+            $nodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " directions ")]//ol/li');
+            foreach ($nodes as $node) {
+                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                if (preg_match("/^(.+):$/", $line, $m)) {
+                    $recipe->addInstructionsSection(ucfirst(strtolower($m[1])));
+                } else if ($line) {
+                    $recipe->appendInstruction($line);
+                }
+            }
+        }
+
+        $recipe->source = "Food.com";
+
+        if (!count($recipe->categories)) {
+            $nodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " related-recipes ")]//dd/a/span');
+            foreach ($nodes as $node) {
+                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                $recipe->appendCategory($line);
+            }
+        }
+
+        // Photo
+        if (!$recipe->photo_url) {
+            $nodes = $xpath->query('//li[@data-slide-position="1"]//div/div/img');
+            if ($nodes->length) {
+                $photo_url = $nodes->item(0)->getAttribute('data-src');
+                $photo_url = str_replace('-articleInline.jpg', '-popup.jpg', $photo_url);
+                $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
+            }
+        }
+
+        // Photo Backup
+        if (!$recipe->photo_url) {
+            $nodes = $xpath->query('//div[@class="slideshow_content"]//div/div/img');
+            if ($nodes->length) {
+                $photo_url = $nodes->item(0)->getAttribute('data-src');
+                $photo_url = str_replace('-articleInline.jpg', '-popup.jpg', $photo_url);
+                $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
             }
         }
 
