@@ -17,7 +17,7 @@ class RecipeParser_Parser_MicrodataDataVocabulary {
         if ($microdata) {
 
             // Title
-            $nodes = $xpath->query('.//*[@itemprop="name" and *[not(ancestor::.//*[@itemprop="ingredient"])]]', $microdata);
+            $nodes = $xpath->query('.//*[@itemprop="name" and not(ancestor::*[@itemprop="ingredient"])]', $microdata);
             if ($nodes->length) {
                 $value = $nodes->item(0)->nodeValue;
                 $value = RecipeParser_Text::formatTitle($value);
