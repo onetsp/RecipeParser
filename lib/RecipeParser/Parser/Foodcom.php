@@ -73,8 +73,6 @@ class RecipeParser_Parser_Foodcom {
         if (!count($recipe->ingredients[0]["list"])) {
             $node_list = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " ingredients ")]//ul/li');
             foreach ($node_list as $node) {
-                print_r(PHP_EOL . PHP_EOL . PHP_EOL);
-                print_r($node->firstChild);
                 $line = trim(strip_tags($node->nodeValue));
                 if ($node->firstChild->tagName === 'h4') {
                     $recipe->addIngredientsSection(ucfirst(strtolower($node->firstChild->nodeValue)));
