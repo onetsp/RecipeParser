@@ -21,10 +21,10 @@ class RecipeParser_Parser_Foodandwinecom {
 
         // Times and yield
         // <meta content="PT3H30M" itemprop="totalTime">
-        $nodes = $xpath->query('//meta[@itemprop="totalTime"]');
+        $nodes = $xpath->query('//*[@itemprop="prepTime"]');
         if ($nodes->length) {
-            if ($value = $nodes->item(0)->getAttribute('content')) {
-                $value = RecipeParser_Text::iso8601ToMinutes($value);
+            if ($value = $nodes->item(0)->textContent) {
+                $value = RecipeParser_Text::mixedTimeToMinutes($value);
                 $recipe->time['total'] = $value;
             }
         }
@@ -36,28 +36,17 @@ class RecipeParser_Parser_Foodandwinecom {
         }
 
         // Ingredients
-        $nodes = $xpath->query('//div[@id = "ingredients"]/*');
+        $nodes = $xpath->query('//*[@itemprop="ingredients"]');
         foreach ($nodes as $node) {
-
-            if ($node->nodeName == 'h2') {
-                $value = trim($node->nodeValue);
-                $value = RecipeParser_Text::formatSectionName($value);
-                if ($value != "Ingredients") {
-                    $recipe->addIngredientsSection($value);
-                }
-
-            } else if ($node->nodeName == 'ol') {
-                $subnodes = $xpath->query('./li/span', $node);
-                foreach ($subnodes as $subnode) {
-                    $value = trim($subnode->nodeValue);
-                    $recipe->appendIngredient($value);
-                }
+            $value = trim($node->nodeValue);
+            if ($value != "Ingredients") {
+                $recipe->appendIngredient($value);
             }
         }
 
 
         // Instructions
-        $nodes = $xpath->query('//div[@id = "directions"]/ol/li');
+        $nodes = $xpath->query('//li[@class = "steps-list__item"]/span');
         foreach ($nodes as $node) {
             $value = trim($node->nodeValue);
             $value = RecipeParser_Text::stripLeadingNumbers($value);
@@ -71,16 +60,20 @@ class RecipeParser_Parser_Foodandwinecom {
         }
 
         // Notes
-        $nodes = $xpath->query('//div[@id = "directions"]/div[@id = "endnotes"]');
+        $nodes = $xpath->query('//div[@class = "recipe-notes__content"]/div/p');
+        $notes = array();
         if ($nodes->length) {
-            $value = trim($nodes->item(0)->nodeValue);
-            $recipe->notes = $value;
+            foreach ($nodes as $node) {
+                $value = trim($node->nodeValue);
+                array_push($notes, $value);
+            }
+            $recipe->notes = implode(' | ', $notes);
         }
 
         // Photo
-        $nodes = $xpath->query('//img[@itemprop="image"]');
-        if ($nodes && $nodes->item(0)) {
-            $photo_url = $nodes->item(0)->getAttribute('src');
+        $nodes = $xpath->query('//img[@class = "recipe-carousel__recipe__img"]');
+        if ($nodes && $nodes->item(1)) {
+            $photo_url = $nodes->item(1)->getAttribute('src');
             if (strpos($photo_url, 'default-recipe-image.gif') === false
                 && strpos($photo_url, 'placeholder.gif') === false)
             {
