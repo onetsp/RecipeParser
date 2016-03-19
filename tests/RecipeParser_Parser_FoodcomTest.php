@@ -56,12 +56,12 @@ class RecipeParser_Parser_FoodcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(60, $recipe->time['cook']);
         $this->assertEquals(90, $recipe->time['total']);
 
-        $this->assertEquals(1, count($recipe->ingredients));
-        $this->assertEquals(15, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(1, count($recipe->instructions));
+        $this->assertEquals(8, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals(2, count($recipe->instructions));
-        $this->assertEquals(3, count($recipe->instructions[0]['list']));
-        $this->assertEquals(4, count($recipe->instructions[1]['list']));
+        $this->assertEquals(2, count($recipe->ingredients));
+        $this->assertEquals(3, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(12, count($recipe->ingredients[1]['list']));
 
         $this->assertEquals('', $recipe->photo_url);
     }
