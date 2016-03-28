@@ -7,7 +7,7 @@ class RecipeParser_Parser_MicrodataSchema {
         $xpath = new DOMXPath($doc);
 
         $microdata = null;
-        $nodes = $xpath->query('//*[contains(@itemtype, "//schema.org/Recipe") or contains(@itemtype, "//schema.org/recipe")]');
+        $nodes = $xpath->query('//*[contains(@itemtype, "schema.org/Recipe") or contains(@itemtype, "schema.org/recipe")]');
         if ($nodes->length) {
             $microdata = $nodes->item(0);
         }

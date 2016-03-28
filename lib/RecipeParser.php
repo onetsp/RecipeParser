@@ -62,7 +62,7 @@ class RecipeParser {
      * @return string Name of matching parser (or null)
      */
     static public function matchMarkupFormat(&$html) {
-        if (stripos($html, "//schema.org/Recipe") !== false) {
+        if (stripos($html, "schema.org/Recipe") !== false) {
             return self::SCHEMA_SPEC;
         }
         else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
