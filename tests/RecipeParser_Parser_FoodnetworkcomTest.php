@@ -17,8 +17,8 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(12, count($recipe->ingredients[0]['list']));
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals(
-            'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2009/12/13/0/FNM_010110-He-Made-She-Made-001_s4x3.jpg',
+        $this->assertRegExp(
+            '/FNM_010110-He-Made-She-Made-001_s4x3.jpg/',
             $recipe->photo_url);
     }
 
@@ -41,8 +41,8 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
         $this->assertEquals(2, count($recipe->instructions[1]['list']));
 
-        $this->assertEquals(
-            'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2007/3/22/0/ig0807_cake.jpg',
+        $this->assertRegExp(
+            '/ig0807_cake.jpg/',
             $recipe->photo_url);
     }
 
@@ -62,8 +62,8 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(15, count($recipe->ingredients[0]['list']));
         $this->assertEquals(5, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals(
-            'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2010/1/21/2/FNM_030110-Weekend-037_s4x3.jpg',
+        $this->assertRegExp(
+            '/FNM_030110-Weekend-037_s4x3.jpg/',
             $recipe->photo_url);
     }
 
@@ -106,7 +106,8 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(3, count($recipe->ingredients[1]['list']));
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals("http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/9/22/0/tm1a05_blue_burger.jpg",
+        $this->assertRegExp(
+            "/tm1a05_blue_burger.jpg/",
             $recipe->photo_url);
     }
 
@@ -126,7 +127,8 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals("http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2003/9/29/1/pa1a26_chocolate_cake.jpg",
+        $this->assertRegExp(
+            "/pa1a26_chocolate_cake.jpg/",
             $recipe->photo_url);
     }
 
@@ -170,7 +172,8 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(0, count($recipe->ingredients[0]['list']));
         $this->assertEquals(1, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals("http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2011/5/4/0/FNM_060111-WE-Dinners-033_s4x3.jpg",
+        $this->assertRegExp(
+            "/FNM_060111-WE-Dinners-033_s4x3.jpg/",
             $recipe->photo_url);
     }
 

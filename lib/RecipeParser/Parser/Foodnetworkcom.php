@@ -15,7 +15,8 @@ class RecipeParser_Parser_Foodnetworkcom {
 
         // Ingredients
         $recipe->resetIngredients();
-        $nodes = $xpath->query('//div[@class="col6 ingredients"]/*');
+        $nodes = $xpath->query('//div[@class="bd"]//ul');
+
         foreach ($nodes as $node) {
 
             // Extract ingredients from <ul> <li>.
@@ -93,6 +94,10 @@ class RecipeParser_Parser_Foodnetworkcom {
                     $recipe->photo_url = "";
                 }
             }
+        }
+        // Don't save default foodnetwork image.
+        if (preg_match("/FN-Facebook-DefaultOGImage-.*\.jpg/", $recipe->photo_url)) {
+            $recipe->photo_url = "";
         }
 
         return $recipe;
