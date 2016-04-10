@@ -25,7 +25,7 @@ class RecipeParser_Parser_BonappetitecomTest extends PHPUnit_Framework_TestCase 
     }
 
     public function test_chia_hot_chocolate() {
-        $path = "data/bonappetit_com_chai_spiced_hot_chocolate_bon_app_curl.html";
+        $path = "data/bonappetit_com_quick_chai_spiced_hot_chocolate_bon_curl.html";
         $url = "http://www.bonappetit.com/recipes/quick-recipes/2010/02/chai_spiced_hot_chocolate";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
