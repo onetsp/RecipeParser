@@ -34,35 +34,6 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $this->assertStringEndsWith('7-chicken_fingers_400.jpg', $recipe->photo_url);
     }
 
-    public function test_Ghirardellis_Chocolate_Chip_Bundt_Cake() {
-
-        $path = "data/saveur_com_sponsored_curl.html";
-        $url  = "http://www.saveur.com/article/Recipes/sponsored-Recipe-Ghirardellis-Chocolate-Chip-Bundt-Cake";
-
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
-        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
-
-        $this->assertEquals('Ghirardelli\'s® Chocolate Chip Bundt Cake', $recipe->title);
-        $this->assertEquals('', $recipe->credits);
-
-        $this->assertEquals(0, $recipe->time['prep']);
-        $this->assertEquals(0, $recipe->time['cook']);
-        $this->assertEquals(0, $recipe->time['total']);
-        $this->assertEquals('8-10 servings', $recipe->yield);
-
-        $this->assertEquals(1, count($recipe->ingredients));
-        $this->assertEquals('', $recipe->ingredients[0]['name']);
-        $this->assertEquals(11, count($recipe->ingredients[0]['list']));
-
-        $this->assertEquals(1, count($recipe->instructions));
-        $this->assertEquals('', $recipe->instructions[0]['name']);
-        $this->assertEquals(6, count($recipe->instructions[0]['list']));  // This is wrong, but parsing the second recipe would be tricky.
-
-        $this->assertRegExp('/^Add some chocolate to the holiday table/', $recipe->description);
-
-        $this->assertStringEndsWith('7-Ghirardelli_Bundt_Cake.jpg', $recipe->photo_url);
-    }
-
     public function test_Strawberry_Loaf_Bread() {
 
         $path = "data/saveur_com_strawberry_loaf_bread_curl.html";
