@@ -62,6 +62,17 @@ class RecipeParser_Canonical {
             return str_replace("printerfriendly", "views", $url);
         }
 
+        // Epicurious "Ingredients" features
+        if (strpos($url, "epicurious.com/ingredients/") !== false) {
+            $xpath = self::getXPath($html);
+            $nodes = $xpath->query('//*[@class="content-pane"]//a[@class="get-recipe"]');
+            if ($nodes->length) {
+                $href = $nodes->item(0)->getAttribute("href");
+                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                return $url;
+            }
+        }
+
         // Food52 print views
         if (strpos($url, "food52.com/recipes/print/") !== false) {
             return str_replace("/recipes/print/", "/recipes/", $url);
