@@ -3,7 +3,7 @@
 class RecipeParser_Parser_Saveurcom {
 
     static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($html, $url);
+        $recipe = new RecipeParser_Recipe();
         
         libxml_use_internal_errors(true);
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
@@ -11,42 +11,58 @@ class RecipeParser_Parser_Saveurcom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
-        // Yield, Ingredients, Instructions
-        $found_instructions = false;
-        $found_ingredients = false;
-        $nodes = $xpath->query('//*[@class="field field-name-body field-type-text-with-summary field-label-hidden"]//*[@class="field-item even"]');
+        // Title
+        $nodes = $xpath->query('//h1');
         if ($nodes->length) {
-            foreach ($nodes->item(0)->childNodes as $node) {
-                $str = trim($node->nodeValue);
+            $str = $nodes->item(0)->nodeValue;
+            $recipe->title = RecipeParser_Text::formatTitle($str);
+        }
 
-                // Yield
-                if (!$recipe->yield && preg_match("/(makes|yields|serves|servings)/i", $str) && preg_match("/\d/", $str)) {
-                    $recipe->yield = RecipeParser_Text::formatYield($str);
-                    continue;
-                }
+        // Yield
+        $nodes = $xpath->query('//span[@property="recipeYield"]');
+        if ($nodes->length) {
+            $str = $nodes->item(0)->nodeValue;
+            $recipe->yield = RecipeParser_Text::formatYield($str);
+        }
 
-                // Ingredients and Instructions
-                if ($str == "INGREDIENTS") {
-                    $found_ingredients = true;
-                    continue;
-                }
-                if ($str == "INSTRUCTIONS") {
-                    $found_instructions = true;
-                    continue;
-                }
-                if (!$found_ingredients) {
-                    continue;
-                } else if (!$found_instructions) {
-                    $str = RecipeParser_Text::formatAsOneLine($str);
-                    $recipe->appendIngredient($str);
-                } else {
-                    $str = RecipeParser_Text::formatAsOneLine($str);
-                    $str = RecipeParser_Text::stripLeadingNumbers($str);
-                    $recipe->appendInstruction($str);
-                }
-
+        // Image
+        $photo_url = "";
+        if (!$photo_url) {
+            // try to find open graph url
+            $nodes = $xpath->query('//meta[@property="og:image"]');
+            if ($nodes->length) {
+                $photo_url = $nodes->item(0)->getAttribute('content');
             }
         }
+        $recipe->photo_url = $photo_url;
+
+        // Ingredients
+        $nodes = $xpath->query('//*[@property="ingredients"]');
+        foreach ($nodes as $node) {
+            $str = $node->nodeValue;
+            $str = RecipeParser_Text::formatAsOneLine($str);
+            $recipe->appendIngredient($str);
+        }
+
+        // Instructions
+        $nodes = $xpath->query('//*[@property="recipeInstructions"]');
+        foreach ($nodes as $node) {
+            $str = $node->nodeValue;
+            $str = RecipeParser_Text::formatAsOneLine($str);
+            $recipe->appendInstruction($str);
+        }
+
+        // Description
+        $str = "";
+        $nodes = $xpath->query('//*[@class="field-body"]//p');
+        foreach ($nodes as $node) {
+            if ($str) {
+                $str += "\n\n";
+            }
+            $str = $node->nodeValue;
+            $str = RecipeParser_Text::formatAsOneLine($str);
+        }
+        $recipe->description = $str;
 
         return $recipe;
     }
