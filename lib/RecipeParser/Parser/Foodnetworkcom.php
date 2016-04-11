@@ -96,7 +96,7 @@ class RecipeParser_Parser_Foodnetworkcom {
             }
         }
         // Don't save default foodnetwork image.
-        if (preg_match("/FN-Facebook-DefaultOGImage-.*\.jpg/", $recipe->photo_url)) {
+        if (preg_match("/FN-Facebook-DefaultOGImage/", $recipe->photo_url)) {
             $recipe->photo_url = "";
         }
 
