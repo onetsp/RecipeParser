@@ -107,6 +107,10 @@ class RecipeParser {
 
         // If we haven't found a matching parser, bail out.
         if (!$parser) {
+            $message = '';
+            if (stripos($html, "Incapsula incident") !== false) {
+                $message = 'Programmatic access to site is blocked.'
+            }
             throw new NoMatchingParserException();
         }
 
