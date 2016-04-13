@@ -28,11 +28,14 @@ class FileUtil {
         return $html;
     }
 
-    public static function downloadRecipeWithCache($url) {
+    public static function downloadRecipeWithCache($url, $strip_script_tags=true) {
         $cache_ttl = 86400 * 3;
 
         // Target filename
         $filename = FileUtil::tempFilenameFromUrl($url);
+        if (!$strip_script_tags) {
+            $filename .= "_noscript";
+        }
 
         // Only fetch 1x per day
         if (file_exists($filename)
@@ -48,7 +51,7 @@ class FileUtil {
 
             $html = FileUtil::downloadPage($url);
             $html = RecipeParser_Text::forceUTF8($html);
-            $html = RecipeParser_Text::cleanupClippedRecipeHtml($html);
+            $html = RecipeParser_Text::cleanupClippedRecipeHtml($html, $strip_script_tags);
 
             // Append some notes to the HTML
             $comments = RecipeParser_Text::getRecipeMetadataComment($url, "curl");

@@ -67,9 +67,10 @@ ONETSP_TIME: $time
      * Cleanup for clipped HTML prior to parsing with RecipeParser.
      *
      * @param string HTML
+     * @param bool Strip <script> tags from HTML (default)
      * @return string HTML
      */
-    static public function cleanupClippedRecipeHtml($html) {
+    static public function cleanupClippedRecipeHtml($html, $strip_script_tags=true) {
         $html = preg_replace('/(\r\n|\r)/', "\n", $html);            // Normalize line breaks
         $html = str_replace('&nbsp;', ' ', $html);                   // get rid of non-breaking space (html code)
         $html = str_replace('&#160;', ' ', $html);                   // get rid of non-breaking space (numeric)
@@ -78,7 +79,9 @@ ONETSP_TIME: $time
 
         // Strip out script tags so they don't accidentally get executed if we ever display
         // clipped content to end-users.
-        $html = RecipeParser_Text::stripTagAndContents('script', $html);
+        if ($strip_script_tags) {
+            $html = RecipeParser_Text::stripTagAndContents('script', $html);
+        }
 
         return $html;
     }

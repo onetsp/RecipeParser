@@ -9,7 +9,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
      */
     public function test_m_dot_allrecipes() {
         $url       = "http://m.allrecipes.com/recipe/70343/slow-cooker-chicken-taco-soup/";
-        $canonical = "http://allrecipes.com/recipe/slow-cooker-chicken-taco-soup/";
+        $canonical = "http://allrecipes.com/recipe/70343/slow-cooker-chicken-taco-soup/";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
@@ -18,8 +18,8 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
      * @group network
      */
     public function test_allrecipes_print_format() {
-        $url       = "http://allrecipes.com/Recipe-Tools/Print/Recipe.aspx?recipeID=38109&origin=detail&servings=60&metric=false";
-        $canonical = "http://allrecipes.com/Recipe/Pickled-Beets/Detail.aspx";
+        $url       = "http://allrecipes.com/recipe/38109/pickled-beets/print/?recipeType=Recipe&servings=60";
+        $canonical = "http://allrecipes.com/recipe/38109/pickled-beets/";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
@@ -59,7 +59,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
      */
     public function test_yummyly_iframe() {
         $url       = "http://www.yummly.com/recipe/Roasted-Chicken-Tacos-Martha-Stewart-191942";
-        $canonical = "http://www.yummly.com/recipe/external/Roasted-Chicken-Tacos-Martha-Stewart-191942";
+        $canonical = "http://www.marthastewart.com/315717/roasted-chicken-tacos";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }

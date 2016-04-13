@@ -18,14 +18,8 @@ class RecipeParser_Canonical {
         }
 
         // Allrecipes.com print versions
-        if (strpos($url, "allrecipes.com/Recipe-Tools/Print/") !== false) {
-            $xpath = self::getXPath($html);
-            $nodes = $xpath->query('//*[@class="backtorecipe"]//a');
-            if ($nodes->length) {
-                $href = $nodes->item(0)->getAttribute("href");
-                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
-                return $url;
-            }
+        if (strpos($url, "allrecipes.com/") !== false && strpos($url, "/print/") !== false) {
+            return self::getUrlFromOgUrl($html, $url);
         }
 
         // m.allrecipes.com
@@ -64,12 +58,28 @@ class RecipeParser_Canonical {
 
         // Epicurious "Ingredients" features
         if (strpos($url, "epicurious.com/ingredients/") !== false) {
-            $xpath = self::getXPath($html);
-            $nodes = $xpath->query('//*[@class="content-pane"]//a[@class="get-recipe"]');
-            if ($nodes->length) {
-                $href = $nodes->item(0)->getAttribute("href");
-                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
-                return $url;
+            // Need HTML page with <script> tags preserved!
+            $strip_script_tags = false;
+            $html = FileUtil::downloadRecipeWithCache($url, $strip_script_tags);
+            if (preg_match("/\"pageValue\" ?\: ?\"slide(\d+)\"/", $html, $m)) {
+                $slide = $m[1];
+                $xpath = self::getXPath($html);
+
+                // Iterate over <figcaption> looking for the right "slide #/10" node that contains an HREF
+                $nodes = $xpath->query('//figcaption');
+                foreach ($nodes as $node) {
+                    if ($subs = $xpath->query('./*[@class="count"]', $node)) {
+                        $str = $node->nodeValue;
+                        if (strpos($str, $slide."/") !== false) {
+                            $subs = $xpath->query('.//h3/a', $node);
+                            if ($subs->length) {
+                                $href = $subs->item(0)->getAttribute("href");
+                                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                                return $url;
+                            }
+                        }
+                    }
+                }
             }
         }
 
