@@ -164,5 +164,24 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
 
-
+    /**
+     * @group network
+     */
+    public function test_saveur_gallery() {
+        $url       = "http://www.saveur.com/gallery/quick-breads-loaves-and-muffins?image=11";
+        $canonical = "http://www.saveur.com/article/Recipes/Classic-Lemon-Poppy-Seed-Muffin";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+    
+    /**
+     * @group network
+     */
+    public function test_saveur_gallery_no_image_param() {
+        $url       = "http://www.saveur.com/gallery/Favorite-Fall-Pies?src=SOC&dom=fb";
+        $canonical = "http://www.saveur.com/rosemary-caramel-apple-pie-no-fail-crust-recipe";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+    
 }

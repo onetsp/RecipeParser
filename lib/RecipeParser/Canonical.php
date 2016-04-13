@@ -120,6 +120,27 @@ class RecipeParser_Canonical {
             }
         }
 
+        // Saveur gallery pages
+        if (strpos($url, "www.saveur.com/gallery/") !== false) {
+            $xpath = self::getXPath($html);
+            // Slide # comes from "image" query param, and range starts at 0.
+            if (preg_match("/image=(\d+)/", $url, $m)) {
+                $slide = $m[1];
+            } else {
+                $slide = 0;
+            }
+            $nodes = $xpath->query('//div[@class="gallery-slider"]//div[@class="content"]');
+            if ($nodes->length) {
+                $slide_node = $nodes->item($slide);
+                $subs = $xpath->query('.//a', $slide_node);
+                if ($subs->length) {
+                    $href = $subs->item(0)->getAttribute("href");
+                    $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                    return $url;
+                }
+            }
+        }
+
         return null;
     }
 
