@@ -5,8 +5,7 @@ require_once "../bootstrap.php";
 class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
 
     public function test_Mitzis_Chicken_Fingers() {
-
-        $path = "data/saveur_com_mitzis_chicken_fingers_curl.html";
+        $path = "data/saveur_com_chicken_fingers_with_honey_dill_dipping_curl.html";
         $url  = "http://www.saveur.com/article/Recipes/Mitzis-Chicken-Fingers";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,8 +34,7 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_Strawberry_Loaf_Bread() {
-
-        $path = "data/saveur_com_strawberry_loaf_bread_curl.html";
+        $path = "data/saveur_com_strawberry_bread_saveur_curl.html";
         $url  = "http://www.saveur.com/article/Recipes/Strawberry-Loaf-Bread";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -58,15 +56,13 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(2, count($recipe->instructions[0]['list']));
 
-        $this->assertRegExp('/^Saveur test kitchen director Farideh Sadeghin grew/', $recipe->description);
+        $this->assertRegExp('/^Saveur test kitchen director Farideh Sadeghin grew/i', $recipe->description);
 
         $this->assertStringEndsWith('103-recipe_strawberry-loaf-bread_800x1200.jpg', $recipe->photo_url);
-
     }
 
     public function test_Strawberry_Tart() {
-
-        $path = "data/saveur_com_strawberry_tart_curl.html";
+        $path = "data/saveur_com_strawberry_tart_saveur_curl.html";
         $url  = "http://www.saveur.com/article/Recipes/Strawberry-Tart";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -92,8 +88,7 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_coconut_cake() {
-
-        $path = "data/saveur_com_thomas_kellers_coconut_cake_curl.html";
+        $path = "data/saveur_com_coconut_cake_thomas_kellers_coconut_cake_curl.html";
         $url  = "http://www.saveur.com/article/recipes/thomas-kellers-coconut-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -107,11 +102,9 @@ class RecipeParser_Parser_SaveurcomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(0, $recipe->time['total']);
         $this->assertEquals('8-10 servings', $recipe->yield);
 
-        $this->assertEquals(2, count($recipe->ingredients));
-        $this->assertEquals('Cake', $recipe->ingredients[0]['name']);
-        $this->assertEquals(12, count($recipe->ingredients[0]['list']));
-        $this->assertEquals('Meringue', $recipe->ingredients[1]['name']);
-        $this->assertEquals(3, count($recipe->ingredients[1]['list']));
+        $this->assertEquals(1, count($recipe->ingredients));
+        $this->assertEquals('', $recipe->ingredients[0]['name']);
+        $this->assertEquals(15, count($recipe->ingredients[0]['list']));
 
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals('', $recipe->instructions[0]['name']);
