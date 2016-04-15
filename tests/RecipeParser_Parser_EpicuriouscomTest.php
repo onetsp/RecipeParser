@@ -22,14 +22,16 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Cake", $recipe->ingredients[0]['name']);
         $this->assertEquals("Frosting", $recipe->ingredients[1]['name']);
 
-        $this->assertEquals(1, count($recipe->instructions));
-        $this->assertEquals(5, count($recipe->instructions[0]['list']));
+        $this->assertEquals(2, count($recipe->instructions));
+        $this->assertEquals(2, count($recipe->instructions[0]['list']));
+        $this->assertEquals(3, count($recipe->instructions[1]['list']));
 
-        $this->assertRegExp("/^For cake.*Preheat oven to 350/", $recipe->instructions[0]['list'][0]);
+        $this->assertEquals("Cake", $recipe->instructions[0]['name']);
+        $this->assertEquals("Frosting", $recipe->instructions[1]['name']);
 
-        $this->assertEquals(
-            'http://www.epicurious.com/images/recipesmenus/2003/2003_april/107944.jpg',
-            $recipe->photo_url);
+        $this->assertRegExp("/^Preheat oven to 350/", $recipe->instructions[0]['list'][0]);
+
+        $this->assertRegExp("/107944.jpg/", $recipe->photo_url);
     }
 
     public function test_chocolate_layer_cake() {
@@ -55,7 +57,7 @@ class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_bellini() {
-        $path = "data/epicurious_com_lemon_ros_eacute_bellini_epicurious_com_curl.html";
+        $path = "data/epicurious_com_lemon_ros_bellini_epicurious_com_curl.html";
         $url = "http://www.epicurious.com/recipes/food/views/Lemon-Rose-Bellini-362450";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
