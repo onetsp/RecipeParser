@@ -5,7 +5,7 @@ require_once '../bootstrap.php';
 class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
 
     public function test_banana_crumb_cake() {
-        $path_orig = "data/pillsbury_com_banana_crumb_cake_from_pillsbury_com_curl.html";
+        $path_orig = "data/pillsbury_com_banana_crumb_cake_pillsbury_com_curl.html";
         $url = "http://www.pillsbury.com/recipes/banana-crumb-cake/0ddbc221-0c55-47ea-aaab-7439b4aac4a6/";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
