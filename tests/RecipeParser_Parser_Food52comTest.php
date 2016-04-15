@@ -13,9 +13,6 @@ class RecipeParser_Parser_Food52comTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals('Banana Cake with Penuche Frosting', $recipe->title);
         $this->assertEquals('Food52 (Lindsay-Jean Hard)', $recipe->credits);
-        //$this->assertEquals(0, $recipe->time['prep']);
-        //$this->assertEquals(0, $recipe->time['cook']);
-        //$this->assertEquals(0, $recipe->time['total']);
         $this->assertEquals('1 2-layer cake', $recipe->yield);
 
         $this->assertRegExp('/2014-0318_WC_banana-cake-panocha-frosting-012.jpg/',
@@ -41,9 +38,6 @@ class RecipeParser_Parser_Food52comTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals('Brown Butter Apple Tart', $recipe->title);
         $this->assertEquals('Food52 (Phyllis Grant)', $recipe->credits);
-        //$this->assertEquals(0, $recipe->time['prep']);
-        //$this->assertEquals(0, $recipe->time['cook']);
-        //$this->assertEquals(0, $recipe->time['total']);
         $this->assertEquals('6 servings', $recipe->yield);
 
         $this->assertRegExp('/^This is inspired by .* a tangy green salad.$/s', $recipe->notes);
@@ -68,9 +62,6 @@ class RecipeParser_Parser_Food52comTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals('Challah Bread Pudding with Raspberries', $recipe->title);
         $this->assertEquals('Food52 (Kendra Vaculin)', $recipe->credits);
-        //$this->assertEquals(0, $recipe->time['prep']);
-        //$this->assertEquals(0, $recipe->time['cook']);
-        //$this->assertEquals(0, $recipe->time['total']);
         $this->assertEquals('5 to 6 servings', $recipe->yield);
 
         $this->assertRegExp('/2015-0217_raspberry-challah-bread-pudding_bobbi-lin-3321.jpg/', $recipe->photo_url);
