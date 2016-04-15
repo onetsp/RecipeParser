@@ -1,6 +1,6 @@
 <?php
 
-class RecipeParser_Parser_Nytimescom {
+class RecipeParser_Parser_Cookingnytimescom {
 
     static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
