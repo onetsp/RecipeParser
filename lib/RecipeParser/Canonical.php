@@ -58,7 +58,7 @@ class RecipeParser_Canonical {
 
         // Epicurious recipe review view (this looks like a set of tabs on the recipe page).
         if (strpos($url, "www.epicurious.com/recipes/food/reviews/") !== false) {
-            return str_replace("recipes/food/reviews/", "recipes/food/view/", $url);
+            return str_replace("recipes/food/reviews/", "recipes/food/views/", $url);
         }
 
         // Epicurious "Ingredients" features
