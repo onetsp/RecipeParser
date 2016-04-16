@@ -56,6 +56,11 @@ class RecipeParser_Canonical {
             return str_replace("printerfriendly", "views", $url);
         }
 
+        // Epicurious recipe review view (this looks like a set of tabs on the recipe page).
+        if (strpos($url, "www.epicurious.com/recipes/food/reviews/") !== false) {
+            return str_replace("recipes/food/reviews/", "recipes/food/view/", $url);
+        }
+
         // Epicurious "Ingredients" features
         if (strpos($url, "epicurious.com/ingredients/") !== false) {
             // Need HTML page with <script> tags preserved!

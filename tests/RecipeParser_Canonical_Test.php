@@ -107,6 +107,16 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
     /**
      * @group network
      */
+    public function test_epicurious_com_recipe_reviews() {
+        $url       = "http://www.epicurious.com/recipes/food/reviews/marie-helenes-apple-cake-361150";
+        $canonical = "http://www.epicurious.com/recipes/food/view/marie-helenes-apple-cake-361150";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+
+    /**
+     * @group network
+     */
     public function test_myrecipes_com_mobile_view() {
         $url       = "http://www.myrecipes.com/m/recipe/chicken-chickpea-tagine";
         $canonical = "http://www.myrecipes.com/recipe/chicken-chickpea-tagine";
