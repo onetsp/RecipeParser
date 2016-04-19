@@ -117,6 +117,26 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
     /**
      * @group network
      */
+    public function test_epicurious_com_howtocook() {
+        $url       = "http://www.epicurious.com/archive/howtocook/dishes/classic-recipes-cinnamon-rolls";
+        $canonical = "http://www.epicurious.com/recipes/food/views/cinnamon-rolls-with-icing-51160400";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+
+    /**
+     * @group network
+     */
+    public function test_epicurious_com_recipes_menus() {
+        $url       = "http://www.epicurious.com/recipes-menus/how-to-make-the-nomad-buttermilk-fried-chicken-fingers-article";
+        $canonical = "http://www.epicurious.com/recipes/food/views/buttermilk-fried-chicken-fingers-51258410";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+
+    /**
+     * @group network
+     */
     public function test_myrecipes_com_mobile_view() {
         $url       = "http://www.myrecipes.com/m/recipe/chicken-chickpea-tagine";
         $canonical = "http://www.myrecipes.com/recipe/chicken-chickpea-tagine";
@@ -194,4 +214,13 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
     
+    /**
+     * @group network
+     */
+    public function test_saveur_gallery_keller() {
+        $url       = "http://www.saveur.com/gallery/Best-Dessert-and-Cake-Recipes?page=18";
+        $canonical = "http://www.saveur.com/article/recipes/thomas-kellers-coconut-cake";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
 }

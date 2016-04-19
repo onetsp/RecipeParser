@@ -88,6 +88,29 @@ class RecipeParser_Canonical {
             }
         }
 
+        // Epicurious "howtocook" section
+        if (strpos($url, "epicurious.com/archive/howtocook/") !== false) {
+            $xpath = self::getXPath($html);
+            $nodes = $xpath->query('//article//li[@class="nosep"]/a');
+            if ($nodes->length) {
+                $href = $nodes->item(0)->getAttribute("href");
+                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                return $url;
+            }
+        }
+
+        // Epicurious "Recipe Menus" section
+        if (strpos($url, "epicurious.com/recipes-menus/") !== false) {
+            $xpath = self::getXPath($html);
+            $nodes = $xpath->query('//*[@class="recipe-related"]//*[@class="related"]/a');
+            if ($nodes->length) {
+                $href = $nodes->item(0)->getAttribute("href");
+                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                return $url;
+            }
+
+        }
+
         // Food52 print views
         if (strpos($url, "food52.com/recipes/print/") !== false) {
             return str_replace("/recipes/print/", "/recipes/", $url);
