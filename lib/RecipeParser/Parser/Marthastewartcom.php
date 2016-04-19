@@ -12,7 +12,7 @@ class RecipeParser_Parser_Marthastewartcom {
         $xpath = new DOMXPath($doc);
 
         // Yield
-        $nodes = $xpath->query('//li[@class="credit"]');
+        $nodes = $xpath->query('//*[@class="mslo-credits"]');
         foreach ($nodes as $node) {
             $line = $node->nodeValue;
             if (stripos($line, "servings") !== false) {
