@@ -3,36 +3,50 @@
 class RecipeParser_Parser_Myrecipescom {
 
     static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($html, $url);
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
         
         libxml_use_internal_errors(true);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
         $doc = new DOMDocument();
+        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
-        // Title missing?
-        if (!$recipe->title) {
-            $nodes = $xpath->query('//meta[@property="og:title"]');
-            if ($nodes->length) {
+        // Title missing
+        $nodes = $xpath->query('//meta[@property="og:title"]');
+        if ($nodes->length) {
+            $line = $nodes->item(0)->getAttribute("content");
+            $line = RecipeParser_Text::formatTitle($line);
+            $recipe->title = $line;
+        }
 
-                $line = $nodes->item(0)->getAttribute("content");
-                $line = RecipeParser_Text::formatTitle($line);
-                $recipe->title = $line;
+        // Ingredients
+        $recipe->resetIngredients();
+        $nodes = $xpath->query('//*[@class="field-ingredients"]');
+        foreach ($nodes as $node) {
+            $line = $node->nodeValue;
+            $line = RecipeParser_Text::formatAsOneLine($line);
+            if (RecipeParser_Text::matchSectionName($line)) {
+                $line = RecipeParser_Text::formatSectionName($line);
+                $recipe->addIngredientsSection($line);
+            } else {
+                $recipe->appendIngredient($line);
             }
         }
 
-        // Photo URL, use larger version found on MyRecipes
-        $recipe->photo_url = str_replace('-l.jpg', '-x.jpg', $recipe->photo_url);
+        $recipe->resetInstructions();
+        $nodes = $xpath->query('//*[@itemprop="recipeInstructions"]//p');
+        foreach ($nodes as $node) {
+            $line = $node->nodeValue;
+            $line = RecipeParser_Text::formatAsOneLine($line);
+            $line = RecipeParser_Text::stripLeadingNumbers($line);
+            $recipe->appendInstruction($line);
+        }
 
         // Credits
-        $nodes = $xpath->query('//*[@class="link-list"]/h4');
+        $nodes = $xpath->query('//*[@itemprop="author"]/*[@class="field-sponsor"]');
         if ($nodes->length) {
             $line = trim($nodes->item(0)->nodeValue);
-            if (strpos($line, "More from") === 0) {
-                $line = str_replace("More from ", "", $line);
-                $recipe->credits = $line;
-            }
+            $recipe->credits = $line;
         }
 
         // Times
@@ -47,16 +61,6 @@ class RecipeParser_Parser_Myrecipescom {
                 if (strpos($line, $value) === 0) {
                     $line = str_replace($value, "", $line);
                     $recipe->time[$key] = RecipeParser_Times::toMinutes($line);
-                }
-            }
-        }
-
-        // Clean up each of the ingredients to remove "$Click to see savings"
-        // These don't come through in the curl'ed test files
-        for ($i = 0; $i < count($recipe->ingredients); $i++) {
-            for ($j = 0; $j < count($recipe->ingredients[$i]['list']); $j++) {
-                if (strpos($recipe->ingredients[$i]['list'][$j], "$") > 0) {
-                    $recipe->ingredients[$i]['list'][$j] = substr($recipe->ingredients[$i]['list'][$j], 0, strpos($recipe->ingredients[$i]['list'][$j], "$"));
                 }
             }
         }

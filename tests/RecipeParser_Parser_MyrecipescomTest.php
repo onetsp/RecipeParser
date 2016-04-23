@@ -24,8 +24,8 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
         $this->assertRegExp("/^To prepare pastry/", $recipe->instructions[0]['list'][0]);
         $this->assertEquals("Cooking Light", $recipe->credits);
 
-        $this->assertEquals(
-            "http://cdn-image.myrecipes.com/sites/default/files/styles/300x300/public/image/app/blueberry-galette-ck-1816371-xl.jpg",
+        $this->assertRegExp(
+            "/image\/app\/blueberry-galette-ck-1816371-xl.jpg/",
             $recipe->photo_url);
     }
 
@@ -53,7 +53,7 @@ class RecipeParser_Parser_MyrecipescomTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(30, $recipe->time['prep']);
         $this->assertEquals(139, $recipe->time['cook']);
         $this->assertEquals(16, count($recipe->ingredients[0]['list']));
-        $this->assertEquals(8, count($recipe->instructions[0]['list']));
+        $this->assertEquals(9, count($recipe->instructions[0]['list']));
         $this->assertEquals("Southern Living", $recipe->credits);
     }
 
