@@ -10,6 +10,7 @@ class RecipeParser {
     const RDF_DATA_VOCABULARY_SPEC = "MicrodataRdfDataVocabulary";
     const MICROFORMAT_SPEC         = "Microformat";
     const MICROFORMAT_V2_SPEC      = "MicroformatV2";
+    const JSON_LD                  = "MicrodataJsonLd";
 
     /**
      * Load registered parsers from ini file.
@@ -62,7 +63,10 @@ class RecipeParser {
      * @return string Name of matching parser (or null)
      */
     static public function matchMarkupFormat(&$html) {
-        if (stripos($html, "schema.org/Recipe") !== false) {
+        if (stripos($html, "ld+json") !== false) {
+            return self::JSON_LD;
+        }
+        else if (stripos($html, "schema.org/Recipe") !== false) {
             return self::SCHEMA_SPEC;
         }
         else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
