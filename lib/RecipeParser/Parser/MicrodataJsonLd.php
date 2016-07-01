@@ -8,9 +8,9 @@ class RecipeParser_Parser_MicrodataJsonLd {
         $recipe = new RecipeParser_Recipe();
         $xpath = new DOMXPath($doc);
         
-        // playground
         $jsonScripts = $xpath->query('//script[@type="application/ld+json"]');
         $json = trim( $jsonScripts->item(0)->nodeValue );
+        $json = RecipeParser_Text::cleanJson($json);
         $data = json_decode( $json );
         print_r($data);
 

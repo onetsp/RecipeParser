@@ -100,6 +100,11 @@ ONETSP_TIME: $time
         return $html;
     }
     
+    static public function cleanJson($str) {
+        $str = preg_replace( "/\r|\n/", "", $str ); // Line breaks are a common way to ruin otherwise-valid JSON
+        return $str;
+    }
+    
     static public function normalize($html) {
         $html = preg_replace('/(\r\n|\r)/', "\n", $html);            // Normalize line breaks
         $html = str_replace('&nbsp;', ' ', $html);                   // get rid of non-breaking space (html code)
