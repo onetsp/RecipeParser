@@ -33,15 +33,15 @@ class RecipeParser_Parser_MicrodataJsonLd {
                 // Times
                 if (property_exists($data, "prepTime")) {
                     $prepTime = $data->prepTime;
-                    $recipe->prepTime = RecipeParser_Text::formatAsParagraphs($prepTime);;
+                    $recipe->time['prep'] = RecipeParser_Text::formatISO_8601($prepTime);;
                 }
                 if (property_exists($data, "cookTime")) {
                     $cookTime = $data->cookTime;
-                    $recipe->cookTime = RecipeParser_Text::formatAsParagraphs($cookTime);;
+                    $recipe->time['cook'] = RecipeParser_Text::formatISO_8601($cookTime);;
                 }
                 if (property_exists($data, "totalTime")) {
                     $totalTime = $data->totalTime;
-                    $recipe->totalTime = RecipeParser_Text::formatAsParagraphs($totalTime);;
+                    $recipe->time['total'] = RecipeParser_Text::formatISO_8601($totalTime);;
                 }
             
                 // Yield
