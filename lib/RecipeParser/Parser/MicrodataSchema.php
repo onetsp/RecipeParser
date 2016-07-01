@@ -7,7 +7,7 @@ class RecipeParser_Parser_MicrodataSchema {
         $xpath = new DOMXPath($doc);
 
         $microdata = null;
-        $nodes = $xpath->query('//*[contains(@itemtype, "//schema.org/Recipe") or contains(@itemtype, "//schema.org/recipe")]');
+        $nodes = $xpath->query('//*[contains(@itemtype, "schema.org/Recipe") or contains(@itemtype, "schema.org/recipe")]');
         if ($nodes->length) {
             $microdata = $nodes->item(0);
         }
@@ -18,15 +18,24 @@ class RecipeParser_Parser_MicrodataSchema {
             // Title
             $nodes = $xpath->query('.//*[@itemprop="name"]', $microdata);
             if ($nodes->length) {
-                $value = trim($nodes->item(0)->nodeValue);
+                if ($nodes->item(0)->hasAttribute('content')) {
+                    $line = $nodes->item(0)->getAttribute('content');
+                } else {
+                    $line = $nodes->item(0)->nodeValue;
+                }
+                $value = trim($line);
                 $recipe->title = RecipeParser_Text::formatTitle($value);
             }
 
             // Summary
             $nodes = $xpath->query('.//*[@itemprop="description"]', $microdata);
             if ($nodes->length) {
-                $value = $nodes->item(0)->nodeValue;
-                $value = RecipeParser_Text::formatAsParagraphs($value);
+                if ($nodes->item(0)->hasAttribute('content')) {
+                    $line = $nodes->item(0)->getAttribute('content');
+                } else {
+                    $line = $nodes->item(0)->nodeValue;
+                }
+                $value = RecipeParser_Text::formatAsParagraphs($line);
                 $recipe->description = $value;
             }
 
@@ -68,9 +77,16 @@ class RecipeParser_Parser_MicrodataSchema {
 
             // Ingredients 
             $nodes = $xpath->query('.//*[@itemprop="ingredients"]', $microdata);
+            if (!$nodes->length) {
+                $nodes = $xpath->query('.//*[@itemprop="recipeIngredient"]', $microdata);
+            }
             foreach ($nodes as $node) {
-                $value = $node->nodeValue;
-                $value = RecipeParser_Text::formatAsOneLine($value);
+                if ($nodes->item(0)->hasAttribute('content')) {
+                    $line = $node->getAttribute('content');
+                } else {
+                    $line = $node->nodeValue;
+                }
+                $value = RecipeParser_Text::formatAsOneLine($line);
                 if (empty($value)) {
                     continue;
                 }
