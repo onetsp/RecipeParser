@@ -1,7 +1,5 @@
 <?php
 
-use \ML\JsonLD\JsonLD as JsonLD;
-
 class RecipeParser_Parser_MicrodataJsonLd {
 
     static public function parse(DOMDocument $doc, $url) {
