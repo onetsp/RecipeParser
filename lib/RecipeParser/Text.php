@@ -84,17 +84,33 @@ ONETSP_TIME: $time
      * @return string HTML
      */
     static public function cleanupClippedRecipeHtml($html) {
-        $html = preg_replace('/(\r\n|\r)/', "\n", $html);            // Normalize line breaks
-        $html = str_replace('&nbsp;', ' ', $html);                   // get rid of non-breaking space (html code)
-        $html = str_replace('&#160;', ' ', $html);                   // get rid of non-breaking space (numeric)
-        $html = preg_replace('/\xC2\xA0/', ' ', $html);              // get rid of non-breaking space (UTF-8)
-        $html = preg_replace('/[\x{0096}-\x{0097}]/u', '-', $html);  // ndash, mdash (bonappetit)
+        $html = self::normalize($html);
 
         // Strip out script tags so they don't accidentally get executed if we ever display
         // clipped content to end-users.
         $html = RecipeParser_Text::stripTagAndContents('script', $html);
         $html = RecipeParser_Text::stripConditionalComments($html);
 
+        return $html;
+    }
+    
+    static public function cleanupClippedRecipeHtmlWithScripts($html) {
+        $html = self::normalize($html);
+        $html = RecipeParser_Text::stripConditionalComments($html);
+        return $html;
+    }
+    
+    static public function cleanJson($str) {
+        $str = preg_replace( "/\r|\n/", "", $str ); // Line breaks are a common way to ruin otherwise-valid JSON
+        return $str;
+    }
+    
+    static public function normalize($html) {
+        $html = preg_replace('/(\r\n|\r)/', "\n", $html);            // Normalize line breaks
+        $html = str_replace('&nbsp;', ' ', $html);                   // get rid of non-breaking space (html code)
+        $html = str_replace('&#160;', ' ', $html);                   // get rid of non-breaking space (numeric)
+        $html = preg_replace('/\xC2\xA0/', ' ', $html);              // get rid of non-breaking space (UTF-8)
+        $html = preg_replace('/[\x{0096}-\x{0097}]/u', '-', $html);  // ndash, mdash (bonappetit)
         return $html;
     }
 
@@ -124,6 +140,11 @@ ONETSP_TIME: $time
         $str = str_replace("<p>", "\n\n", $str);        // <p> back to newlines
         $str = trim($str);
         return $str;
+    }
+    
+    public static function formatISO_8601($str) {
+        $d = new DateInterval($str);
+        return ($d->h * 60) + $d->i;
     }
 
     /**
