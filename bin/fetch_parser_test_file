@@ -17,7 +17,7 @@ $hostname = parse_url($recipe_url, PHP_URL_HOST);
 
 $html = FileUtil::downloadPage($recipe_url);
 $html = RecipeParser_Text::forceUTF8($html);
-$html = RecipeParser_Text::cleanupClippedRecipeHtml($html);
+$html = RecipeParser_Text::cleanupClippedRecipeHtmlWithScripts($html);
 
 $title = getHtmlTitle($html);
 $title = RecipeParser_Text::formatFilenameFromTitle($title);

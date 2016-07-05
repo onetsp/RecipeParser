@@ -16,7 +16,7 @@ class RecipeParser_Parser_MicrodataJsonLd {
             return $recipe;
         }
         // Bail if no recipe in the markup
-        if ($data && property_exists($data, "@type") && $data->{'@type'} == 'Recipe') {
+        if (!property_exists($data, "@type") || $data->{'@type'} != 'Recipe') {
             return $recipe;
         }
         
@@ -87,6 +87,8 @@ class RecipeParser_Parser_MicrodataJsonLd {
         if (property_exists($data, "author")) {
             if (property_exists($data->author, "name")) {
                 $recipe->credits = RecipeParser_Text::formatCredits($data->author->name);
+            } else {
+                $recipe->credits = RecipeParser_Text::formatCredits($data->author);
             }
         }
         
