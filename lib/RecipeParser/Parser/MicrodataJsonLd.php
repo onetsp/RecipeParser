@@ -12,7 +12,7 @@ class RecipeParser_Parser_MicrodataJsonLd {
         $data = json_decode( $json );
         
         // Bail JSON-LD not marked up properly
-        if (!$data || !property_exists($data, "@context") || stripos($data->{'@context'}, "schema.org") == false ) {
+        if (!$data || !property_exists($data, "@context") || stripos($data->{'@context'}, "schema.org") === false ) {
             return $recipe;
         }
         // Bail if no recipe in the markup
