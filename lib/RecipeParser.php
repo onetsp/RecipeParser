@@ -63,7 +63,7 @@ class RecipeParser {
      * @return string Name of matching parser (or null)
      */
     static public function matchMarkupFormat(&$html) {
-        if (stripos($html, "ld+json") !== false) {
+        if (stripos($html, "ld+json") !== false && stripos($html, '"@type": "Recipe"')) {
             return self::JSON_LD;
         }
         else if (stripos($html, "schema.org/Recipe") !== false) {
@@ -72,7 +72,7 @@ class RecipeParser {
         else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
             return self::DATA_VOCABULARY_SPEC;
         }
-        else if (stripos($html, "//rdf.data-vocabulary.org/") !== false && stripos($html, "typeof=\"v:Recipe\"") !== false) {
+        else if (stripos($html, "//rdf.data-vocabulary.org/") !== false && stripos($html, 'typeof="v:Recipe"') !== false) {
             return self::RDF_DATA_VOCABULARY_SPEC;
         }
         else if (stripos($html, "hrecipe") !== false && strpos($html, "fn") !== false) {
