@@ -89,9 +89,10 @@ class RecipeParser {
     /**
      * Parse recipe data from an HTML document, returning a data structure that
      * contains structured data about the recipe.
-     *
      * @param DomDocument $doc
      * @param string $url
+     *
+     * @throws NoMatchingParserException
      * @return object RecipeParser_Recipe
      */
     static public function parse(DOMDocument $doc, $url=null) {
@@ -111,11 +112,7 @@ class RecipeParser {
 
         // If we haven't found a matching parser, bail out.
         if (!$parser) {
-            $message = '';
-            if (stripos($html, "Incapsula incident") !== false) {
-                $message = 'Programmatic access to site is blocked.';
-            }
-            throw new NoMatchingParserException($message);
+            throw new NoMatchingParserException("No matching parser found for URL: $url");
         }
 
         // Initialize the right parser and run it.
