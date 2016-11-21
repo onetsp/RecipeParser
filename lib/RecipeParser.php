@@ -63,7 +63,7 @@ class RecipeParser {
      * @return string Name of matching parser (or null)
      */
     static public function matchMarkupFormat(&$html) {
-        if (stripos($html, "ld+json") !== false && stripos($html, '"@type": "Recipe"')) {
+        if (stripos($html, "ld+json") !== false && preg_match('/"@type"\s*:\s*"Recipe"/i', $html) !== false) {
             return self::JSON_LD;
         }
         else if (stripos($html, "schema.org/Recipe") !== false) {
