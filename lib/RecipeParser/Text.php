@@ -523,6 +523,11 @@ ONETSP_TIME: $time
     }
 
     public static function relativeToAbsolute($rel, $base) {
+        // return if empty
+        if (!$rel) {
+            return $rel;
+        }
+
         // return if already absolute URL
         if (parse_url($rel, PHP_URL_SCHEME) != '') {
             return $rel;
