@@ -92,6 +92,19 @@ class RecipeParser_Parser_Allrecipescom {
             $recipe->photo_url = str_replace('/userphotos/140x140/', '/userphotos/250x250/', $recipe->photo_url);
         }
 
+        // Description
+        if (!$recipe->description) {
+            $nodes = $xpath->query('//div[@class="submitter__description"]');
+            if ($nodes->length) {
+                $recipe->description = $nodes->item(0)->textContent;
+            }
+        }
+
+        // Source
+        if (!$recipe->source) {
+            $recipe->source = "Allrecipes.com";
+        }
+
         return $recipe;
     }
 

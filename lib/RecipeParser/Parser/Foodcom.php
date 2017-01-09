@@ -24,7 +24,7 @@ class RecipeParser_Parser_Foodcom {
 
         // Title
         if (!$recipe->title) {
-            $node_list = $xpath->query('//h1[@class="fd-recipe-title"]');
+            $node_list = $xpath->query('//header//h1');
             if ($node_list->length) {
                 $value = RecipeParser_Text::formatTitle($node_list->item(0)->nodeValue);
                 $recipe->title = $value;
@@ -89,14 +89,18 @@ class RecipeParser_Parser_Foodcom {
                 $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
                 if (preg_match("/^(.+):$/", $line, $m)) {
                     $recipe->addInstructionsSection(ucfirst(strtolower($m[1])));
-                } else if ($line) {
+                } else if ($line && $line != 'Submit a Correction') {
                     $recipe->appendInstruction($line);
                 }
             }
         }
 
-        $recipe->source = "Food.com";
+        // Source
+        if (!$recipe->source) {
+            $recipe->source = "Food.com";
+        }
 
+        // Categories
         if (!count($recipe->categories)) {
             $nodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " related-recipes ")]//dd/a/span');
             foreach ($nodes as $node) {
@@ -122,6 +126,14 @@ class RecipeParser_Parser_Foodcom {
                 $photo_url = $nodes->item(0)->getAttribute('data-src');
                 $photo_url = str_replace('-articleInline.jpg', '-popup.jpg', $photo_url);
                 $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
+            }
+        }
+
+        // Credit
+        if (!$recipe->credits) {
+            $nodes = $xpath->query('//header//section//span');
+            if ($nodes->length) {
+                $recipe->credits = $nodes->item(1)->textContent;
             }
         }
 

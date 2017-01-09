@@ -36,6 +36,34 @@ class RecipeParser_Parser_Bhgcom {
         // Adjust Photo URL for larger dimensions
         $recipe->photo_url = preg_replace("/\/l_([^\/]+)/", "/550_$1", $recipe->photo_url);
 
+        // Title
+        $nodes = $xpath->query('//h1[@class="recipe__mainHeading"]');
+        $recipe->title = $nodes->item(0)->nodeValue;
+
+        // Ingredients
+        if (!count($recipe->ingredients[0]["list"])) {
+            $nodes = $xpath->query('//div[@class="recipe__ingredientContainer"]//*');
+            foreach ($nodes as $node) {
+                if ($node->nodeName == 'h4') {
+                    // Found section heading.
+                    $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                    $recipe->addIngredientsSection(ucfirst(strtolower($line)));
+                } else if ($node->nodeName == 'ul') {
+                    // Found ingredient list.
+                    foreach ($node->childNodes as $childNode) {
+                        $line = RecipeParser_Text::formatAsOneLine($childNode->nodeValue);
+                        $recipe->appendIngredient($line);
+                    }
+                }
+            }
+        }
+
+        // Source
+        // Source
+        if (!$recipe->source) {
+            $recipe->source = "Bhg.com";
+        }
+
         return $recipe;
     }
 

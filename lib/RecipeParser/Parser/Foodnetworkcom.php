@@ -15,44 +15,27 @@ class RecipeParser_Parser_Foodnetworkcom {
 
         // Ingredients
         $recipe->resetIngredients();
-        $nodes = $xpath->query('//div[@class="bd"]//ul');
-
+        // $nodes = $xpath->query('//div[@class="bd"]//ul');
+        $nodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " ingredients ")]//ul/li');
         foreach ($nodes as $node) {
-
-            // Extract ingredients from <ul> <li>.
-            if ($node->nodeName == 'ul') {
-                $ing_nodes = $node->childNodes;
-                foreach ($ing_nodes as $ing_node) {
-                    // Find <li> with itemprop="ingredients" for each ingredient.
-                    if ($ing_node->nodeName == 'li' && $ing_node->getAttribute("itemprop") == "ingredients") {
-
-                        $line = trim($ing_node->nodeValue);
-                        
-                        // Section titles might be all uppercase ingredients
-                        if ($line == strtoupper($line)) {
-                            $line = RecipeParser_Text::formatSectionName($line);
-                            $recipe->addIngredientsSection($line);
-                            continue;
-                        }
-
-                        // Ingredient lines
-                        if (stripos($line, "copyright") !== false) {
-                            continue;
-                        } else if (stripos($line, "recipe follows") !== false) {
-                            continue;
-                        } else {
-                            $line = RecipeParser_Text::formatAsOneLine($line);
-                            $recipe->appendIngredient($line);
-                        }
-
-                    // Section titles
-                    } else if ($ing_node->nodeName == 'li' && $ing_node->getAttribute("class") == "subtitle") {
-                        $line = trim($ing_node->nodeValue);
-                        $line = RecipeParser_Text::formatSectionName($line);
-                        $recipe->addIngredientsSection($line);
-                    }
+            if ($node->getAttribute("itemprop") == "ingredients") {
+                // This is an actual ingredient (not a subtitle)
+                $line = trim($node->nodeValue);
+                // Ingredient lines
+                if (stripos($line, "copyright") !== false) {
+                    continue;
+                } else if (stripos($line, "recipe follows") !== false) {
+                    continue;
+                } else {
+                    $line = RecipeParser_Text::formatAsOneLine($line);
+                    $recipe->appendIngredient($line);
                 }
-                continue;
+            }
+            if ($node->getAttribute("class") == "subtitle") {
+                // Section titles might be all uppercase ingredients
+                $line = trim($node->nodeValue);
+                $line = RecipeParser_Text::formatSectionName($line);
+                $recipe->addIngredientsSection($line);
             }
 
         }
@@ -64,23 +47,32 @@ class RecipeParser_Parser_Foodnetworkcom {
             if ($node->nodeName == "span") {
                 $line = RecipeParser_Text::formatSectionName($node->nodeValue);
                 $recipe->addInstructionsSection($line);
-            } else if ($node->nodeName == "p") {
-                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+            } else if ($node->nodeName == "ul") {
+                foreach($node->childNodes as $subnode) {
 
-                if (stripos($line, "recipe courtesy") === 0) {
-                    continue;
-                }
-                if (strtolower($line) == "from food network kitchens") {
-                    continue;
-                }
-                if (stripos($line, "Photograph") === 0) {
-                    continue;
-                }
-                if (preg_match("/^(Copyright )?\d{4}.*All Rights Reserved\.?$/", $line)) {
-                    continue;
-                }
+                    $line = RecipeParser_Text::formatAsOneLine($subnode->nodeValue);
 
-                $recipe->appendInstruction($line);
+                    if (stripos($line, "recipe courtesy") === 0) {
+                        continue;
+                    }
+                    if (strtolower($line) == "from food network kitchens") {
+                        continue;
+                    }
+                    if (stripos($line, "Photograph") === 0) {
+                        continue;
+                    }
+                    if (preg_match("/Copyright/", $line)) {
+                        continue;
+                    }
+                    if (preg_match("/From Food Network Kitchen/", $line)) {
+                        continue;
+                    }
+                    if (preg_match("/Special equipment/", $line)) {
+                        continue;
+                    }
+
+                    $recipe->appendInstruction($line);
+                }
             }
 
         }
@@ -98,6 +90,29 @@ class RecipeParser_Parser_Foodnetworkcom {
         // Don't save default foodnetwork image.
         if (preg_match("/FN-Facebook-DefaultOGImage/", $recipe->photo_url)) {
             $recipe->photo_url = "";
+        }
+
+        // Description
+        if (!$recipe->description) {
+            $nodes = $xpath->query('//p[contains(concat(" ", normalize-space(@class), " "), " quotation ")]//q');
+            foreach ($nodes as $node) {
+                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                $recipe->description = $line;
+            }
+        }
+
+        // Categories
+        if (!count($recipe->categories)) {
+            $nodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " categories ")]//ul/li/a');
+            foreach ($nodes as $node) {
+                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                $recipe->appendCategory($line);
+            }
+        }
+
+        // Source
+        if (!$recipe->source) {
+            $recipe->source = "Food Network Kitchen";
         }
 
         return $recipe;
