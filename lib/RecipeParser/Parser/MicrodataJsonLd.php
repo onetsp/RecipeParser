@@ -86,6 +86,7 @@ class RecipeParser_Parser_MicrodataJsonLd {
             }
             if (is_object($photo_url)) {
                 $photo_url = $photo_url->url;
+
             }
             $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
         }
