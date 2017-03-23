@@ -59,7 +59,6 @@ class RecipeParser_Parser_MicrodataJsonLd {
         if (!$ingredients) {
             $ingredients = property_exists($data, "ingredients") ? $data->ingredients : [];
         }
-        
         foreach ($ingredients as $ingredient) {
             $ingredient = RecipeParser_Text::formatAsOneLine($ingredient);
             if (empty($ingredient)) {
@@ -80,8 +79,14 @@ class RecipeParser_Parser_MicrodataJsonLd {
         // Photo
         if (property_exists($data, "image")) {
             $photo_url = $data->image;
+
+            if (is_array($photo_url)) {
+                $first_element = array_values($photo_url)[0];
+                $photo_url = $first_element;
+            }
             if (is_object($photo_url)) {
-                $photo_url = $data->image->url;
+                $photo_url = $photo_url->url;
+
             }
             $recipe->photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
         }
