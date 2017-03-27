@@ -105,6 +105,22 @@ ONETSP_TIME: $time
         return $str;
     }
     
+    /**
+     * Cleanup for clipped HTML from SVGs prior to parsing with RecipeParser.
+     *
+     * @param string HTML
+     * @return string HTML
+     */
+    static public function cleanupSVGs($html) {
+        $html = self::normalize($html);
+
+        // Strip out SVG tags so they don't accidentally get executed if we ever display
+        // clipped content to end-users.
+        $html = RecipeParser_Text::stripTagAndContents('svg', $html);
+
+        return $html;
+    }
+
     static public function normalize($html) {
         $html = preg_replace('/(\r\n|\r)/', "\n", $html);            // Normalize line breaks
         $html = str_replace('&nbsp;', ' ', $html);                   // get rid of non-breaking space (html code)
