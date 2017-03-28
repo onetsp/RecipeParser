@@ -7,7 +7,17 @@ class RecipeParser_Parser_MicrodataJsonLd {
         $xpath = new DOMXPath($doc);
         
         $jsonScripts = $xpath->query('//script[@type="application/ld+json"]');
-        $json = trim( $jsonScripts->item(0)->nodeValue );
+        // we iterate over all ld+json script elements to find the correct one containing a Recipe object.
+        if ($jsonScripts->length > 1) {
+            foreach ($jsonScripts as $script) {
+                $json = trim( $script->nodeValue );
+                if (!preg_match('/["|\']@type["|\']:["|\']Recipe["|\']/', $json) and !preg_match('/["|\']type["|\']:["|\']Recipe["|\']/', $json)) {
+                    continue;
+                }
+            }
+        } else {
+            $json = trim( $jsonScripts->item(0)->nodeValue );
+        }
         $json = RecipeParser_Text::cleanJson($json);
         $data = json_decode( $json );
         
