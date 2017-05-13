@@ -219,7 +219,7 @@ class RecipeParser_Parser_FoodnetworkcomTest extends PHPUnit_Framework_TestCase 
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals(2, count($recipe->instructions[0]['list']));
-        $this->assertEquals("", $recipe->photo_url);  // don't clip photo of Ina Garten!
+        $this->assertEquals("http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2016/7/21/3/IG1B13F_Roast-Bacon_s4x3.jpg.rend.sniipadlarge.jpeg", $recipe->photo_url);  
     }
 
 

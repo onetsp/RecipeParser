@@ -61,6 +61,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $url       = "http://www.yummly.com/recipe/Roasted-Chicken-Tacos-Martha-Stewart-191942";
         $canonical = "http://www.marthastewart.com/315717/roasted-chicken-tacos";
         $html = FileUtil::downloadRecipeWithCache($url);
+        // TODO: This is failing
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
 
@@ -71,6 +72,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $url       = "http://www.yummly.com/recipe/external/Roasted-Chicken-Tacos-Martha-Stewart-191942";
         $canonical = "http://www.marthastewart.com/315717/roasted-chicken-tacos";
         $html = FileUtil::downloadRecipeWithCache($url);
+        // TODO: This is failing
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
 
@@ -101,6 +103,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $url       = "http://www.epicurious.com/ingredients/how-to-eat-sweet-potatoes-for-every-meal-even-dessert-gallery/4";
         $canonical = "http://www.epicurious.com/recipes/food/views/sweet-potato-gnocchi-with-fried-sage-and-shaved-chestnuts-355415";
         $html = FileUtil::downloadRecipeWithCache($url);
+        // TODO: This is failing
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
 
