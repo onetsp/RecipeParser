@@ -11,22 +11,27 @@ class RecipeParser_Parser_Bonappetitcom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
+        // Fix cooking time (busted markup for "schema"
+        if (!$recipe->time['total']) {
+            $nodes = $xpath->query('//*[@itemprop="totalTime"]');
+            foreach ($nodes as $node) {
+                $line = trim($node->nodeValue);
+                if (strpos($line, "TOTAL") === 0) {
+                    $line = RecipeParser_Times::toMinutes($line);
+                    $recipe->time['total'] = $line;
+                }
+            }
+        }
+
         // Ingredients
         $recipe->resetIngredients();
-        $nodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " ingredient-set ")]/*');
+        $nodes = $xpath->query('//div[@class="ingredientsGroup"]/*');
         foreach ($nodes as $node) {
-            // <h3> contains section name.
             if ($node->nodeName == 'h3') {
                 $line = RecipeParser_Text::formatSectionName($node->nodeValue);
-                if ($line == "Ingredients") {
-                    continue;
-                }
                 $recipe->addIngredientsSection($line);
                 continue;
-            }
-
-            // Extract ingredients as the node value of each <ul> -> <li> elements.
-            if ($node->nodeName == 'ul') {
+            } else if ($node->nodeName == 'ul') {
                 $ing_nodes = $node->childNodes;
                 foreach ($ing_nodes as $ing_node) {
                     if ($ing_node->nodeName == 'li') {
@@ -39,39 +44,28 @@ class RecipeParser_Parser_Bonappetitcom {
                 }
                 continue;
             }
-
         }
 
         // Instructions
         $recipe->resetInstructions();
-        $nodes = $xpath->query('//div[@class="prep-steps"]/*');
+        $nodes = $xpath->query('//div[@class="preparation__group"]/*');
         foreach ($nodes as $node) {
 
             // <h3> contains section name.
             if ($node->nodeName == 'h3') {
                 $line = RecipeParser_Text::formatSectionName($node->nodeValue);
-                if ($line == "Preparation") {
-                    continue;
-                }
                 if (!empty($line)) {
                     $recipe->addInstructionsSection($line);
                 }
                 continue;
             }
 
-            // Extract each step as the node value of <ul> -> <li> elements.
-            if ($node->nodeName == 'ul') {
-                $inst_nodes = $node->childNodes;
-                foreach ($inst_nodes as $inst_node) {
-                    if ($inst_node->nodeName == 'li') {
-                        $line = trim($inst_node->nodeValue);
-                        if (preg_match("/(Hungry|Thirsty) for more\?/i", $line)) {
-                            continue;
-                        } else if (!empty($line)) {
-                            $recipe->appendInstruction($line);
-                        }
-                    }   
-                }   
+            // Each step is in a nested p
+            if ($node->nodeName == 'div') {
+                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
+                if ($line) {
+                    $recipe->appendInstruction($line);
+                }
                 continue;
             }
         }
