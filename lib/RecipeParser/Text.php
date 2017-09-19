@@ -563,4 +563,14 @@ ONETSP_TIME: $time
         return $title;
     }
 
+
+    public static function getMetaProperty($xpath, $property) {
+        $nodes = $xpath->query('//meta[@property="' . $property . '"]');
+        if ($nodes->length) {
+            $line = $nodes->item(0)->getAttribute("content");
+            return $line;
+        }
+        return "";
+    }
+
 }
