@@ -69,7 +69,7 @@ class RecipeParser_Parser_Foodnetworkcom {
 
         // Instructions
         $recipe->resetInstructions();
-        $nodes = $xpath->query('//*[@class="o-Method__m-Body"]/*');
+        $nodes = $xpath->query('//section[@id="site"]//*[@class="o-Method__m-Body"]/*');
         foreach ($nodes as $node) {
             if ($node->nodeName == "h4") {
                 $value = $node->nodeValue;
