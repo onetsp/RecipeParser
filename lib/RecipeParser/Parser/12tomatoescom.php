@@ -51,12 +51,7 @@ class RecipeParser_Parser_12tomatoescom {
         }
 
         // Image
-        $nodes = $xpath->query('//meta[@property="og:image"]');
-        foreach ($nodes as $node) {
-            $line = $node->getAttribute("content");
-            $recipe->photo_url = $line;
-            break;
-        }
+        $recipe->photo_url = RecipeParser_Text::getMetaProperty($xpath, "og:image");
 
         return $recipe;
     }

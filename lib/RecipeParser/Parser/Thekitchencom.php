@@ -73,11 +73,7 @@ class RecipeParser_Parser_Thekitchencom {
         RecipeParser_Text::parseIngredientsAndInstructionsFromBlob($blob, $recipe);
 
         // Photo
-        $nodes = $xpath->query('//meta[@property="og:image"]');
-        if ($nodes->length) {
-            $line = $nodes->item(0)->getAttribute("content");
-            $recipe->photo_url = $line;
-        }
+        $recipe->photo_url = RecipeParser_Text::getMetaProperty($xpath, "og:image");
 
         return $recipe;
     }

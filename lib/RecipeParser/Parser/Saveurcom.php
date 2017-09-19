@@ -26,15 +26,7 @@ class RecipeParser_Parser_Saveurcom {
         }
 
         // Image
-        $photo_url = "";
-        if (!$photo_url) {
-            // try to find open graph url
-            $nodes = $xpath->query('//meta[@property="og:image"]');
-            if ($nodes->length) {
-                $photo_url = $nodes->item(0)->getAttribute('content');
-            }
-        }
-        $recipe->photo_url = $photo_url;
+        $recipe->photo_url = RecipeParser_Text::getMetaProperty($xpath, "og:image");
 
         // Ingredients
         $nodes = $xpath->query('//*[@property="ingredients"]');

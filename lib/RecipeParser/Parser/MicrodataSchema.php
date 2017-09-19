@@ -141,14 +141,7 @@ class RecipeParser_Parser_MicrodataSchema {
             }
 
             // Photo
-            $photo_url = "";
-            if (!$photo_url) {
-                // try to find open graph url
-                $nodes = $xpath->query('//meta[@property="og:image"]');
-                if ($nodes->length) {
-                    $photo_url = $nodes->item(0)->getAttribute('content');
-                }
-            }
+            $photo_url = RecipeParser_Text::getMetaProperty($xpath, "og:image");
             if (!$photo_url) {
                 $nodes = $xpath->query('.//*[@itemprop="image"]', $microdata);
                 if ($nodes->length) {
