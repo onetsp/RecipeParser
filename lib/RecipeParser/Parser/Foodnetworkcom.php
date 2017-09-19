@@ -36,13 +36,15 @@ class RecipeParser_Parser_Foodnetworkcom {
             }
         }
 
-        // Assign times to recipe
+        // Assign data to recipe
         foreach (array('prep', 'cook', 'total') as $key) {
             if (isset($data[$key])) {
                 $recipe->time[$key] = RecipeParser_Times::toMinutes($data[$key]);
             }
         }
-        $recipe->yield = RecipeParser_Text::formatYield($data['yield']);
+        if (isset($data['yield'])) {
+            $recipe->yield = RecipeParser_Text::formatYield($data['yield']);
+        }
 
         // Ingredients
         $recipe->resetIngredients();
