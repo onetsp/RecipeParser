@@ -3,7 +3,7 @@
 class RecipeParser_Parser_Thekitchencom {
 
     static public function parse($html, $url) {
-        $recipe = new RecipeParser_Recipe();
+        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
 
         // Turn off libxml errors to prevent mismatched tag warnings.
         libxml_use_internal_errors(true);
@@ -12,38 +12,37 @@ class RecipeParser_Parser_Thekitchencom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
-        // Title
-        $nodes = $xpath->query('//*[@id="recipe"]/h3');
-        if ($nodes->length) {
-            $line = RecipeParser_Text::formatTitle($nodes->item(0)->nodeValue);
-            $recipe->title = $line;
-        }
-
         // Instructions and Ingredients
+        $recipe->resetIngredients();
+        $recipe->resetInstructions();
         $nodes = $xpath->query('//*[@id="recipe"]/*');
 
         $blob = "";
         $found_servings = false;
         foreach ($nodes as $node) {
+            $line = trim($node->nodeValue);
 
-            // Skip title
+            // Stop at the recipe notes section
+            if (preg_match("/^Recipe Notes/", $line)) {
+                break;
+            }
+            // Skip the title node
             if ($node->nodeName == "h3") {
                 continue;
             }
-
-            // Get servings
-            $line = $node->nodeValue;
-            if (strpos($line, "Serves")) {
-                if (preg_match("/.*(Serves.+)$/m", $line, $m)) {
-                    $line = $m[1];
-                    $recipe->yield = RecipeParser_Text::formatYield($line);
-                    continue;
-                }
+            // Don't collect the yield or adapted notes
+            if (preg_match("/^(Serves |Adapted from )/", $line)) {
+                continue;
+            }
+            // stop collecting text at print/nutrition nodes
+            if (preg_match("/^Print Recipe/", $line)) {
+                break;
             }
 
             // Add child nodes to blob
             foreach ($node->childNodes as $child) {
                 $line = trim($child->nodeValue);
+
 
                 switch($child->nodeName) {
                     case "strong":
@@ -61,9 +60,6 @@ class RecipeParser_Parser_Thekitchencom {
                     case "div":
                     case "span":
                     case "p":
-                        if ($line == "•") {
-                            continue;
-                        }
                         $blob .= $line . "\n\n";
                         break;
                 }
@@ -71,9 +67,6 @@ class RecipeParser_Parser_Thekitchencom {
 
         }
         RecipeParser_Text::parseIngredientsAndInstructionsFromBlob($blob, $recipe);
-
-        // Photo
-        $recipe->photo_url = RecipeParser_Text::getMetaProperty($xpath, "og:image");
 
         return $recipe;
     }

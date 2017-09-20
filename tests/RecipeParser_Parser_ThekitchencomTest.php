@@ -29,7 +29,7 @@ class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase 
 
         $this->assertEquals('20-30 servings, depending on slice size', $recipe->yield);
 
-        $this->assertRegExp('/pixstatic.com\/524c597d697ab0613c005d69\._w\.1500_s\.fit_\.jpg/',
+        $this->assertRegExp('/^https:\/\/atmedia.imgix.net/',
                             $recipe->photo_url);
     }
 
@@ -50,16 +50,16 @@ class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase 
 
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals('', $recipe->instructions[0]['name']);
-        $this->assertEquals(12, count($recipe->instructions[0]['list']));
+        $this->assertEquals(9, count($recipe->instructions[0]['list']));
 
         $this->assertEquals('8 to 10 servings', $recipe->yield);
 
-        $this->assertRegExp('/pixstatic\.com\/525c2633dbfa3f0d8200ab91\._w\.1500_s\.fit_\.jpg/',
+        $this->assertRegExp('/^https:\/\/atmedia.imgix.net/',
                             $recipe->photo_url);
     }
 
     public function test_recipe_cherry_cobbler_recipes_from_the_kitchn_195824() {
-        $path = "data/thekitchn_com_tart_cherry_crumble_from_the_kitchn_curl.html";
+        $path = "data/thekitchn_com_tart_cherry_crumble_kitchn_curl.html";
         $url  = "http://www.thekitchn.com/recipe-cherry-cobbler-recipes-from-the-kitchn-195824";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -79,7 +79,7 @@ class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase 
 
         $this->assertEquals('6 servings', $recipe->yield);
 
-        $this->assertRegExp('/pixstatic\.com\/5256c63f697ab06b79002f6e\._w\.1500_s\.fit_\.jpg/',
+        $this->assertRegExp('/^https:\/\/atmedia.imgix.net/',
                             $recipe->photo_url);
     }
 
