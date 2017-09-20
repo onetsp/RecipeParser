@@ -31,9 +31,14 @@ class RecipeParser_Parser_Thekitchencom {
                 continue;
             }
             // Don't collect the yield or adapted notes
-            if (preg_match("/^(Serves |Adapted from )/", $line)) {
+            if (preg_match("/^(Serves |Adapted from )/i", $line)) {
                 continue;
             }
+            // Don't collect "I made this" 
+            if (preg_match("/^I made this/i", $line)) {
+                continue;
+            }
+
             // stop collecting text at print/nutrition nodes
             if (preg_match("/^Print Recipe/", $line)) {
                 break;
