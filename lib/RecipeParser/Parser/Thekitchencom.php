@@ -26,12 +26,8 @@ class RecipeParser_Parser_Thekitchencom {
             if (preg_match("/^Recipe Notes/", $line)) {
                 break;
             }
-            // Skip the title node
-            if ($node->nodeName == "h3") {
-                continue;
-            }
             // Don't collect the yield or adapted notes
-            if (preg_match("/^(Serves |Adapted from )/i", $line)) {
+            if (preg_match("/^(Serves |Adapted from |Makes \d+)/i", $line)) {
                 continue;
             }
             // Don't collect "I made this" 
@@ -40,14 +36,13 @@ class RecipeParser_Parser_Thekitchencom {
             }
 
             // stop collecting text at print/nutrition nodes
-            if (preg_match("/^Print Recipe/", $line)) {
+            if (preg_match("/Print Recipe/i", $line)) {
                 break;
             }
 
             // Add child nodes to blob
             foreach ($node->childNodes as $child) {
                 $line = trim($child->nodeValue);
-
 
                 switch($child->nodeName) {
                     case "strong":
@@ -71,6 +66,11 @@ class RecipeParser_Parser_Thekitchencom {
             }
 
         }
+
+        // Delete title from blob if found at the beginning.
+        $match = "/^\s*" . $recipe->title . "/i";
+        $blob = preg_replace($match, "", $blob);
+
         RecipeParser_Text::parseIngredientsAndInstructionsFromBlob($blob, $recipe);
 
         return $recipe;
