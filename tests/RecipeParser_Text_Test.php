@@ -286,6 +286,16 @@ class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
         );
     }
 
+    public function test_rel2abs_schemeless_https_url() {
+        $this->assertEquals(
+            "https://images.food52.com/iCTCn3NaUPeL90-DSC_1615.jpg",
+            RecipeParser_Text::relativeToAbsolute(
+                "//images.food52.com/iCTCn3NaUPeL90-DSC_1615.jpg",
+                "https://food52.com/shop/products/4056-to-go-casserole-carrier-set-of-2"
+            )
+        );
+    }
+
     public function test_filename_from_title() {
         $this->assertEquals("chocolate_macaroons_with_chocolate_or_caramel",
             RecipeParser_Text::formatFilenameFromTitle("Chocolate Macaroons with Chocolate or Caramel Filling - Bon Appétit"));

@@ -491,8 +491,17 @@ ONETSP_TIME: $time
 
     public static function relativeToAbsolute($rel, $base) {
         // return if already absolute URL
-        if (parse_url($rel, PHP_URL_SCHEME) != '') {
+        if (parse_url($rel, PHP_URL_SCHEME) != "") {
             return $rel;
+        }
+        
+        // Handle scheme-less URLs (e.g. "//img.food52.com/path/to/image.jpg")
+        if (parse_url($rel, PHP_URL_HOST) != "" && parse_url($rel, PHP_URL_SCHEME) == "") {
+            $base_scheme = parse_url($base, PHP_URL_SCHEME);
+            if (!empty($base_scheme)) {
+                $rel = $base_scheme . ":" . $rel;
+                return $rel;
+            }
         }
 
         // queries and anchors
