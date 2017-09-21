@@ -13,93 +13,66 @@ class RecipeParser_Parser_Skinnytastecom {
         $xpath = new DOMXPath($doc);
 
         // Title
-        $nodes = $xpath->query('//title');
-        if ($nodes->length) {
-            $value = $nodes->item(0)->nodeValue;
-            $value = substr($value, 0, strpos($value, "|"));
-            $value = RecipeParser_Text::formatTitle($value);
-            $recipe->title = $value;
+        $line = RecipeParser_Text::getMetaProperty($xpath, "og:title");
+        $line = RecipeParser_Text::formatTitle(preg_replace("/\| Skinnytaste/", "", $line));
+        $recipe->title = $line;
+
+        // Photo
+        $line = RecipeParser_Text::getMetaProperty($xpath, "og:image");
+        $recipe->photo_url = $line;
+
+        // Find collection of nodes that house entire article, ingredients, and instructions.
+        $nodes = $xpath->query('//div[@class="post-title"]');
+        if (!$nodes->length) {
+            return $recipe; // bombed out!
         }
+        $nodes = $nodes->item(0)->parentNode->childNodes;
 
-        // Ingredients and Instructions
-        $blob = "";
-        $separator = "\n---\n";
-        $nodes = $xpath->query('//*[@class="post-body entry-content"]');
+        // Iterate through nodes
+        $found_ingredients = false;
+        $found_instructions = false;
+        foreach ($nodes as $node) {
+            $line = trim($node->nodeValue);
 
-        foreach ($nodes->item(0)->childNodes as $node) {
-            $value = trim($node->nodeValue);
-
-            // Make sure not to pick up recommendations that follow directions.
-            if (preg_match("/if you like.*you might also like/i", $value)) {
+            // Locate waypoints along the node traversal
+            if (empty($line)) {
+                continue;
+            } else if ($line == "Ingredients:") {
+                $found_ingredients = true;
+                continue;
+            } else if ($line == "Directions:") {
+                $found_instructions = true;
+                continue;
+            } else if ($line == "Print This") {
                 break;
-            }
-
-            // Look for "ingredients header"
-            if (strpos($value, "Ingredients") !== false) {
-                $blob .= $value . $separator;
+            } else if (preg_match("/if you like.*you might also like/i", $line)) {
+                break;
+            } else if (!$found_ingredients) {
                 continue;
             }
 
-            // Combine text into the blob.
-            switch($node->nodeName) {
-                case "ul":
-                    $blob .= "\n" . $value . $separator;
-                    break;
-
-                case "#text":
-                case "span":
-                case "strong":
-                case "b":
-                case "em":
-                case "i":
-                case "a":
-                    $blob .= $value . " ";
-                    break;
-
-                case "br":
-                    $blob .= "\n";
-                    break;
-
-                case "div":
-                case "p":
-                    if ($value == "•") {
-                        continue;
+            // Extract ingredients
+            if ($found_ingredients && !$found_instructions) {
+                if ($node->nodeName == "ul") {
+                    foreach ($node->childNodes as $n) {
+                        $line = RecipeParser_Text::formatAsOneLine($n->nodeValue);
+                        $recipe->appendIngredient($line);
                     }
-                    $blob .= $value . "\n\n";
-                    break;
+                    continue;
+                } else if (RecipeParser_Text::matchSectionName($line)) {
+                    $line = RecipeParser_Text::formatSectionName($line);
+                    $recipe->addIngredientsSection($line);
+                    continue;
+                }
+
+            // Extract instructions
+            } else if ($found_instructions) {
+                $line = RecipeParser_Text::formatAsOneLine($line);
+                $recipe->appendInstruction($line);
+                continue;
             }
-        }
 
-        // Split up sections, and drop the first (which is all filler)
-        $sections = explode($separator, $blob);
-        array_shift($sections);
 
-        // Parse ingredients
-        while (count($sections) >= 2) {
-            $value = array_shift($sections);
-            $value = trim($value);
-            $parts = explode("\n\n", $value);
-            if (count($parts) > 1) {
-                $value = RecipeParser_Text::formatSectionName(array_shift($parts));
-                $recipe->addIngredientsSection($value);
-            }
-            // Split ingredients
-            $parts = explode("\n", $parts[0]);
-            foreach ($parts as $value) {
-                $value = RecipeParser_Text::formatAsOneLine($value);
-                $recipe->appendIngredient($value);
-            }
-        }
-
-        // Parse instructions
-        $value = array_shift($sections);
-        RecipeParser_Text::parseInstructionsFromBlob($value, $recipe);
-
-        // Photo
-        $nodes = $xpath->query('//*[@class="post-body entry-content"]//img');
-        if ($nodes->length) {
-            $value = $nodes->item(0)->getAttribute("src");
-            $recipe->photo_url = $value;
         }
 
         return $recipe;
