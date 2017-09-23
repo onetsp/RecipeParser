@@ -30,7 +30,7 @@ class RecipeParser_Canonical {
         // Foodnetwork.com videos
         if (strpos($url, "www.foodnetwork.com/videos/") !== false) {
             $xpath = self::getXPath($html);
-            $nodes = $xpath->query('//*[@class="title-wrap"]//a[@class="btn vip"]');
+            $nodes = $xpath->query('//a[@class="o-VideoMetadata__a-Button"]');
             if ($nodes->length) {
                 $href = $nodes->item(0)->getAttribute("href");
                 $url = RecipeParser_Text::relativeToAbsolute($href, $url);
@@ -39,9 +39,6 @@ class RecipeParser_Canonical {
         }
     
         // Yummly
-        if (strpos($url, "http://www.yummly.com/recipe/external/") !== false) {
-            return self::searchYummlyIFrame($html, $url);
-        }
         if (strpos($url, "http://www.yummly.com/recipe/") !== false) {
             return self::searchYummly($html, $url);
         }
@@ -66,23 +63,17 @@ class RecipeParser_Canonical {
             // Need HTML page with <script> tags preserved!
             $strip_script_tags = false;
             $html = FileUtil::downloadRecipeWithCache($url, $strip_script_tags);
-            if (preg_match("/\"pageValue\" ?\: ?\"slide(\d+)\"/", $html, $m)) {
-                $slide = $m[1];
-                $xpath = self::getXPath($html);
 
-                // Iterate over <figcaption> looking for the right "slide #/10" node that contains an HREF
-                $nodes = $xpath->query('//figcaption');
+            $slide_number = preg_replace("/.*\/(\d+)$/", "$1", $url);
+            if ($slide_number) {
+                $xpath = self::getXPath($html);
+                $nodes = $xpath->query('//article[@id="slide_' . $slide_number . '"]//a');
                 foreach ($nodes as $node) {
-                    if ($subs = $xpath->query('./*[@class="count"]', $node)) {
-                        $str = $node->nodeValue;
-                        if (strpos($str, $slide."/") !== false) {
-                            $subs = $xpath->query('.//h3/a', $node);
-                            if ($subs->length) {
-                                $href = $subs->item(0)->getAttribute("href");
-                                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
-                                return $url;
-                            }
-                        }
+                    $line = trim($node->nodeValue);
+                    if (preg_match("/^View Recipe/i", $line)) {
+                        $href = $node->getAttribute("href");
+                        $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                        return $url;
                     }
                 }
             }
@@ -129,40 +120,11 @@ class RecipeParser_Canonical {
             $xpath = self::getXPath($html);
 
             // "Get the Recipe" link?
-            $nodes = $xpath->query('//*[@class="item-list"]//a');
+            $nodes = $xpath->query('//*[@class="article-content"]//a');
             foreach ($nodes as $node) {
                 $line = trim($node->nodeValue);
                 if (strpos($line, "Get the Recipe:") !== false) {
                     $href = $node->getAttribute("href");
-                    $url = RecipeParser_Text::relativeToAbsolute($href, $url);
-                    return $url;
-                }
-            }
-
-            // Calendar day link (for quick-and-easy)
-            $nodes = $xpath->query('//*[@class="calendar-day-text-recipe-headline-link"]/a');
-            if ($nodes->length) {
-                $href = $nodes->item(0)->getAttribute("href");
-                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
-                return $url;
-            }
-        }
-
-        // Saveur gallery pages
-        if (strpos($url, "www.saveur.com/gallery/") !== false) {
-            $xpath = self::getXPath($html);
-            // Slide # comes from "image" query param, and range starts at 0.
-            if (preg_match("/image=(\d+)/", $url, $m)) {
-                $slide = $m[1];
-            } else {
-                $slide = 0;
-            }
-            $nodes = $xpath->query('//div[@class="gallery-slider"]//div[@class="content"]');
-            if ($nodes->length) {
-                $slide_node = $nodes->item($slide);
-                $subs = $xpath->query('.//a', $slide_node);
-                if ($subs->length) {
-                    $href = $subs->item(0)->getAttribute("href");
                     $url = RecipeParser_Text::relativeToAbsolute($href, $url);
                     return $url;
                 }
@@ -191,24 +153,13 @@ class RecipeParser_Canonical {
         return null;
     }
 
-    public static function searchYummlyIFrame($html, $url) {
-        $xpath = self::getXPath($html);
-        $nodes = $xpath->query('//iframe[@id="yFrame"]');
-        if ($nodes->length) {
-            $url = $nodes->item(0)->getAttribute("src");
-            if ($url) {
-                return $url;
-            }
-        }
-        return null;
-    }
-
     public static function searchYummly($html, $url) {
         $xpath = self::getXPath($html);
-        $nodes = $xpath->query('//*[@id="source-full-directions"]');
+        $nodes = $xpath->query('//*[@class="recipe-show-full-directions inline-btn"]');
         if ($nodes->length) {
             if ($href = $nodes->item(0)->getAttribute("href")) {
                 $url = RecipeParser_Text::relativeToAbsolute($href, $url);
+                $url = preg_replace("/^(.+)\?.+$/", "$1", $url);
                 return $url;
             }
         }
