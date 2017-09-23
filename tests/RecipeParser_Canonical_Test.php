@@ -174,4 +174,15 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
 
+
+    /**
+     * @group network
+     */
+    public function test_ziplist_souschef() {
+        $url       = "http://www.ziplist.com/souschef?url=http%3A%2F%2Fwww.melskitchencafe.com%2F2014%2F03%2Fgreen-chile-chicken-enchilada-stack.html";
+        $canonical = "http://www.melskitchencafe.com/2014/03/green-chile-chicken-enchilada-stack.html";
+        $html = FileUtil::downloadRecipeWithCache($url);
+        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
+    }
+
 }

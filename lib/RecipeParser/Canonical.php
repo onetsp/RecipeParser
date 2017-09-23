@@ -131,6 +131,14 @@ class RecipeParser_Canonical {
             }
         }
 
+        // Ziplist souschef links
+        if (strpos($url, "ziplist.com/souschef")) {
+            $query = parse_url($url, PHP_URL_QUERY);
+            $query = preg_replace("/^url=(.+)$/", "$1", $query);
+            $url = urldecode($query);
+            return $url;
+        }
+
         return null;
     }
 
