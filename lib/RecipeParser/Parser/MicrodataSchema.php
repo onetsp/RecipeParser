@@ -80,6 +80,13 @@ class RecipeParser_Parser_MicrodataSchema {
             if (!$nodes->length) {
                 $nodes = $xpath->query('.//*[@itemprop="recipeIngredient"]', $microdata);
             }
+            // fall back case
+            if ($nodes->length == 0) {
+                $nodes = $xpath->query('.//*[@class="ingredient"]', $microdata);
+                if (!$nodes->length) {
+                    $nodes = $xpath->query('.//*[@itemprop="recipeIngredient"]', $microdata);
+                }
+            }
             foreach ($nodes as $node) {
                 if ($nodes->item(0)->hasAttribute('content')) {
                     $line = $node->getAttribute('content');
