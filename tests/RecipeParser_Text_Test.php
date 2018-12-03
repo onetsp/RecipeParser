@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Text_Test extends PHPUnit_Framework_TestCase {
+class TextTest extends TestCase {
 
     public function test_source_and_url_do_not_match() {
         $source = "From Mom";
