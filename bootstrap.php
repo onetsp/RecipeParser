@@ -2,6 +2,7 @@
 
 define('RECIPECLIPPER_APP_ROOT', dirname(__FILE__));
 
+include RECIPECLIPPER_APP_ROOT . '/vendor/autoload.php';
 include RECIPECLIPPER_APP_ROOT . '/lib/_autoload.php';
 
 set_include_path( '.'

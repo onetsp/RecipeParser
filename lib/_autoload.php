@@ -14,4 +14,3 @@ function RecipeParser_Autoload($class_name) {
 
 spl_autoload_register('RecipeParser_Autoload');
 
-?>
