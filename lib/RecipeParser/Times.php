@@ -25,6 +25,7 @@ class RecipeParser_Times {
      *   total: 30 mins   -> 30
      */
     static public function toMinutes($str) {
+        $str = (string)$str;
         $days = 0;
         $hours = 0;
         $minutes = 0;
@@ -43,12 +44,12 @@ class RecipeParser_Times {
 
         // Treat simple numeric value as minutes.
         if (preg_match("/^\d+$/", $str)) {
-            $minutes = $str;
+            $minutes = (int)$str;
 
         // Match HH:MM
         } else if (preg_match("/^(\d+)\:(\d{2})$/", $str, $m)) {
-            $hours = $m[1];
-            $minutes = $m[2];
+            $hours = (int)$m[1];
+            $minutes = (int)$m[2];
 
         // Other cases...
         } else {
@@ -57,20 +58,22 @@ class RecipeParser_Times {
             $str = preg_replace("/\b(minutes?|mins?|m|mm)\b/", "mins", $str);
             $str = preg_replace("/\b(days?|d)\b/", "days", $str);
 
-            // Replace fractions with decimals
+            // Replace fractions with decimals (e.g. 2 1/4 to 2.25)
             if (preg_match("/(\d+)\s(\d+)\/(\d+)/", $str, $m) && $m[3] > 0) {
-                $str = str_replace($m[0], ($m[1] + ($m[2] / $m[3])), $str);
+                $decimal = (float)$m[1] + ((float)$m[2] / (float)$m[3]);
+                $str = str_replace($m[0], (string)$decimal, $str);
             }
 
             // Match '## Day ## Hr ## Min'
             if (preg_match("/^((?<days>[\d\.]+) days)?\s?((?<hours>[\d\.]+) hrs)?\s?((?<minutes>[\d\.]+) mins)?$/", $str, $m)) {
-                $days = isset($m['days']) ? $m['days'] : 0;
-                $hours = isset($m['hours']) ? $m['hours'] : 0;
-                $minutes = isset($m['minutes']) ? $m['minutes'] : 0;
+                $days = isset($m['days']) ? (float)$m['days'] : 0;
+                $hours = isset($m['hours']) ? (float)$m['hours'] : 0;
+                $minutes = isset($m['minutes']) ? (float)$m['minutes'] : 0;
             }
         }
 
-        return $minutes + ($hours * 60) + ($days * 1440);
+        $value = (int)($minutes + ($hours * 60) + ($days * 1440));
+        return $value;
     }
 
 }

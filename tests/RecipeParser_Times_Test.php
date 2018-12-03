@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Times_Test extends PHPUnit_Framework_TestCase {
+class TimesTest extends TestCase {
 
     public function test_format_MM() {
         $this->assertEquals(90, RecipeParser_Times::toMinutes(90),
