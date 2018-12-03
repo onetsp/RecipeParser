@@ -1,6 +1,7 @@
 {
     "require-dev": {
         "phpunit/dbunit": "^4.0",
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "^7.4",
+        "phpunit/php-invoker": "^2.0"
     }
 }
