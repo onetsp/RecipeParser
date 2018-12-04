@@ -49,7 +49,7 @@ class RecipeParser_Parser_Saveurcom {
         $nodes = $xpath->query('//*[@class="field-body"]//p');
         foreach ($nodes as $node) {
             if ($str) {
-                $str += "\n\n";
+                $str .= "\n\n";
             }
             $str = $node->nodeValue;
             $str = RecipeParser_Text::formatAsOneLine($str);
