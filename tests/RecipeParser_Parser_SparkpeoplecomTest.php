@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser__Sparkpeoplecom_Test extends PHPUnit_Framework_TestCase {
+class SparkpeoplecomTest extends TestCase {
 
     public function test_carrot_pumpkin_bars() {
         $path = "data/recipes_sparkpeople_com_carrot_pumpkin_bars_by_andrewmom_sparks_curl.html";
@@ -111,5 +112,3 @@ class RecipeParser_Parser__Sparkpeoplecom_Test extends PHPUnit_Framework_TestCas
 
 
 }
-
-?>

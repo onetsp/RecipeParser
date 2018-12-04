@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_ThepioneerwomancomTest extends PHPUnit_Framework_TestCase {
+class ThepioneerwomancomTest extends TestCase {
 
     public function test_petite_vanilla_bean_scones() {
         $path = "data/thepioneerwoman_com_petite_vanilla_bean_scones_the_pioneer_curl.html";
@@ -33,7 +34,6 @@ class RecipeParser_Parser_ThepioneerwomancomTest extends PHPUnit_Framework_TestC
         $this->assertEquals('http://tastykitchen.com/recipes/files/2010/04/4495331454_fcb27f08ce_o-420x280.jpg', 
                             $recipe->photo_url);
     }
-
 
     public function test_ravioli_three_ways() {
         $path = "data/thepioneerwoman_com_ravioli_three_ways_the_pioneer_woman_curl.html";

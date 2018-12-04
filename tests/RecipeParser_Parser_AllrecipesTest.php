@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_AllrecipesTest extends PHPUnit_Framework_TestCase {
+class AllrecipesTest extends TestCase {
 
     public function test_apple_pumpkin_muffins() {
         $path = "data/allrecipes_com_apple_pumpkin_muffins_all_com_curl.html";

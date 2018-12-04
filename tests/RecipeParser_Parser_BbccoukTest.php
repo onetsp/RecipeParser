@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_BbccoukTest extends PHPUnit_Framework_TestCase {
+class BbccoukTest extends TestCase {
 
     public function test_baked_pappardelle() {
         $path = "data/bbc_co_uk_bbc_food_s_baked_pappardelle_with_curl.html";
@@ -95,5 +96,3 @@ class RecipeParser_Parser_BbccoukTest extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>

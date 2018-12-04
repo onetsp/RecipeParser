@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_RecipecomTest extends PHPUnit_Framework_TestCase {
+class RecipecomTest extends TestCase {
 
     public function test_chicken_tortilla_casserole() {
         $path = "data/recipe_com_quot_healthified_quot_chicken_tortilla_casserole_curl.html";

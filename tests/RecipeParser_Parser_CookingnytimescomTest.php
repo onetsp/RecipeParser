@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_CookingnytimescomTest extends PHPUnit_Framework_TestCase {
+class CookingnytimescomTest extends TestCase {
 
     public function test_dining_olive_oil_cake() {
         $path = "data/cooking_nytimes_com_blood_orange_olive_oil_cake_nyt_curl.html";

@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser__Cookingchanneltvcom_Test extends PHPUnit_Framework_TestCase {
+class CookingchanneltvcomTest extends TestCase {
 
     public function test_chocolate_cake() {
         $path_orig = "data/cookingchanneltv_com_chocolate_chocolate_cake_cooking_channel_curl.html";

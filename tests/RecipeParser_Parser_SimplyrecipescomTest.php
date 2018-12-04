@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_SimplyrecipescomTest extends PHPUnit_Framework_TestCase {
+class SimplyrecipescomTest extends TestCase {
 
     public function test_apple_cranberry_pie() {
         $path = "data/simplyrecipes_com_apple_cranberry_pie_simply_s_curl.html";

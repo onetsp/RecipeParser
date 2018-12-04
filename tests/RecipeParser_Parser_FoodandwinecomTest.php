@@ -1,6 +1,9 @@
 <?php
-require_once '../bootstrap.php';
-class RecipeParser_Parser_FoodandwinecomTest extends PHPUnit_Framework_TestCase {
+
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
+
+class FoodandwinecomTest extends TestCase {
     public function test_carrot_sheet_cake() {
         $path = "data/foodandwine_com_carrot_sheet_cake_with_cream_cheese_curl.html";
         $url = "http://www.foodandwine.com/recipes/carrot-sheet-cake-with-cream-cheese-frosting";

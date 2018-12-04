@@ -1,8 +1,9 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_ThedailymealcomTest extends PHPUnit_Framework_TestCase {
+class ThedailymealcomTest extends TestCase {
     public function test_roast_capon() {
         $path = "data/thedailymeal_com_roast_capon_the_daily_meal_curl.html";
         $url  = "http://www.thedailymeal.com/roast-capon";

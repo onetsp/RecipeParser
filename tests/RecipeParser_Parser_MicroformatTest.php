@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_MicroformatSpecTest extends PHPUnit_Framework_TestCase {
+class MicroformatSpecTest extends TestCase {
 
     public function test_microformat_recipe() {
         $path = "data/microformat_spec.html";

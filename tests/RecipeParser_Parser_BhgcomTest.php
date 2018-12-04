@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_BhgcomTest extends PHPUnit_Framework_TestCase {
+class BhgcomTest extends TestCase {
 
     public function test_eggnog_cheesecake() {
         $path_orig = "data/bhg_com_bhgs_newest_eggnog_cheesecake_with_candied_curl.html";
@@ -61,5 +62,3 @@ class RecipeParser_Parser_BhgcomTest extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>

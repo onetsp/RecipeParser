@@ -1,8 +1,9 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_Cookingcom_Test extends PHPUnit_Framework_TestCase {
+class CookingcomTest extends TestCase {
 
     public function test_big_oatmeal_raisin_chews_recipe_5114_aspx() {
         $path = "data/cooking_com_big_oatmeal_raisin_chews_cooking_com_curl.html";

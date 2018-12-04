@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_EatingwellcomTest extends PHPUnit_Framework_TestCase {
+class EatingwellcomTest extends TestCase {
 
     public function test_apple_cranberry_cake() {
         $path_orig = "data/eatingwell_com_apple_cranberry_upside_down_cake_curl.html";
@@ -86,5 +87,3 @@ class RecipeParser_Parser_EatingwellcomTest extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>

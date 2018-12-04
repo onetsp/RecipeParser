@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase {
+class MicrodataSchemaTest extends TestCase {
 
     public function test_schema_recipe() {
         $path = "data/schema_spec.html";
@@ -30,15 +31,6 @@ class RecipeParser_Parser_MicrodataSchemaTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('http://schema.example.com/images/bananabread.jpg', 
                             $recipe->photo_url);
-    }
-
-    public function test_schema_spec_publisher() {
-        $path = "data/schema_spec_publisher.html";
-        $url = "http://schema.example.com/schema-spec";
-
-        $recipe = RecipeParser::parse(file_get_contents($path), $url);
-        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
-
     }
 
     public function test_schema_spec_class_instruction() {

@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_CookscomTest extends PHPUnit_Framework_TestCase {
+class CookscomTest extends TestCase {
 
     public function test_nilla_wafers() {
         $path = "data/cooks_com_nilla_wafers_and_no_bake_jello_curl.html";

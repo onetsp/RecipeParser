@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_EpicuriouscomTest extends PHPUnit_Framework_TestCase {
+class EpicuriouscomTest extends TestCase {
 
     public function test_cake_caramel() {
         $path = "data/epicurious_com_chocolate_cake_with_caramel_milk_chocolate_curl.html";

@@ -1,8 +1,9 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_101cookbookscom_Test extends PHPUnit_Framework_TestCase {
+class OneOhOneCookbookscomTest extends TestCase {
 
     public function test_glissade_chocolate_pudding_recipe() {
         $path = "data/101cookbooks_com_glissade_chocolate_pudding_cookbooks_curl.html";

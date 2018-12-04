@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_BravotvcomTest extends PHPUnit_Framework_TestCase {
+class BravotvcomTest extends TestCase {
 
     public function test_cleanup_times() {
         $time = RecipeParser_Parser_Bravotvcom::cleanupTime(' 2 Hours ');

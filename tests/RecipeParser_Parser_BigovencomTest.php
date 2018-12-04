@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_BigovencomTest extends PHPUnit_Framework_TestCase {
+class BigovencomTest extends TestCase {
 
     public function test_bigoven_user_submitted() {
         $path = "data/bigoven_com_banana_bread_bigoven_curl.html";
@@ -29,5 +30,3 @@ class RecipeParser_Parser_BigovencomTest extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>

@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCase {
+class NytimescomRecipesTest extends TestCase {
 
     public function test_recipes_blackberry_jam_cake() {
         $path = "data/nytimes_com_blackberry_jam_cake_with_caramel_icing_curl.html";
@@ -105,29 +106,6 @@ class RecipeParser_Parser_NytimescomRecipesTest extends PHPUnit_Framework_TestCa
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(3, count($recipe->instructions[0]['list']));
     }
-
-#    public function test_dining_lentils_and_rice() {
-#        $path = "data/nytimes_com_lentils_and_rice_with_or_without_curl.html";
-#        $url = "http://www.nytimes.com/2011/01/02/weekinreview/02recipes-2.html";
-#
-#        $recipe = RecipeParser::parse(file_get_contents($path), $url);
-#        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
-#
-#        $this->assertEquals(0, $recipe->time['prep']);
-#        $this->assertEquals(0, $recipe->time['cook']);
-#        $this->assertEquals(45, $recipe->time['total']);
-#        $this->assertEquals('4 to 6 servings', $recipe->yield);
-#
-#        $this->assertEquals('Lentils and Rice With or Without Pork', $recipe->title);
-#
-#        $this->assertEquals(1, count($recipe->ingredients));
-#        $this->assertEquals('', $recipe->ingredients[0]['name']);
-#        $this->assertEquals(11, count($recipe->ingredients[0]['list']));
-#        $this->assertEquals(1, count($recipe->instructions));
-#        $this->assertEquals(3, count($recipe->instructions[0]['list']));
-#
-#        $this->assertRegExp('/^Use any grain instead.*or stock if you have it\.$/s', $recipe->notes);
-#    }
 
 }
 

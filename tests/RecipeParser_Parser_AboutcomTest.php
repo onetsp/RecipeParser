@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_AboutcomTest extends PHPUnit_Framework_TestCase {
+class AboutcomTest extends TestCase {
 
     public function test_baking_biscotti_cookie() {
         $path = "data/baking_about_com_cinnamon_walnut_biscotti_curl.html";

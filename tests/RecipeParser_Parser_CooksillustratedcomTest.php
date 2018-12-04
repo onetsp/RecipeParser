@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_CooksillustratedcomTest extends PHPUnit_Framework_TestCase {
+class CooksillustratedcomTest extends TestCase {
 
     public function test_key_lime_bars() {
         $this->markTestSkipped("Need updated clipper files for Cooks Illustrated");
@@ -67,5 +68,3 @@ class RecipeParser_Parser_CooksillustratedcomTest extends PHPUnit_Framework_Test
     }
 
 }
-
-?>

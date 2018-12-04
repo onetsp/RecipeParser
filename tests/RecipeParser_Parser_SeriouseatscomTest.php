@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_SeriouseatscomTest extends PHPUnit_Framework_TestCase {
+class SeriouseatscomTest extends TestCase {
 
     public function test_banana_split_whoopie_pies() {
         $path_orig = "data/seriouseats_com_banana_split_s_more_whoopie_pies_serious_curl.html";
@@ -64,8 +65,6 @@ class RecipeParser_Parser_SeriouseatscomTest extends PHPUnit_Framework_TestCase 
         $path_orig = "data/seriouseats_com_sunday_supper_aleppo_rubbed_pork_ribs_serious_curl.html";
         $url = "http://www.seriouseats.com/recipes/2011/08/aleppo-rubbed-pork-ribs.html";
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
-        
-
 
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -90,8 +89,6 @@ class RecipeParser_Parser_SeriouseatscomTest extends PHPUnit_Framework_TestCase 
         $url = "http://www.seriouseats.com/recipes/2011/08/oysters-rockefeller-sunday-brunch-seafood-appetizer.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
-        
-
 
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -111,7 +108,4 @@ class RecipeParser_Parser_SeriouseatscomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
     }
 
-
 }
-
-?>

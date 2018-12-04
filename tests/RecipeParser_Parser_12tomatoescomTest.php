@@ -1,8 +1,9 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_12tomatoescomTest extends PHPUnit_Framework_TestCase {
+class 12tomatoescomTest extends TestCase {
 
     public function test_filling_and_fruity_treat_cream_cheese_cherry_coffee_cake() {
 

@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_MicrodataDataVocabularyTest extends PHPUnit_Framework_TestCase {
+class MicrodataDataVocabularyTest extends TestCase {
 
     public function test_datavocabulary_recipe() {
         $path = "data/datavocabulary_spec.html";
@@ -68,5 +69,3 @@ class RecipeParser_Parser_MicrodataDataVocabularyTest extends PHPUnit_Framework_
     }
 
 }
-
-?>

@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
+class KingarthurflourcomTest extends TestCase {
 
     public function test_cream_pie() {
         $path_orig = "data/kingarthurflour_com_cream_pie.html";
@@ -89,5 +90,3 @@ class Import_Kingarthurflourcom_Test extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>

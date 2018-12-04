@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_MicrodataRdfDataVocabularyTest extends PHPUnit_Framework_TestCase {
+class MicrodataRdfDataVocabularyTest extends TestCase {
 
     public function test_rdf_datavocabulary_recipe() {
         $path = "data/rdf_datavocabulary_spec.html";
@@ -64,5 +65,3 @@ class RecipeParser_Parser_MicrodataRdfDataVocabularyTest extends PHPUnit_Framewo
         $this->assertRegExp("/^Put the cooked and cooled rice/", $recipe->instructions[0]['list'][3]);
     }
 }
-
-?>

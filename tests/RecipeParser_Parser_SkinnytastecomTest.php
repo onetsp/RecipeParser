@@ -1,8 +1,9 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_Skinnytastecom_Test extends PHPUnit_Framework_TestCase {
+class SkinnytastecomTest extends TestCase {
 
     public function test_homemade_skinny_chocolate_cake() {
         $path = "data/skinnytaste_com_homemade_skinny_chocolate_cake_skinnytaste_curl.html";
@@ -127,7 +128,6 @@ class RecipeParser_Parser_Skinnytastecom_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(10, count($recipe->instructions[0]['list']));
     }
-
 
     public function test_turkey_chili_taco_soup() {
         // This test file has a format that uses Schema/Recipe.

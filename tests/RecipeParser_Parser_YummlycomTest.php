@@ -1,12 +1,13 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_Yummlycom_Test extends PHPUnit_Framework_TestCase {
+class Yummlycom_Test extends TestCase {
 
     public function test_Egg_in_a_Frame__Toad_in_a_Hole__568587_columns_4() {
 
-        $path = "data/yummly_com_egg_in_a_frame_toad_in_curl.html";
+        $path = TestUtils::getDataPath("yummly_com_egg_in_a_frame_toad_in_curl.html");
         $url  = "http://www.yummly.com/recipe/Egg-in-a-Frame-_Toad-in-a-Hole_-568587?columns=4";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,7 +36,7 @@ class RecipeParser_Parser_Yummlycom_Test extends PHPUnit_Framework_TestCase {
 
     public function test_Maples_Inn_Blueberry_Stuffed_French_Toast_568585_columns_4() {
 
-        $path = "data/yummly_com_maples_inn_blueberry_stuffed_french_toast_curl.html";
+        $path = TestUtils::getDataPath("yummly_com_maples_inn_blueberry_stuffed_french_toast_curl.html");
         $url  = "http://www.yummly.com/recipe/Maples-Inn-Blueberry-Stuffed-French-Toast-568585?columns=4";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

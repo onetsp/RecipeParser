@@ -1,8 +1,9 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_Thekitchencom_Test extends PHPUnit_Framework_TestCase {
+class ThekitchencomTest extends TestCase {
 
     public function test_recipe_olive_oil_and_whisky_carrot_cake_recipes_from_the_kitchn_195594() {
         $path = "data/thekitchn_com_olive_oil_and_whiskey_carrot_cake_curl.html";

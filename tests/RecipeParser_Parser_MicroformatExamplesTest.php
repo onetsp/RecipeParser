@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_MicroformatExamplesTest extends PHPUnit_Framework_TestCase {
+class MicroformatExamplesTest extends TestCase {
 
     public function test_cookingchanneltv() {
         $path = "data/cookingchanneltv_com_matt_s_lemon_blueberry_muffins_s_cooking_curl.html";
@@ -21,5 +22,3 @@ class RecipeParser_Parser_MicroformatExamplesTest extends PHPUnit_Framework_Test
     }
 
 }
-
-?>

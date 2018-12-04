@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase {
+class BbcgoodfoodcomTest extends TestCase {
 
     public function test_chicken_herb_rosti() {
         $path_orig = "data/bbcgoodfood_com_chicken_amp_herb_r_sti_topped_pies_curl.html";
@@ -109,4 +110,3 @@ class RecipeParser_Parser_BbcgoodfoodcomTest extends PHPUnit_Framework_TestCase 
         $this->assertEquals(2, count($recipe->instructions[0]['list']));
     }
 }
-

@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_AmericastestkitchencomTest extends PHPUnit_Framework_TestCase {
+class AmericastestkitchencomTest extends TestCase {
 
     public function test_simple_atk_parser() {
         $path = "data/americastestkitchen_com_thick_cut_sweet_potato_fries_america_s_test_kitchen_clipped.html";

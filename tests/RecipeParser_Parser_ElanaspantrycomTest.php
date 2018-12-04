@@ -1,8 +1,9 @@
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_Elanaspantrycom_Test extends PHPUnit_Framework_TestCase {
+class ElanaspantrycomTest extends TestCase {
 
     public function test_cranberry_coconut_power_bars() {
 
