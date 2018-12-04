@@ -5,6 +5,8 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 
 class CooksillustratedcomTest extends TestCase {
 
+    // Potential free recipe to test with parser.
+
     public function test_key_lime_bars() {
         $this->markTestSkipped("Need updated clipper files for Cooks Illustrated");
 

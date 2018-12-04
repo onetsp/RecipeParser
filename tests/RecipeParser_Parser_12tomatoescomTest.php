@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class 12tomatoescomTest extends TestCase {
+class TwelvetomatoescomTest extends TestCase {
 
     public function test_filling_and_fruity_treat_cream_cheese_cherry_coffee_cake() {
 
@@ -31,7 +31,6 @@ class 12tomatoescomTest extends TestCase {
 
         $this->assertEquals('http://s3.amazonaws.com/studio-me/system/photos/photos/000/813/509/original/36292587_l.jpg',
                             $recipe->photo_url);
-
     }
 
     public function test_healthy_sugarfree_cookies_nobake_chocolate_oat_cookies() {
@@ -60,7 +59,6 @@ class 12tomatoescomTest extends TestCase {
 
         $this->assertEquals('http://s3.amazonaws.com/studio-me/system/photos/photos/000/815/181/original/37427544_l.jpg',
                             $recipe->photo_url);
-
     }
 
     public function test_light_and_sweet_dessert_creamy_raspberry_cheesecake_bars() {
@@ -89,7 +87,6 @@ class 12tomatoescomTest extends TestCase {
 
         $this->assertEquals('http://s3.amazonaws.com/studio-me/system/photos/photos/000/813/291/original/19555409_l.jpg',
                             $recipe->photo_url);
-
     }
 
 }
