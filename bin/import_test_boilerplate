@@ -9,9 +9,10 @@ if (count($argv) <= 1) {
 echo <<<EOM
 <?php
 
-require_once "../bootstrap.php";
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_INSERTCLASSNAME_Test extends PHPUnit_Framework_TestCase {
+class INSERTCLASSNAMETest extends TestCase {
 
 EOM;
 
@@ -38,7 +39,7 @@ foreach ($argv as $file) {
 
     public function test_$test_name() {
 
-        \$path = "$file_path";
+        \$path = TestUtils::getDataPath("$file_path");
         \$url  = "$url";
 
         \$recipe = RecipeParser::parse(file_get_contents(\$path), \$url);
@@ -77,9 +78,6 @@ EOM;
         }
     }
 }
-
-
-
 
 echo <<<EOM
 
