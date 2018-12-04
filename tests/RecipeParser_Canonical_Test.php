@@ -1,15 +1,16 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
+class CanonicalTest extends TestCase {
 
     /**
      * @group network
      */
     public function test_m_dot_allrecipes() {
         $url       = "http://m.allrecipes.com/recipe/70343/slow-cooker-chicken-taco-soup/";
-        $canonical = "http://allrecipes.com/recipe/70343/slow-cooker-chicken-taco-soup/";
+        $canonical = "https://www.allrecipes.com/recipe/70343/slow-cooker-chicken-taco-soup/";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
@@ -19,7 +20,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
      */
     public function test_allrecipes_print_format() {
         $url       = "http://allrecipes.com/recipe/38109/pickled-beets/print/?recipeType=Recipe&servings=60";
-        $canonical = "http://allrecipes.com/recipe/38109/pickled-beets/";
+        $canonical = "https://www.allrecipes.com/recipe/38109/pickled-beets/";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
@@ -40,16 +41,6 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
     public function test_allrecipes_kitchenview_and_personalview() {
         $url       = "http://allrecipes.com/personalrecipe/64384170/chicken-and-veggies-with-rice/kitchenview.aspx";
         $canonical = "http://allrecipes.com/personalrecipe/64384170/chicken-and-veggies-with-rice/detail.aspx";
-        $html = FileUtil::downloadRecipeWithCache($url);
-        $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
-    }
-
-    /**
-     * @group network
-     */
-    public function test_foodnetwork_videos() {
-        $url       = "http://www.foodnetwork.com/videos/oven-roasted-shrimp-and-garlic-0133122.html?ic1=tbla";
-        $canonical = "http://www.foodnetwork.com/recipes/bobby-flay/oven-roasted-shrimp-with-toasted-garlic-and-red-chile-oil-recipe/index.html";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
@@ -149,7 +140,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
      */
     public function test_myrecipes_com_quick_and_easy_video() {
         $url       = "http://www.myrecipes.com/quick-and-easy/dinner-tonight/how-to-make-kung-pao-chicken";
-        $canonical = "http://www.myrecipes.com/recipe/kung-pao-chicken";
+        $canonical = "https://www.myrecipes.com/recipe/kung-pao-chicken";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
@@ -159,7 +150,7 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
      */
     public function test_myrecipes_com_howto_videos() {
         $url       = "http://www.myrecipes.com/how-to/video/breakfast-enchiladas";
-        $canonical = "http://www.myrecipes.com/recipe/breakfast-enchiladas";
+        $canonical = "https://www.myrecipes.com/recipe/breakfast-enchiladas";
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
@@ -173,7 +164,6 @@ class RecipeParser_Canonical_Test extends PHPUnit_Framework_TestCase {
         $html = FileUtil::downloadRecipeWithCache($url);
         $this->assertEquals($canonical, RecipeParser_Canonical::getCanonicalUrl($html, $url));
     }
-
 
     /**
      * @group network
