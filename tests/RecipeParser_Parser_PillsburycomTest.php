@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
+class PillsburycomTest extends TestCase {
 
     public function test_banana_crumb_cake() {
         $path_orig = "data/pillsbury_com_banana_crumb_cake_pillsbury_com_curl.html";
@@ -30,7 +31,7 @@ class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertRegExp("/^Heat oven to 375°F./", $recipe->instructions[0]['list'][0]);
 
-        $this->assertEquals('http://s3.amazonaws.com/gmi-digital-library/c7eefddc-754e-49c9-9b6f-4cd4261108b8.jpg', 
+        $this->assertEquals('http://images.edge-generalmills.com/d1c0e96a-5b98-4626-96b2-6e56f9a6fc9e.jpg', 
                             $recipe->photo_url);
     }
 
@@ -58,7 +59,7 @@ class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertRegExp('/^Experiment with different nuts and toppings to get the flavor combo you love most!$/', $recipe->notes);
 
-        $this->assertEquals('http://s3.amazonaws.com/gmi-digital-library/d52a626f-07ae-4d82-a98f-7b20ec759ee6.jpg', 
+        $this->assertEquals('http://images.edge-generalmills.com/d4d0fb0f-794b-43ef-a64e-e736f33532f8.jpg', 
                             $recipe->photo_url);
     }
 
@@ -94,10 +95,8 @@ class RecipeParser_Parser_PillsburycomTest extends PHPUnit_Framework_TestCase {
 
         $this->assertRegExp('/The raspberry filling can be purchased/', $recipe->notes);
 
-        $this->assertEquals('http://s3.amazonaws.com/gmi-digital-library/134125f3-252e-4a64-b3a3-42e26f8e108f.jpg', 
+        $this->assertEquals('http://images.edge-generalmills.com/393a306c-3f98-4f83-ba65-1998942e1368.jpg', 
                             $recipe->photo_url);
     }
 
 }
-
-?>

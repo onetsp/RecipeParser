@@ -73,9 +73,15 @@ class RecipeParser_Parser_Pillsburycom {
         // Fix description
         $recipe->description = trim(preg_replace("/Servings \# \d+/", "", $recipe->description));
 
+        // Fix instructions (Instructions list might be duplicated in the HTML nodes)
+        $count = count($recipe->instructions[0]['list']);
+        if ($count % 2 == 0) { // even count
+            if ($recipe->instructions[0]['list'][0] == $recipe->instructions[0]['list'][$count/2]) {
+                $recipe->instructions[0]['list'] = array_slice($recipe->instructions[0]['list'], 0, $count/2);
+            }
+        }
+
         return $recipe;
     }
 
 }
-
-?>
