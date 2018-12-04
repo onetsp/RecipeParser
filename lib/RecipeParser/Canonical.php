@@ -27,17 +27,6 @@ class RecipeParser_Canonical {
             return self::getUrlFromOgUrl($html, $url);
         }
 
-        // Foodnetwork.com videos
-        if (strpos($url, "www.foodnetwork.com/videos/") !== false) {
-            $xpath = self::getXPath($html);
-            $nodes = $xpath->query('//a[@class="o-VideoMetadata__a-Button"]');
-            if ($nodes->length) {
-                $href = $nodes->item(0)->getAttribute("href");
-                $url = RecipeParser_Text::relativeToAbsolute($href, $url);
-                return $url;
-            }
-        }
-    
         // Yummly
         if (strpos($url, "http://www.yummly.com/recipe/") !== false) {
             return self::searchYummly($html, $url);
@@ -120,7 +109,7 @@ class RecipeParser_Canonical {
             $xpath = self::getXPath($html);
 
             // "Get the Recipe" link?
-            $nodes = $xpath->query('//*[@class="article-content"]//a');
+            $nodes = $xpath->query('//*[@class="inner-container"]//a');
             foreach ($nodes as $node) {
                 $line = trim($node->nodeValue);
                 if (strpos($line, "Get the Recipe:") !== false) {
@@ -163,7 +152,7 @@ class RecipeParser_Canonical {
 
     public static function searchYummly($html, $url) {
         $xpath = self::getXPath($html);
-        $nodes = $xpath->query('//*[@class="recipe-show-full-directions inline-btn"]');
+        $nodes = $xpath->query('//*[@class="recipe-show-full-directions btn-inline wrapper"]');
         if ($nodes->length) {
             if ($href = $nodes->item(0)->getAttribute("href")) {
                 $url = RecipeParser_Text::relativeToAbsolute($href, $url);

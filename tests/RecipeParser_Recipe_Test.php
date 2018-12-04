@@ -1,8 +1,9 @@
 <?php
 
-require_once '../bootstrap.php';
+use PHPUnit\Framework\TestCase;
+require_once dirname(__FILE__) . '/../bootstrap.php';
 
-class RecipeParser_Recipe_Test extends PHPUnit_Framework_TestCase {
+class RecipeTest extends TestCase {
 
 	public function testSingleSection() {
         $r = new RecipeParser_Recipe();
@@ -68,5 +69,3 @@ class RecipeParser_Recipe_Test extends PHPUnit_Framework_TestCase {
     }
 
 }
-
-?>
