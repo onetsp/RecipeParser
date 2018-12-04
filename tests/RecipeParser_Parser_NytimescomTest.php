@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class NytimescomRecipesTest extends TestCase {
 
     public function test_recipes_blackberry_jam_cake() {
-        $path = "data/nytimes_com_blackberry_jam_cake_with_caramel_icing_curl.html";
+        $path = TestUtils::getDataPath("nytimes_com_blackberry_jam_cake_with_caramel_icing_curl.html");
         $url = "http://www.nytimes.com/recipes/7801/Blackberry-Jam-Cake-With-Caramel-Icing.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -31,7 +31,7 @@ class NytimescomRecipesTest extends TestCase {
     }
 
     public function test_recipes_fudge_frosting() {
-        $path = "data/nytimes_com_fudge_frosting_nyt_cooking_curl.html";
+        $path = TestUtils::getDataPath("nytimes_com_fudge_frosting_nyt_cooking_curl.html");
         $url = "http://www.nytimes.com/recipes/9953/Fudge-Frosting.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -56,7 +56,7 @@ class NytimescomRecipesTest extends TestCase {
     }
 
     public function test_recipes_lemon_cake() {
-        $path = "data/nytimes_com_lemon_cake_with_coconut_icing_nyt_curl.html";
+        $path = TestUtils::getDataPath("nytimes_com_lemon_cake_with_coconut_icing_nyt_curl.html");
         $url = "http://www.nytimes.com/recipes/7800/Lemon-Cake-With-Coconut-Icing.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -83,7 +83,7 @@ class NytimescomRecipesTest extends TestCase {
     }
 
     public function test_recipes_service_cake_victory_icing() {
-        $path = "data/nytimes_com_service_cake_with_victory_icing_nyt_curl.html";
+        $path = TestUtils::getDataPath("nytimes_com_service_cake_with_victory_icing_nyt_curl.html");
         $url = "http://www.nytimes.com/recipes/7357/Service-Cake-With-Victory-Icing.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

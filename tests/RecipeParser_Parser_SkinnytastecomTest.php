@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class SkinnytastecomTest extends TestCase {
 
     public function test_homemade_skinny_chocolate_cake() {
-        $path = "data/skinnytaste_com_homemade_skinny_chocolate_cake_skinnytaste_curl.html";
+        $path = TestUtils::getDataPath("skinnytaste_com_homemade_skinny_chocolate_cake_skinnytaste_curl.html");
         $url  = "http://www.skinnytaste.com/2012/02/homemade-skinny-chocolate-cake.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -25,8 +25,7 @@ class SkinnytastecomTest extends TestCase {
     }
 
     public function test_pink_lemonade_confetti_cupcakes() {
-
-        $path = "data/skinnytaste_com_pink_lemonade_confetti_cupcakes_skinnytaste_curl.html";
+        $path = TestUtils::getDataPath("skinnytaste_com_pink_lemonade_confetti_cupcakes_skinnytaste_curl.html");
         $url  = "http://www.skinnytaste.com/2011/07/pink-lemonade-confetti-cupcakes.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -46,8 +45,7 @@ class SkinnytastecomTest extends TestCase {
     }
 
     public function test_red_white_and_blueberry_trifle() {
-
-        $path = "data/skinnytaste_com_red_white_and_blueberry_trifle_skinnytaste_curl.html";
+        $path = TestUtils::getDataPath("skinnytaste_com_red_white_and_blueberry_trifle_skinnytaste_curl.html");
         $url  = "http://www.skinnytaste.com/2011/06/red-white-and-blueberry-trifle.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -69,8 +67,7 @@ class SkinnytastecomTest extends TestCase {
     }
 
     public function test_shrimp_salad_on_cucumber_slices() {
-
-        $path = "data/skinnytaste_com_shrimp_salad_on_cucumber_slices_skinnytaste_curl.html";
+        $path = TestUtils::getDataPath("skinnytaste_com_shrimp_salad_on_cucumber_slices_skinnytaste_curl.html");
         $url  = "http://www.skinnytaste.com/2010/08/shrimp-salad-on-cucumber-slices.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -90,8 +87,7 @@ class SkinnytastecomTest extends TestCase {
     }
 
     public function test_skinny_coconut_cupcakes() {
-
-        $path = "data/skinnytaste_com_skinny_coconut_cupcakes_skinnytaste_curl.html";
+        $path = TestUtils::getDataPath("skinnytaste_com_skinny_coconut_cupcakes_skinnytaste_curl.html");
         $url  = "http://www.skinnytaste.com/2012/03/skinny-coconut-cupcakes.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -113,7 +109,7 @@ class SkinnytastecomTest extends TestCase {
     }
 
     public function test_skinny_baked_jalapeno_poppers() {
-        $path = "data/skinnytaste_com_skinny_baked_jalape_o_poppers_skinnytaste_curl.html";
+        $path = TestUtils::getDataPath("skinnytaste_com_skinny_baked_jalape_o_poppers_skinnytaste_curl.html");
         $url  = "http://www.skinnytaste.com/skinny-baked-jalapeno-poppers/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -131,7 +127,7 @@ class SkinnytastecomTest extends TestCase {
 
     public function test_turkey_chili_taco_soup() {
         // This test file has a format that uses Schema/Recipe.
-        $path = "data/skinnytaste_com_turkey_chili_taco_soup_skinnytaste_curl.html";
+        $path = TestUtils::getDataPath("skinnytaste_com_turkey_chili_taco_soup_skinnytaste_curl.html");
         $url  = "http://www.skinnytaste.com/turkey-chili-taco-soup/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

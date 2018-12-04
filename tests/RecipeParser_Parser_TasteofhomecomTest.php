@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class TasteofhomecomTest extends TestCase {
 
     public function test_cheddar_appetizers() {
-        $path = "data/tasteofhome_com_almond_cheddar_appetizers_curl.html";
+        $path = TestUtils::getDataPath("tasteofhome_com_almond_cheddar_appetizers_curl.html");
         $url = "http://www.tasteofhome.com/Recipes/Almond-Cheddar-Appetizers";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -31,7 +31,7 @@ class TasteofhomecomTest extends TestCase {
     }
 
     public function test_artichoke_chicken() {
-        $path = "data/tasteofhome_com_artichoke_chicken_curl.html";
+        $path = TestUtils::getDataPath("tasteofhome_com_artichoke_chicken_curl.html");
         $url = "http://www.tasteofhome.com/Recipes/Artichoke-Chicken";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -50,7 +50,7 @@ class TasteofhomecomTest extends TestCase {
     }
 
     public function test_lemon_berry_shortcake() {
-        $path = "data/tasteofhome_com_lemon_berry_shortcake_curl.html";
+        $path = TestUtils::getDataPath("tasteofhome_com_lemon_berry_shortcake_curl.html");
         $url = "http://www.tasteofhome.com/Recipes/Lemon-Berry-Shortcake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

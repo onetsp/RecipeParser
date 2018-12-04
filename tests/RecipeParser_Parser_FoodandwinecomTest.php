@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 
 class FoodandwinecomTest extends TestCase {
     public function test_carrot_sheet_cake() {
-        $path = "data/foodandwine_com_carrot_sheet_cake_with_cream_cheese_curl.html";
+        $path = TestUtils::getDataPath("foodandwine_com_carrot_sheet_cake_with_cream_cheese_curl.html");
         $url = "http://www.foodandwine.com/recipes/carrot-sheet-cake-with-cream-cheese-frosting";
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -28,7 +28,7 @@ class FoodandwinecomTest extends TestCase {
     }
 
     public function test_cocoa_carrot_cake() {
-        $path = "data/foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_curl.html";
+        $path = TestUtils::getDataPath("foodandwine_com_cocoa_carrot_cake_with_cocoa_crumble_curl.html");
         $url = "http://www.foodandwine.com/recipes/cocoa-carrot-cake-with-cocoa-crumble";
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -47,7 +47,7 @@ class FoodandwinecomTest extends TestCase {
     }
     
     public function test_kale_salad() {
-        $path = "data/foodandwine_com_kale_salad_with_root_vegetables_and_curl.html";
+        $path = TestUtils::getDataPath("foodandwine_com_kale_salad_with_root_vegetables_and_curl.html");
         $url = "http://www.foodandwine.com/recipes/kale-salad-with-root-vegetables-and-apple";
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);

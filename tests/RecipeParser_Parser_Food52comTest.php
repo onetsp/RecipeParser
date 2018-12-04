@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class Food52comTest extends TestCase {
 
     public function test_20123_banana_cake_with_penuche_frosting() {
-        $path = "data/food52_com_banana_cake_with_penuche_frosting_on_curl.html";
+        $path = TestUtils::getDataPath("food52_com_banana_cake_with_penuche_frosting_on_curl.html");
         $url  = "http://food52.com/recipes/20123-banana-cake-with-penuche-frosting";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -31,7 +31,7 @@ class Food52comTest extends TestCase {
     }
 
     public function test_33370_brown_butter_apple_tart() {
-        $path = "data/food52_com_brown_butter_apple_tart_on_food_curl.html";
+        $path = TestUtils::getDataPath("food52_com_brown_butter_apple_tart_on_food_curl.html");
         $url  = "http://food52.com/recipes/33370-brown-butter-apple-tart";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -55,7 +55,7 @@ class Food52comTest extends TestCase {
     }
 
     public function test_33952_challah_bread_pudding_with_raspberries() {
-        $path = "data/food52_com_challah_bread_pudding_with_raspberries_on_curl.html";
+        $path = TestUtils::getDataPath("food52_com_challah_bread_pudding_with_raspberries_on_curl.html");
         $url  = "http://food52.com/recipes/33952-challah-bread-pudding-with-raspberries";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

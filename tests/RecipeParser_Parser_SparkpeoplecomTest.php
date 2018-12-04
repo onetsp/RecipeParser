@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class SparkpeoplecomTest extends TestCase {
 
     public function test_carrot_pumpkin_bars() {
-        $path = "data/recipes_sparkpeople_com_carrot_pumpkin_bars_by_andrewmom_sparks_curl.html";
+        $path = TestUtils::getDataPath("recipes_sparkpeople_com_carrot_pumpkin_bars_by_andrewmom_sparks_curl.html");
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=157762";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -39,7 +39,7 @@ class SparkpeoplecomTest extends TestCase {
     }
 
     public function test_mini_cheesecakes() {
-        $path = "data/recipes_sparkpeople_com_mini_cheesecakes_by_sparks_curl.html";
+        $path = TestUtils::getDataPath("recipes_sparkpeople_com_mini_cheesecakes_by_sparks_curl.html");
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=63";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -65,7 +65,7 @@ class SparkpeoplecomTest extends TestCase {
     }
 
     public function test_graham_cracker_cheesycake() {
-        $path = "data/recipes_sparkpeople_com_no_bake_graham_cracker_cheesycake_by_curl.html";
+        $path = TestUtils::getDataPath("recipes_sparkpeople_com_no_bake_graham_cracker_cheesycake_by_curl.html");
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=384073";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -88,7 +88,7 @@ class SparkpeoplecomTest extends TestCase {
     }
 
     public function test_skillet_lasagna() {
-        $path = "data/recipes_sparkpeople_com_skillet_lasagna_by_veggiekitty_sparks_curl.html";
+        $path = TestUtils::getDataPath("recipes_sparkpeople_com_skillet_lasagna_by_veggiekitty_sparks_curl.html");
         $url = "http://recipes.sparkpeople.com/recipe-detail.asp?recipe=20856";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -109,6 +109,5 @@ class SparkpeoplecomTest extends TestCase {
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(11, count($recipe->instructions[0]['list']));
     }
-
 
 }

@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class AboutcomTest extends TestCase {
 
     public function test_baking_biscotti_cookie() {
-        $path = "data/baking_about_com_cinnamon_walnut_biscotti_curl.html";
+        $path = TestUtils::getDataPath("baking_about_com_cinnamon_walnut_biscotti_curl.html");
         $url = "http://baking.about.com/od/cookies/r/cinnamonwalnutbiscotti.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -28,7 +28,7 @@ class AboutcomTest extends TestCase {
     }
 
     public function test_baking_chocolate_cake() {
-        $path = "data/baking_about_com_ultimate_chocolate_cake_for_ultimate_chocolate_curl.html";
+        $path = TestUtils::getDataPath("baking_about_com_ultimate_chocolate_cake_for_ultimate_chocolate_curl.html");
         $url = "http://baking.about.com/od/valentines/r/ultimatechoccak.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -59,7 +59,7 @@ class AboutcomTest extends TestCase {
     }
 
     public function test_frenchfood_cassoulet() {
-        $path = "data/frenchfood_about_com_chicken_and_sausage_cassoulet_curl.html";
+        $path = TestUtils::getDataPath("frenchfood_about_com_chicken_and_sausage_cassoulet_curl.html");
         $url = "http://frenchfood.about.com/od/maindishes/r/cassoulet.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -78,7 +78,7 @@ class AboutcomTest extends TestCase {
     }
 
     public function test_southernfood_cinnamon_pound_cake() {
-        $path = "data/southernfood_about_com_cinnamon_pound_cake_curl.html";
+        $path = TestUtils::getDataPath("southernfood_about_com_cinnamon_pound_cake_curl.html");
         $url = "http://southernfood.about.com/od/spicecakerecipes/r/bln255.htm";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

@@ -6,10 +6,10 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class EatingwellcomTest extends TestCase {
 
     public function test_apple_cranberry_cake() {
-        $path_orig = "data/eatingwell_com_apple_cranberry_upside_down_cake_curl.html";
+        $path = TestUtils::getDataPath("eatingwell_com_apple_cranberry_upside_down_cake_curl.html");
         $url = "http://www.eatingwell.com/recipes/apple_cranberry_upside_down_cake.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Apple-Cranberry Upside-Down Cake', $recipe->title);
@@ -33,10 +33,10 @@ class EatingwellcomTest extends TestCase {
     }
 
     public function test_chocolate_pumpkin_bundt() {
-        $path_orig = "data/eatingwell_com_glazed_chocolate_pumpkin_bundt_cake_curl.html";
+        $path = TestUtils::getDataPath("eatingwell_com_glazed_chocolate_pumpkin_bundt_cake_curl.html");
         $url = "http://www.eatingwell.com/recipes/glazed_chocolate_pumpkin_bundt_cake.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Glazed Chocolate-Pumpkin Bundt Cake', $recipe->title);
@@ -60,10 +60,10 @@ class EatingwellcomTest extends TestCase {
     }
 
     public function test_scandinavian_pickled_herring_bites() {
-        $path_orig = "data/eatingwell_com_scandinavian_pickled_herring_bites_curl.html";
+        $path = TestUtils::getDataPath("eatingwell_com_scandinavian_pickled_herring_bites_curl.html");
         $url = "http://www.eatingwell.com/recipes/pickled_herring_bites.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Scandinavian Pickled Herring Bites', $recipe->title);

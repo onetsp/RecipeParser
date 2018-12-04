@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class OneOhOneCookbookscomTest extends TestCase {
 
     public function test_glissade_chocolate_pudding_recipe() {
-        $path = "data/101cookbooks_com_glissade_chocolate_pudding_cookbooks_curl.html";
+        $path = TestUtils::getDataPath("101cookbooks_com_glissade_chocolate_pudding_cookbooks_curl.html");
         $url  = "http://www.101cookbooks.com/archives/glissade-chocolate-pudding-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -34,7 +34,7 @@ class OneOhOneCookbookscomTest extends TestCase {
     }
 
     public function test_lemony_olive_oil_banana_bread_recipe() {
-        $path = "data/101cookbooks_com_lemony_olive_oil_banana_bread_cookbooks_curl.html";
+        $path = TestUtils::getDataPath("101cookbooks_com_lemony_olive_oil_banana_bread_cookbooks_curl.html");
         $url  = "http://www.101cookbooks.com/archives/lemony-olive-oil-banana-bread-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -67,7 +67,7 @@ class OneOhOneCookbookscomTest extends TestCase {
 
     public function test_roasted_squash_chile_and_mozzarella_salad_recipe() {
 
-        $path = "data/101cookbooks_com_roasted_squash_chile_and_mozzarella_salad_curl.html";
+        $path = TestUtils::getDataPath("101cookbooks_com_roasted_squash_chile_and_mozzarella_salad_curl.html");
         $url  = "http://www.101cookbooks.com/archives/roasted-squash-chile-and-mozzarella-salad-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -93,7 +93,7 @@ class OneOhOneCookbookscomTest extends TestCase {
     }
 
     public function test_tofu_amaranth_salad_recipe() {
-        $path = "data/101cookbooks_com_tofu_amaranth_salad_cookbooks_curl.html";
+        $path = TestUtils::getDataPath("101cookbooks_com_tofu_amaranth_salad_cookbooks_curl.html");
         $url  = "http://www.101cookbooks.com/archives/tofu-amaranth-salad-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

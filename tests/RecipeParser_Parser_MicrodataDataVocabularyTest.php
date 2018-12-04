@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class MicrodataDataVocabularyTest extends TestCase {
 
     public function test_datavocabulary_recipe() {
-        $path = "data/datavocabulary_spec.html";
+        $path = TestUtils::getDataPath("datavocabulary_spec.html");
         $url = "http://data-vocabulary.example.com/recipes/spec";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -42,7 +42,7 @@ class MicrodataDataVocabularyTest extends TestCase {
     }
 
     public function test_schema_spec_class_instruction() {
-        $path = "data/datavocabulary_spec_class_instruction.html";
+        $path = TestUtils::getDataPath("datavocabulary_spec_class_instruction.html");
 
         $recipe = RecipeParser::parse(file_get_contents($path));
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
@@ -55,7 +55,7 @@ class MicrodataDataVocabularyTest extends TestCase {
     }
 
     public function test_datavocabulary_spec_instructions_li() {
-        $path = "data/datavocabulary_spec_instructions_li.html";
+        $path = TestUtils::getDataPath("datavocabulary_spec_instructions_li.html");
 
         $recipe = RecipeParser::parse(file_get_contents($path));
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);

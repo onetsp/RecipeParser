@@ -7,7 +7,7 @@ class TwelvetomatoescomTest extends TestCase {
 
     public function test_filling_and_fruity_treat_cream_cheese_cherry_coffee_cake() {
 
-        $path = "data/12tomatoes_com_filling_and_fruity_treat_cream_cheese_curl.html";
+        $path = TestUtils::getDataPath("12tomatoes_com_filling_and_fruity_treat_cream_cheese_curl.html");
         $url  = "http://12tomatoes.com/2015/04/filling-and-fruity-treat-cream-cheese-cherry-coffee-cake.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,7 +35,7 @@ class TwelvetomatoescomTest extends TestCase {
 
     public function test_healthy_sugarfree_cookies_nobake_chocolate_oat_cookies() {
 
-        $path = "data/12tomatoes_com_healthy_sugar_free_cookies_no_bake_curl.html";
+        $path = TestUtils::getDataPath("12tomatoes_com_healthy_sugar_free_cookies_no_bake_curl.html");
         $url  = "http://12tomatoes.com/2015/04/healthy-sugarfree-cookies-nobake-chocolate-oat-cookies.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -63,7 +63,7 @@ class TwelvetomatoescomTest extends TestCase {
 
     public function test_light_and_sweet_dessert_creamy_raspberry_cheesecake_bars() {
 
-        $path = "data/12tomatoes_com_light_and_sweet_dessert_creamy_raspberry_curl.html";
+        $path = TestUtils::getDataPath("12tomatoes_com_light_and_sweet_dessert_creamy_raspberry_curl.html");
         $url  = "http://12tomatoes.com/2015/04/light-and-sweet-dessert-creamy-raspberry-cheesecake-bars.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

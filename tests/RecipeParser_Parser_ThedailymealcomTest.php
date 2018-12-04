@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 
 class ThedailymealcomTest extends TestCase {
     public function test_roast_capon() {
-        $path = "data/thedailymeal_com_roast_capon_the_daily_meal_curl.html";
+        $path = TestUtils::getDataPath("thedailymeal_com_roast_capon_the_daily_meal_curl.html");
         $url  = "http://www.thedailymeal.com/roast-capon";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -29,7 +29,7 @@ class ThedailymealcomTest extends TestCase {
     }
 
     public function test_whiskey_30() {
-        $path = "data/thedailymeal_com_whiskey_the_daily_meal_curl.html";
+        $path = TestUtils::getDataPath("thedailymeal_com_whiskey_the_daily_meal_curl.html");
         $url  = "http://www.thedailymeal.com/whiskey-30";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

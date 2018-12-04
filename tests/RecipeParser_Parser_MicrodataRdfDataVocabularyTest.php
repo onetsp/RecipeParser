@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class MicrodataRdfDataVocabularyTest extends TestCase {
 
     public function test_rdf_datavocabulary_recipe() {
-        $path = "data/rdf_datavocabulary_spec.html";
+        $path = TestUtils::getDataPath("rdf_datavocabulary_spec.html");
         $url = "http://rdf.data-vocabulary.example.com/recipes/spec";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -39,7 +39,7 @@ class MicrodataRdfDataVocabularyTest extends TestCase {
     }
 
     public function test_rdf_datavocabulary_spec_property_instruction() {
-        $path = "data/rdf_datavocabulary_spec_property_instruction.html";
+        $path = TestUtils::getDataPath("rdf_datavocabulary_spec_property_instruction.html");
         $url = "http://rdf.data-vocabulary.example.com/recipes/spec";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -53,7 +53,7 @@ class MicrodataRdfDataVocabularyTest extends TestCase {
     }
 
     public function test_rdf_datavocabulary_spec_sub_nodes() {
-        $path = "data/rdf_datavocabulary_spec_sub_nodes.html";
+        $path = TestUtils::getDataPath("rdf_datavocabulary_spec_sub_nodes.html");
         $url = "http://rdf.data-vocabulary.example.com/recipes/spec";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

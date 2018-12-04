@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class AmericastestkitchencomTest extends TestCase {
 
     public function test_simple_atk_parser() {
-        $path = "data/americastestkitchen_com_thick_cut_sweet_potato_fries_america_s_test_kitchen_clipped.html";
+        $path = TestUtils::getDataPath("americastestkitchen_com_thick_cut_sweet_potato_fries_america_s_test_kitchen_clipped.html");
         $url = "http://www.americastestkitchen.com/recipes/7775-thick-cut-sweet-potato-fries";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

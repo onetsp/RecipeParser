@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class FoodcomTest extends TestCase {
 
     public function test_eyeball_cookies() {
-        $path = "data/food_com_halloween_eyeball_cookies_food_com_curl.html";
+        $path = TestUtils::getDataPath("food_com_halloween_eyeball_cookies_food_com_curl.html");
         $url = "http://www.food.com/recipe/halloween-eyeball-cookies-143344";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -25,7 +25,7 @@ class FoodcomTest extends TestCase {
     }
 
     public function test_braised_lamb() {
-        $path = "data/food_com_braised_lamb_shanks_with_guinness_and_curl.html";
+        $path = TestUtils::getDataPath("food_com_braised_lamb_shanks_with_guinness_and_curl.html");
         $url = "http://www.food.com/recipe/braised-lamb-shanks-with-guinness-barley-222337";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -44,7 +44,7 @@ class FoodcomTest extends TestCase {
     }
 
     public function test_carrot_cheesecake() {
-        $path = "data/food_com_carrot_cheesecake_food_com_curl.html";
+        $path = TestUtils::getDataPath("food_com_carrot_cheesecake_food_com_curl.html");
         $url = "http://www.food.com/recipe/carrot-cheesecake-362026"; 
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

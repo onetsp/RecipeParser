@@ -7,7 +7,7 @@ class ElanaspantrycomTest extends TestCase {
 
     public function test_cranberry_coconut_power_bars() {
 
-        $path = "data/elanaspantry_com_cranberry_coconut_power_bars_paleo_power_bars_curl.html";
+        $path = TestUtils::getDataPath("elanaspantry_com_cranberry_coconut_power_bars_paleo_power_bars_curl.html");
         $url  = "http://www.elanaspantry.com/cranberry-coconut-power-bars/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -31,7 +31,7 @@ class ElanaspantrycomTest extends TestCase {
 
     public function test_coconut_cupcakes_key_lime_icing() {
 
-        $path = "data/elanaspantry_com_gluten_free_and_nut_free_coconut_cupcakes_curl.html";
+        $path = TestUtils::getDataPath("elanaspantry_com_gluten_free_and_nut_free_coconut_cupcakes_curl.html");
         $url  = "http://www.elanaspantry.com/coconut-cupcakes-key-lime-icing/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -58,7 +58,7 @@ class ElanaspantrycomTest extends TestCase {
 
     public function test_pumpkin_cranberry_upside_down_cake() {
 
-        $path = "data/elanaspantry_com_pumpkin_cranberry_upside_down_cake_gluten_free_dessert_curl.html";
+        $path = TestUtils::getDataPath("elanaspantry_com_pumpkin_cranberry_upside_down_cake_gluten_free_dessert_curl.html");
         $url  = "http://www.elanaspantry.com/pumpkin-cranberry-upside-down-cake/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -82,7 +82,7 @@ class ElanaspantrycomTest extends TestCase {
 
     public function test_paleo_samoas() {
 
-        $path = "data/elanaspantry_com_paleo_samoas_gluten_free_girl_scout_samoa_cookies_curl.html";
+        $path = TestUtils::getDataPath("elanaspantry_com_paleo_samoas_gluten_free_girl_scout_samoa_cookies_curl.html");
         $url  = "http://www.elanaspantry.com/paleo-samoas/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

@@ -6,10 +6,10 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class KingarthurflourcomTest extends TestCase {
 
     public function test_cream_pie() {
-        $path_orig = "data/kingarthurflour_com_cream_pie.html";
+        $path = TestUtils::getDataPath("kingarthurflour_com_cream_pie.html");
         $url = "http://www.kingarthurflour.com/recipes/chocolate-cream-pie-recipe";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Chocolate Cream Pie', $recipe->title);
@@ -41,10 +41,10 @@ class KingarthurflourcomTest extends TestCase {
     }
 
     public function test_golden_vanilla_cake() {
-        $path_orig = "data/kingarthurflour_com_golden_vanilla_cake.html";
+        $path = TestUtils::getDataPath("kingarthurflour_com_golden_vanilla_cake.html");
         $url = "http://www.kingarthurflour.com/recipes/golden-vanilla-cake-recipe";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Golden Vanilla Cake', $recipe->title);
@@ -60,10 +60,10 @@ class KingarthurflourcomTest extends TestCase {
     }
 
     public function test_pretzels() {
-        $path_orig = "data/kingarthurflour_com_pretzels.html";
+        $path = TestUtils::getDataPath("kingarthurflour_com_pretzels.html");
         $url = "http://www.kingarthurflour.com/recipes/hot-buttered-soft-pretzels-recipe";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Hot Buttered Soft Pretzels', $recipe->title);

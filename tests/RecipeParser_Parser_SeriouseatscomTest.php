@@ -6,10 +6,10 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class SeriouseatscomTest extends TestCase {
 
     public function test_banana_split_whoopie_pies() {
-        $path_orig = "data/seriouseats_com_banana_split_s_more_whoopie_pies_serious_curl.html";
+        $path = TestUtils::getDataPath("seriouseats_com_banana_split_s_more_whoopie_pies_serious_curl.html");
         $url = "http://www.seriouseats.com/recipes/2011/08/banana-split-smore-whoopie-pies-recipe.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Banana Split S\'more Whoopie Pies', $recipe->title);
@@ -36,10 +36,10 @@ class SeriouseatscomTest extends TestCase {
     }
 
     public function test_sauted_andouille() {
-        $path_orig = "data/seriouseats_com_dinner_tonight_saut_ed_andouille_and_greens_curl.html";
+        $path = TestUtils::getDataPath("seriouseats_com_dinner_tonight_saut_ed_andouille_and_greens_curl.html");
         $url = "http://www.seriouseats.com/recipes/2011/08/sauteed-andouille-and-greens-with-grits-recipe.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
         $this->assertEquals('Sautéed Andouille and Greens With Grits', $recipe->title);
@@ -62,9 +62,9 @@ class SeriouseatscomTest extends TestCase {
     }
 
     public function test_aleppo_rubbed_pork_ribs() {
-        $path_orig = "data/seriouseats_com_sunday_supper_aleppo_rubbed_pork_ribs_serious_curl.html";
+        $path = TestUtils::getDataPath("seriouseats_com_sunday_supper_aleppo_rubbed_pork_ribs_serious_curl.html");
         $url = "http://www.seriouseats.com/recipes/2011/08/aleppo-rubbed-pork-ribs.html";
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
 
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
@@ -85,10 +85,10 @@ class SeriouseatscomTest extends TestCase {
     }
 
     public function test_sunday_brunch_oysters_rockefeller() {
-        $path_orig = "data/seriouseats_com_oysters_rockefeller_serious_eats_s_curl.html";
+        $path = TestUtils::getDataPath("seriouseats_com_oysters_rockefeller_serious_eats_s_curl.html");
         $url = "http://www.seriouseats.com/recipes/2011/08/oysters-rockefeller-sunday-brunch-seafood-appetizer.html";
 
-        $recipe = RecipeParser::parse(file_get_contents($path_orig), $url);
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
 
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 

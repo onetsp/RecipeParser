@@ -10,7 +10,7 @@ class CooksillustratedcomTest extends TestCase {
     public function test_key_lime_bars() {
         $this->markTestSkipped("Need updated clipper files for Cooks Illustrated");
 
-        $path = "data/cooksillustrated_com_key_lime_bars_cooks_illustrated_chrome_12_0_orig.html";
+        $path = TestUtils::getDataPath("cooksillustrated_com_key_lime_bars_cooks_illustrated_chrome_12_0_orig.html");
         $url = "http://www.cooksillustrated.com/recipes/detail.asp?docid=7683";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -44,7 +44,7 @@ class CooksillustratedcomTest extends TestCase {
     public function test_perfect_chocolate_chip() {
         $this->markTestSkipped("Need updated clipper files for Cooks Illustrated");
 
-        $path = "data/cooksillustrated_com_perfect_chocolate_chip_cookies_cooks_illustrated_chrome_12_0_orig.html";
+        $path = TestUtils::getDataPath("cooksillustrated_com_perfect_chocolate_chip_cookies_cooks_illustrated_chrome_12_0_orig.html");
         $url = "http://www.cooksillustrated.com/recipes/detail.asp?docid=19364";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

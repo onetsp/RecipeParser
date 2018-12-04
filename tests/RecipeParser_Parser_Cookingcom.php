@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class CookingcomTest extends TestCase {
 
     public function test_big_oatmeal_raisin_chews_recipe_5114_aspx() {
-        $path = "data/cooking_com_big_oatmeal_raisin_chews_cooking_com_curl.html";
+        $path = TestUtils::getDataPath("cooking_com_big_oatmeal_raisin_chews_cooking_com_curl.html");
         $url  = "http://www.cooking.com/recipes-and-more/recipes/big-oatmeal-raisin-chews-recipe-5114.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -31,7 +31,7 @@ class CookingcomTest extends TestCase {
     }
 
     public function test_raisin_cinnamon_apple_bread_recipe_355_aspx() {
-        $path = "data/cooking_com_raisin_cinnamon_apple_bread_cooking_com_curl.html";
+        $path = TestUtils::getDataPath("cooking_com_raisin_cinnamon_apple_bread_cooking_com_curl.html");
         $url  = "http://www.cooking.com/recipes-and-more/recipes/raisin-cinnamon-apple-bread-recipe-355.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -58,7 +58,7 @@ class CookingcomTest extends TestCase {
     }
 
     public function test_wild_maine_blueberry_cobbler_recipe_2278_aspx() {
-        $path = "data/cooking_com_wild_maine_blueberry_cobbler_cooking_com_curl.html";
+        $path = TestUtils::getDataPath("cooking_com_wild_maine_blueberry_cobbler_cooking_com_curl.html");
         $url  = "http://www.cooking.com/recipes-and-more/recipes/wild-maine-blueberry-cobbler-recipe-2278.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class MicroformatExamplesTest extends TestCase {
 
     public function test_cookingchanneltv() {
-        $path = "data/cookingchanneltv_com_matt_s_lemon_blueberry_muffins_s_cooking_curl.html";
+        $path = TestUtils::getDataPath("cookingchanneltv_com_matt_s_lemon_blueberry_muffins_s_cooking_curl.html");
         $url = "http://www.cookingchanneltv.com/recipes/matts-lemon-blueberry-muffins-recipe/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path));

@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class MicroformatSpecTest extends TestCase {
 
     public function test_microformat_recipe() {
-        $path = "data/microformat_spec.html";
+        $path = TestUtils::getDataPath("microformat_spec.html");
         $url = "http://microformat.example.com/recipes/spec";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -41,7 +41,7 @@ class MicroformatSpecTest extends TestCase {
     }
 
     public function test_microformat_recipe_class_instruction() {
-        $path = "data/microformat_spec_class_instruction.html";
+        $path = TestUtils::getDataPath("microformat_spec_class_instruction.html");
         $url = "http://microformat.example.com/recipes/spec";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -55,7 +55,7 @@ class MicroformatSpecTest extends TestCase {
     }
 
     public function test_microformat_recipe_instructions_li() {
-        $path = "data/microformat_spec_instructions_li.html";
+        $path = TestUtils::getDataPath("microformat_spec_instructions_li.html");
         $url = "http://microformat.example.com/recipes/spec";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -68,5 +68,3 @@ class MicroformatSpecTest extends TestCase {
         $this->assertEquals("Assemble the pie.", $recipe->instructions[0]['list'][3]);
     }
 }
-
-?>

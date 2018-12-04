@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class MyrecipescomTest extends TestCase {
 
     public function test_berry_galette_with_cornmeal() {
-        $path = "data/myrecipes_com_blueberry_and_blackberry_galette_with_cornmeal_curl.html";
+        $path = TestUtils::getDataPath("myrecipes_com_blueberry_and_blackberry_galette_with_cornmeal_curl.html");
         $url = "http://www.myrecipes.com/recipe/blueberry-blackberry-galette-with-cornmeal-crust-10000001816371/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -31,7 +31,7 @@ class MyrecipescomTest extends TestCase {
     }
 
     public function test_clam_chowder() {
-        $path = "data/myrecipes_com_simple_clam_chowder_my_com_curl.html";
+        $path = TestUtils::getDataPath("myrecipes_com_simple_clam_chowder_my_com_curl.html");
         $url = "http://www.myrecipes.com/recipe/simple-clam-chowder-10000001696572/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -44,7 +44,7 @@ class MyrecipescomTest extends TestCase {
     }
 
     public function test_king_ranch_chicken() {
-        $path = "data/myrecipes_com_king_ranch_chicken_casserole_my_com_curl.html";
+        $path = TestUtils::getDataPath("myrecipes_com_king_ranch_chicken_casserole_my_com_curl.html");
         $url = "http://www.myrecipes.com/recipe/king-ranch-chicken-casserole-10000001704091/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -59,7 +59,7 @@ class MyrecipescomTest extends TestCase {
     }
 
     public function test_lemon_chicken_piccata() {
-        $path = "data/myrecipes_com_charred_lemon_chicken_piccata_my_com_curl.html";
+        $path = TestUtils::getDataPath("myrecipes_com_charred_lemon_chicken_piccata_my_com_curl.html");
         $url = "http://www.myrecipes.com/recipe/charred-lemon-chicken-piccata";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -74,7 +74,7 @@ class MyrecipescomTest extends TestCase {
     }
 
     public function test_broccoli_cheese_soup() {
-        $path = "data/myrecipes_com_creamy_broccoli_cheese_soup_my_com_curl.html";
+        $path = TestUtils::getDataPath("myrecipes_com_creamy_broccoli_cheese_soup_my_com_curl.html");
         $url = "http://www.myrecipes.com/recipe/creamy-broccoli-cheese-soup";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -89,7 +89,7 @@ class MyrecipescomTest extends TestCase {
     }
 
     public function test_potato_roti_curry() {
-        $path = "data/myrecipes_com_potato_roti_curry_my_com_curl.html";
+        $path = TestUtils::getDataPath("myrecipes_com_potato_roti_curry_my_com_curl.html");
         $url = "http://www.myrecipes.com/recipe/potato-roti-curry";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -104,7 +104,7 @@ class MyrecipescomTest extends TestCase {
     }
 
     public function test_potato_salad() {
-        $path = "data/myrecipes_com_light_and_fresh_potato_salad_my_curl.html";
+        $path = TestUtils::getDataPath("myrecipes_com_light_and_fresh_potato_salad_my_curl.html");
         $url = "http://www.myrecipes.com/recipe/light-fresh-potato-salad";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

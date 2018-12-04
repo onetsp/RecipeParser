@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class BbccoukTest extends TestCase {
 
     public function test_baked_pappardelle() {
-        $path = "data/bbc_co_uk_bbc_food_s_baked_pappardelle_with_curl.html";
+        $path = TestUtils::getDataPath("bbc_co_uk_bbc_food_s_baked_pappardelle_with_curl.html");
         $url = "http://www.bbc.co.uk/food/recipes/baked_pappardelle_with_21046";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -34,7 +34,7 @@ class BbccoukTest extends TestCase {
     }
 
     public function test_cherry_chocolate_pavlova() {
-        $path = "data/bbc_co_uk_bbc_food_s_cherry_chocolate_pavlova_curl.html";
+        $path = TestUtils::getDataPath("bbc_co_uk_bbc_food_s_cherry_chocolate_pavlova_curl.html");
         $url = "http://www.bbc.co.uk/food/recipes/cherry_chocolate_pavlova_94685";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -66,7 +66,7 @@ class BbccoukTest extends TestCase {
     }
 
     public function test_saag_aloo() {
-        $path = "data/bbc_co_uk_bbc_food_s_saag_aloo_with_curl.html";
+        $path = TestUtils::getDataPath("bbc_co_uk_bbc_food_s_saag_aloo_with_curl.html");
         $url = "http://www.bbc.co.uk/food/recipes/saag_aloo_with_roasted_95304";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

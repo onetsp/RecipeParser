@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class AllrecipesTest extends TestCase {
 
     public function test_apple_pumpkin_muffins() {
-        $path = "data/allrecipes_com_apple_pumpkin_muffins_all_com_curl.html";
+        $path = TestUtils::getDataPath("allrecipes_com_apple_pumpkin_muffins_all_com_curl.html");
         $url = "http://allrecipes.com/recipe/42273/apple-pumpkin-muffins/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -29,7 +29,7 @@ class AllrecipesTest extends TestCase {
     }
 
     public function test_spiced_pumpkin_seeds() {
-        $path = "data/allrecipes_com_spiced_pumpkin_seeds_all_com_curl.html";
+        $path = TestUtils::getDataPath("allrecipes_com_spiced_pumpkin_seeds_all_com_curl.html");
         $url = "http://allrecipes.com/Recipe/Spiced-Pumpkin-Seeds/Detail.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -48,7 +48,7 @@ class AllrecipesTest extends TestCase {
     }
 
     public function test_carrot_cake() {
-        $path = "data/allrecipes_com_carrot_cake_viii_all_com_curl.html";
+        $path = TestUtils::getDataPath("allrecipes_com_carrot_cake_viii_all_com_curl.html");
         $url = "http://allrecipes.com/Recipe/Carrot-Cake-VIII/Detail.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -67,7 +67,7 @@ class AllrecipesTest extends TestCase {
     }
 
     public function test_potato_bacon_cheese_frittata() {
-        $path = "data/allrecipes_com_potato_bacon_cheese_frittata_all_com_curl.html";
+        $path = TestUtils::getDataPath("allrecipes_com_potato_bacon_cheese_frittata_all_com_curl.html");
         $url = "http://allrecipes.com/customrecipe/62636838/potato-bacon-cheese-frittata/detail.aspx";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -84,7 +84,7 @@ class AllrecipesTest extends TestCase {
     }
 
     public function test_mobile_buckwheat_pancakes() {
-        $path = "data/m_allrecipes_com_best_buckwheat_pancakes_all_com_curl.html";
+        $path = TestUtils::getDataPath("m_allrecipes_com_best_buckwheat_pancakes_all_com_curl.html");
         $url = "http://m.allrecipes.com/recipe/14096/best-buckwheat-pancakes/?internalSource=staff%20pick&referringContentType=home%20page&referringPosition=8";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -100,7 +100,7 @@ class AllrecipesTest extends TestCase {
     }
 
     public function test_mobile_chicken_teriyaki() {
-        $path = "data/m_allrecipes_com_chef_johns_chicken_teriyaki_all_com_curl.html";
+        $path = TestUtils::getDataPath("m_allrecipes_com_chef_johns_chicken_teriyaki_all_com_curl.html");
         $url = "http://m.allrecipes.com/recipe/237927/chef-johns-chicken-teriyaki/?internalSource=staff%20pick&referringContentType=home%20page";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -117,7 +117,7 @@ class AllrecipesTest extends TestCase {
     }
 
     public function test_mobile_tiramisu_layer_cake() {
-        $path = "data/m_allrecipes_com_tiramisu_layer_cake_all_com_curl.html";
+        $path = TestUtils::getDataPath("m_allrecipes_com_tiramisu_layer_cake_all_com_curl.html");
         $url = "http://m.allrecipes.com/recipe/25639/tiramisu-layer-cake/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

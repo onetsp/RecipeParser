@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class ThekitchencomTest extends TestCase {
 
     public function test_recipe_olive_oil_and_whisky_carrot_cake_recipes_from_the_kitchn_195594() {
-        $path = "data/thekitchn_com_olive_oil_and_whiskey_carrot_cake_curl.html";
+        $path = TestUtils::getDataPath("thekitchn_com_olive_oil_and_whiskey_carrot_cake_curl.html");
         $url  = "http://www.thekitchn.com/recipe-olive-oil-and-whisky-carrot-cake-recipes-from-the-kitchn-195594";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,7 +35,7 @@ class ThekitchencomTest extends TestCase {
     }
 
     public function test_cozy_winter_recipe_onepot_past_135992() {
-        $path = "data/thekitchn_com_one_pot_pasta_e_fagioli_italian_curl.html";
+        $path = TestUtils::getDataPath("thekitchn_com_one_pot_pasta_e_fagioli_italian_curl.html");
         $url  = "http://www.thekitchn.com/cozy-winter-recipe-onepot-past-135992";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -60,7 +60,7 @@ class ThekitchencomTest extends TestCase {
     }
 
     public function test_recipe_cherry_cobbler_recipes_from_the_kitchn_195824() {
-        $path = "data/thekitchn_com_tart_cherry_crumble_kitchn_curl.html";
+        $path = TestUtils::getDataPath("thekitchn_com_tart_cherry_crumble_kitchn_curl.html");
         $url  = "http://www.thekitchn.com/recipe-cherry-cobbler-recipes-from-the-kitchn-195824";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

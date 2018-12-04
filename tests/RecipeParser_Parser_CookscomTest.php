@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class CookscomTest extends TestCase {
 
     public function test_nilla_wafers() {
-        $path = "data/cooks_com_nilla_wafers_and_no_bake_jello_curl.html";
+        $path = TestUtils::getDataPath("cooks_com_nilla_wafers_and_no_bake_jello_curl.html");
         $url = "http://www.cooks.com/rec/doc/0,2213,158182-232201,00.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -21,7 +21,7 @@ class CookscomTest extends TestCase {
     }
 
     public function test_baklava() {
-        $path = "data/cooks_com_baklava_greek_version_cooks_com_curl.html";
+        $path = TestUtils::getDataPath("cooks_com_baklava_greek_version_cooks_com_curl.html");
         $url = "http://www.cooks.com/rec/view/0,1918,148188-224203,00.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,7 +35,7 @@ class CookscomTest extends TestCase {
     }
 
     public function test_kathys_quiche() {
-        $path = "data/cooks_com_kathys_quiche_cooks_com_curl.html";
+        $path = TestUtils::getDataPath("cooks_com_kathys_quiche_cooks_com_curl.html");
         $url = "http://www.cooks.com/rec/view/0,1826,148162-235202,00.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -50,7 +50,7 @@ class CookscomTest extends TestCase {
     }
 
     public function test_lemon_crumb_bars() {
-        $path = "data/cooks_com_lemon_crumb_bars_cooks_com_curl.html";
+        $path = TestUtils::getDataPath("cooks_com_lemon_crumb_bars_cooks_com_curl.html");
         $url = "http://www.cooks.com/rec/view/0,1910,150169-234207,00.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

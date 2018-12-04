@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class RealsimplecomTest extends TestCase {
 
     public function test_paprika_spiced_pork_chops() {
-        $path = "data/realsimple_com_paprika_spiced_pork_chops_with_spinach_curl.html";
+        $path = TestUtils::getDataPath("realsimple_com_paprika_spiced_pork_chops_with_spinach_curl.html");
         $url = "http://www.realsimple.com/food-recipes/browse-all-recipes/paprika-spiced-pork-chops-recipe-00000000029765/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,7 +35,7 @@ class RealsimplecomTest extends TestCase {
     }
 
     public function test_yellow_cake() {
-        $path = "data/realsimple_com_yellow_cake_with_vanilla_frosting_and_curl.html";
+        $path = TestUtils::getDataPath("realsimple_com_yellow_cake_with_vanilla_frosting_and_curl.html");
         $url = "http://www.realsimple.com/food-recipes/browse-all-recipes/yellow-cake-vanilla-frosting-00000000057748/index.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

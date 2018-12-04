@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class RecipecomTest extends TestCase {
 
     public function test_chicken_tortilla_casserole() {
-        $path = "data/recipe_com_quot_healthified_quot_chicken_tortilla_casserole_curl.html";
+        $path = TestUtils::getDataPath("recipe_com_quot_healthified_quot_chicken_tortilla_casserole_curl.html");
         $url = "http://www.recipe.com/healthified-chicken-tortilla-casserole/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -32,7 +32,7 @@ class RecipecomTest extends TestCase {
     }
 
     public function test_hamburger_secret_sauce() {
-        $path = "data/recipe_com_hot_dog_hamburger_secret_sauce_com_curl.html";
+        $path = TestUtils::getDataPath("recipe_com_hot_dog_hamburger_secret_sauce_com_curl.html");
         $url = "http://www.recipe.com/hot-dog-hamburger-secret-sauce/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -59,7 +59,7 @@ class RecipecomTest extends TestCase {
     }
 
     public function test_one_bowl_chocolate_cake() {
-        $path = "data/recipe_com_one_bowl_chocolate_cake_com_curl.html";
+        $path = TestUtils::getDataPath("recipe_com_one_bowl_chocolate_cake_com_curl.html");
         $url = "http://www.recipe.com/one-bowl-chocolate-cake/";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

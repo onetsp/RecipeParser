@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class FoodnetworkcomTest extends TestCase {
 
     public function test_steak_fajita_chili() {
-        $path = "data/foodnetwork_com_aaron_mccargo_jrs_steak_fajita_chili_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_aaron_mccargo_jrs_steak_fajita_chili_curl.html");
         $url = "http://www.foodnetwork.com/recipes/aaron-mccargo-jr/aaron-mccargo-jrs-steak-fajita-chili-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -24,7 +24,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_chocolate_cake() {
-        $path = "data/foodnetwork_com_beattys_chocolate_cake_ina_garten_food_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_beattys_chocolate_cake_ina_garten_food_curl.html");
         $url = "http://www.foodnetwork.com/recipes/ina-garten/beattys-chocolate-cake-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -48,7 +48,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_braised_short_ribs() {
-        $path = "data/foodnetwork_com_braised_short_ribs_with_mushrooms_food_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_braised_short_ribs_with_mushrooms_food_curl.html");
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/braised-short-ribs-with-mushrooms-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -69,7 +69,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_big_blue_burgers() {
-        $path = "data/foodnetwork_com_big_blue_burgers_rachael_ray_food_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_big_blue_burgers_rachael_ray_food_curl.html");
         $url = "http://www.foodnetwork.com/recipes/rachael-ray/big-blue-burgers-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -92,7 +92,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_six_layer_cake() {
-        $path = "data/foodnetwork_com_six_layer_chocolate_cake_paula_deen_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_six_layer_chocolate_cake_paula_deen_curl.html");
         $url = "http://www.foodnetwork.com/recipes/paula-deen/six-layer-chocolate-cake-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -113,7 +113,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_cream_scones() {
-        $path = "data/foodnetwork_com_cream_scones_with_currants_food_network_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_cream_scones_with_currants_food_network_curl.html");
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/cream-scones-with-currants-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -126,7 +126,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_roasted_pepper_pasta() {
-        $path = "data/foodnetwork_com_roasted_pepper_pasta_salad_food_network_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_roasted_pepper_pasta_salad_food_network_curl.html");
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/roasted-pepper-pasta-salad-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -136,7 +136,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_bubble_tea() {
-        $path = "data/foodnetwork_com_bubble_tea_food_network_kitchen_food_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_bubble_tea_food_network_kitchen_food_curl.html");
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/bubble-tea-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -157,7 +157,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_mini_upside_down_cakes() {
-        $path = "data/foodnetwork_com_mini_upside_down_cakes_food_network_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_mini_upside_down_cakes_food_network_curl.html");
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/mini-upside-down-cakes-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -174,7 +174,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_scallop_ceviche() {
-        $path = "data/foodnetwork_com_scallop_ceviche_food_network_kitchen_food_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_scallop_ceviche_food_network_kitchen_food_curl.html");
         $url = "http://www.foodnetwork.com/recipes/food-network-kitchens/scallop-ceviche-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -191,7 +191,7 @@ class FoodnetworkcomTest extends TestCase {
     }
 
     public function test_roast_bacon() {
-        $path = "data/foodnetwork_com_roast_bacon_ina_garten_food_network_curl.html";
+        $path = TestUtils::getDataPath("foodnetwork_com_roast_bacon_ina_garten_food_network_curl.html");
         $url = "http://www.foodnetwork.com/recipes/ina-garten/roast-bacon-recipe.html";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

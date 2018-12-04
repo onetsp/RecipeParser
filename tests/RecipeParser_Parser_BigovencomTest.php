@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class BigovencomTest extends TestCase {
 
     public function test_bigoven_user_submitted() {
-        $path = "data/bigoven_com_banana_bread_bigoven_curl.html";
+        $path = TestUtils::getDataPath("bigoven_com_banana_bread_bigoven_curl.html");
         $url = "http://www.bigoven.com/recipe/334322/Banana-Bread";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

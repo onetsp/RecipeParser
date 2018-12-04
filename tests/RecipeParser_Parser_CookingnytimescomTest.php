@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class CookingnytimescomTest extends TestCase {
 
     public function test_dining_olive_oil_cake() {
-        $path = "data/cooking_nytimes_com_blood_orange_olive_oil_cake_nyt_curl.html";
+        $path = TestUtils::getDataPath("cooking_nytimes_com_blood_orange_olive_oil_cake_nyt_curl.html");
         $url = "http://cooking.nytimes.com/recipes/1012443-blood-orange-olive-oil-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -30,7 +30,7 @@ class CookingnytimescomTest extends TestCase {
     }
 
     public function test_dining_sauerkraut_and_pork() {
-        $path = "data/cooking_nytimes_com_braised_sauerkraut_with_lots_of_pork_curl.html";
+        $path = TestUtils::getDataPath("cooking_nytimes_com_braised_sauerkraut_with_lots_of_pork_curl.html");
         $url = "http://cooking.nytimes.com/recipes/1013471-braised-sauerkraut-with-lots-of-pork";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -51,7 +51,7 @@ class CookingnytimescomTest extends TestCase {
     }
 
     public function test_dining_clay_pot_pork() {
-        $path = "data/cooking_nytimes_com_clay_pot_pork_nyt_cooking_curl.html";
+        $path = TestUtils::getDataPath("cooking_nytimes_com_clay_pot_pork_nyt_cooking_curl.html");
         $url = "http://cooking.nytimes.com/recipes/1014149-clay-pot-pork";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -72,7 +72,7 @@ class CookingnytimescomTest extends TestCase {
     }
 
     public function test_dining_rhubarb_upside_down_cake() {
-        $path = "data/cooking_nytimes_com_rhubarb_upside_down_cake_nyt_cooking_curl.html";
+        $path = TestUtils::getDataPath("cooking_nytimes_com_rhubarb_upside_down_cake_nyt_cooking_curl.html");
         $url = "http://cooking.nytimes.com/recipes/1013611-rhubarb-upside-down-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -97,7 +97,7 @@ class CookingnytimescomTest extends TestCase {
     }
 
     public function test_dining_yellow_layer_cake() {
-        $path = "data/cooking_nytimes_com_yellow_layer_cake_with_chocolate_frosting_curl.html";
+        $path = TestUtils::getDataPath("cooking_nytimes_com_yellow_layer_cake_with_chocolate_frosting_curl.html");
         $url = "http://cooking.nytimes.com/recipes/1016162-yellow-layer-cake-with-chocolate-frosting";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);

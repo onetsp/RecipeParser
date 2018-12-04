@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class SaveurcomTest extends TestCase {
 
     public function test_Mitzis_Chicken_Fingers() {
-        $path = "data/saveur_com_chicken_fingers_with_honey_dill_dipping_curl.html";
+        $path = TestUtils::getDataPath("saveur_com_chicken_fingers_with_honey_dill_dipping_curl.html");
         $url  = "http://www.saveur.com/article/Recipes/Mitzis-Chicken-Fingers";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -35,7 +35,7 @@ class SaveurcomTest extends TestCase {
     }
 
     public function test_Strawberry_Loaf_Bread() {
-        $path = "data/saveur_com_strawberry_bread_saveur_curl.html";
+        $path = TestUtils::getDataPath("saveur_com_strawberry_bread_saveur_curl.html");
         $url  = "http://www.saveur.com/article/Recipes/Strawberry-Loaf-Bread";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -63,7 +63,7 @@ class SaveurcomTest extends TestCase {
     }
 
     public function test_Strawberry_Tart() {
-        $path = "data/saveur_com_strawberry_tart_saveur_curl.html";
+        $path = TestUtils::getDataPath("saveur_com_strawberry_tart_saveur_curl.html");
         $url  = "http://www.saveur.com/article/Recipes/Strawberry-Tart";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -89,7 +89,7 @@ class SaveurcomTest extends TestCase {
     }
 
     public function test_coconut_cake() {
-        $path = "data/saveur_com_coconut_cake_thomas_kellers_coconut_cake_curl.html";
+        $path = TestUtils::getDataPath("saveur_com_coconut_cake_thomas_kellers_coconut_cake_curl.html");
         $url  = "http://www.saveur.com/article/recipes/thomas-kellers-coconut-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
