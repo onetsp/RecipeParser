@@ -12,17 +12,17 @@ class BonappetitecomTest extends TestCase {
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
-        $this->assertEquals("Beet and Fennel Soup with Kefir", $recipe->title);
-        $this->assertEquals("4 servings", $recipe->yield);
-        $this->assertEquals("30", $recipe->time['prep']);
-        $this->assertEquals("50", $recipe->time['total']);
+        $this->assertEquals("Beet and Fennel Soup with Kefir", $recipe->title, "Title");
+        $this->assertEquals("4 servings", $recipe->yield, "Yield");
+        $this->assertEquals("30", $recipe->time['prep'], "Prep time");
+        $this->assertEquals("50", $recipe->time['total'], "Total time");
 
-        $this->assertEquals(9, count($recipe->ingredients[0]['list']));
-        $this->assertEquals(2, count($recipe->instructions[0]['list']));
+        $this->assertEquals(9, count($recipe->ingredients[0]['list']), "Ingredients list count.");
+        $this->assertEquals(2, count($recipe->instructions[0]['list']), "Instructions list count.");
 
         $this->assertEquals(
             'https://assets.bonappetit.com/photos/57b02a1d1b33404414976142/16:9/w_1200,c_limit/mare_beet_and_fennel_soup_with_kefir_v.jpg',
-            $recipe->photo_url);
+            $recipe->photo_url, "Photo URL");
     }
 
     public function test_chia_hot_chocolate() {
@@ -32,13 +32,13 @@ class BonappetitecomTest extends TestCase {
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
-        $this->assertEquals("Chai-Spiced Hot Chocolate", $recipe->title);
-        $this->assertEquals("6 servings", $recipe->yield);
-        $this->assertEquals("15", $recipe->time['prep']);
-        $this->assertEquals("25", $recipe->time['total']);
+        $this->assertEquals("Chai-Spiced Hot Chocolate", $recipe->title, "Title.");
+        $this->assertEquals("6 servings", $recipe->yield, "Yield.");
+        $this->assertEquals("15", $recipe->time['prep'], "Prep time.");
+        $this->assertEquals("25", $recipe->time['total'], "Total time.");
 
-        #$this->assertEquals(10, count($recipe->ingredients[0]['list']));  // Where did the ingredients go in this recipe?!?
-        $this->assertEquals(3, count($recipe->instructions[0]['list']));
+        $this->assertEquals(10, count($recipe->ingredients[0]['list']), "Ingredients list count.");
+        $this->assertEquals(3, count($recipe->instructions[0]['list']), "Instructions list count.");
     }
 
     public function test_flourless_chocolate_cake() {
@@ -48,13 +48,13 @@ class BonappetitecomTest extends TestCase {
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
-        $this->assertEquals("Flourless Chocolate Cake with Caramel Sauce", $recipe->title);
-        $this->assertEquals("10 to 12 servings", $recipe->yield);
+        $this->assertEquals("Flourless Chocolate Cake with Caramel Sauce", $recipe->title, "Title.");
+        $this->assertEquals("10 to 12 servings", $recipe->yield, "Yield.");
 
-        $this->assertEquals(5, count($recipe->ingredients[0]['list']));
-        $this->assertEquals(7, count($recipe->ingredients[1]['list']));
-        $this->assertEquals(1, count($recipe->instructions[0]['list']));
-        $this->assertEquals(2, count($recipe->instructions[1]['list']));
+        $this->assertEquals(5, count($recipe->ingredients[0]['list']), "1st ingredients count.");
+        $this->assertEquals(7, count($recipe->ingredients[1]['list']), "2nd ingredients count.");
+        $this->assertEquals(1, count($recipe->instructions[0]['list']), "1st instructions count.");
+        $this->assertEquals(2, count($recipe->instructions[1]['list']), "2nd instructions count.");
     }
 
     public function test_sunday_roast_chicken() {

@@ -3,7 +3,7 @@
 class RecipeParser_Parser_Bonappetitcom {
 
     static public function parse($html, $url) {
-        $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
+        $recipe = RecipeParser_Parser_General::parse($html, $url);
 
         libxml_use_internal_errors(true);
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
@@ -11,15 +11,26 @@ class RecipeParser_Parser_Bonappetitcom {
         $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
         $xpath = new DOMXPath($doc);
 
-        // Fix cooking time (busted markup for "schema"
-        if (!$recipe->time['total']) {
-            $nodes = $xpath->query('//*[@itemprop="totalTime"]');
-            foreach ($nodes as $node) {
-                $line = trim($node->nodeValue);
-                if (strpos($line, "TOTAL") === 0) {
-                    $line = RecipeParser_Times::toMinutes($line);
-                    $recipe->time['total'] = $line;
-                }
+        // Yield
+        $nodes = $xpath->query('//*[@class="recipe__header__servings recipe__header__servings--basically"]');
+        if ($nodes->length) {
+            $value = $nodes->item(0)->nodeValue;
+            $value = RecipeParser_Text::formatYield($value);
+            $recipe->yield = $value;
+        }
+
+        // Cooking times
+        $nodes = $xpath->query('//*[@class="recipe__header__times recipe__header__times--basically"]');
+        foreach ($nodes as $node) {  
+            $value = $node->nodeValue;
+
+            // Prep times
+            if (stripos($value, "prep time") !== false) {
+                $value = preg_replace("/prep time\:(.*)/i", "$1", $value);
+                $recipe->time['prep'] = RecipeParser_Times::toMinutes($value);
+            } else if (stripos($value, "total time") !== false) {
+                $value = preg_replace("/total time\:(.*)/i", "$1", $value);
+                $recipe->time['total'] = RecipeParser_Times::toMinutes($value);
             }
         }
 
@@ -48,11 +59,11 @@ class RecipeParser_Parser_Bonappetitcom {
 
         // Instructions
         $recipe->resetInstructions();
-        $nodes = $xpath->query('//div[@class="preparation__group"]/*');
+        $nodes = $xpath->query('//div[@class="steps-wrapper"]/*');
         foreach ($nodes as $node) {
 
-            // <h3> contains section name.
-            if ($node->nodeName == 'h3') {
+            // <h4> contains section name.
+            if ($node->nodeName == 'h4') {
                 $line = RecipeParser_Text::formatSectionName($node->nodeValue);
                 if (!empty($line)) {
                     $recipe->addInstructionsSection($line);
@@ -60,11 +71,13 @@ class RecipeParser_Parser_Bonappetitcom {
                 continue;
             }
 
-            // Each step is in a nested p
-            if ($node->nodeName == 'div') {
-                $line = RecipeParser_Text::formatAsOneLine($node->nodeValue);
-                if ($line) {
-                    $recipe->appendInstruction($line);
+            // Each step is in ul->li
+            if ($node->nodeName == 'ul') {
+                foreach ($node->childNodes as $child) {
+                    $line = RecipeParser_Text::formatAsOneLine($child->nodeValue);
+                    if ($line) {
+                        $recipe->appendInstruction($line);
+                    }
                 }
                 continue;
             }
