@@ -226,6 +226,7 @@ r    * @return string URL
         // Very specific cases
         $title = preg_replace("/Sponsored recipe:?/i", "", $title);
         $title = preg_replace("/([^\:]+)\:.+Food Network/i", "$1", $title);
+        $title = preg_replace("/ recipes? at epicurious.com\s*$/i", "$1", $title);
 
         // More general cases
         $title = preg_replace("/.+\s+recipes\s+[\:\|\-]\s+/i", "", $title);

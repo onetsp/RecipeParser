@@ -9,6 +9,7 @@ class RecipeParser {
     const DATA_VOCABULARY_SPEC     = "MicrodataDataVocabulary";
     const RDF_DATA_VOCABULARY_SPEC = "MicrodataRdfDataVocabulary";
     const MICROFORMAT_SPEC         = "Microformat";
+    const GENERAL_PARSER           = "General";
 
     /**
      * Load registered parsers from ini file.
@@ -100,13 +101,14 @@ class RecipeParser {
             $parser = self::matchMarkupFormat($html);
         }
 
-        // If we haven't found a matching parser, bail out.
+        // If we haven't found a matching parser, fall back to the general (lite) parser.
         if (!$parser) {
-            throw new NoMatchingParserException();
+            $parser = self::GENERAL_PARSER;
         }
 
         // Initialize the right parser and run it.
         $classname = 'RecipeParser_Parser_' . $parser;
+        Log::notice("Executing parser $classname");
         $recipe = $classname::parse($html, $url);
         $recipe->url = $url;
         

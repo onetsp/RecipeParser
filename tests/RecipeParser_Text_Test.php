@@ -40,6 +40,10 @@ class TextTest extends TestCase {
         $this->assertEquals("50 Stuffing Recipes",
                             RecipeParser_Text::formatTitle("50 Stuffing Recipes : Recipes and Cooking : Food Network"));
     }
+    public function test_format_title_recipes_at_epicurious() {
+        $this->assertEquals("Ziti with Roasted Zucchini",
+                            RecipeParser_Text::formatTitle("Ziti with Roasted Zucchini Recipe at Epicurious.com"));
+    }
     public function test_format_title_recipes_section_name_with_separator() {
         $this->assertEquals("Cream Cheese Squares",
                             RecipeParser_Text::formatTitle("Top incredible recipes : Cream Cheese Squares"));
