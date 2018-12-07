@@ -22,17 +22,64 @@ class TextTest extends TestCase {
         $this->assertEquals('Bobby Flay', RecipeParser_Text::formatCredits($source));
     }
 
-    public function test_title_sponsored_recipe() {
+    public function test_format_title_simple() {
+        $this->assertEquals("Bananas Foster",
+                            RecipeParser_Text::formatTitle(" recipe for Bananas Foster"));
+        $this->assertEquals("Bananas Foster",
+                            RecipeParser_Text::formatTitle(" Bananas Foster Recipe "));
+    }
+    public function test_format_title_sponsored_recipe() {
         $this->assertEquals("Crazy Bananas",
                             RecipeParser_Text::formatTitle("Sponsored recipe: Crazy Bananas"));
     }
-    public function test_title_starts_recipe_for() {
-        $this->assertEquals("Bananas Foster",
-                            RecipeParser_Text::formatTitle(" recipe for Bananas Foster"));
+    public function test_format_title_foodnetwork() {
+        $this->assertEquals("Pan-Seared Rib-Eye",
+                            RecipeParser_Text::formatTitle("Pan-Seared Rib-Eye Recipe : Alton Brown : Recipes : Food Network"));
+        $this->assertEquals("Roasted Cauliflower Lasagna",
+                            RecipeParser_Text::formatTitle("Roasted Cauliflower Lasagna : Food Network"));
+        $this->assertEquals("50 Stuffing Recipes",
+                            RecipeParser_Text::formatTitle("50 Stuffing Recipes : Recipes and Cooking : Food Network"));
     }
-    public function test_title_ends_recipe() {
-        $this->assertEquals("Bananas Foster",
-                            RecipeParser_Text::formatTitle(" Bananas Foster Recipe "));
+    public function test_format_title_recipes_section_name_with_separator() {
+        $this->assertEquals("Cream Cheese Squares",
+                            RecipeParser_Text::formatTitle("Top incredible recipes : Cream Cheese Squares"));
+    }
+    public function test_format_title_pipe_separator_then_site_name() {
+        $this->assertEquals("breakfast apple granola crisp",
+                            RecipeParser_Text::formatTitle("breakfast apple granola crisp | smitten kitchen"));
+        $this->assertEquals("Pumpkin Bread",
+                            RecipeParser_Text::formatTitle("Pumpkin Bread | The Cookin Chicks"));
+        $this->assertEquals("Marbled Banana Bread",
+                            RecipeParser_Text::formatTitle("Marbled Banana Bread | Post Punk Kitchen | Vegan Baking & Vegan Cooking"));
+        $this->assertEquals("Easy Tip For Cutting and Peeling Winter Squash",
+                            RecipeParser_Text::formatTitle("Easy Tip For Cutting and Peeling Winter Squash | Skinnytaste"));
+        $this->assertEquals("Special Sunday Roast Chicken",
+                            RecipeParser_Text::formatTitle("Special Sunday Roast Chicken  Recipe | Bon Appetit"));
+    }
+    public function test_format_title_pipe_separator_with_site_name_and_recipes_category() {
+        $this->markTestSkipped("Infrequent case, skipping functionality.");
+        $this->assertEquals("Turkey And Black Bean Enchiladas",
+                            RecipeParser_Text::formatTitle("Turkey And Black Bean Enchiladas Recipes | Taste of Home"));
+    }
+    public function test_format_title_dash_separator_then_site_name() {
+        $this->assertEquals("Southern Fried Cabbage",
+                            RecipeParser_Text::formatTitle("Southern Fried Cabbage - Aunt Bee's Recipes"));
+        $this->assertEquals("Tater Tot Casserole",
+                            RecipeParser_Text::formatTitle("Tater Tot Casserole Recipe - Penny Pincher Jenny"));
+        $this->assertEquals("Lazy Girl's Ravioli Lasagna",
+                            RecipeParser_Text::formatTitle("Lazy Girl's Ravioli Lasagna - Iowa Girl Eats"));
+        $this->assertEquals("Roasted Brussels Sprouts and Apples",
+                            RecipeParser_Text::formatTitle("Roasted Brussels Sprouts and Apples - Holiday Sides - Cooking Light"));
+    }
+    public function test_format_title_colon_separator_then_site_name() {
+        $this->assertEquals("Chicken and Cheese Quesadilla Pie",
+                            RecipeParser_Text::formatTitle("Chicken and Cheese Quesadilla Pie Recipe : Cooking.com Recipes"));
+    }
+    public function test_format_title_keep_as_is() {
+        $this->assertEquals("South Your Mouth: Sticky Chicken",
+                            RecipeParser_Text::formatTitle("South Your Mouth: Sticky Chicken"));
+        $this->assertEquals("BRUNCH: Crock Pot French Toast Revisited",
+                            RecipeParser_Text::formatTitle("BRUNCH: Crock Pot French Toast Revisited"));
     }
 
     public function test_format_one_line() {

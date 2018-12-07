@@ -26,7 +26,7 @@ ONETSP_TIME: $time
      * to the HTML content.
      * 
      * @param string HTML of recipe file
-     * @return string URL
+r    * @return string URL
      */
     static public function getRecipeUrlFromMetadata($html) {
         $url = null;
@@ -222,10 +222,18 @@ ONETSP_TIME: $time
      */
     static public function formatTitle($title) {
         $title = self::formatAsOneLine($title);
+        
+        // Very specific cases
         $title = preg_replace("/Sponsored recipe:?/i", "", $title);
-        $title = preg_replace("/\s+recipe$/i", "", $title);
+        $title = preg_replace("/([^\:]+)\:.+Food Network/i", "$1", $title);
+
+        // More general cases
+        $title = preg_replace("/.+\s+recipes\s+[\:\|\-]\s+/i", "", $title);
+        $title = preg_replace("/\s+[\:\|\-]\s+.+$/i", "", $title);
+        $title = preg_replace("/\s+recipe\s*$/i", "", $title);
         $title = preg_replace("/^Recipe\s+for\s+/i", "", $title);
-        return trim($title);
+        $title = trim($title);
+        return $title;
     }
 
     /**
