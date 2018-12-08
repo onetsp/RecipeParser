@@ -12,27 +12,27 @@ class SeriouseatscomTest extends TestCase {
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
         if (isset($_SERVER['VERBOSE'])) print_r($recipe);
 
-        $this->assertEquals('Banana Split S\'more Whoopie Pies', $recipe->title);
+        $this->assertEquals('Banana Split S\'more Whoopie Pies', $recipe->title, "Title.");
 
-        $this->assertEquals(30, $recipe->time['prep']);
-        $this->assertEquals(0, $recipe->time['cook']);
-        $this->assertEquals(180, $recipe->time['total']);
-        $this->assertEquals('12 sandwiches', $recipe->yield);
+        $this->assertEquals(30, $recipe->time['prep'], "Prep time.");
+        $this->assertEquals(0, $recipe->time['cook'], "Cook time.");
+        $this->assertEquals(180, $recipe->time['total'], "Total time.");
+        $this->assertEquals('12 sandwiches', $recipe->yield, "Yield.");
 
-        $this->assertEquals(2, count($recipe->ingredients));
-        $this->assertEquals('', $recipe->ingredients[0]['name']);
-        $this->assertEquals(11, count($recipe->ingredients[0]['list']));   // bad character showing up in place of empty bullet
-        $this->assertEquals('Filling', $recipe->ingredients[1]['name']);
-        $this->assertEquals(3, count($recipe->ingredients[1]['list']));
-        $this->assertRegexp("/^1\/2 cup finely crushed graham crackers/", $recipe->ingredients[1]['list'][2]);
+        $this->assertEquals(2, count($recipe->ingredients), "Ingredients sections count.");
+        $this->assertEquals('', $recipe->ingredients[0]['name'], "1st ingredients section name.");
+        $this->assertEquals(11, count($recipe->ingredients[0]['list']), "1st ingredients section count.");   // bad character showing up in place of empty bullet
+        $this->assertEquals('Filling', $recipe->ingredients[1]['name'], "2nd ingredients section name.");
+        $this->assertEquals(3, count($recipe->ingredients[1]['list']), "2nd ingredients section count.");
+        $this->assertRegexp("/^1\/2 cup finely crushed graham crackers/", $recipe->ingredients[1]['list'][2], "2nd ingredient item.");
 
-        $this->assertEquals(1, count($recipe->instructions));
-        $this->assertEquals('', $recipe->instructions[0]['name']);
-        $this->assertEquals(9, count($recipe->instructions[0]['list']));
-        $this->assertRegexp("/^Variation: If you prefer not/", $recipe->instructions[0]['list'][8]);
+        $this->assertEquals(1, count($recipe->instructions), "Count of instructions sections");
+        $this->assertEquals('', $recipe->instructions[0]['name'], "1st instructions section name.");
+        $this->assertEquals(9, count($recipe->instructions[0]['list']), "1st instructions section count.");
+        $this->assertRegexp("/^Variation: If you prefer not/", $recipe->instructions[0]['list'][8], "Item from 1st ingredients list.");
 
-        $this->assertEquals('http://www.seriouseats.com/recipes/images/2011/08/20110808-164482-smorepie1.jpg', 
-                            $recipe->photo_url);
+        $this->assertEquals('https://www.seriouseats.com/recipes/images/2011/08/20110808-164482-smorepie1.jpg', 
+                            $recipe->photo_url, "Photo Url.");
     }
 
     public function test_sauted_andouille() {
@@ -57,7 +57,7 @@ class SeriouseatscomTest extends TestCase {
         $this->assertEquals('', $recipe->instructions[0]['name']);
         $this->assertEquals(5, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals('http://www.seriouseats.com/recipes/images/2011/08/20110808-127355-dinner-tonight-andouille-greens-grits.jpg', 
+        $this->assertEquals('https://www.seriouseats.com/recipes/images/2011/08/20110808-127355-dinner-tonight-andouille-greens-grits.jpg', 
                             $recipe->photo_url);
     }
 
