@@ -9,7 +9,6 @@ class Test extends TestCase {
         $html = file_get_contents(TestUtils::getDataPath("schema_spec.html"));
         $type = RecipeParser::matchMarkupFormat($html);
         $this->assertEquals(RecipeParser::SCHEMA_SPEC, $type);
-
     }
 
     function test_match_datavocabulary_markup() {
@@ -28,15 +27,6 @@ class Test extends TestCase {
         $html = file_get_contents(TestUtils::getDataPath("no_semantic_markup.html"));
         $type = RecipeParser::matchMarkupFormat($html);
         $this->assertEquals(null, $type);
-    }
-
-    /**
-     * @expectedException NoMatchingParserException
-     */
-    function test_parser_no_matching_parser_exception() {
-        $html = "";
-        $url = "http://www.example.com/";
-        $recipe = RecipeParser::parse($html, $url);
     }
 
 }
