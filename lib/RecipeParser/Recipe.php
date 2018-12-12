@@ -44,6 +44,7 @@ class RecipeParser_Recipe {
             'time' => $this->time,
             'ingredients' => $this->ingredients,
             'instructions' => $this->instructions,
+            '_parser' => $this->_parser,
         );
         
         return $arr;
