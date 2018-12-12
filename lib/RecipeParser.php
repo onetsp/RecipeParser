@@ -110,8 +110,12 @@ class RecipeParser {
         $classname = 'RecipeParser_Parser_' . $parser;
         Log::notice("Executing parser $classname");
         $recipe = $classname::parse($html, $url);
-        $recipe->url = $url;
+
         $recipe->_parser = $parser;
+        $recipe->url = $url;
+        if (!$recipe->source) {
+            $recipe->source = RecipeSource::getSourceNameByUrl($url);
+        }
         
         return $recipe;
 	}

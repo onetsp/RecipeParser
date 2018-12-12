@@ -100,11 +100,6 @@ class RecipeParser_Parser_Allrecipescom {
             }
         }
 
-        // Source
-        if (!$recipe->source) {
-            $recipe->source = "Allrecipes.com";
-        }
-
         return $recipe;
     }
 

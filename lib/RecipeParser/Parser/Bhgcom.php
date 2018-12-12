@@ -58,12 +58,6 @@ class RecipeParser_Parser_Bhgcom {
             }
         }
 
-        // Source
-        // Source
-        if (!$recipe->source) {
-            $recipe->source = "Bhg.com";
-        }
-
         return $recipe;
     }
 
