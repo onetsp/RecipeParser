@@ -11,6 +11,7 @@ class RecipeParser_Recipe {
     public $url = '';
     public $categories = array();
     public $photo_url = '';
+    public $_parser = '';
 
     // These times are all stored as minutes.
     public $time = array(

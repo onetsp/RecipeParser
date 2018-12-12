@@ -37,13 +37,8 @@ if ($recipe_url) {
 }
 
 // Parse recipe into a struct
-try {
-    $url = RecipeParser_Text::getRecipeUrlFromMetadata($html);
-    $recipe = RecipeParser::parse($html, $url);
-} catch (NoMatchingParserException $e) {
-    echo "Error: No matching parser (" . $e->getMessage() . ")\n";
-    exit(1);
-}
+$url = RecipeParser_Text::getRecipeUrlFromMetadata($html);
+$recipe = RecipeParser::parse($html, $url);
 
 // Print recipe.
 if ($output == "json") {
