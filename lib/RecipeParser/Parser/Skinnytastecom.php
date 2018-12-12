@@ -4,26 +4,11 @@ class RecipeParser_Parser_Skinnytastecom {
 
     static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataSchema::parse($html, $url);
+        $myxpath = new RecipeParser_XPath($html);
+        $xpath = $myxpath->getXPath();
 
-        // Turn off libxml errors to prevent mismatched tag warnings.
-        libxml_use_internal_errors(true);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc = new DOMDocument();
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
-        $xpath = new DOMXPath($doc);
-
-        // Title
-        if (!$recipe->title) {
-            $line = RecipeParser_Text::getMetaProperty($xpath, "og:title");
-            $line = RecipeParser_Text::formatTitle(preg_replace("/\| Skinnytaste/", "", $line));
-            $recipe->title = $line;
-        }
-
-        // Photo
-        if (!$recipe->photo_url) {
-            $line = RecipeParser_Text::getMetaProperty($xpath, "og:image");
-            $recipe->photo_url = $line;
-        }
+        $myxpath->singleNodeLookup('//meta[@property="og:title"]', "content", "title", $recipe);
+        $myxpath->singleNodeLookup('//meta[@property="og:image"]', "content", "photo_url", $recipe);
 
         // Did we get instructions from Schema.org?
         if (count($recipe->instructions[0]['list']) > 0) {

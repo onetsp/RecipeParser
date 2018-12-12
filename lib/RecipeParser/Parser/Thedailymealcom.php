@@ -4,12 +4,8 @@ class RecipeParser_Parser_Thedailymealcom {
 
     static public function parse($html, $url) {
         $recipe = RecipeParser_Parser_MicrodataDataVocabulary::parse($html, $url);
-
-        libxml_use_internal_errors(true);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc = new DOMDocument();
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
-        $xpath = new DOMXPath($doc);
+        $myxpath = new RecipeParser_XPath($html);
+        $xpath = $myxpath->getXPath();
 
         //
         // Some of the ingredient lines in on The Daily Meal do not adhere to
@@ -32,15 +28,7 @@ class RecipeParser_Parser_Thedailymealcom {
             }
         }
 
-        //
-        // The Daily Meal provides servings details via Edamam's plugin.
-        //
-        if (!$recipe->yield) {
-            $nodes = $xpath->query("//table[@class='edamam-data']/tr[2]/td[2]");
-            if ($nodes->length) {
-                $recipe->yield = RecipeParser_Text::formatYield($nodes->item(0)->nodeValue);
-            }
-        }
+        $myxpath->singleNodeLookup('//table[@class="edamam-data"]/tr[2]/td[2]', null, "yield", $recipe);
 
         return $recipe;
     }

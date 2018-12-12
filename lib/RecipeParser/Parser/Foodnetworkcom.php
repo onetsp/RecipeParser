@@ -3,17 +3,9 @@
 class RecipeParser_Parser_Foodnetworkcom {
 
     static public function parse($html, $url) {
-        $recipe = new RecipeParser_Recipe();
-
-        // Turn off libxml errors to prevent mismatched tag warnings.
-        libxml_use_internal_errors(true);
-        $doc = new DOMDocument();
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
-        $xpath = new DOMXPath($doc);
-
-        $recipe->photo_url = RecipeParser_Text::getMetaProperty($xpath, "og:image");
-        $recipe->title = RecipeParser_Text::getMetaProperty($xpath, "og:title");
+        $recipe = RecipeParser_Parser_General::parse($html, $url);
+        $myxpath = new RecipeParser_XPath($html);
+        $xpath = $myxpath->getXPath();
 
         // Cooking times and yield
         $data = array();

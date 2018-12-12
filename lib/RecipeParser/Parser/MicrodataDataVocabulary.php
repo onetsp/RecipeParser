@@ -3,14 +3,9 @@
 class RecipeParser_Parser_MicrodataDataVocabulary {
 
     static public function parse($html, $url) {
-
         $recipe = new RecipeParser_Recipe();
-
-        libxml_use_internal_errors(true);
-        $doc = new DOMDocument();
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
-        $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
-        $xpath = new DOMXPath($doc);
+        $myxpath = new RecipeParser_XPath($html);
+        $xpath = $myxpath->getXPath();
 
         // Find the top-level node for Recipe microdata
         $microdata = null;
@@ -142,7 +137,10 @@ class RecipeParser_Parser_MicrodataDataVocabulary {
             // Photo
             $photo_url = "";
             if (!$photo_url) {
-                $photo_url = RecipeParser_Text::getMetaProperty($xpath, "og:image");
+                $nodes = $xpath->query('//meta[@property="og:image"]');
+                if ($nodes->length) {
+                    $photo_url = $nodes->item(0)->getAttribute("content");
+                }
             }
             if (!$photo_url) {
                 $nodes = $xpath->query('.//*[@itemprop="photo"]', $microdata);

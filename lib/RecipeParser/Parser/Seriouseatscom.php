@@ -12,7 +12,7 @@ class RecipeParser_Parser_Seriouseatscom {
             $recipe->title = preg_replace("/^[^:]+: (.+)/", "$1", $recipe->title);
         }
 
-        $myxpath->singleNodeLookup('//span[@class="info yield"]', "yield", $recipe);
+        $myxpath->singleNodeLookup('//span[@class="info yield"]', null, "yield", $recipe);
 
         // Times
         $nodes = $xpath->query('.//*[@class="recipe-about"]/li');

@@ -26,7 +26,7 @@ ONETSP_TIME: $time
      * to the HTML content.
      * 
      * @param string HTML of recipe file
-r    * @return string URL
+     * @return string URL
      */
     static public function getRecipeUrlFromMetadata($html) {
         $url = null;
@@ -215,7 +215,8 @@ r    * @return string URL
     }
 
     /**
-     * Normalize some words and phrases within titles
+     * Normalize some words and phrases within titles. Strip out unwanted
+     * intros and endings, e.g. "____ recipes from epicurious.com"
      *
      * @param string
      * @return string
@@ -431,6 +432,11 @@ r    * @return string URL
      * @return int Minutes
      */
     public static function iso8601ToMinutes($str) {
+        // noop if this doesn't match an iso8061 format
+        if (!preg_match("/^[P,Y,D,T,H,M,S,0-9,\.]+$/", $str)) {
+            return 0;
+        }
+
         $sec = 0;
 
         if (strpos($str, 'P') === 0) {
@@ -582,13 +588,13 @@ r    * @return string URL
     }
 
 
-    public static function getMetaProperty($xpath, $property) {
-        $nodes = $xpath->query('//meta[@property="' . $property . '"]');
-        if ($nodes->length) {
-            $line = $nodes->item(0)->getAttribute("content");
-            return $line;
-        }
-        return "";
-    }
+#    public static function getMetaProperty($xpath, $property) {
+#        $nodes = $xpath->query('//meta[@property="' . $property . '"]');
+#        if ($nodes->length) {
+#            $line = $nodes->item(0)->getAttribute("content");
+#            return $line;
+#        }
+#        return "";
+#    }
 
 }
