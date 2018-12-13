@@ -70,18 +70,12 @@ ONETSP_TIME: $time
      * @param bool Strip <script> tags from HTML (default)
      * @return string HTML
      */
-    static public function cleanupClippedRecipeHtml($html, $strip_script_tags=true) {
+    static public function cleanupClippedRecipeHtml($html) {
         $html = preg_replace('/(\r\n|\r)/', "\n", $html);            // Normalize line breaks
         $html = str_replace('&nbsp;', ' ', $html);                   // get rid of non-breaking space (html code)
         $html = str_replace('&#160;', ' ', $html);                   // get rid of non-breaking space (numeric)
         $html = preg_replace('/\xC2\xA0/', ' ', $html);              // get rid of non-breaking space (UTF-8)
         $html = preg_replace('/[\x{0096}-\x{0097}]/u', '-', $html);  // ndash, mdash (bonappetit)
-
-        // Strip out script tags so they don't accidentally get executed if we ever display
-        // clipped content to end-users.
-        if ($strip_script_tags) {
-            $html = RecipeParser_Text::stripTagAndContents('script', $html);
-        }
 
         return $html;
     }

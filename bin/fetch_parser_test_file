@@ -19,15 +19,14 @@ $html = FileUtil::downloadPage($recipe_url);
 $html = RecipeParser_Text::forceUTF8($html);
 $html = RecipeParser_Text::cleanupClippedRecipeHtml($html);
 
-$title = getHtmlTitle($html);
+$title = getHtmlTitle($html, $recipe_url);
 $title = RecipeParser_Text::formatFilenameFromTitle($title);
 
-$ua = "curl";
 $hostname = formatHostname($hostname);
-$file_basename = $hostname . '_' . $title . '_' . $ua;
+$file_basename = $hostname . '_' . $title;
 
 // Append some notes to the HTML
-$comments = RecipeParser_Text::getRecipeMetadataComment($recipe_url, $ua);
+$comments = RecipeParser_Text::getRecipeMetadataComment($recipe_url, "curl");
 $html = $comments . "\n\n" . $html;
 
 // Write file
@@ -46,14 +45,15 @@ function formatHostname($hostname) {
     return $hostname;
 }
 
-function getHtmlTitle($html) {
-    if (preg_match("/<title>([^<]+)<\/title>/is", $html, $m)) {
-        $title = strtolower(trim($m[1]));
-    } else {
-        $title = "unknown title";
+function getHtmlTitle($html, $url) {
+    $recipe = RecipeParser_Parser_General::parse($html, $url);
+
+    if ($recipe->title) {
+        $title = strtolower(trim($recipe->title));
+    } else if (strpos($recipe->title, "Recipe from http") !== false) {
+        $title = "missing title";
     }
 
     return $title;
 }
 
-?>

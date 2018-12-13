@@ -50,8 +50,7 @@ class RecipeParser_Canonical {
         // Epicurious "Ingredients" features
         if (strpos($url, "epicurious.com/ingredients/") !== false) {
             // Need HTML page with <script> tags preserved!
-            $strip_script_tags = false;
-            $html = FileUtil::downloadRecipeWithCache($url, $strip_script_tags);
+            $html = FileUtil::downloadRecipeWithCache($url);
 
             $slide_number = preg_replace("/.*\/(\d+)$/", "$1", $url);
             if ($slide_number) {
