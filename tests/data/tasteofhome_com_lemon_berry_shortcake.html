@@ -1,0 +1,1204 @@
+<!--
+ONETSP_URL: http://www.tasteofhome.com/Recipes/Lemon-Berry-Shortcake
+ONETSP_USER_AGENT: curl
+ONETSP_TIME: Thu, 13 Dec 2018 19:53:46 +0000
+-->
+
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head >
+<meta charset="UTF-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQYOVVdSGwcFUFRVBQQA"};window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){var o=n[e]={exports:{}};t[e][0].call(o.exports,function(n){var o=t[e][1][n];return r(o||n)},o,o.exports)}return n[e].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<e.length;o++)r(e[o]);return r}({1:[function(t,n,e){function r(t){try{s.console&&console.log(t)}catch(n){}}var o,i=t("ee"),a=t(16),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,o.indexOf("dev")!==-1&&(s.dev=!0),o.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,n,e){r(e.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,n){return t}).join(", ")))},{}],2:[function(t,n,e){function r(t,n,e,r,s){try{p?p-=1:o(s||new UncaughtException(t,n,e),!0)}catch(f){try{i("ierr",[f,c.now(),!0])}catch(d){}}return"function"==typeof u&&u.apply(this,a(arguments))}function UncaughtException(t,n,e){this.message=t||"Uncaught error with no additional information",this.sourceURL=n,this.line=e}function o(t,n){var e=n?null:c.now();i("err",[t,e])}var i=t("handle"),a=t(17),s=t("ee"),c=t("loader"),f=t("gos"),u=window.onerror,d=!1,l="nr@seenError",p=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(h){"stack"in h&&(t(8),t(7),"addEventListener"in window&&t(5),c.xhrWrappable&&t(9),d=!0)}s.on("fn-start",function(t,n,e){d&&(p+=1)}),s.on("fn-err",function(t,n,e){d&&!e[l]&&(f(e,l,function(){return!0}),this.thrown=!0,o(e))}),s.on("fn-end",function(){d&&!this.thrown&&p>0&&(p-=1)}),s.on("internal-error",function(t){i("ierr",[t,c.now(),!0])})},{}],3:[function(t,n,e){t("loader").features.ins=!0},{}],4:[function(t,n,e){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),s=t(7),c="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,v="fn"+h,w="bstTimer",y="pushState",g=t("loader");g.features.stn=!0,t(6);var b=NREUM.o.EV;o.on(m,function(t,n){var e=t[0];e instanceof b&&(this.bstStart=g.now())}),o.on(v,function(t,n){var e=t[0];e instanceof b&&i("bst",[e,n,this.bstStart,g.now()])}),a.on(m,function(t,n,e){this.bstStart=g.now(),this.bstType=e}),a.on(v,function(t,n){i(w,[n,this.bstStart,g.now(),this.bstType])}),s.on(m,function(){this.bstStart=g.now()}),s.on(v,function(t,n){i(w,[n,this.bstStart,g.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=g.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+c]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+c]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+c]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,n,e){function r(t){for(var n=t;n&&!n.hasOwnProperty(u);)n=Object.getPrototypeOf(n);n&&o(n)}function o(t){s.inPlace(t,[u,d],"-",i)}function i(t,n){return t[1]}var a=t("ee").get("events"),s=t(19)(a,!0),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";n.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,n){var e=t[1],r=c(e,"nr@wrapped",function(){function t(){if("function"==typeof e.handleEvent)return e.handleEvent.apply(e,arguments)}var n={object:t,"function":e}[typeof e];return n?s(n,"fn-",null,n.name||"anonymous"):e});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,n,e){var r=t("ee").get("history"),o=t(19)(r);n.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,n,e){var r=t("ee").get("raf"),o=t(19)(r),i="equestAnimationFrame";n.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,n,e){function r(t,n,e){t[0]=a(t[0],"fn-",null,e)}function o(t,n,e){this.method=e,this.timerDuration=isNaN(t[1])?0:+t[1],t[0]=a(t[0],"fn-",this,e)}var i=t("ee").get("timer"),a=t(19)(i),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";n.exports=i,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(c+u,r),i.on(s+u,o)},{}],9:[function(t,n,e){function r(t,n){d.inPlace(n,["onreadystatechange"],"fn-",s)}function o(){var t=this,n=u.context(t);t.readyState>3&&!n.resolved&&(n.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,y,"fn-",s)}function i(t){g.push(t),h&&(x?x.then(a):v?v(a):(E=-E,O.data=E))}function a(){for(var t=0;t<g.length;t++)r([],g[t]);g.length&&(g=[])}function s(t,n){return n}function c(t,n){for(var e in t)n[e]=t[e];return n}t(5);var f=t("ee"),u=f.get("xhr"),d=t(19)(u),l=NREUM.o,p=l.XHR,h=l.MO,m=l.PR,v=l.SI,w="readystatechange",y=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],g=[];n.exports=u;var b=window.XMLHttpRequest=function(t){var n=new p(t);try{u.emit("new-xhr",[n],n),n.addEventListener(w,o,!1)}catch(e){try{u.emit("internal-error",[e])}catch(r){}}return n};if(c(p,b),b.prototype=p.prototype,d.inPlace(b.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,n){r(t,n),i(n)}),u.on("open-xhr-start",r),h){var x=m&&m.resolve();if(!v&&!m){var E=1,O=document.createTextNode(E);new h(a).observe(O,{characterData:!0})}}else f.on("fn-end",function(t){t[0]&&t[0].type===w||a()})},{}],10:[function(t,n,e){function r(t){var n=this.params,e=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!n.aborted){if(e.duration=a.now()-this.startTime,4===t.readyState){n.status=t.status;var i=o(t,this.lastSize);if(i&&(e.rxSize=i),this.sameOrigin){var c=t.getResponseHeader("X-NewRelic-App-Data");c&&(n.cat=c.split(", ").pop())}}else n.status=0;e.cbTime=this.cbTime,f.emit("xhr-done",[t],t),s("xhr",[n,e,this.startTime])}}}function o(t,n){var e=t.responseType;if("json"===e&&null!==n)return n;var r="arraybuffer"===e||"blob"===e||"json"===e?t.response:t.responseText;return h(r)}function i(t,n){var e=c(n),r=t.params;r.host=e.hostname+":"+e.port,r.pathname=e.pathname,t.sameOrigin=e.sameOrigin}var a=t("loader");if(a.xhrWrappable){var s=t("handle"),c=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var n=this;n.totalCbs=0,n.called=0,n.cbTime=0,n.end=r,n.ended=!1,n.xhrGuids={},n.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){n.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,n){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&n.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,n){var e=this.metrics,r=t[0],o=this;if(e&&r){var i=h(r);i&&(e.txSize=i)}this.startTime=a.now(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof n.onload))&&o.end(n)}catch(e){try{f.emit("internal-error",[e])}catch(r){}}};for(var s=0;s<d;s++)n.addEventListener(u[s],this.listener,!1)}),f.on("xhr-cb-time",function(t,n,e){this.cbTime+=t,n?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof e.onload||this.end(e)}),f.on("xhr-load-added",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&!this.xhrGuids[e]&&(this.xhrGuids[e]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&this.xhrGuids[e]&&(delete this.xhrGuids[e],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],n)}),f.on("removeEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],n)}),f.on("fn-start",function(t,n,e){n instanceof m&&("onload"===e&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),f.on("fn-end",function(t,n){this.xhrCbStart&&f.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,n],n)})}},{}],11:[function(t,n,e){n.exports=function(t){var n=document.createElement("a"),e=window.location,r={};n.href=t,r.port=n.port;var o=n.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=n.hostname||e.hostname,r.pathname=n.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!n.protocol||":"===n.protocol||n.protocol===e.protocol,a=n.hostname===document.domain&&n.port===e.port;return r.sameOrigin=i&&(!n.hostname||a),r}},{}],12:[function(t,n,e){function r(){}function o(t,n,e){return function(){return i(t,[f.now()].concat(s(arguments)),n?null:this,e),n?void 0:this}}var i=t("handle"),a=t(16),s=t(17),c=t("ee").get("tracer"),f=t("loader"),u=NREUM;"undefined"==typeof window.newrelic&&(newrelic=u);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",p=l+"ixn-";a(d,function(t,n){u[n]=o(l+n,!0,"api")}),u.addPageAction=o(l+"addPageAction",!0),u.setCurrentRouteName=o(l+"routeName",!0),n.exports=newrelic,u.interaction=function(){return(new r).get()};var h=r.prototype={createTracer:function(t,n){var e={},r=this,o="function"==typeof n;return i(p+"tracer",[f.now(),t,e],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],e),o)try{return n.apply(this,arguments)}catch(t){throw c.emit("fn-err",[arguments,this,t],e),t}finally{c.emit("fn-end",[f.now()],e)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,n){h[n]=o(p+n)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,f.now()])}},{}],13:[function(t,n,e){n.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(n){return}}}},{}],14:[function(t,n,e){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),n.exports=r},{}],15:[function(t,n,e){function r(t,n){if(!o)return!1;if(t!==o)return!1;if(!n)return!0;if(!i)return!1;for(var e=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==e[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var s=navigator.userAgent,c=s.match(a);c&&s.indexOf("Chrome")===-1&&s.indexOf("Chromium")===-1&&(o="Safari",i=c[1])}n.exports={agent:o,version:i,match:r}},{}],16:[function(t,n,e){function r(t,n){var e=[],r="",i=0;for(r in t)o.call(t,r)&&(e[i]=n(r,t[r]),i+=1);return e}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],17:[function(t,n,e){function r(t,n,e){n||(n=0),"undefined"==typeof e&&(e=t?t.length:0);for(var r=-1,o=e-n||0,i=Array(o<0?0:o);++r<o;)i[r]=t[n+r];return i}n.exports=r},{}],18:[function(t,n,e){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],19:[function(t,n,e){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(17),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;n.exports=function(t,n){function e(t,n,e,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof e?e(r,a):e||{}}catch(f){l([f,"",[r,a,o],s])}u(n+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(d){throw u(n+"err",[r,a,d],s),d}finally{u(n+"end",[r,a,c],s)}}return r(t)?t:(n||(n=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function u(e,r,o){if(!c||n){var i=c;c=!0;try{t.emit(e,r,o,n)}catch(a){l([a,e,r,o])}c=i}}function d(t,n){if(Object.defineProperty&&Object.keys)try{var e=Object.keys(t);return e.forEach(function(e){Object.defineProperty(n,e,{get:function(){return t[e]},set:function(n){return t[e]=n,n}})}),n}catch(r){l([r])}for(var o in t)s.call(t,o)&&(n[o]=t[o]);return n}function l(n){try{t.emit("internal-error",n)}catch(e){}}return t||(t=o),e.inPlace=f,e.flag=a,e}},{}],ee:[function(t,n,e){function r(){}function o(t){function n(t){return t&&t instanceof r?t:t?c(t,s,i):i()}function e(e,r,o,i){if(!l.aborted||i){t&&t(e,r,o);for(var a=n(o),s=m(e),c=s.length,f=0;f<c;f++)s[f].apply(a,r);var d=u[g[e]];return d&&d.push([b,e,r,a]),a}}function p(t,n){y[t]=m(t).concat(n)}function h(t,n){var e=y[t];if(e)for(var r=0;r<e.length;r++)e[r]===n&&e.splice(r,1)}function m(t){return y[t]||[]}function v(t){return d[t]=d[t]||o(e)}function w(t,n){f(t,function(t,e){n=n||"feature",g[e]=n,n in u||(u[n]=[])})}var y={},g={},b={on:p,addEventListener:p,removeEventListener:h,emit:e,get:v,listeners:m,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var s="nr@context",c=t("gos"),f=t(16),u={},d={},l=n.exports=o();l.backlog=u},{}],gos:[function(t,n,e){function r(t,n,e){if(o.call(t,n))return t[n];var r=e();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(t,n,e){function r(t,n,e,r){o.buffer([t],r),o.emit(t,n,e)}var o=t("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(t,n,e){function r(t){var n=typeof t;return!t||"object"!==n&&"function"!==n?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");n.exports=r},{}],loader:[function(t,n,e){function r(){if(!E++){var t=x.info=NREUM.info,n=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&n))return u.abort();f(g,function(n,e){t[n]||(t[n]=e)}),c("mark",["onload",a()+x.offset],null,"api");var e=p.createElement("script");e.src="https://"+t.agent,n.parentNode.insertBefore(e,n)}}function o(){"complete"===p.readyState&&i()}function i(){c("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(s=Math.max((new Date).getTime(),s))-x.offset}var s=(new Date).getTime(),c=t("handle"),f=t(16),u=t("ee"),d=t(15),l=window,p=l.document,h="addEventListener",m="attachEvent",v=l.XMLHttpRequest,w=v&&v.prototype;NREUM.o={ST:setTimeout,SI:l.setImmediate,CT:clearTimeout,XHR:v,REQ:l.Request,EV:l.Event,PR:l.Promise,MO:l.MutationObserver};var y=""+location,g={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1099.min.js"},b=v&&w&&w[h]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:s,now:a,origin:y,features:{},xhrWrappable:b,userAgent:d};t(12),p[h]?(p[h]("DOMContentLoaded",i,!1),l[h]("load",r,!1)):(p[m]("onreadystatechange",o),l[m]("onload",r)),c("mark",["firstbyte",s],null,"api");var E=0,O=t(18)},{}]},{},["loader",2,10,4,3]);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lemon-Berry Shortcake Recipe | Taste of Home</title>
+		<script type="text/javascript">
+			var gs_channels="DEFAULT";
+			var gsurl=window.location!=window.top.location?document.referrer:window.location;
+			document.write('<scr'+'ipt type="text/javascript" src="https://trustedmediabrands.gscontxt.net/main/channels.fcgi?url='+encodeURIComponent(gsurl)+'"></scr'+'ipt>');
+		</script>
+		
+<meta property="fb:pages" content="61511025427" />
+
+<!-- BEGIN Salesforce DMP ControlTag for "tmbi.com" -->
+<script class='kxct' data-id='s9xpab5u5' data-timing='async' data-version='3.0' type='text/javascript'>
+window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
+  (function(){
+    var k=document.createElement('script');k.type='text/javascript';k.async=true;
+    k.src=(location.protocol==='https:'?'https:':'http:')+'//cdn.krxd.net/controltag/s9xpab5u5.js';
+    var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
+  }());
+</script>
+<!-- END Salesforce DMP ControlTag -->
+
+<script class='kxint' data-namespace='trustedmediabrandsinc' type='text/javascript'>
+window.Krux||((Krux=function(){Krux.q.push(arguments);}).q=[]);
+(function(){
+  function retrieve(n){
+    var k= 'kx'+'trustedmediabrandsinc_'+n, ls=(function(){
+      try {
+        return window.localStorage;
+      } catch(e) {
+        return null;
+      }
+    })();
+    if (ls) {
+        return ls[k] || '';
+    } else if (navigator.cookieEnabled) {
+        var m = document.cookie.match(k+'=([^;]*)');
+        return (m && unescape(m[1])) || '';
+    } else {
+        return '';
+    }
+  }
+  Krux.user = retrieve('user');
+  Krux.segments = retrieve('segs') ? retrieve('segs').split(',') : [];
+})();
+</script><meta name="msvalidate.01" content="E95ABC1A248FFE4A75E71FFFCDE5F377" />
+<!-- This site is optimized with the Yoast SEO Premium plugin v9.0.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="This simple lemon shortcake is tender and not overly sweet. Enjoy this summertime classic with a generous layer of whipped topping and berries. &mdash;Meryl Herr, Overland Park, Kansas"/>
+<link rel="canonical" href="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Lemon-Berry Shortcake" />
+<meta property="og:description" content="This simple lemon shortcake is tender and not overly sweet. Enjoy this summertime classic with a generous layer of whipped topping and berries. &mdash;Meryl Herr, Overland Park, Kansas" />
+<meta property="og:url" content="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/" />
+<meta property="og:site_name" content="Taste of Home" />
+<meta property="article:publisher" content="https://www.facebook.com/tasteofhome" />
+<meta property="article:tag" content="$0.51 to $0.75" />
+<meta property="article:tag" content="Baked [do not check stovetop as well]" />
+<meta property="article:tag" content="deactivated-more-celebrations" />
+<meta property="article:tag" content="july-4th-formerly-patriotic" />
+<meta property="article:tag" content="light-recipes" />
+<meta property="article:tag" content="lower-in-fat-12-g-or-less" />
+<meta property="article:tag" content="mothers-day" />
+<meta property="article:tag" content="patriotic" />
+<meta property="article:tag" content="Shortcake" />
+<meta property="fb:app_id" content="301660770297572" />
+<meta property="og:image" content="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1200" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="This simple lemon shortcake is tender and not overly sweet. Enjoy this summertime classic with a generous layer of whipped topping and berries. &mdash;Meryl Herr, Overland Park, Kansas" />
+<meta name="twitter:title" content="Lemon-Berry Shortcake" />
+<meta name="twitter:site" content="@tasteofhome" />
+<meta name="twitter:image" content="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" />
+<meta name="twitter:creator" content="@tasteofhome" />
+<!-- / Yoast SEO Premium plugin. -->
+
+<link rel='dns-prefetch' href='//js-sec.indexww.com' />
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//www.googletagservices.com' />
+<link rel='dns-prefetch' href='//sb.scorecardresearch.com' />
+<link rel='dns-prefetch' href='//s.ntv.io' />
+<link rel='dns-prefetch' href='//s7.addthis.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Taste of Home &raquo; Feed" href="https://www.tasteofhome.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Taste of Home &raquo; Comments Feed" href="https://www.tasteofhome.com/comments/feed/" />
+
+<script type="text/javascript">
+var digitalData = {"page":{"theme":"tmbi-theme-v3","sitename":"toh","pageName":"toh:recipe:Lemon-Berry Shortcake","content":{"contentName":"Lemon-Berry Shortcake","tmbiBrand":"no brand","contentID":"48171","wpContentID":54743,"contentType":"recipe","category":"","tags":"$0.51 to $0.75, Baked [do not check stovetop as well], deactivated-more-celebrations, july-4th-formerly-patriotic, light-recipes, lower-in-fat-12-g-or-less, mothers-day, patriotic, Shortcake","contentCost":"","publishedDate":"2018-01-01","modifiedDate":"2018-11-09","image":{"licensorName":"not available","credits":"not available"},"author":"Tasteofhome.com Editors","authorRole":"editor"},"subCategory":"","subsubCategory":"","category":{"subCategory":"","subsubCategory":"","pageType":""}},"ab":{"testing":"redesign:design_v2"}};
+</script>
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.tasteofhome.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<!-- STRIPPED STYLE TAG -->
+<link rel='stylesheet' id='opinionstage-style-css'  href='https://www.tasteofhome.com/wp-content/plugins/social-polls-by-opinionstage/opinionstage-style-common.css?ver=4.9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='opinionstage-font-style-css'  href='https://www.tasteofhome.com/wp-content/plugins/social-polls-by-opinionstage/opinionstage-font.css?ver=4.9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='tohv2-child-theme-css'  href='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/toh-above-the-fold.min.css?ver=3.7.40' type='text/css' media='all' />
+<link rel='stylesheet' id='owl-style-css'  href='https://www.tasteofhome.com/wp-content/plugins/tmbi-recirc-module/css/owl-carousel-min.css?ver=2.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='owl-theme-default-style-css'  href='https://www.tasteofhome.com/wp-content/plugins/tmbi-recirc-module/css/owl-theme-default-min.css?ver=2.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='re-circ-style-css'  href='https://www.tasteofhome.com/wp-content/plugins/tmbi-recirc-module/css/re-circ.css?ver=2.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='gch-frontend-styles-css'  href='https://www.tasteofhome.com/wp-content/plugins/genesis-custom-headers/css/gch-frontend-styles.css?ver=4.9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='gpt-ads-style-css'  href='https://www.tasteofhome.com/wp-content/plugins/tmbi-ad-stack/css/helper.css?ver=2.1.2' type='text/css' media='all' />
+<link rel='stylesheet' id='gsfw-stylesheet-css'  href='https://www.tasteofhome.com/wp-content/plugins/genesis-variable-footer-widgets/css/style.min.css?ver=1.2.1' type='text/css' media='all' />
+<link rel='stylesheet' id='tohv2-child-fonts-css'  href='https://fonts.googleapis.com/css?family=Lato%3A400%2C400i%2C700%2C700i%7COpen+Sans%3A400%2C400i%2C600%2C600i%2C700%2C700i&#038;ver=3.7.40' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='https://www.tasteofhome.com/wp-includes/css/dashicons.min.css?ver=4.9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='custom-icons-styles-css'  href='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/custom-icons-styles.css?ver=3.7.40' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-sticky-feature/js/sticky-plugin.js?ver=1.0.1'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-sticky-feature/js/sticky-custom.js?ver=1.0.1'></script>
+<script async type='text/javascript' src='//js-sec.indexww.com/ht/p/184414-1485294554771.js?ver=1.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var login_guid = [];
+var login_name = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/mu-plugins/cookie-controller/js/cookie.min.js?ver=1.2'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/mu-plugins/jquery-plugins/jquery.inview.custom.min.js?ver=1.3'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/mu-plugins/js/wp-js-hooks.js?ver=1.3'></script>
+<script async type='text/javascript' src='https://www.googletagservices.com/tag/js/gpt.js?ver=2.1.2'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/prebidjs/js/prebid.js?ver=1.2.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var prebid_conf = {"dfp_property":"","dfp_site_id":"","ad_stack_batch_sra_listicles":"1","ad_stack_batch_sra_recipe":"1","ad_stack_batch_sra_homepage":"1","dfp_exclude_pages":"764080","dfp_lazy_load_offset_article":"800","dfp_lazy_load_offset_category":"800","dfp_lazy_load_offset_homepage":"800","dfp_lazy_load_offset_joke":"800","dfp_lazy_load_offset_listicle":"800","dfp_lazy_load_offset_projectdetail":"800","dfp_lazy_load_offset_recipedetail":"800","dfp_lazy_load_offset_slideshow":"800","dfp_lazy_load_offset_videocategory":"800","prebidjs_granularity":"dense","rubicon_account_id":"10696","rubicon_site_id":"24266","rubicon_atf_zone_id":"92770","rubicon_btf_zone_id":"92772","openx_del_domain":"trustedmediabrands-d.openx.net","appnexus_enabled":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/prebidjs/js/tmbi-prebid.js?ver=1.2.0'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/rd-taboola/js/toh-taboola-loader.js?ver=0.2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var tmbi_ad_data = {"property":"6178","siteId":"toh","pageType":"recipedetail","urlPath":"\/recipes\/lemon-berry-shortcake\/","keywords":"051-to-075,baked-do-not-check-stovetop-as-well,deactivated-more-celebrations,july-4th-formerly-patriotic,light-recipes,lower-in-fat-12-g-or-less,mothers-day,patriotic,shortcake","category":"novalue","topic":"novalue","header_bidders_timeout":"1000","_gfc":"","should_use_batch_SRA":"1","ad_slots":{"sponsor-logo":{"slotUrl":"sponsorattribution","sizes":{"mobile":[[4,4]],"tablet":[[4,4]],"desktop":[[4,4]],"large_screen":[[4,4]]},"targeting":{"tf":["atf"],"pos":["sponsor"],"location":[""]},"supported_types":[]},"postarticle":{"slotUrl":"postarticle","sizes":{"mobile":[[300,250],[300,600],[3,3]],"tablet":[[728,90],[300,250],[3,3]],"desktop":[[970,550],[970,250],[970,90],[728,90],[3,3]],"large_screen":[[970,550],[970,250],[970,90],[728,90],[3,3]]},"targeting":{"tf":["btf"],"pos":["postarticle"],"location":["bottom"]},"supported_types":[],"change_size":{"category":{"mobile":[[300,250],[300,600]],"tablet":[[300,250],[300,600]],"desktop":[[728,90]],"large_screen":[[970,250],[970,90],[728,90]]},"archive":{"mobile":[[300,250],[300,600]],"tablet":[[300,250],[300,600]],"desktop":[[728,90]],"large_screen":[[970,250],[970,90],[728,90]]},"projectdetail":{"mobile":[[300,250],[300,600]],"tablet":[[300,250],[300,600]],"desktop":[[728,90]],"large_screen":[[970,250],[970,90],[728,90]]},"videocategory":{"mobile":[[320,50],[300,250]],"tablet":[[728,90],[300,250]],"desktop":[[970,250],[970,90],[728,90],[300,250]],"large_screen":[]},"recipe":{"mobile":[[300,250],[300,600]],"tablet":[[728,90],[640,360]],"desktop":[[970,250],[970,90],[728,90]],"large_screen":[[970,250],[970,90],[728,90]]}}},"div-gpt-ad-1370019314148-05":{"slotUrl":"prearticle","sizes":{"mobile":[[320,50]],"tablet":[],"desktop":[],"large_screen":[]},"targeting":{"tf":["atf"],"pos":["prearticle"],"location":["top"]},"supported_types":[]},"div-gpt-ad-1370019314149-02":{"slotUrl":"postarticle","sizes":{"mobile":[[300,250],[300,600]],"tablet":[[728,90]],"desktop":[[970,250],[970,90],[728,90]],"large_screen":[[970,250],[970,90]]},"targeting":{"tf":["btf"],"pos":["postarticle"],"location":["bottom"]},"supported_types":[]},"ad-sidebar-top":{"slotUrl":"railtop","sizes":{"mobile":[],"tablet":[],"desktop":[[300,250]],"large_screen":[[300,250]]},"targeting":{"tf":["atf"],"pos":["railtop"],"location":["rail"]},"supported_types":[]},"mobile_prearticle":{"slotUrl":"prearticle","sizes":{"mobile":[[320,50]],"tablet":[],"desktop":[],"large_screen":[]},"targeting":{"tf":["atf"],"pos":["prearticle"],"location":["top"]},"supported_types":[]},"prearticle":{"slotUrl":"prearticle","sizes":{"mobile":[],"tablet":[[728,90]],"desktop":[[970,250],[970,90],[728,90]],"large_screen":[[970,250],[970,90],[728,90],[3,3]]},"targeting":{"tf":["atf"],"pos":["prearticle"],"location":["top"]},"supported_types":[],"change_size":{"homepage":{"mobile":[],"tablet":[[320,50]],"desktop":[[728,90]],"large_screen":[[970,250],[970,90],[728,90],[3,3]]},"recipedetail":{"mobile":[],"tablet":[[728,90]],"desktop":[[970,250],[970,90],[728,90],[3,3]],"large_screen":[[970,250],[970,90],[728,90],[3,3]]},"category":{"mobile":[],"tablet":[[300,250],[320,50]],"desktop":[[728,90]],"large_screen":[[970,250],[970,90],[728,90],[3,3]]},"archive":{"mobile":[],"tablet":[[300,250],[320,50]],"desktop":[[728,90]],"large_screen":[[970,250],[970,90],[728,90],[3,3]]},"projectdetail":{"mobile":[],"tablet":[[320,50]],"desktop":[[728,90]],"large_screen":[[970,250],[970,90],[728,90],[3,3]]},"videocategory":{"mobile":[],"tablet":[[728,90]],"desktop":[[970,250],[970,90],[728,90],[300,250]],"large_screen":[[970,250],[970,90],[728,90],[300,250]]},"listicle":{"mobile":[],"tablet":[[728,90],[640,360],[3,3]],"desktop":[[970,250],[970,90],[728,90],[3,3]],"large_screen":[[970,250],[970,90],[728,90],[3,3]]}}},"leaderboard":{"slotUrl":"oop","sizes":{"mobile":[],"tablet":[],"desktop":[],"large_screen":[[1,1]]},"targeting":{"tf":["atf"],"pos":["oop"],"location":["oop"]},"supported_types":[]},"ad-sidebar-middle":{"slotUrl":"railmiddle","sizes":{"mobile":[],"tablet":[],"desktop":[[300,250]],"large_screen":[[300,250]]},"targeting":{"tf":["atf"],"pos":["railmiddle"],"location":["rail"]},"supported_types":["listicle","article","recipedetail","projectdetail"]},"ad-sidebar-bottom":{"slotUrl":"railscroll","sizes":{"mobile":[],"tablet":[],"desktop":[],"large_screen":[[160,600],[300,250],[300,600],[300,1050]]},"targeting":{"tf":["btf"],"pos":["railscroll"],"location":["rail"]},"supported_types":["article","recipedetail"],"scroll_type":"rail"},"ad-sidebar-fourth":{"slotUrl":"railscroll","sizes":{"mobile":[],"tablet":[],"desktop":[],"large_screen":[[160,600],[300,250],[300,600],[300,1050]]},"targeting":{"tf":["btf"],"pos":["railscroll"],"location":["rail"]},"supported_types":["article","recipedetail"],"scroll_type":"rail"},"ad-recipe-sidebar-scroll":{"slotUrl":"railscroll","sizes":{"mobile":[],"tablet":[],"desktop":[],"large_screen":[[160,600],[300,250],[300,600],[300,1050]]},"targeting":{"tf":["btf"],"pos":["railscroll"],"location":["rail"]},"supported_types":["recipedetail"],"scroll_type":"rail"},"non-contextual-video":{"slotUrl":"video","sizes":{"mobile":[[1000,1000]],"tablet":[[1000,1000]],"desktop":[[1000,1000]],"large_screen":[[1000,1000]]},"targeting":{"tf":["btf"],"pos":["video"],"location":["bottom"]},"supported_types":["recipedetail"]},"recipe-top":{"slotUrl":"top","sizes":{"mobile":[[300,600],[300,250],[3,3]],"tablet":[[300,250],[728,90],[640,360],[3,3]],"desktop":[[300,250],[970,550],[970,250],[970,90],[728,90],[3,3]],"large_screen":[[300,250],[970,550],[970,250],[970,90],[728,90],[3,3]]},"targeting":{"tf":["atf"],"pos":["top"],"location":["top"]},"supported_types":["recipedetail"]},"recipe-middle":{"slotUrl":"middle","sizes":{"mobile":[[300,600],[300,250],[3,3]],"tablet":[[300,250],[728,90],[640,360],[3,3]],"desktop":[[300,250],[970,550],[970,250],[970,90],[728,90],[3,3]],"large_screen":[[300,250],[970,550],[970,250],[970,90],[728,90],[3,3]]},"targeting":{"tf":["btf"],"pos":["middle"],"location":["middle"]},"supported_types":["recipedetail"]},"recipe-scroll":{"slotUrl":"scroll","sizes":{"mobile":[[300,600],[300,250],[3,3]],"tablet":[[300,250],[728,90],[640,360],[3,3]],"desktop":[[300,250],[970,550],[970,250],[970,90],[728,90],[3,3]],"large_screen":[[300,250],[970,550],[970,250],[970,90],[728,90],[3,3]]},"targeting":{"tf":["btf"],"pos":["scroll"],"location":["bottom"]},"supported_types":["recipedetail"]},"recipe-top-mobile":{"slotUrl":"top_mobile","sizes":{"mobile":[],"tablet":[],"desktop":[],"large_screen":[]},"targeting":{"tf":["atf"],"pos":["top"],"location":["top"]},"supported_types":["recipedetail"]},"print-recipe":{"slotUrl":"railtop","sizes":{"mobile":[],"tablet":[[160,600],[300,250],[300,600]],"desktop":[[160,600],[300,250],[300,600]],"large_screen":[[160,600],[300,250],[300,600]]},"targeting":{"tf":["atf"],"pos":["railtop"],"location":["top"]},"supported_types":["recipedetail"]},"branded-ingredient":{"slotUrl":"sponsored","sizes":{"mobile":[[300,251]],"tablet":[[300,251]],"desktop":[[300,251]],"large_screen":[[300,251]]},"targeting":{"tf":["btf"],"pos":["ingredient"],"location":[""]},"supported_types":[]}},"global_targeting":{"pt":"recipedetail","budget":["no_value"],"cuisine":["no_value"],"course":["cakes","desserts","lemon_cake","shortcake_recipes"],"winning-recipes":["winning_dessert_recipes","winning_healthy_recipes"],"kids":["no_value"],"holidays-celebrations":["baby_shower_recipes","bridal_shower_recipes","july_4th_desserts","july_4th_recipes","labor_day_desserts","labor_day_recipes","memorial_day_desserts","memorial_day_recipes","mother's_day_dessert_recipes","mother's_day_recipes"],"ingredient":["berry_recipes","strawberry_cake_recipe","strawberry_shortcake_recipe"],"publication":["country_woman_desserts","country_woman_recipes","simple_desserts","simple_recipes"],"healthy-eating":["low_fat_dessert_recipes","low_fat_recipes"],"partner-recipes":["no_value"],"cooking-style":["cake_recipes"],"author":["cap-tohapi"]},"options":{"dfp_property":"","dfp_site_id":"","ad_stack_batch_sra_listicles":true,"ad_stack_batch_sra_recipe":true,"ad_stack_batch_sra_homepage":true,"dfp_exclude_pages":"764080","dfp_lazy_load_offset_article":"800","dfp_lazy_load_offset_category":"800","dfp_lazy_load_offset_homepage":"800","dfp_lazy_load_offset_joke":"800","dfp_lazy_load_offset_listicle":"800","dfp_lazy_load_offset_projectdetail":"800","dfp_lazy_load_offset_recipedetail":"800","dfp_lazy_load_offset_slideshow":"800","dfp_lazy_load_offset_videocategory":"800","prebidjs_granularity":"dense","rubicon_account_id":"10696","rubicon_site_id":"24266","rubicon_atf_zone_id":"92770","rubicon_btf_zone_id":"92772","openx_del_domain":"trustedmediabrands-d.openx.net","appnexus_enabled":"1"},"lazy_load_inview_offset":"800","review_count":"10","contentID":"54743","platform":"desktop","ad_unit_two":"recipe","overrides":[]};
+var krux_data = {"page":{"category":"novalue","topic":"novalue","keyword":"051-to-075,baked-do-not-check-stovetop-as-well,deactivated-more-celebrations,july-4th-formerly-patriotic,light-recipes,lower-in-fat-12-g-or-less,mothers-day,patriotic,shortcake","contentid":54743,"author":"Tasteofhome.com Editors","ingredient":"berryrecipes,strawberrycakerecipe,strawberryshortcakerecipe","recipeid":48171,"holidays-celebrations":"babyshowerrecipes,bridalshowerrecipes,july4thdesserts,july4threcipes,labordaydesserts,labordayrecipes,memorialdaydesserts,memorialdayrecipes,mothersdaydessertrecipes,mothersdayrecipes","cooking-style":"cakerecipes","course":"cakes,desserts,lemoncake,shortcakerecipes","publication":"countrywomandesserts,countrywomanrecipes,simpledesserts,simplerecipes","healthy-eating":"lowfatdessertrecipes,lowfatrecipes","winning-recipes":"winningdessertrecipes,winninghealthyrecipes"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-ad-stack/js/tmbi-ad-stack.js?ver=2.1.2'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-ad-stack/js/tmbi-batch-sra.js?ver=2.1.2'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-amazon-a9/js/amazon-lib.js?ver=1.6'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-amazon-a9/js/tmbi-amazon-a9.js?ver=1.6'></script>
+<script type='text/javascript' src='https://sb.scorecardresearch.com/c2/plugins/streamingtag_plugin_jwplayer.js?ver=1.0.1'></script>
+<script async type='text/javascript' src='//s.ntv.io/serve/load.js?ver=1.2'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-social-share/js/addthis-config.js?ver=1.2.4'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/genesis/lib/js/html5shiv.min.js?ver=3.7.3'></script>
+<![endif]-->
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/toh-comments.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/jquery.magnific-popup.min.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/toh-popup-custom.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/slinky.min.js?ver=3.7.40'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var fbq_init_label = {"fbq_init_data":"1470684766408550"};
+/* ]]> */
+</script>
+<script async type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-fb-retargeting-pixel/js/facebook-retargeting-tag.js?ver=0.0.1'></script>
+<script type='text/javascript' src='//assets.adobedtm.com/c30a7f4dba5fcf320694d4fefeabd1cf4867f8ed/satelliteLib-247ea3eef67c38bd658d7bf9d4d87aa2e09a9dc9.js?ver=1.3.8'></script>
+<link rel='https://api.w.org/' href='https://www.tasteofhome.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.tasteofhome.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.tasteofhome.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.9.8" />
+<link rel='shortlink' href='https://www.tasteofhome.com/?p=54743' />
+<link rel="alternate" type="application/json+oembed" href="https://www.tasteofhome.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.tasteofhome.com%2Frecipes%2Flemon-berry-shortcake%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.tasteofhome.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.tasteofhome.com%2Frecipes%2Flemon-berry-shortcake%2F&#038;format=xml" />
+<!-- STRIPPED STYLE TAG -->
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','gaplusu');
+
+                                                            gaplusu('create', 'UA-38657577-1', 'auto');
+                    
+                                        
+                    gaplusu('send', 'pageview');
+                
+                            </script>
+
+		
+<link rel="api" href="https://www.tasteofhome.com/wp-json/wp/v2/recipe/54743?_embed">
+<script type="application/ld+json">{
+    "@context": "https:\/\/schema.org",
+    "@type": "Recipe",
+    "@id": "https:\/\/www.tasteofhome.com\/recipes\/lemon-berry-shortcake\/",
+    "name": "Lemon-Berry Shortcake",
+    "prepTime": "PT30M",
+    "cookTime": "PT20M",
+    "totalTime": "PT50M",
+    "image": [
+        "https:\/\/tmbidigitalassetsazure.blob.core.windows.net\/secure\/RMS\/attachments\/37\/1200x1200\/exps48171_CW163682C02_23_3b_WEB.jpg",
+        [
+            "https:\/\/cdn3.tmbi.com\/toh\/GoogleImages\/exps48171_CW163682C02_23_3b_WEB.jpg"
+        ],
+        [
+            "https:\/\/cdn3.tmbi.com\/toh\/GoogleImagesPostCard\/exps48171_CW163682C02_23_3b_WEB.jpg"
+        ]
+    ],
+    "recipeCategory": [
+        "Cakes",
+        "Desserts",
+        "Lemon Cake",
+        "Shortcake Recipes",
+        "Winning Dessert Recipes",
+        "Winning Healthy Recipes",
+        "Baby Shower Recipes",
+        "Bridal Shower Recipes",
+        "July 4th Desserts",
+        "July 4th Recipes",
+        "Labor Day Desserts",
+        "Labor Day Recipes",
+        "Memorial Day Desserts",
+        "Memorial Day Recipes",
+        "Mother's Day Dessert Recipes",
+        "Mother's Day Recipes",
+        "Berry Recipes",
+        "Strawberry Cake Recipe",
+        "Strawberry Shortcake Recipe",
+        "Country Woman Desserts",
+        "Country Woman Recipes",
+        "Simple Desserts",
+        "Simple Recipes",
+        "Low Fat Dessert Recipes",
+        "Low Fat Recipes",
+        "Cake Recipes"
+    ],
+    "description": "This simple lemon shortcake is tender and not overly sweet. Enjoy this summertime classic with a generous layer of whipped topping and berries. &mdash;Meryl Herr, Overland Park, Kansas",
+    "recipeIngredient": [
+        "1-1\/3 cups all-purpose flour",
+        "1\/2 cup sugar",
+        "2 teaspoons baking powder",
+        "1\/4 teaspoon salt",
+        "1 large egg, room temperature",
+        "2\/3 cup buttermilk",
+        "1\/4 cup butter, melted",
+        "1 teaspoon grated lemon zest",
+        "1 tablespoon lemon juice",
+        "1 teaspoon vanilla extract",
+        "1 cup sliced fresh strawberries",
+        "TOPPING:",
+        "1 cup fresh blackberries",
+        "1 cup sliced fresh strawberries",
+        "1 tablespoon lemon juice",
+        "1 teaspoon sugar",
+        "2 cups reduced-fat whipped topping"
+    ],
+    "recipeInstructions": "Preheat oven to 350&deg;. Grease and flour a 9-in. round baking pan., In a large bowl, whisk flour, sugar, baking powder and salt. In another bowl, whisk egg, buttermilk, melted butter, lemon zest, lemon juice and vanilla. Add to dry ingredients; stir just until moistened. Fold in 1 cup strawberries. Transfer to prepared pan., Bake 20-25 minutes or until a toothpick inserted in center comes out clean. Cool 10 minutes before removing from pan to a wire rack to cool completely., For topping, toss berries with lemon juice and sugar. To serve, spread whipped topping over cake. Top with berries.",
+    "recipeYield": "8 servings.",
+    "author": {
+        "@type": "Organization",
+        "name": "Taste of Home"
+    },
+    "nutrition": {
+        "@type": "NutritionInformation",
+        "calories": " 252 calories",
+        "fatContent": "9g fat (6g saturated fat)",
+        "cholesterolContent": "42mg cholesterol",
+        "sodiumContent": "245mg sodium",
+        "carbohydrateContent": "40g carbohydrate (19g sugars",
+        "fiberContent": "2g fiber)",
+        "proteinContent": "4g protein. "
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.89",
+        "reviewCount": 18,
+        "ratingCount": 19
+    },
+    "review": [
+        {
+            "@type": "Review",
+            "description": "Tried this with strawberries in the cake and then again with blueberries.  Both were delicious!",
+            "dateCreated": "08\/03\/2017 17:23",
+            "author": {
+                "@type": "Person",
+                "name": "snmckey"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "Like other reviewers my cooking time was also longer. For me it took about 40 minutes. This was easy, excellent and elegant for a casual BBQ! I will be making this again very soon!",
+            "dateCreated": "05\/28\/2016 11:38",
+            "author": {
+                "@type": "Person",
+                "name": "xxcskier"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "Great recipe.   The recipe calls for 1\/2 cup of sugar-I used slightly less than 1\/3, and it was sweet enough.  I added blueberries along with the strawberries for the cake.  We used sliced strawberries and real whipped cream for the topping.  This was delicious.",
+            "dateCreated": "05\/20\/2015 11:13",
+            "author": {
+                "@type": "Person",
+                "name": "Loiscooks"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "For 1bigdog6767 I think you can use Equal or I know there is another product whose name I cannot remember, sorry - maybe another viewer knows, but it is a sugar substitute made for cooking\/baking.  I have seen it at Ralphs (Krogers) supermarkets,  Good luck",
+            "dateCreated": "07\/11\/2014 23:36",
+            "author": {
+                "@type": "Person",
+                "name": "thomsmom"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "Great and easy recipe.  It does not over power you but it does satisfy you.  If you don&#39;t have or want to buy buttermilk, just pour your milk into a measuring cup and add 1 tea of white vinegar.  Let sit for 5 min and now you have buttermilk.  You should use whole milk.  This took at least 45-50 min to bake.",
+            "dateCreated": "07\/04\/2014 08:16",
+            "author": {
+                "@type": "Person",
+                "name": "rebelwithoutaclue"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "This is our favorite strawberry dessert. I&#39;ve made it several times every year for a long time and it gets lots of compliments.",
+            "dateCreated": "07\/03\/2014 14:30",
+            "author": {
+                "@type": "Person",
+                "name": "Psychojoe"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "This is a very simple dessert recipe that my family really enjoys.  I love the extra tang the buttermilk adds to this cake.  This really highlights the lemon flavor.  You can&#39;t beat the combination of lemon and strawberries.  YUM!  It really reminds you of summer all year round.",
+            "dateCreated": "06\/20\/2014 10:31",
+            "author": {
+                "@type": "Person",
+                "name": "randcbruns"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "can I rework the recipe Im Diabetic?",
+            "dateCreated": "04\/07\/2014 23:21",
+            "author": {
+                "@type": "Person",
+                "name": "1bigdog6767"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "I love this recipe. The cake was very easy to make. Next time I will try the recipe with other berries. Thanks a lot for sharing it.",
+            "dateCreated": "07\/22\/2013 17:33",
+            "author": {
+                "@type": "Person",
+                "name": "AoiOiran"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        },
+        {
+            "@type": "Review",
+            "description": "Loved it, but it does take a lot more time to bake.  It needed at least an hour.  Otherwise very yummy.  It reminded me of the shortcake I used to make as a girl.",
+            "dateCreated": "07\/17\/2013 23:11",
+            "author": {
+                "@type": "Person",
+                "name": "terriann290"
+            },
+            "itemReviewed": {
+                "@type": "Thing",
+                "name": "Lemon-Berry Shortcake"
+            }
+        }
+    ]
+}</script>
+<meta name="category" content="holidays-celebrations, ingredient, Berry Recipes, cooking-style, course, publication, Country Woman Recipes, Desserts, healthy-eating, Low Fat Recipes, Simple Recipes, winning-recipes, Winning Dessert Recipes, Winning Healthy Recipes">
+<meta name="pageName" content="Lemon-Berry Shortcake" />
+<meta name="contentId" content="48171" />
+<meta name="adZone" content="toh.tastehome/recipechannel" />
+<meta name="contentType" content="37" />
+<meta name="parsely-tags" content="holidays-celebrations, ingredient, Berry Recipes, cooking-style, course, publication, Country Woman Recipes, Desserts, healthy-eating, Low Fat Recipes, Simple Recipes, winning-recipes, Winning Dessert Recipes, Winning Healthy Recipes" />
+<meta name="parsely-title" content="Lemon-Berry Shortcake" />
+<meta name="parsely-link" content="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/" />
+<meta name="parsely-image-url" content="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" />
+<meta name="parsely-type" content="post" />
+<meta name="parsely-pub-date" content="2018-01-01T00:00:00Z" />
+<meta name="parsely-author" content="Meryl Herr" />
+<meta name="parsely-section" content="RMSRecipe" />
+<link rel="amphtml" href="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/amp/" /><link rel="icon" href="https://www.tasteofhome.com/wp-content/uploads/2018/09/TOH_Pinterest_ProfilePhoto_RedBkg-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://www.tasteofhome.com/wp-content/uploads/2018/09/TOH_Pinterest_ProfilePhoto_RedBkg.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://www.tasteofhome.com/wp-content/uploads/2018/09/TOH_Pinterest_ProfilePhoto_RedBkg.png" />
+<meta name="msapplication-TileImage" content="https://www.tasteofhome.com/wp-content/uploads/2018/09/TOH_Pinterest_ProfilePhoto_RedBkg.png" />
+		<!-- STRIPPED STYLE TAG -->
+	</head>
+<body class="recipe-template-default single single-recipe postid-54743 header-full-width full-width-content"><div class="site-container"><section><span class="screen-reader-text">Skip links</span><ul class="genesis-skip-link"><li><a href="#genesis-content" class="screen-reader-shortcut"> Skip to content</a></li></ul></section>
+<div class="white-out"></div>
+<!-- Ad Start:BILLBOARD_PLACEMENT -->
+<div class="ad-wrapper mobile_billboard" data-ad="mobile_prearticle" >
+<div id='div-gpt-ad-1370019314148-05' style='display:none; margin: 0 auto;' class='ad-container'>
+</div>
+</div>
+<!-- Ad End:BILLBOARD_PLACEMENT -->
+<header class="site-header"><div class="wrap">	<div class="desktop-upper-wrapper">
+		<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<div class="menu-upper-right-menu-container"><ul id="menu-upper-right-menu" class="desktop-upper-menu"><li id="menu-item-677176" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Submit a recipe","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com/recipes/add">Submit a recipe</a></li>
+<li id="menu-item-677178" class="login-class menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Login","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com/login/index?returnurl=https://www.tasteofhome.com/recipes/lemon-berry-shortcake/">Login</a></li>
+<li id="menu-item-677179" class="join-link menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Join","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com/login/index?returnurl=https://www.tasteofhome.com/recipes/lemon-berry-shortcake/">Join</a></li>
+</ul></div><div id="subscribe-to-magazine"><a data-analytics-metrics='{"link_name":"subscribe","link_module":"header","link_pos":"secondary navigation"}' class="subscribe-header-cta" target="_blank" rel="noopener" href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&cds_page_id=217957&cds_response_key=IVKADU101"><img class="subscribe-logo" alt="Subscribe" src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/subscribe-to-the-magazine.png" data-pin-nopin="true" ></a></div>	</div>
+	<!-- .desktop-upper-wrapper -->
+
+	<button id="toh-menu-toggle" class="toh-menu-toggle" aria-expanded="false" aria-controls="toh-menu-wrapper">
+		<div class="toh-menu-icon" aria-hidden="true">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div class="menu-close">Menu</div>
+		<div class="menu-open">Close</div>
+	</button>
+	<!-- .toh-menu-toggle -->
+
+	<div class="toh-menu-wrapper" id="toh-menu-wrapper" aria-hidden="true">
+
+		<div class="toh-site-menu-wrapper">
+			<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<div class="menu-hamburger-menu-container"><ul id="menu-hamburger-menu" class="toh-site-menu"><li id="menu-item-677193" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#">Recipes</a>
+<ul class="sub-menu">
+	<li id="menu-item-677199" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Recipes:Appetizers","link_module":"header","link_pos":"drop down navigation"}' href="https://www.tasteofhome.com/course/appetizers/">Appetizers</a></li>
+	<li id="menu-item-677208" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Recipes:Breakfast","link_module":"header","link_pos":"drop down navigation"}' href="https://www.tasteofhome.com/course/breakfast-recipes/">Breakfast</a></li>
+	<li id="menu-item-677213" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Recipes:Desserts","link_module":"header","link_pos":"drop down navigation"}' href="https://www.tasteofhome.com/course/desserts/">Desserts</a></li>
+	<li id="menu-item-677215" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Recipes:Dinner","link_module":"header","link_pos":"drop down navigation"}' href="https://www.tasteofhome.com/course/dinner-recipes/">Dinner</a></li>
+	<li id="menu-item-690634" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Recipes:Partner Recipes","link_module":"header","link_pos":"drop down navigation"}' href="https://www.tasteofhome.com/partner-recipes/">Partner Recipes</a></li>
+	<li id="menu-item-677219" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Recipes:See All Recipes","link_module":"header","link_pos":"drop down navigation"}' href="https://www.tasteofhome.com/recipes/">See All Recipes</a></li>
+</ul>
+</li>
+<li id="menu-item-677221" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Holidays","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/holidays-celebrations/">Holidays</a></li>
+<li id="menu-item-677226" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Food News","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/food-news/">Food News</a></li>
+<li id="menu-item-690639" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Home &amp; Living","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/home-living/">Home &#038; Living</a></li>
+<li id="menu-item-690636" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Kitchen","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/kitchen/">Kitchen</a></li>
+<li id="menu-item-810401" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Videos","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/videos/">Videos</a></li>
+<li id="menu-item-677227" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Contests","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/contests">Contests</a></li>
+<li id="menu-item-677228" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Magazine","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/article/subscribe-to-our-magazines/">Magazine</a></li>
+<li id="menu-item-677233" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Shop","link_module":"header","link_pos":"main navigation"}' href="https://www.shoptasteofhome.com/?utm_source=toh.com&amp;utm_medium=website&amp;utm_campaign=homepagemenu1805">Shop</a></li>
+<li id="menu-item-677238" class="login-class menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Log In \/ Join","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/login">Log In / Join</a></li>
+<li id="menu-item-677242" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Submit a Recipe","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/recipes/add">Submit a Recipe</a></li>
+<li id="menu-item-677246" class="non-logged-in-subscribe menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Subscribe","link_module":"header","link_pos":"main navigation"}' href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&amp;cds_page_id=217957&amp;cds_response_key=IW7ADU101">Subscribe</a></li>
+<li id="menu-item-730861" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Newsletters","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/newslettersignuppage/index?OptID=82&amp;OrgSource=CMHeader&amp;pmcode=CMHeader">Newsletters</a></li>
+</ul></div>		</div>
+		<!-- .toh-site-menu-wrapper -->
+		<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<div class="menu-logged-in-menu-container"><ul id="menu-logged-in-menu" class="toh-secondary-menu"><li id="menu-item-677249" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"My Recipe Box","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/recipe-box">My Recipe Box</a></li>
+<li id="menu-item-677253" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"My Newsletters","link_module":"header","link_pos":"main navigation"}' href="http://pages.email.rd.com/page.aspx?QS=c76003443ff9837d8be7f695a15a349a7fa004aee9d157b6&amp;bn=TasteofHome">My Newsletters</a></li>
+<li id="menu-item-677255" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"My Account","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/myaccount/index">My Account</a></li>
+<li id="menu-item-677260" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Customer Care","link_module":"header","link_pos":"main navigation"}' href="http://goto.tasteofhome.com/redirects/23040">Customer Care</a></li>
+<li id="menu-item-677262" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Subscribe","link_module":"header","link_pos":"main navigation"}' href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&amp;cds_page_id=212916&amp;cds_response_key=IW7ADU101">Subscribe</a></li>
+<li id="menu-item-677265" class="user-logout menu-item menu-item-type-custom menu-item-object-custom menu-item-home"><a data-analytics-metrics='{"link_name":"Log out","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/">Log out</a></li>
+</ul></div>		<!-- .toh-secondary-menu -->
+	</div>
+	<!-- .toh-menu-wrapper -->
+
+	<a data-analytics-metrics='{"link_name":"home logo","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com" class="header-logo"><span class="screen-reader-text">Home</span></a>
+	<!-- .header-logo -->
+<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<div class="menu-desktop-focus-menu-container"><ul id="menu-desktop-focus-menu" class="focus-menu"><li id="menu-item-677187" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Recipes","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/recipes/">Recipes</a></li>
+<li id="menu-item-677192" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Win Cookware","link_module":"header","link_pos":"main navigation"}' href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&amp;cds_page_id=232271&amp;cds_response_key=IWMAJUA02">Win Cookware</a></li>
+<li id="menu-item-677189" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Dinner","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/course/dinner-recipes/">Dinner</a></li>
+<li id="menu-item-677184" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Christmas","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/holidays-celebrations/christmas/">Christmas</a></li>
+<li id="menu-item-816046" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Videos","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/videos/">Videos</a></li>
+</ul></div>	<!-- .focus-menu -->
+
+
+	<div class="toh-search-form">
+		<form data-analytics-metrics='{"link_name":"search","link_module":"header","link_pos":"search bar"}' action="https://www.tasteofhome.com/search/index" id="toh-search-form-wrapper">
+			<label for="search" class="screen-reader-text">Search</label>
+			<input type="text" id="search" name="search" />
+			<input type="submit" value="Search">
+			<div class="close-btn"><span class="dashicons dashicons-no"></span> </div>
+		</form>
+		<button class="toh-search-button" id="toh-search-toggle"><span class="screen-reader-text">Toggle Search</span></button>
+	</div>
+	<!-- .toh-search-form -->
+
+	<div class="toh-logged-in-wrapper" style="display:none">
+		<button class="toh-logged-in-menu-toggle" id="toh-logged-in-menu-toggle" aria-expanded="false" aria-controls="toh-logged-in-menu-wrapper">Hi, <span class="toh-logged-username"></span></button>
+		<div class="toh-logged-in-menu-wrapper" id="toh-logged-in-menu-wrapper" aria-hidden="true">
+			<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<div class="menu-logged-in-menu-container"><ul id="menu-logged-in-menu-1" class="toh-logged-in-menu"><li id="menu-item-677249" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"My Recipe Box","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com/recipe-box">My Recipe Box</a></li>
+<li id="menu-item-677253" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"My Newsletters","link_module":"header","link_pos":"secondary navigation"}' href="http://pages.email.rd.com/page.aspx?QS=c76003443ff9837d8be7f695a15a349a7fa004aee9d157b6&amp;bn=TasteofHome">My Newsletters</a></li>
+<li id="menu-item-677255" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"My Account","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com/myaccount/index">My Account</a></li>
+<li id="menu-item-677260" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Customer Care","link_module":"header","link_pos":"secondary navigation"}' href="http://goto.tasteofhome.com/redirects/23040">Customer Care</a></li>
+<li id="menu-item-677262" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Subscribe","link_module":"header","link_pos":"secondary navigation"}' href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&amp;cds_page_id=212916&amp;cds_response_key=IW7ADU101">Subscribe</a></li>
+<li id="menu-item-677265" class="user-logout menu-item menu-item-type-custom menu-item-object-custom menu-item-home"><a data-analytics-metrics='{"link_name":"Log out","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com/">Log out</a></li>
+</ul></div>		</div>
+	</div>
+
+	<!-- NOTE: Output only for logged-OUT users -->
+	<a data-analytics-metrics='{"link_name":"login","link_module":"header","link_pos":"secondary navigation"}' href="https://www.tasteofhome.com/login" class="header-login-link appears-on-stick">
+		Log In
+	</a>
+
+	<div id="subscribe-to-magazine-sticky">
+	<a data-analytics-metrics='{"link_name":"subscribe","link_module":"header","link_pos":"secondary navigation"}' href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&cds_page_id=217957&cds_response_key=IVKADU101" class="subscribe-header-cta appears-on-stick">
+		<img class="subscribe-logo" src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/subscribe-to-the-magazine.png"  data-pin-nopin="true"  alt="Subscribe">
+	</a>
+</div>
+	<!-- .subscribe-header-cta.appears-on-stick END logged-out users -->
+
+</div></header><div class="header-banner-container"><a data-analytics-metrics='{"link_name":"Sign Up for Our Newsletters","link_module":"header","link_pos":"internal promotion"}' href="https://www.tasteofhome.com/newslettersignuppage/index?OptID=82&OrgSource=CMHeader&pmcode=CMHeader" target="_blank"><span class="header-banner-text">Sign Up for Our Newsletters<span class="chevron">&rsaquo;</span></span></a></div><div class="site-inner">
+<!-- Ad Start:LEADER_BOARD_PLACEMENT -->
+<div class="ad-wrapper-sticky" data-ad="leaderboard" >
+<div id='div-gpt-ad-1370019314148-20' style='display:none; margin: 0 auto;' class='ad-container'>
+</div>
+</div>
+<!-- Ad End:LEADER_BOARD_PLACEMENT -->
+
+<!-- Ad Start:BEFORE_CONTENT_PLACEMENT -->
+<div class="ad-wrapper ad-leaderboard" data-ad="prearticle" >
+<div id='div-gpt-ad-1370019314148-25' style='display:none; margin: 0 auto;' class='ad-container'>
+</div>
+</div>
+<!-- Ad End:BEFORE_CONTENT_PLACEMENT -->
+<div class="content-sidebar-wrap"><main class="content" id="genesis-content"><article class="post-54743 recipe type-recipe status-publish has-post-thumbnail tag-0-51-to-0-75 tag-baked-do-not-check-stovetop-as-well tag-deactivated-more-celebrations tag-july-4th-formerly-patriotic tag-light-recipes tag-lower-in-fat-12-g-or-less tag-mothers-day tag-patriotic tag-shortcake course-cakes course-desserts course-lemon-cake course-shortcake-recipes winning-recipes-winning-dessert-recipes winning-recipes-winning-healthy-recipes holidays-celebrations-baby-shower-recipes holidays-celebrations-bridal-shower-recipes holidays-celebrations-july-4th-desserts holidays-celebrations-july-4th-recipes holidays-celebrations-labor-day-desserts holidays-celebrations-labor-day-recipes holidays-celebrations-memorial-day-desserts holidays-celebrations-memorial-day-recipes holidays-celebrations-mothers-day-dessert-recipes holidays-celebrations-mothers-day-recipes ingredient-berry-recipes ingredient-strawberry-cake-recipe ingredient-strawberry-shortcake-recipe publication-country-woman-desserts publication-country-woman-recipes publication-simple-desserts publication-simple-recipes healthy-eating-low-fat-dessert-recipes healthy-eating-low-fat-recipes cooking-style-cake-recipes entry"><div class="entry-content"><div class="recipe-full-container recipe-content featured">	<div class = "left-container">
+		<div class="recipe-single-container">
+
+			<h1 class="recipe-title">Lemon-Berry Shortcake</h1>
+			
+<div class="recipe-tagline">
+	<div class="recipe-tagline__image">
+		<img src="https://cdn2.tmbi.com/TOH/Images/Photos/76/100x100/CP_Herr_36479_a.jpg" style="background: #fff;"/>
+	</div>
+	<div class="recipe-tagline__text">
+		This simple lemon shortcake is tender and not overly sweet. Enjoy this summertime classic with a generous layer of whipped topping and berries. &mdash;Meryl Herr, Overland Park, Kansas
+	</div>
+</div>
+
+			<div class="toh-sharing social-sharing recipe"><div class="addthis_toolbox addthis_default_style addthis_32x32_style"><a class="addthis_button_email"  data-analytics-metrics='{"link_name":"email","link_module":"recipe engagement","link_pos":"social share-left sticky nav"}'></a><a class="addthis_button_facebook"   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-analytics-metrics='{"link_name":"facebook","link_module":"recipe engagement","link_pos":"social share-left sticky nav"}'></a><a class="addthis_button_pinterest_share  recipetitle "   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-value="Lemon-Berry Shortcake" data-analytics-metrics='{"link_name":"pinterest","link_module":"recipe engagement","link_pos":"social share-left sticky nav"}'></a><a class="button_print" data-analytics-metrics='{"link_name":"print","link_module":"recipe engagement","link_pos":"social share-left sticky nav"}' style="display: none" href="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/print/"><span><i class="dashicons dashicons-media-text"></i>Print</span></a></div></div>			<div id="sponsor_ad_section"><div id ="sponsor-ad-41608817" class = "ad-wrapper" data-ad="sponsor-logo"></div></div>
+			<div class="recipe-image-and-meta-sidebar">
+				<div class="recipe-image-and-meta-sidebar__container">
+					<div class="recipe-image-and-meta-sidebar__featured-image" >
+						
+<div class="recipe-image-and-meta-sidebar__featured-container">
+	<img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB-696x696.jpg" alt="Lemon-Berry Shortcake"  class="-image" data-pin-nopin="true" />
+</div>
+
+<div class="recipe-image-and-meta-sidebar__image-caption">
+	Lemon-Berry Shortcake Recipe photo by Taste of Home
+</div>
+
+					</div>
+				</div>
+				<a class="recipe-image-and-meta-sidebar__next-recipe-link" onclick="set_local_data(event);" href="%s">Next Recipe <span class="dashicons dashicons-arrow-right-alt2" aria-hidden="true"></span></a>
+
+
+				<div class="recipe-image-and-meta-sidebar__sidebar">
+					
+<div class="recipe-meta">
+	<ul>
+		<li class="approved"><img src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/test-kitchen-approved-check.png" /> <a data-analytics-metrics='{"link_name":"test kitchen approved","link_module":"content reciculation","link_pos":"recipe status"}' href="https://www.tasteofhome.com/article/test-kitchen-approved/">Test Kitchen Approved</a></li><li class="contest-winner"><img src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/medal.png" /> <a  href="https://www.tasteofhome.com/recipes/winning-recipes/">Contest Winner</a></li><li class="rating"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-half" aria-hidden="true"></i> <a class="recipe-comments-scroll" >18 reviews</a></li>
+	</ul>
+</div>
+
+					
+<div class="recipe-recommended">
+	<h5>Featured In</h5>
+	<a data-analytics-metrics='{"link_name":"55 Healthy-ish Cake Recipes","link_module":"content reciculation","link_pos":"recommended"}' href="https://www.tasteofhome.com/collection/light-and-healthy-cake-recipes/view-all/">55 Healthy-ish Cake Recipes</a>
+</div>
+
+<div class="social-wrapper-mobile">
+	<div class="toh-sharing social-sharing recipe"><div class="addthis_toolbox addthis_default_style addthis_32x32_style"><a class="addthis_button_email"  data-analytics-metrics='{"link_name":"email","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="addthis_button_facebook"   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-analytics-metrics='{"link_name":"facebook","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="addthis_button_pinterest_share  recipetitle "   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-value="Lemon-Berry Shortcake" data-analytics-metrics='{"link_name":"pinterest","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="button_print" data-analytics-metrics='{"link_name":"print","link_module":"recipe engagement","link_pos":"social share-below main image"}' style="display: none" href="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/print/"><span><i class="dashicons dashicons-media-text"></i>Print</span></a></div></div></div>
+<a class="next-recipe-btn-mobile" onclick="set_local_data(event);" href="#">Next Recipe <span class="dashicons dashicons-arrow-right-alt2" style="font-size: 17px;position: relative;top: 6px; width: 10px;"></span></a>
+
+				</div>
+			</div>
+
+			<div class="recipe-toolbar">
+				<ul class="recipe-toolbar__social">
+	<li>
+		<a data-analytics-metrics='{"link_name":"rate","link_module":"recipe engagement","link_pos":"below main image"}' class="recipe-comments-scroll" >
+			<i class="dashicons dashicons-star-filled"></i>
+			<span class="recipe-toolbar__social-action">Rate</span>
+		</a>
+	</li>
+	<li>
+		<a data-analytics-metrics='{"link_name":"comment","link_module":"recipe engagement","link_pos":"below main image"}' class="recipe-comments-scroll" >
+			<i class="dashicons dashicons-admin-comments"></i>
+			<span class="recipe-toolbar__social-action">Comment</span>
+		</a>
+	</li>
+	<li>
+		<a data-analytics-metrics='{"link_name":"save","link_module":"recipe engagement","link_pos":"below main image"}' id="recipeSave" href="#recipe-save-popup">
+			<i class="dashicons dashicons-heart"></i>
+			<span class="recipe-toolbar__social-action">Save</span>
+		</a>
+	</li>
+	<li class="recipe-toolbar__share-container">
+		<a data-analytics-metrics='{"link_name":"share","link_module":"recipe engagement","link_pos":"below main image"}' href="#" id="social-share-toggle">
+			<i class="dashicons dashicons-share"></i>
+			<span class="recipe-toolbar__social-action">Share</span>
+		</a>
+		<div class="recipe-toolbar__share-buttons social_tool_tip">
+			<div class="toh-sharing social-sharing recipe"><div class="addthis_toolbox addthis_default_style addthis_32x32_style"><a class="addthis_button_email"  data-analytics-metrics='{"link_name":"email","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="addthis_button_facebook"   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-analytics-metrics='{"link_name":"facebook","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="addthis_button_pinterest_share  recipetitle "   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-value="Lemon-Berry Shortcake" data-analytics-metrics='{"link_name":"pinterest","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="button_print" data-analytics-metrics='{"link_name":"print","link_module":"recipe engagement","link_pos":"social share-below main image"}' style="display: none" href="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/print/"><span><i class="dashicons dashicons-media-text"></i>Print</span></a></div></div>		</div>
+	</li>
+	<li>
+		<a data-analytics-metrics='{"link_name":"print","link_module":"recipe engagement","link_pos":"below main image"}' href="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/print/">
+			<i class="dashicons dashicons-media-text"></i>
+			<span class="recipe-toolbar__social-action">Print</span>
+		</a>
+	</li>
+</ul>
+
+
+
+
+				
+<ul class="recipe-time-yield">
+		<li class="recipe-time-yield__item">
+		<img src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/clock.png">
+		<div>
+			<h5 class="recipe-time-yield__label">Total Time</h5>
+			<div class="recipe-time-yield__label-prep">
+				Prep: 30 min. Bake: 20 min. + cooling </div>
+		</div>
+	</li>
+	
+	<li class="recipe-time-yield__item">
+		<img src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/servings.png">
+
+		<div>
+			<h5 class="recipe-time-yield__label">Makes</h5>
+
+			<div class="recipe-time-yield__label-servings">
+				8 servings			</div>
+		</div>
+	</li>
+</ul>
+			</div>
+		</div>
+	</div>
+	<aside class = "right-sidebar">
+		<div class="toh-singe-recipe-sidebar mobile-expand-section"><div class="container"><div class="ad-wrapper ad-sidebar-top adunit-lazy" data-ad="ad-sidebar-top"><div id='div-gpt-ad-1370019314148-02' style='display:none; margin: 0 auto;' class='ad-container'>
+</div>
+</div><section id="read_next_right_rail-3" class="widget widget_read_next_right_rail"><div class="widget-wrap"><h5 class="read-next-heading">Read Next</h5>
+				<div class="read-next__item">
+					<div class="read-next__image">
+						<a data-analytics-metrics='{"link_name":"30 Recipes to Make with Fresh Blueberries","link_module":"content recirculation","link_pos":"read next"}'							href="https://www.tasteofhome.com/collection/recipes-to-make-with-fresh-blueberries/view-all/">
+							<img width="75" height="75" src="https://www.tasteofhome.com/wp-content/uploads/2017/10/Lemon-Blueberry-Biscuits_exps1762_TH143191C11_26_5bC_RMS-3-150x150.jpg" data-pin-nopin="true" alt="30 Recipes to Make with Fresh Blueberries">
+						</a>
+					</div>
+					<span class="read-next__title">
+						<a data-analytics-metrics='{"link_name":"30 Recipes to Make with Fresh Blueberries","link_module":"content recirculation","link_pos":"read next"}'							href="https://www.tasteofhome.com/collection/recipes-to-make-with-fresh-blueberries/view-all/">30 Recipes to Make with Fresh Blueberries</a>
+					</span>
+				</div>
+				
+				<div class="read-next__item">
+					<div class="read-next__image">
+						<a data-analytics-metrics='{"link_name":"70 Recipes to Make with Fresh Raspberries","link_module":"content recirculation","link_pos":"read next"}'							href="https://www.tasteofhome.com/collection/recipes-to-make-with-fresh-raspberries/view-all/">
+							<img width="75" height="75" src="https://www.tasteofhome.com/wp-content/uploads/2017/09/Contest-Winning-Raspberry-Cream-Pie_EXPS_BDSMZ17_44023_B03_02_2b.jpg" data-pin-nopin="true" alt="70 Recipes to Make with Fresh Raspberries">
+						</a>
+					</div>
+					<span class="read-next__title">
+						<a data-analytics-metrics='{"link_name":"70 Recipes to Make with Fresh Raspberries","link_module":"content recirculation","link_pos":"read next"}'							href="https://www.tasteofhome.com/collection/recipes-to-make-with-fresh-raspberries/view-all/">70 Recipes to Make with Fresh Raspberries</a>
+					</span>
+				</div>
+				
+				<div class="read-next__item">
+					<div class="read-next__image">
+						<a data-analytics-metrics='{"link_name":"The Best Berry Recipes You&#8217;re Not Making","link_module":"content recirculation","link_pos":"read next"}'							href="https://www.tasteofhome.com/collection/berry-recipes/view-all/">
+							<img width="75" height="75" src="https://www.tasteofhome.com/wp-content/uploads/2018/03/EXPS_CMBZ17_36729_B11_30_1b-1-150x150.jpg" data-pin-nopin="true" alt="The Best Berry Recipes You&#8217;re Not Making">
+						</a>
+					</div>
+					<span class="read-next__title">
+						<a data-analytics-metrics='{"link_name":"The Best Berry Recipes You&#8217;re Not Making","link_module":"content recirculation","link_pos":"read next"}'							href="https://www.tasteofhome.com/collection/berry-recipes/view-all/">The Best Berry Recipes You&#8217;re Not Making</a>
+					</span>
+				</div>
+				</div></section>
+<div class="ad-wrapper ad-sidebar-middle adunit-lazy" data-ad="ad-sidebar-middle"><div id='div-gpt-ad-1370019314148-04' style='display:none;' class='ad-container'>
+</div>
+</div></div></div>	</aside>
+</div><div class="recipe-full-container recipe-content top-ad"><div class="recipe-in-content-ads ad_wrapper"><div class="ad-wrapper" ><div id="div-gpt-ad-1370019314148-recipe-top" class="adunit-lazy" data-ad="recipe-top"></div></div></div></div><div class="recipe-full-container recipe-content ingredients">	<div class = "left-container">
+		<div class="recipe-single-container">
+			
+	<div class="recipe-ingredients">
+
+		<h2>Ingredients</h2>
+
+		<ul class="recipe-ingredients__list recipe-ingredients__collection">
+			<li>1-1/3 cups all-purpose flour</li><li>1/2 cup sugar</li><li>2 teaspoons baking powder</li><li>1/4 teaspoon salt</li><li>1 large egg, room temperature</li><li>2/3 cup buttermilk</li><li>1/4 cup butter, melted</li><li>1 teaspoon grated lemon zest</li><li>1 tablespoon lemon juice</li><li>1 teaspoon vanilla extract</li><li>1 cup sliced fresh strawberries</li><li><b class='sIngredient'>TOPPING:</b></li><li>1 cup fresh blackberries</li><li>1 cup sliced fresh strawberries</li><li>1 tablespoon lemon juice</li><li>1 teaspoon sugar</li><li>2 cups reduced-fat whipped topping</li>
+		</ul>
+
+		<div class="recipe-ingredients__view-more-container">
+			<button id="recipe-ingredients__view-more">View Recipe</button>
+		</div>
+	</div>
+
+<div class="ad-wrapper single-online-ad" ><div id="div-gpt-ad-1370019314150" style="display:none" class="adunit-lazy" data-ad="recipe-top-mobile"></div></div>
+	<div class="recipe-directions mobile-expand-section">
+		<h2 class="recipe-directions__heading">Directions</h2>
+		<ul class="recipe-directions__list">
+			<li class="recipe-directions__item">Preheat oven to 350&deg;. Grease and flour a 9-in. round baking pan.</li><li class="recipe-directions__item">In a large bowl, whisk flour, sugar, baking powder and salt. In another bowl, whisk egg, buttermilk, melted butter, lemon zest, lemon juice and vanilla. Add to dry ingredients; stir just until moistened. Fold in 1 cup strawberries. Transfer to prepared pan.</li><li class="recipe-directions__item">Bake 20-25 minutes or until a toothpick inserted in center comes out clean. Cool 10 minutes before removing from pan to a wire rack to cool completely.</li><li class="recipe-directions__item">For topping, toss berries with lemon juice and sugar. To serve, spread whipped topping over cake. Top with berries.</li>
+		</ul>
+	</div>
+
+
+	<div class="recipe-nutrition-facts mobile-expand-section">
+		<h5 class="recipe-nutrition-facts__heading">Nutrition Facts</h5>
+		1 slice: 252 calories, 9g fat (6g saturated fat), 42mg cholesterol, 245mg sodium, 40g carbohydrate (19g sugars, 2g fiber), 4g protein. 
+	</div>
+
+
+	<div class="recipe-publication-info mobile-expand-section">Originally published as Lemon Berry Shortcake in Simple &amp; Delicious May 2010</div>
+
+	<div id="recipe-save-popup" class="mfp-hide white-popup" data-recipe-id="54743" data-rms-recipe-id="48171">
+		<div id="spinner" style="text-align: center; display:none"><img src="https://www.tasteofhome.com/wp-admin/images/spinner.gif"></div>
+		<div id="recipe-box-details">
+
+		</div>
+
+	</div>
+
+		</div>
+		<div class="recipe-video-ad">
+			<div class="recipe-in-content-ads video-player">
+	<div class="recipe-non-contextual-video-player">
+		<div><div class="jwplayer" id="jwpl5c11d07860a44" style="background: url(https://content.jwplatform.com/thumbs/d2WXhQ6j.jpg) no-repeat center center; min-width: 320px; min-height: 240px;"></div></div>
+		<div class="recipe-non-contextual-video-player_content">
+			<h6 class="recipe-non-contextual-video-player_headline">RECOMMENDED VIDEO</h6>
+			<p class="recipe-non-contextual-video-player_subtext">Follow along as we show you how to make these fantastic recipes from our archive.</p>
+		</div>
+	</div>
+
+</div>		</div>
+	</div>
+	<aside class = "right-sidebar space-top">
+		<div class="toh-singe-recipe-sidebar mobile-expand-section"><div class="container"><div class="ad-wrapper ad-sidebar-bottom adunit-lazy" data-ad="ad-sidebar-bottom"><div id='div-gpt-ad-1370019314148-03' style='display:none; margin: 0 auto;' class='ad-container'>
+</div>
+</div></div></div>	</aside>
+</div><div class="recipe-full-container recipe-content reviews">	<div class = "left-container">
+		<div class="recipe-single-container">
+			<div class ="recipe-reviews">
+				<div id="recipe-comments" class="recipe-comments">
+	<div class="recipe-comments__wrapper">
+		<h2 class="recipe-comments__header">Reviews</h2>
+		<div class="recipe-comments__toolbar">
+	<div class="recipe-login-comments">
+	<span class="recipe-comments__login">
+		<a data-analytics-metrics='{"link_name":"log in to rate","link_module":"recipe engagement","link_pos":"rating and comments"}' class="login-verify" href="#recipe-comments">Log in to rate</a>
+	</span>
+</div>
+<div id="comments-form" class="recipe-comments__submission-form">
+	<h5 class="recipe-comments__submission-form-heading">My Review</h5>
+	<div class="recipe-comments__submission-form-rating">
+		<i class="dashicons dashicons-star-empty" data-star="1"></i>
+		<i class="dashicons dashicons-star-empty" data-star="2"></i>
+		<i class="dashicons dashicons-star-empty" data-star="3"></i>
+		<i class="dashicons dashicons-star-empty" data-star="4"></i>
+		<i class="dashicons dashicons-star-empty" data-star="5"></i>
+		<span class="recipe-comments__submission-form__rating-label">Click stars to rate</span>
+	</div>
+	<div class="recipe-comments__submission-form-comment">
+		<input type="hidden" name="toh-review-submission-rating" value="0">
+		<textarea id="comment-area" placeholder="Provide a review on what you thought of the recipe and how you adjusted it."></textarea>
+		<button id="toh-review-submission-comment" class="recipe-comments__submission-form-submit-button" data-recipe="54743">Submit Review </button>
+	</div>
+</div>
+<div id="comment-success" style="display:none">
+	<i class="fa fa-check-circle"></i> Thank You! Your rating has been submitted. Please allow 24 hours for your review to appear.
+</div>
+<div id="comment-error" style="display:none">
+	Add a rating or review to submit
+</div>
+
+ 
+        <span class="recipe-comments__average-rating">
+            <span class="recipe-comments__average-rating-label">Average Rating:</span> <span class="recipe-comments__average-rating-stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-half" aria-hidden="true"></i></span>
+        </span>
+    
+</div>
+		<ul class="recipe-comments__collection">
+			
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">snmckey</span><br>
+		</div>
+		<div class="recipe-comments__date">Aug 3, 2017</div>
+		<p class="recipe-comments__comment">
+			Tried this with strawberries in the cake and then again with blueberries.  Both were delicious!
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">xxcskier</span><br>
+		</div>
+		<div class="recipe-comments__date">May 28, 2016</div>
+		<p class="recipe-comments__comment">
+			Like other reviewers my cooking time was also longer. For me it took about 40 minutes. This was easy, excellent and elegant for a casual BBQ! I will be making this again very soon!
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">Loiscooks</span><br>
+		</div>
+		<div class="recipe-comments__date">May 20, 2015</div>
+		<p class="recipe-comments__comment">
+			Great recipe.   The recipe calls for 1/2 cup of sugar-I used slightly less than 1/3, and it was sweet enough.  I added blueberries along with the strawberries for the cake.  We used sliced strawberries and real whipped cream for the topping.  This was delicious.
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">thomsmom</span><br>
+		</div>
+		<div class="recipe-comments__date">Jul 11, 2014</div>
+		<p class="recipe-comments__comment">
+			For 1bigdog6767 I think you can use Equal or I know there is another product whose name I cannot remember, sorry - maybe another viewer knows, but it is a sugar substitute made for cooking/baking.  I have seen it at Ralphs (Krogers) supermarkets,  Good luck
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">rebelwithoutaclue</span><br>
+		</div>
+		<div class="recipe-comments__date">Jul 4, 2014</div>
+		<p class="recipe-comments__comment">
+			Great and easy recipe.  It does not over power you but it does satisfy you.  If you don&#039;t have or want to buy buttermilk, just pour your milk into a measuring cup and add 1 tea of white vinegar.  Let sit for 5 min and now you have buttermilk.  You should use whole milk.  This took at least 45-50 min to bake.
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">Psychojoe</span><br>
+		</div>
+		<div class="recipe-comments__date">Jul 3, 2014</div>
+		<p class="recipe-comments__comment">
+			This is our favorite strawberry dessert. I&#039;ve made it several times every year for a long time and it gets lots of compliments.
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">randcbruns</span><br>
+		</div>
+		<div class="recipe-comments__date">Jun 20, 2014</div>
+		<p class="recipe-comments__comment">
+			This is a very simple dessert recipe that my family really enjoys.  I love the extra tang the buttermilk adds to this cake.  This really highlights the lemon flavor.  You can&#039;t beat the combination of lemon and strawberries.  YUM!  It really reminds you of summer all year round.
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">1bigdog6767</span><br>
+		</div>
+		<div class="recipe-comments__date">Apr 7, 2014</div>
+		<p class="recipe-comments__comment">
+			can I rework the recipe Im Diabetic?
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">AoiOiran</span><br>
+		</div>
+		<div class="recipe-comments__date">Jul 22, 2013</div>
+		<p class="recipe-comments__comment">
+			I love this recipe. The cake was very easy to make. Next time I will try the recipe with other berries. Thanks a lot for sharing it.
+		</p>
+	</li>
+
+	<li class="recipe-comments__single-entry" data-comment-index="0">
+		<div class="recipe-comments__meta-bar">
+			<span class="recipe-comments__stars"><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i><i class="dashicons dashicons-star-filled" aria-hidden="true"></i></span> <span class="recipe-comments__author">terriann290</span><br>
+		</div>
+		<div class="recipe-comments__date">Jul 17, 2013</div>
+		<p class="recipe-comments__comment">
+			Loved it, but it does take a lot more time to bake.  It needed at least an hour.  Otherwise very yummy.  It reminded me of the shortcake I used to make as a girl.
+		</p>
+	</li>
+
+		</ul>
+			<div class="recipe-comments__load-more">
+		<script type="text/html" id="tmpl-toh-load-more-reviews">
+			<div class="recipe-comments__meta-bar">
+				<span class="recipe-comments__stars">{{{data.stars}}}</span> <span class="recipe-comments__author">{{data.author}}</span><br>
+			</div>
+			<div class="recipe-comments__date">{{data.date}}</div>
+			<p class="recipe-comments__comment">
+				{{{data.comment}}}
+			</p>
+		</script>
+		<button id="toh-load-more-reviews" class="recipe-comments__load-more-trigger" data-recipe="54743" data-index="11" data-comments-count="18">View More</button>
+	</div>
+
+	</div>
+</div>
+			</div>
+		</div>
+	</div>
+	<aside class = "right-sidebar space-top">
+		<div class="toh-singe-recipe-sidebar mobile-expand-section"><div class="container"><div class="ad-wrapper ad-sidebar-fourth adunit-lazy" data-ad="ad-sidebar-fourth"><div id='div-gpt-ad-1370019314148-21' style='display:none; margin: 0 auto;' class='ad-container'>
+</div>
+</div></div></div>	</aside>
+</div><div class="recipe-full-container middle-ad"><div class="recipe-in-content-ads ad_wrapper"><div class="ad-wrapper" ><div id="div-gpt-ad-1370019314149" class="adunit-lazy" data-ad="recipe-middle"></div></div></div></div><div class="recirc-module">
+<h2 class="recirc_content_title">More from Taste of Home</h2>
+<div class="recirc-item owl-carousel owl-theme"><div class="item"><a href="https://www.tasteofhome.com/collection/recipes-to-make-with-fresh-blueberries/view-all/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"30 Recipes to Make with Fresh Blueberries","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/Lemon-Blueberry-Biscuits_exps1762_TH143191C11_26_5bC_RMS-3-300x300.jpg"  data-pin-nopin="true"  alt="30 Recipes to Make with Fresh Blueberries"><span class="recirc_content_item_title">30 Recipes to Make with Fresh Blueberries</span></a></div><div class="item"><a href="https://www.tasteofhome.com/collection/recipes-to-make-with-fresh-raspberries/view-all/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"70 Recipes to Make with Fresh Raspberries","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/09/Contest-Winning-Raspberry-Cream-Pie_EXPS_BDSMZ17_44023_B03_02_2b-348x348.jpg"  data-pin-nopin="true"  alt="70 Recipes to Make with Fresh Raspberries"><span class="recirc_content_item_title">70 Recipes to Make with Fresh Raspberries</span></a></div><div class="item"><a href="https://www.tasteofhome.com/collection/berry-recipes/view-all/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"The Best Berry Recipes You&#8217;re Not Making","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/03/EXPS_CMBZ17_36729_B11_30_1b-1-300x300.jpg"  data-pin-nopin="true"  alt="The Best Berry Recipes You&#8217;re Not Making"><span class="recirc_content_item_title">The Best Berry Recipes You&#8217;re Not Making</span></a></div><div class="item"><a href="https://www.tasteofhome.com/collection/blueberry-salad/view-all/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"28 Salads That Are Made Better with Blueberries","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/09/Grilled-Chicken-Salad-with-Blueberry-Vinaigrette_EXPS_SDJJ17_48167_C02_16_2b-348x348.jpg"  data-pin-nopin="true"  alt="28 Salads That Are Made Better with Blueberries"><span class="recirc_content_item_title">28 Salads That Are Made Better with Blueberries</span></a></div><div class="item"><a href="https://www.tasteofhome.com/collection/blackberry-recipes/view-all/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"40 Blackberry Recipes Bursting with Juicy Flavor","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/Berry-Whirligig_EXPS_UGFBMZ_5601_C04_27_2b-300x300.jpg"  data-pin-nopin="true"  alt="40 Blackberry Recipes Bursting with Juicy Flavor"><span class="recirc_content_item_title">40 Blackberry Recipes Bursting with Juicy Flavor</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/blueberry-mojitos/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Blueberry Mojitos","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/04/Blueberry-Mojitos_EXPS_JMZ18_193040_C03_14_5b-300x300.jpg"  data-pin-nopin="true"  alt="Blueberry Mojitos"><span class="recirc_content_item_title">Blueberry Mojitos</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/rainbow-fruit-toast/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Rainbow Fruit Toast","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/04/Rainbow-Fruit-Toast_EXPS_JMZ18_224564_D03_15_3b-300x300.jpg"  data-pin-nopin="true"  alt="Rainbow Fruit Toast"><span class="recirc_content_item_title">Rainbow Fruit Toast</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/blackberry-grilled-cheese-sandwich/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Blackberry Grilled Cheese Sandwich","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/04/Blackberry-Grilled-Cheese-Sandwich_EXPS_TMBSTK18_229388_A03_12__3b-300x300.jpg"  data-pin-nopin="true"  alt="Blackberry Grilled Cheese Sandwich"><span class="recirc_content_item_title">Blackberry Grilled Cheese Sandwich</span></a></div><div class="item"><a href="https://www.tasteofhome.com/collection/fantastic-blueberry-dessert-recipes/view-all/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"64 Fantastic Blueberry Dessert Recipes","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/03/exps177821_MC163887B03_08_5b-300x300.jpg"  data-pin-nopin="true"  alt="64 Fantastic Blueberry Dessert Recipes"><span class="recirc_content_item_title">64 Fantastic Blueberry Dessert Recipes</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/strawberry-ice-cream-charlotte/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Strawberry Ice Cream Charlotte","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/Strawberry-Ice-Cream-Charlotte_exps142069_HC143213D09_04__3b_RMS-1-300x300.jpg"  data-pin-nopin="true"  alt="Strawberry Ice Cream Charlotte"><span class="recirc_content_item_title">Strawberry Ice Cream Charlotte</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/strawberry-basil-cocktail/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Strawberry-Basil Cocktail","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/Strawberry-Basil-Cocktail_exps149710_TH143192D02_06_5bC_RMS-300x300.jpg"  data-pin-nopin="true"  alt="Strawberry-Basil Cocktail"><span class="recirc_content_item_title">Strawberry-Basil Cocktail</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/rainbow-spritzer/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Rainbow Spritzer","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/03/exps159206_TH163619A10_02_6b-300x300.jpg"  data-pin-nopin="true"  alt="Rainbow Spritzer"><span class="recirc_content_item_title">Rainbow Spritzer</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/champagne-blood-shots/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Champagne Blood Shots","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/03/Champagne-Blood-Shots_exps163425_UH2860596B07_31_1bC_RMS-2-300x300.jpg"  data-pin-nopin="true"  alt="Champagne Blood Shots"><span class="recirc_content_item_title">Champagne Blood Shots</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/strawberry-lemonade-smoothie/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Strawberry Lemonade Smoothie","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/Strawberry-Lemonade-Smoothie_exps166627_TH132767A05_02_16bC_RMS-1-300x300.jpg"  data-pin-nopin="true"  alt="Strawberry Lemonade Smoothie"><span class="recirc_content_item_title">Strawberry Lemonade Smoothie</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/slow-cooker-rhubarb-strawberry-sauce/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Slow Cooker Rhubarb Strawberry Sauce","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/Slow-Cooker-Rhubarb-Strawberry-Sauce_exps174834_TH143191D11_22_6bC_RMS-300x300.jpg"  data-pin-nopin="true"  alt="Slow Cooker Rhubarb Strawberry Sauce"><span class="recirc_content_item_title">Slow Cooker Rhubarb Strawberry Sauce</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/frozen-berry-yogurt-swirls/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Frozen Berry &#038; Yogurt Swirls","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/03/exps183409_RDS143481C04_16_6b-1-300x300.jpg"  data-pin-nopin="true"  alt="Frozen Berry &#038; Yogurt Swirls"><span class="recirc_content_item_title">Frozen Berry &#038; Yogurt Swirls</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/blueberry-rhubarb-country-tart/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Blueberry Rhubarb Country Tart","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/04/exps187970_SD153320D12_05_10b-300x300.jpg"  data-pin-nopin="true"  alt="Blueberry Rhubarb Country Tart"><span class="recirc_content_item_title">Blueberry Rhubarb Country Tart</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/cinnamon-rolls/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Cinnamon Rolls","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Cinnamon-Rolls_EXPS_HCA19_189_E06_08_3b-300x300.jpg"  data-pin-nopin="true"  alt="Cinnamon Rolls"><span class="recirc_content_item_title">Cinnamon Rolls</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/raspberry-delight/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Raspberry Delight","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/no-photo-recipe-300x300-112.jpg"  data-pin-nopin="true"  alt="Raspberry Delight"><span class="recirc_content_item_title">Raspberry Delight</span></a></div><div class="item"><a href="https://www.tasteofhome.com/recipes/raspberry-baked-apples-dessert/" data-analytics-metrics='{"link_module":"Content Engagement","link_name":"Raspberry Baked Apples Dessert","link_pos":"More from Taste of Home"}'><img src="https://www.tasteofhome.com/wp-content/uploads/2017/09/no-photo-recipe-300x300-205.jpg"  data-pin-nopin="true"  alt="Raspberry Baked Apples Dessert"><span class="recirc_content_item_title">Raspberry Baked Apples Dessert</span></a></div></div></div><div class="recipe-full-container scroll-ad"><div class="recipe-in-content-ads ad_wrapper"><div class="ad-wrapper" ><div id="div-gpt-ad-1370019314199" class="adunit-lazy" data-ad="recipe-scroll"></div></div></div></div><div class="recipe-full-container taboola-container"><div class="left-container"><div id="taboola-below-recipe-thumbnails"></div>
+<div id="taboola-below-article-text-links"></div>
+</div><aside class="right-sidebar space-top"><div class="ad-wrapper" ><div id="div-gpt-ad-1370019314148-recipe-sidebar" class="adunit-lazy" data-ad="ad-recipe-sidebar-scroll" ></div></div></aside></div></div><div class="syndicated-post-info"><img src="https://placehold.it/32x22" alt="" /><a href="#">Originally Published on sitename.com</a></div><footer class="entry-footer"><div class="entry-copyright"><span class="byline source"></span></div></footer></article><h2 class="screen-reader-text">Reader Interactions</h2><div id="toh-taboola">
+<div id="taboola-below-article-thumbnails"></div>
+</div></main></div></div>
+<!-- Ad Start:MOBILE_FOOTER_PLACEMENT -->
+<div class="ad-wrapper mobile_footer adunit-lazy" data-ad="postarticle" >
+<div id='div-gpt-ad-1370019314149-02' style='display:none; margin: 0 auto;' class='ad-container'>
+</div>
+</div>
+<!-- Ad End:MOBILE_FOOTER_PLACEMENT -->
+<footer class="site-footer"><div class="wrap"><div class="footer-left">
+	<div class="toh-newsletter footer-mobile">
+		<div class="toh-newsletter-cta-wrapper">
+			<div class="toh-newsletter-cta-description">
+				Sign-up for recipes to your inbox			</div>
+			<a data-analytics-metrics='{"link_name":"subscribe","link_module":"footer","link_pos":"navigation"}' href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&cds_page_id=217957&cds_response_key=IVKADU101">
+				<img class="subscribe-logo" src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/subscribe-to-the-magazine.png"  data-pin-nopin="true" >
+			</a>
+		</div>
+	</div>
+	<div class="footer-left-top">
+		<div class="footer-logo-social">
+			<a data-analytics-metrics='{"link_name":"footer logo","link_module":"navigation","link_pos":"footer"}' class="footer-logo" href="https://www.tasteofhome.com"></a>
+			<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<ul id="menu-tmbi-social-profiles" class="footer-social-links"><li id="menu-item-86501" class="tmbi-facebook menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"facebook","link_module":"footer","link_pos":"follow us"}' href="https://www.facebook.com/tasteofhome/"><i class="fa fa-facebook"></i></a></li>
+<li id="menu-item-5334" class="tmbi-pinterest menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"pinterest","link_module":"footer","link_pos":"follow us"}' href="https://pinterest.com/taste_of_home"><i class="fa fa-pinterest"></i></a></li>
+<li id="menu-item-5338" class="tmbi-twitter menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"twitter","link_module":"footer","link_pos":"follow us"}' href="https://twitter.com/tasteofhome"><i class="fa fa-twitter"></i></a></li>
+<li id="menu-item-5346" class="tmbi-google menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"google plus","link_module":"footer","link_pos":"follow us"}' href="https://plus.google.com/+tasteofhome/posts"><i class="fa fa-google-plus"></i></a></li>
+<li id="menu-item-5350" class="tmbi-instagram menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"instagram","link_module":"footer","link_pos":"follow us"}' href="https://www.instagram.com/tasteofhome/"><i class="fa fa-instagram"></i></a></li>
+</ul>		</div>
+		<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<ul id="menu-footer-one" class="footer-site-links"><li id="menu-item-46" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-46"><a href="https://www.tasteofhome.com/recipes/" data-analytics-metrics='{"link_name":"Recipes","link_module":"footer","link_pos":"navigation"}'>Recipes</a></li>
+<li id="menu-item-47" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-47"><a href="https://www.tasteofhome.com/holidays-celebrations/" data-analytics-metrics='{"link_name":"Holidays","link_module":"footer","link_pos":"navigation"}'>Holidays</a></li>
+<li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="https://www.tasteofhome.com/food-news/" data-analytics-metrics='{"link_name":"Food News","link_module":"footer","link_pos":"navigation"}'>Food News</a></li>
+<li id="menu-item-769700" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-769700"><a href="https://www.tasteofhome.com/home-living/" data-analytics-metrics='{"link_name":"Home &amp; Living","link_module":"footer","link_pos":"navigation"}'>Home &#038; Living</a></li>
+</ul><ul class="footer-site-links"><li id="menu-item-49" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-49"><a target="_blank" href="https://www.tasteofhome.com/kitchen/" data-analytics-metrics='{"link_name":"Kitchen","link_module":"footer","link_pos":"navigation"}'>Kitchen</a></li>
+<li id="menu-item-50" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50"><a href="https://www.tasteofhome.com/contests/" data-analytics-metrics='{"link_name":"Contests","link_module":"footer","link_pos":"navigation"}'>Contests</a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-51"><a href="https://www.tasteofhome.com/article/subscribe-to-our-magazines/" data-analytics-metrics='{"link_name":"Magazines","link_module":"footer","link_pos":"navigation"}'>Magazines</a></li>
+<li id="menu-item-48" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-48"><a href="https://www.tasteofhome.com/kitchen/how-to/" data-analytics-metrics='{"link_name":"How-To","link_module":"footer","link_pos":"navigation"}'>How-To</a></li>
+</ul>	</div>
+
+	<div class="toh-newsletter footer-mobile">
+		<div class="toh-newsletter-title">Sign-up for recipes to your inbox</div>
+		<form action="https://www.tasteofhome.com/newslettersignuppage/index" method="post"  data-analytics-metrics='{"link_name":"newsletter signup","link_module":"newsletter signup","link_pos":"footer"}'>
+			<input class="toh-footer-nl" type="text" name="EmailAddress" placeholder="Email Address">
+			<button type="submit" class="toh-sign-up-btn">
+				Sign up			</button>
+		</form>
+	</div>
+
+	<div class="footer-left-bottom">
+		<div class="footer-menu-label">Our Brands</div>
+		<!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<ul id="menu-our-brands" class="footer-brand-links"><li id="menu-item-677169" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Reader&#039;s Digest","link_module":"navigation","link_pos":"footer"}' href="https://www.rd.com/">Reader&#8217;s Digest</a></li>
+<li id="menu-item-677170" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"The Family Handyman","link_module":"navigation","link_pos":"footer"}' href="https://www.familyhandyman.com/">The Family Handyman</a></li>
+<li id="menu-item-677174" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Birds &amp; Blooms","link_module":"navigation","link_pos":"footer"}' href="http://www.birdsandblooms.com/">Birds &#038; Blooms</a></li>
+</ul><!-- Default Label -- MARK POINT assumed because &#36;value was not set. -->
+<ul id="menu-footer-two" class="footer-global-links"><li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"About Us","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/help/about-taste-of-home">About Us</a></li>
+<li id="menu-item-53" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Contests","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/contests">Contests</a></li>
+<li id="menu-item-54" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"RSS","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/rss">RSS</a></li>
+<li id="menu-item-55" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" data-analytics-metrics='{"link_name":"Magazine Customer Service","link_module":"header","link_pos":"main navigation"}' href="http://goto.tasteofhome.com/redirects/25032">Magazine Customer Service</a></li>
+<li id="menu-item-5472" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Contact Us","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/help/contact-us">Contact Us</a></li>
+<li id="menu-item-57" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Log In","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/login/index">Log In</a></li>
+<li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Help","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/taste-of-home-help">Help</a></li>
+<li id="menu-item-5475" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Press Room","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/press-room">Press Room</a></li>
+<li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" data-analytics-metrics='{"link_name":"Advertising","link_module":"header","link_pos":"main navigation"}' href="http://mediakit.tasteofhome.com/">Advertising</a></li>
+<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"Terms of Use","link_module":"header","link_pos":"main navigation"}' href="https://www.tasteofhome.com/help/terms-of-use/">Terms of Use</a></li>
+<li id="menu-item-63" class="text-red menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" data-analytics-metrics='{"link_name":"Privacy Policy","link_module":"header","link_pos":"main navigation"}' href="https://www.trustedmediabrands.com/privacy-policy">Privacy Policy</a></li>
+<li id="menu-item-375951" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" data-analytics-metrics='{"link_name":"Your CA Privacy Rights","link_module":"header","link_pos":"main navigation"}' href="https://www.trustedmediabrands.com/privacy-policy/#california">Your CA Privacy Rights</a></li>
+<li id="menu-item-780037" class="menu-item menu-item-type-custom menu-item-object-custom"><a data-analytics-metrics='{"link_name":"OneMain Financial Services","link_module":"header","link_pos":"main navigation"}' href="https://www.onemainfinancial.com/partners/e7d37779">OneMain Financial Services</a></li>
+<li id="menu-item-375953" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" data-analytics-metrics='{"link_name":"About Ads","link_module":"header","link_pos":"main navigation"}' href="https://www.trustedmediabrands.com/privacy-policy/#advertising">About Ads</a></li>
+</ul>		<div class="footer-copyright">&copy; 2018 RDA Enthusiast Brands, LLC</div>
+	</div>
+</div>
+<div class="footer-right footer-desktop">
+	
+
+<div class="newsletter-signup-content-widget -footer">
+
+	
+	<div class="newsletter-signup-content-widget__body">
+
+		
+		<h3 class="newsletter-signup-content-widget__title">Sign-up for recipes to your inbox</h3>
+
+		<div class="newsletter-signup-content-widget__byline">
+			Recipes from real home cooks, tested in our kitchens and delivered right to your inbox!		</div>
+
+		<div class="newsletter-signup-content-widget__form">
+						<form action="https://www.tasteofhome.com/newslettersignuppage/index?OptID=82&OrgSource=NewsletterAD" method="post"   data-analytics-metrics='{"link_name":"Email Sign-up","link_module":"newsletter signup","link_pos":"footer"}' >
+			<input class="toh-footer-nl" type="text" name="EmailAddress" placeholder="Email Address">
+			<button type="submit" class="toh-sign-up-btn">Sign Up</button>
+			</form>
+		</div>
+	</div>
+
+		<div class="newsletter-signup-content-widget__footer">
+
+		<div class="newsletter-signup-content-widget__tagline">Taste of Home is America's #1 cooking magazine.</div>
+
+		<div class="newsletter-signup-content-widget__subscribe-link">
+			<a href="https://order.tasteofhome.com/servlet/OrdersGateway?cds_mag_code=TOH&cds_page_id=217957&cds_response_key=IVKADU101" data-analytics-metrics='{"link_name":"Subscribe link","link_module":"footer","link_pos":"magazine subscription"}'>
+				<img src="https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/images/subscribe-to-the-magazine.png"  data-pin-nopin="true" >
+			</a>
+
+		</div>
+	</div>
+	
+</div>
+
+</div>
+</div></footer>
+<div class="sticky-recipe-footer">
+	<div id="share_buttons" class="social-sharing">
+		<div class="social-sharing__container">
+			<div class="srf-socials">
+				<div class="toh-sharing social-sharing recipe"><div class="addthis_toolbox addthis_default_style addthis_32x32_style"><a class="addthis_button_email"  data-analytics-metrics='{"link_name":"email","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="addthis_button_facebook"   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-analytics-metrics='{"link_name":"facebook","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="addthis_button_pinterest_share  recipetitle "   addthis:media="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps48171_CW163682C02_23_3b_WEB.jpg" data-value="Lemon-Berry Shortcake" data-analytics-metrics='{"link_name":"pinterest","link_module":"recipe engagement","link_pos":"social share-below main image"}'></a><a class="button_print" data-analytics-metrics='{"link_name":"print","link_module":"recipe engagement","link_pos":"social share-below main image"}' style="display: none" href="https://www.tasteofhome.com/recipes/lemon-berry-shortcake/print/"><span><i class="dashicons dashicons-media-text"></i>Print</span></a></div></div>			</div>
+		</div> <!-- /.social-sharing__container  -->
+	</div>
+	<a data-analytics-metrics='{"link_name":"rate","link_module":"recipe engagement","link_pos":"mobile sticky unit"}' id="" class="srf-link recipe-comments-scroll" >
+		<div class="srf-container">
+			<i class="dashicons dashicons-star-filled"></i>
+			<span>Rate</span>
+		</div>
+	</a>
+
+	<a data-analytics-metrics='{"link_name":"comment","link_module":"recipe engagement","link_pos":"mobile sticky unit"}' id="" class="srf-link recipe-comments-scroll" >
+		<div class="srf-container">
+			<i class="dashicons dashicons-admin-comments"></i>
+			<span>Comment</span>
+		</div>
+	</a>
+
+	<a data-analytics-metrics='{"link_name":"save","link_module":"recipe engagement","link_pos":"mobile sticky unit"}' id="sm-recipe-save" class="srf-link login-verify" href="#recipe-save-popup">
+		<div class="srf-container">
+			<i class="dashicons dashicons-heart"></i>
+			<span id="recipe-saved">Save</span>
+		</div>
+	</a>
+
+	<a data-analytics-metrics='{"link_name":"share","link_module":"recipe engagement","link_pos":"mobile sticky unit"}' id="sticky_share" class="srf-link">
+		<div class="srf-container">
+			<i class="dashicons dashicons-share-alt2"></i>
+			<span>Share</span>
+		</div>
+
+	</a>
+
+	<a id=""  onclick="set_local_data(event);" class="srf-link" href="#">
+		<div class="srf-container next-recipe">
+			<span>Next Recipe</span>
+		</div>
+	</a>
+</div>
+</div>
+<!-- START Parse.ly Include: Standard -->
+<div id="parsely-root" style="display: none">
+<span id="parsely-cfg" data-parsely-site="tasteofhome.com"></span>
+</div>
+<script type="text/javascript">
+(function(s, p, d) {
+var h=d.location.protocol, i=p+"-"+s,
+e=d.getElementById(i), r=d.getElementById(p+"-root"),
+u=h==="https:"?"d1z2jf7jlzjs58.cloudfront.net"
+:"static."+p+".com";
+if (e) return;
+e = d.createElement(s); e.id = i; e.async = true;
+e.src = h+"//"+u+"/p.js"; r.appendChild(e);
+})("script", "parsely", document);
+</script>
+<!-- END Parse.ly Include: Standard -->
+<noscript>
+<p>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6034767&cv=2.0&cj=1" height="1" width="1" alt="*">
+</p>
+</noscript>
+<script>
+window.ia = window.ia || function () {(window.ia.q = window.ia.q || []).push(arguments);};ia('create', '22aad833-3280-40ae-82cb-6b32578af0fa');ia('track', 'PAGE_VIEW');
+</script>
+<script async src="https://pymx5.com/scripts/load_tags.js"></script>
+<noscript><img height="1" width="1" style="display:none" src='https://pymx5.com/images/noscript.jpg'/></noscript>
+
+<noscript><img height="1" width="1" src="https://www.facebook.com/tr?id=1470684766408550&ev=PageView&noscript=1"/></noscript>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-recirc-module/js/owl-carousel-min.js?ver=2.0.0'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-recirc-module/js/re-circ.js?ver=2.0.0'></script>
+<script async type='text/javascript' src='https://www.tasteofhome.com/wp-content/mu-plugins/cookie-controller/js/md5.js?ver=1.2'></script>
+<script async type='text/javascript' src='https://www.tasteofhome.com/wp-content/mu-plugins/cookie-controller/js/sha1.js?ver=1.2'></script>
+<script async type='text/javascript' src='https://www.tasteofhome.com/wp-content/mu-plugins/cookie-controller/js/sha256.js?ver=1.2'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/rd-adobe-dtm/js/adobe_dtm.js?ver=1.3.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var rd_taboola = [{"mode":"thumbnails-re","container":"taboola-below-recipe-thumbnails","placement":"Below Recipe Thumbnails Redesign","target_type":"mix"},{"mode":"hybrid-text-links-a","container":"taboola-below-article-text-links","placement":"Below Article Text Links Redesign","target_type":"mix"}];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/rd-taboola/js/rd-taboola-gallery.js?ver=0.2.1'></script>
+<script type='text/javascript' src='https://api.dmcdn.net/all.js?ver=4.9.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var rd_dm_videos = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/rd-video/inc/players/../js/dm-player.js?ver=1.0.7'></script>
+<script type='text/javascript' src='https://content.jwplatform.com/libraries/xSartojx.js?ver=4.9.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jw_videos = [{"player_id":"jwpl5c11d07860a44","video_id":"d2WXhQ6j","sticky":"0"}];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/rd-video/inc/players/../js/jw-player.js?ver=1.0.7'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.0.1/lazyload.min.js?ver=8.0.1'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/smart-images/smart-images.js?ver=1.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var rd_bx = {"script_id":"934"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-bx/js/smart-tag.js?ver=1.2'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/tmbi-comscore-mmx/js/comscore-mmx.js?ver=1.0.1'></script>
+<script async type='text/javascript' src='//s7.addthis.com/js/300/addthis_widget.js?ver=1.2.4#pubid=ra-5953f668de9c1db3'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/plugins/toh-nav-menu/js/helper.js?ver=1.0.4'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/genesis/lib/js/skip-links.min.js?ver=2.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var next_recipes = [{"id":42537,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-shortcake-dessert\/","title":"Strawberry Shortcake Dessert"},{"id":63791,"link":"https:\/\/www.tasteofhome.com\/recipes\/banana-split-icebox-cake\/","title":"Banana Split Icebox Cake"},{"id":84408,"link":"https:\/\/www.tasteofhome.com\/recipes\/lemon-curd-filled-angel-food-cake\/","title":"Lemon Curd-Filled Angel Food Cake"},{"id":122835,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-biscuit-shortcake\/","title":"Strawberry Biscuit Shortcake"},{"id":148253,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-meringue-cake\/","title":"Strawberry Meringue Cake"},{"id":194227,"link":"https:\/\/www.tasteofhome.com\/recipes\/fruit-filled-white-cake\/","title":"Fruit-Filled White Cake"},{"id":230472,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-almond-chocolate-torte\/","title":"Strawberry-Almond Chocolate Torte"},{"id":264917,"link":"https:\/\/www.tasteofhome.com\/recipes\/three-fruit-shortcakes\/","title":"Three-Fruit Shortcakes"},{"id":299274,"link":"https:\/\/www.tasteofhome.com\/recipes\/chocolate-chip-strawberry-shortcakes\/","title":"Chocolate Chip Strawberry Shortcakes"},{"id":346868,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-shortcake-puffs\/","title":"Strawberry Shortcake Puffs"},{"id":43269,"link":"https:\/\/www.tasteofhome.com\/recipes\/berry-topped-white-cupcakes\/","title":"Berry-Topped White Cupcakes"},{"id":64148,"link":"https:\/\/www.tasteofhome.com\/recipes\/molten-mocha-cake\/","title":"Molten Mocha Cake"},{"id":89736,"link":"https:\/\/www.tasteofhome.com\/recipes\/last-minute-shortcake\/","title":"Last-Minute Shortcake"},{"id":126647,"link":"https:\/\/www.tasteofhome.com\/recipes\/angel-food-dream\/","title":"Angel Food Dream"},{"id":155268,"link":"https:\/\/www.tasteofhome.com\/recipes\/upside-down-strawberry-shortcake\/","title":"Upside-Down Strawberry Shortcake"},{"id":201211,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-cheesecake-torte\/","title":"Strawberry Cheesecake Torte"},{"id":230710,"link":"https:\/\/www.tasteofhome.com\/recipes\/shortcut-shortcake\/","title":"Shortcut Shortcake"},{"id":266133,"link":"https:\/\/www.tasteofhome.com\/recipes\/chocolate-covered-strawberries-cake\/","title":"Chocolate-Covered Strawberries Cake"},{"id":300910,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-shortcakes\/","title":"Strawberry Shortcakes"},{"id":350470,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-surprise-cupcakes\/","title":"Strawberry Surprise Cupcakes"},{"id":22078,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-shortcake\/","title":"Strawberry Shortcake"},{"id":43359,"link":"https:\/\/www.tasteofhome.com\/recipes\/grilled-angel-food-cake-with-fruit-salsa\/","title":"Grilled Angel Food Cake with Fruit Salsa"},{"id":64595,"link":"https:\/\/www.tasteofhome.com\/recipes\/cola-cake-with-strawberries-cream\/","title":"Cola Cake with Strawberries &#038; Cream"},{"id":92324,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-shortbread-shortcake\/","title":"Strawberry Shortbread Shortcake"},{"id":130950,"link":"https:\/\/www.tasteofhome.com\/recipes\/victorian-strawberry-chocolate-cake\/","title":"Victorian Strawberry Chocolate Cake"},{"id":157450,"link":"https:\/\/www.tasteofhome.com\/recipes\/make-ahead-shortcake\/","title":"Make-Ahead Shortcake"},{"id":201612,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-hazelnut-torte\/","title":"Strawberry Hazelnut Torte"},{"id":232493,"link":"https:\/\/www.tasteofhome.com\/recipes\/strawberry-cream-cake\/","title":"Strawberry Cream Cake"},{"id":267739,"link":"https:\/\/www.tasteofhome.com\/recipes\/angel-food-cake-with-fruit\/","title":"Angel Food Cake with Fruit"},{"id":301201,"link":"https:\/\/www.tasteofhome.com\/recipes\/shortcut-strawberry-vanilla-dessert\/","title":"Shortcut Strawberry-Vanilla Dessert"}];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/toh-next-recipe.js?ver=1.0.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var genesisSampleL10n = {"mainMenu":"Menu","subMenu":"Menu"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/responsive-menu.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/aalb-image.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/enquire.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/blurred-image.js?ver=3.7.40'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var google_analytics_plus = {"ga_id":"UA-38657577-1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/script.min.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-includes/js/underscore.min.js?ver=1.8.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-includes/js/wp-util.min.js?ver=4.9.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var toh = {"ajax_url":"https:\/\/www.tasteofhome.com\/wp-admin\/admin-ajax.php","review_load_more_action":"toh_review_load_more","review_load_more_template_name":"toh-load-more-reviews","review_load_more_nonce":"7ff4ce79d4","review_submission_action":"toh_review_submission","review_submission_nonce":"8a59a1e78b"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-content/themes/tmbi-theme-v3/js/reviews.js?ver=3.7.40'></script>
+<script type='text/javascript' src='https://www.tasteofhome.com/wp-includes/js/wp-embed.min.js?ver=4.9.8'></script>
+
+<script type="text/javascript">
+if(typeof _satellite !== "undefined"){
+  _satellite.pageBottom()
+}
+</script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"bab150296b","applicationID":"45457257","transactionName":"M1BUY0YAC0ZWUxVaXQoad1RACApbGEMIXVUIUBtFUQIMRVI=","queueTime":0,"applicationTime":1199,"atts":"HxdXFQ4aGEg=","errorBeacon":"bam.nr-data.net","agent":""}</script></body></html>

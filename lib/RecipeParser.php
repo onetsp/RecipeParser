@@ -9,6 +9,7 @@ class RecipeParser {
     const DATA_VOCABULARY_SPEC     = "MicrodataDataVocabulary";
     const RDF_DATA_VOCABULARY_SPEC = "MicrodataRdfDataVocabulary";
     const MICROFORMAT_SPEC         = "Microformat";
+    const STRUCTURED_DATA_SPEC     = "StructuredData";
     const GENERAL_PARSER           = "General";
 
     /**
@@ -62,7 +63,12 @@ class RecipeParser {
      * @return string Name of matching parser (or null)
      */
     static public function matchMarkupFormat(&$html) {
-        if (stripos($html, "//schema.org/Recipe") !== false) {
+        if (stripos($html, "application/ld+json") !== false 
+            && stripos($html, "recipeIngredient") !== false
+            && stripos($html, "recipeInstructions") !== false
+        ) {
+            return self::STRUCTURED_DATA_SPEC;
+        } else if (stripos($html, "//schema.org/Recipe") !== false) {
             return self::SCHEMA_SPEC;
         } else if (stripos($html, "//data-vocabulary.org/Recipe") !== false) {
             return self::DATA_VOCABULARY_SPEC;

@@ -8,9 +8,9 @@ class RecipeParser_Parser_General {
         $xpath = $myxpath->getXPath();
 
         // Title
-        $myxpath->singleNodeLookup('//title', null, "title", $recipe);
+        $myxpath->singleNodeLookup('//meta[@itemprop="og:title"]', "content", "title", $recipe);
         if (!$recipe->title) {
-            $myxpath->singleNodeLookup('//meta[@itemprop="og:title"]', "content", "title", $recipe);
+            $myxpath->singleNodeLookup('//title', null, "title", $recipe);
         }
         if (!$recipe->title) {
             $recipe->title = "Recipe from $url";
