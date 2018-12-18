@@ -44,4 +44,23 @@ class StructuredDataTest extends TestCase {
         $this->assertEquals("Bake", $recipe->instructions[2]['name']);
     }
 
+    public function test_read_json_multi_schema_objects() {
+        $path = TestUtils::getDataPath("structured_data_multiple_objects.html");
+        $url = "http://www.example.com/recipes/almond-cheddar.html";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals('Almond Cheddar Appetizers', $recipe->title, "Title.");
+    }
+
+    public function test_read_image_in_json() {
+        $path = TestUtils::getDataPath("structured_data_multiple_objects.html");
+        $url = "http://www.example.com/recipes/almond-cheddar.html";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals('https://cdn-image.myrecipes.com/sites/default/files/image.jpg', $recipe->photo_url, "Photo URL.");
+    }
 }

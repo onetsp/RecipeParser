@@ -22,7 +22,7 @@ class RecipeParser_Parser_General {
             foreach ($nodes as $node) {
                 // Get the first image that looks like a jpg (ignore pngs and gifs that are probably site icons)
                 $photo_url = $node->getAttribute("content");
-                if (preg_match("/\.(jpeg|jpg)$/i", $photo_url)) {
+                if (preg_match("/\.(jpeg|jpg)/i", $photo_url)) {
                     $photo_url = RecipeParser_Text::relativeToAbsolute($photo_url, $url);
                     $recipe->photo_url = $photo_url;
                     break;
