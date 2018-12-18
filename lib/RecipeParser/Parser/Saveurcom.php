@@ -3,8 +3,6 @@
 class RecipeParser_Parser_Saveurcom {
 
     static public function parse($html, $url) {
-#        $recipe = new RecipeParser_Recipe();
-
         $recipe = RecipeParser_Parser_General::parse($html, $url);
         $myxpath = new RecipeParser_XPath($html);
         $xpath = $myxpath->getXPath();
