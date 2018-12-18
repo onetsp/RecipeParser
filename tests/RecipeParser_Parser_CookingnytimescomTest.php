@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 class CookingnytimescomTest extends TestCase {
 
     public function test_dining_olive_oil_cake() {
-        $path = TestUtils::getDataPath("cooking_nytimes_com_blood_orange_olive_oil_cake_nyt_curl.html");
+        $path = TestUtils::getDataPath("cooking_nytimes_com_blood_orange_olive_oil_cake.html");
         $url = "http://cooking.nytimes.com/recipes/1012443-blood-orange-olive-oil-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -30,7 +30,7 @@ class CookingnytimescomTest extends TestCase {
     }
 
     public function test_dining_sauerkraut_and_pork() {
-        $path = TestUtils::getDataPath("cooking_nytimes_com_braised_sauerkraut_with_lots_of_pork_curl.html");
+        $path = TestUtils::getDataPath("cooking_nytimes_com_braised_sauerkraut_with_lots_of_pork.html");
         $url = "http://cooking.nytimes.com/recipes/1013471-braised-sauerkraut-with-lots-of-pork";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -51,7 +51,7 @@ class CookingnytimescomTest extends TestCase {
     }
 
     public function test_dining_clay_pot_pork() {
-        $path = TestUtils::getDataPath("cooking_nytimes_com_clay_pot_pork_nyt_cooking_curl.html");
+        $path = TestUtils::getDataPath("cooking_nytimes_com_clay_pot_pork.html");
         $url = "http://cooking.nytimes.com/recipes/1014149-clay-pot-pork";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -72,7 +72,7 @@ class CookingnytimescomTest extends TestCase {
     }
 
     public function test_dining_rhubarb_upside_down_cake() {
-        $path = TestUtils::getDataPath("cooking_nytimes_com_rhubarb_upside_down_cake_nyt_cooking_curl.html");
+        $path = TestUtils::getDataPath("cooking_nytimes_com_rhubarb_upside_down_cake.html");
         $url = "http://cooking.nytimes.com/recipes/1013611-rhubarb-upside-down-cake";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -91,13 +91,13 @@ class CookingnytimescomTest extends TestCase {
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals(7, count($recipe->instructions[0]['list']));
 
-        $this->assertEquals(
-            'http://graphics8.nytimes.com/images/2014/03/06/dining/rhubarb-still/rhubarb-still-superJumbo.jpg',
+        $this->assertRegExp(
+            '/https.*\/rhubarb-still-superJumbo.jpg/',
             $recipe->photo_url);
     }
 
     public function test_dining_yellow_layer_cake() {
-        $path = TestUtils::getDataPath("cooking_nytimes_com_yellow_layer_cake_with_chocolate_frosting_curl.html");
+        $path = TestUtils::getDataPath("cooking_nytimes_com_yellow_layer_cake_with_chocolate_frosting.html");
         $url = "http://cooking.nytimes.com/recipes/1016162-yellow-layer-cake-with-chocolate-frosting";
 
         $recipe = RecipeParser::parse(file_get_contents($path), $url);
@@ -110,13 +110,9 @@ class CookingnytimescomTest extends TestCase {
 
         $this->assertEquals('Yellow Layer Cake With Chocolate Frosting', $recipe->title);
 
-        $this->assertEquals(3, count($recipe->ingredients));
-        $this->assertEquals('Cake', $recipe->ingredients[0]['name']);
-        $this->assertEquals(10, count($recipe->ingredients[0]['list']));
-        $this->assertEquals('Macroon crunch', $recipe->ingredients[1]['name']);
-        $this->assertEquals(2, count($recipe->ingredients[1]['list']));
-        $this->assertEquals('Chocolate frosting', $recipe->ingredients[2]['name']);
-        $this->assertEquals(8, count($recipe->ingredients[2]['list']));
+        $this->assertEquals(1, count($recipe->ingredients));
+        $this->assertEquals('', $recipe->ingredients[0]['name']);
+        $this->assertEquals(20, count($recipe->ingredients[0]['list']));
         $this->assertEquals(1, count($recipe->instructions));
         $this->assertEquals(6, count($recipe->instructions[0]['list']));
     }

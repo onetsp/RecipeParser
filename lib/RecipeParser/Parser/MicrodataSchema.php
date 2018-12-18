@@ -22,6 +22,8 @@ class RecipeParser_Parser_MicrodataSchema {
         if ($microdata) {
 
             // Title
+            // Ideally, this should look for other schema.org entities like BreadcrumbList and ListItem to 
+            // make sure that the "name" object isn't within either of these.
             $nodes = $xpath->query('.//*[@itemprop="name"]', $microdata);
             if ($nodes->length) {
                 $value = trim($nodes->item(0)->nodeValue);
@@ -73,7 +75,10 @@ class RecipeParser_Parser_MicrodataSchema {
             }
 
             // Ingredients 
-            $nodes = $xpath->query('//*[@itemprop="ingredients"]');
+            $nodes = $xpath->query('//*[@itemprop="recipeIngredient"]');
+            if (!$nodes || !$nodes->length) {
+                $nodes = $xpath->query('//*[@itemprop="ingredients"]');
+            }
             foreach ($nodes as $node) {
                 $value = $node->nodeValue;
                 $value = RecipeParser_Text::formatAsOneLine($value);
