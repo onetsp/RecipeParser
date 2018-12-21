@@ -114,7 +114,7 @@ class RecipeParser {
 
         // Initialize the right parser and run it.
         $classname = 'RecipeParser_Parser_' . $parser;
-        Log::notice("Executing parser $classname");
+        Log::notice("Executing parser $classname", __CLASS__);
         $recipe = $classname::parse($html, $url);
 
         $recipe->_parser = $parser;
