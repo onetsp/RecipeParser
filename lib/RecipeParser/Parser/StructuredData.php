@@ -35,6 +35,7 @@ class RecipeParser_Parser_StructuredData {
 
             if ($json['recipeIngredient']) {
                 foreach ($json['recipeIngredient'] as $value) {
+                    $value = strip_tags($value);
                     if (RecipeParser_Text::matchSectionName($value)) {
                         $value = RecipeParser_Text::formatSectionName($value);
                         $recipe->addIngredientsSection( html_entity_decode($value) );
@@ -49,19 +50,25 @@ class RecipeParser_Parser_StructuredData {
 
             // Single-line of text for instructions?
             if ($json['recipeInstructions'] && !is_array($json['recipeInstructions'])) {
-                $value = RecipeParser_Text::formatAsOneLine($json['recipeInstructions']);
+                $value = $json['recipeInstructions'];
+                $value = strip_tags($value);
+                $value = RecipeParser_Text::formatAsOneLine($value);
                 $recipe->appendInstruction( html_entity_decode($value) );
             
             // Multi-line instructions and sections
             } else if ($json['recipeInstructions'] && is_array($json['recipeInstructions'])) {
                 foreach ($json['recipeInstructions'] as $section) {
                     if (!empty($section['name'])) {
-                        $value = RecipeParser_Text::formatSectionName($section['name']);
+                        $value = $section['name'];
+                        $value = strip_tags($value);
+                        $value = RecipeParser_Text::formatSectionName($value);
                         $recipe->addInstructionsSection( html_entity_decode($value) );
                     }
                     if (isset($section['itemListElement']) && is_array($section['itemListElement'])) {
                         foreach ($section['itemListElement'] as $item) {
-                            $value = RecipeParser_Text::stripLeadingNumbers($item['text']);
+                            $value = $item['text'];
+                            $value = strip_tags($value);
+                            $value = RecipeParser_Text::stripLeadingNumbers($value);
                             $value = RecipeParser_Text::formatAsOneLine($value);
                             $recipe->appendInstruction( html_entity_decode($value) );
                         }
