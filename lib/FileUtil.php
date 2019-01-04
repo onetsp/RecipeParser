@@ -39,12 +39,12 @@ class FileUtil {
             && filesize($filename) > 0
             && (time() - filemtime($filename) < $cache_ttl)
         ) {
-            Log::notice("Found file in cache: $filename");
+            Log::notice("Found file in cache: $filename", __CLASS__);
             $html = file_get_contents($filename);
 
         } else {
             // Fetch and cleanup the HTML
-            Log::notice("Downloading recipe from url: $url");
+            Log::notice("Downloading recipe from url: $url", __CLASS__);
 
             $html = FileUtil::downloadPage($url);
             $html = RecipeParser_Text::forceUTF8($html);
@@ -54,7 +54,7 @@ class FileUtil {
             $comments = RecipeParser_Text::getRecipeMetadataComment($url, "curl");
             $html = $comments . "\n\n" . $html;
 
-            Log::notice("Saving recipe to file $filename");
+            Log::notice("Saving recipe to file $filename", __CLASS__);
             file_put_contents($filename, $html);
         }
 
