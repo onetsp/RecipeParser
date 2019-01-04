@@ -2,11 +2,14 @@
 
 class FileUtil {
 
-    public static function tempFilenameFromUrl($url) {
+    public static function tempFilenameFromUrl($url, $tmpdir=null) {
+        if (!$tmpdir) {
+            $tmpdir = sys_get_temp_dir();
+        }
         $hostname = parse_url($url, PHP_URL_HOST);
         $hostname = str_replace(".", "_", $hostname);
-        $basename = "onetsp_{$hostname}_" . substr(md5($url), 0, 8);
-        $filename = sys_get_temp_dir() . "/" . $basename;
+        $basename = "onetsp_{$hostname}_" . substr(md5($url), 0, 10);
+        $filename = $tmpdir . "/" . $basename;
         return $filename;
     }
     
@@ -28,11 +31,11 @@ class FileUtil {
         return $html;
     }
 
-    public static function downloadRecipeWithCache($url) {
+    public static function downloadRecipeWithCache($url, $tmpdir=null) {
         $cache_ttl = 86400 * 3;
 
         // Target filename
-        $filename = FileUtil::tempFilenameFromUrl($url);
+        $filename = FileUtil::tempFilenameFromUrl($url, $tmpdir);
 
         // Only fetch 1x per day
         if (file_exists($filename)
