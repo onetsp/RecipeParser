@@ -2,30 +2,29 @@
 
 class RecipeParser_Parser_StructuredData {
 
-    static public function parse($html, $url) {
+    public static function parse($html, $url) {
         $recipe = RecipeParser_Parser_General::parse($html, $url);
         $myxpath = new RecipeParser_XPath($html);
         $xpath = $myxpath->getXPath();
 
-
         $nodes = $xpath->query('//script[@type="application/ld+json"]');
-        if ($nodes->length) {
-            $value = $nodes->item(0)->nodeValue;
+        foreach ($nodes as $node) {
+            $value = $node->nodeValue;
             $json = json_decode($value, true);
 
-            // Is the top-level an assoc array, or is this a list of recipes or list of other
-            // Schema objects?
-            if (!self::isAssoc($json)) {
-                foreach ($json as $item) {
-                    if (self::isSchemaRecipe($item)) {
-                        $json = $item;
-                        break;
-                    }
-                }
-            } else {
-                if (!self::isSchemaRecipe($json)) {
-                    // This is an assoc array but doesn't look like a Recipe.
-                    return;
+            // The returned json may be a single recipe, have multiple recipes, or may not 
+            // include a recipe at all. Find the right level array in the json object...
+            $json = self::getRecipeArray($json);
+            if (!$json) {
+                continue;
+            }
+
+            #echo "\n\nJSON:\n" . print_r($json, true) . "\n";
+
+            // Pick up a title if the general parser didn't find a good one.
+            if (strpos($recipe->title, "Recipe from http") !== false) {
+                if (isset($json['name'])) {
+                    $recipe->title = RecipeParser_Text::formatTitle($json['name']);
                 }
             }
 
@@ -62,9 +61,8 @@ class RecipeParser_Parser_StructuredData {
                 }
             }
             
-            //echo "\n----JSON---\n" . print_r($json, true) . "\n----END----\n";
-
             if (isset($json['recipeInstructions'])) {
+
                 // Single-line of text for instructions?
                 if (!is_array($json['recipeInstructions'])) {
                     $value = $json['recipeInstructions'];
@@ -74,20 +72,43 @@ class RecipeParser_Parser_StructuredData {
                 
                 // Multi-line instructions and sections
                 } else if (is_array($json['recipeInstructions'])) {
+
                     foreach ($json['recipeInstructions'] as $section) {
-                        if (!empty($section['name'])) {
-                            $value = $section['name'];
+                        // Each element of "recipeInstructions is a single value (i.e. an instruction)
+                        if (!is_array($section)) {
+                            $value = $section;
                             $value = strip_tags($value);
-                            $value = RecipeParser_Text::formatSectionName($value);
-                            $recipe->addInstructionsSection( html_entity_decode($value) );
-                        }
-                        if (isset($section['itemListElement']) && is_array($section['itemListElement'])) {
-                            foreach ($section['itemListElement'] as $item) {
-                                $value = $item;
+                            $value = RecipeParser_Text::stripLeadingNumbers($value);
+                            $value = RecipeParser_Text::formatAsOneLine($value);
+                            $recipe->appendInstruction( html_entity_decode($value) );
+                        
+                        // Otherwise, each section contains names and/or elements.
+                        } else {
+
+                            if (!empty($section['name'])) {
+                                $value = $section['name'];
                                 $value = strip_tags($value);
-                                $value = RecipeParser_Text::stripLeadingNumbers($value);
-                                $value = RecipeParser_Text::formatAsOneLine($value);
-                                $recipe->appendInstruction( html_entity_decode($value) );
+                                $value = RecipeParser_Text::formatSectionName($value);
+                                $recipe->addInstructionsSection( html_entity_decode($value) );
+                            }
+                            if (isset($section['itemListElement']) && is_array($section['itemListElement'])) {
+                                foreach ($section['itemListElement'] as $item) {
+                                    $value = $item;
+
+                                    // Item may be
+                                    // Array
+                                    // (
+                                    //    [@type] => HowToStep
+                                    //    [text] => Heat oven to 425&deg;F.
+                                    // )
+                                    if (is_array($value) && isset($value['text'])) {
+                                        $value = $value['text'];
+                                    }
+                                    $value = strip_tags($value);
+                                    $value = RecipeParser_Text::stripLeadingNumbers($value);
+                                    $value = RecipeParser_Text::formatAsOneLine($value);
+                                    $recipe->appendInstruction( html_entity_decode($value) );
+                                }
                             }
                         }
                     }
@@ -105,17 +126,41 @@ class RecipeParser_Parser_StructuredData {
                     }
                 }
             }
+
+            break;
         }
 
         return $recipe;
     }
 
-    static public function isAssoc($arr) {
+
+
+    public static function getRecipeArray($arr) {
+        if (self::isAssoc($arr)) {
+            if (self::isSchemaRecipe($arr)) {
+                return $arr;
+            } else {
+                return false;
+            }
+
+        } else {
+            foreach ($arr as $item) {
+                if (self::isSchemaRecipe($item)) {
+                    $arr = $item;
+                    return $arr;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static function isAssoc($arr) {
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
 
-    static public function isSchemaRecipe($arr) {
-        if (isset($arr['@context']) && stripos($arr['@context'], '//schema.org') !== false) {
+    public static function isSchemaRecipe($arr) {
+        if (isset($arr['@context']) && stripos($arr['@context'], 'schema.org') !== false) {
             if (isset($arr['@type']) && strtolower($arr['@type']) == 'recipe') {
                 return true;
             }

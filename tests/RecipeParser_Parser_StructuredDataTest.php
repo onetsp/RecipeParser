@@ -63,4 +63,17 @@ class StructuredDataTest extends TestCase {
 
         $this->assertEquals('https://cdn-image.myrecipes.com/sites/default/files/image.jpg', $recipe->photo_url, "Photo URL.");
     }
+
+    public function test_multiple_ldjson() {
+        $path = TestUtils::getDataPath("structured_data_multiple_ldjson.html");
+        $url = "http://www.example.com/recipes/eash-homemade-salsa";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals('Easy Homemade Salsa', $recipe->title, "Title.");
+
+        $this->assertEquals(9, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(4, count($recipe->instructions[0]['list']));
+    }
 }
