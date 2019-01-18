@@ -76,4 +76,16 @@ class StructuredDataTest extends TestCase {
         $this->assertEquals(9, count($recipe->ingredients[0]['list']));
         $this->assertEquals(4, count($recipe->instructions[0]['list']));
     }
+
+    public function test_broken_json_encode() {
+        $path = TestUtils::getDataPath("structured_data_json_encode_error.html");
+        $url = "https://www.purewow.com/recipes/stuffed-butternut-squash-recipe";
+
+        $recipe = RecipeParser::parse(file_get_contents($path), $url);
+        if (isset($_SERVER['VERBOSE'])) print_r($recipe);
+
+        $this->assertEquals(0, count($recipe->ingredients[0]['list']));
+        $this->assertEquals(0, count($recipe->instructions[0]['list']));
+    }
+
 }

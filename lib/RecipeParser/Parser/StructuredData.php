@@ -8,9 +8,16 @@ class RecipeParser_Parser_StructuredData {
         $xpath = $myxpath->getXPath();
 
         $nodes = $xpath->query('//script[@type="application/ld+json"]');
+
         foreach ($nodes as $node) {
             $value = $node->nodeValue;
             $json = json_decode($value, true);
+            if (!$json) {
+                Log::warning("JSON could not be decoded: " . json_last_error_msg(), __CLASS__);
+                continue;
+            }
+
+            #echo "\n\nJSON:\n" . print_r($json, true) . "\n";
 
             // The returned json may be a single recipe, have multiple recipes, or may not 
             // include a recipe at all. Find the right level array in the json object...
