@@ -14,6 +14,18 @@ class RecipeParser_Parser_Seriouseatscom {
 
         $myxpath->singleNodeLookup('//span[@class="info yield"]', null, "yield", $recipe);
 
+		// Description
+        $str = "";
+        $nodes = $xpath->query('//*[@class="headnote"]');
+        foreach ($nodes as $node) {
+            if ($str) {
+                $str .= "\n\n";
+            }
+            $str = $node->nodeValue;
+            $str = RecipeParser_Text::formatAsOneLine($str);
+        }
+        $recipe->description = $str;
+
         // Times
         $nodes = $xpath->query('.//*[@class="recipe-about"]/li');
         foreach ($nodes as $node) {
